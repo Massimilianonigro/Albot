@@ -1,0 +1,17 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - inform_color_change
+  - inform_cabbage_solution
+  - inform_ph
+  - inform_ph_property
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,72 @@
+{
+    "greeting": [
+        ""
+    ],
+
+    "ready_or_question":[
+        ""
+    ],
+
+    "introduction_or_practice":[""],
+
+    "introduction_explanation": [
+        ""
+    ],
+
+    "acid_selection": [
+        ""
+    ],
+
+    "base_selection": [
+        ""
+    ],
+
+    "practice_explanation": [
+        ""
+    ],
+
+    "ph_explanation": [
+        "",
+        ""
+    ],
+
+    "cabbage_solution_explanation" : [
+        ""
+    ],
+
+    "collecting_items_answer" : [
+        ""
+    ],
+
+    "acid_explanation": [
+        ""
+    ],
+
+    "base_explanation": [
+        ""
+    ],
+
+    "color_change_acid" : [],
+
+    "color_change_base": [
+        ""
+    ],
+
+    "color_change_neutral": [
+        ""
+    ],
+
+    "properties_acid_ingredient": [],
+
+    "properties_neutral_ingredient": [],
+
+    "properties_base_ingredient": [],
+
+    "fallback": [],
+
+    "chatbot_question": [],
+
+    "practice_collecting_explanation": [],
+
+    "color_change_exclamation": []
+}

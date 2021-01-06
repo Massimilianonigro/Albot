@@ -1,0 +1,131 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: inform_collecting_items
+  examples: |
+    - How many items should i select?
+    - Can i select all the items?
+    - I selected all the items. What should i do now?
+    - How much stuff can i pick up?
+    - Can i take more items?
+    - Can i pick up more items?
+
+- intent: inform_ph_property
+  examples: |
+    - What does [base]("ph_property")
+    - Can you explain the concept of [acid]("ph_property")?
+    - What is a [base]("ph_property")?
+    
+
+- lookup: ph_property
+  examples: |
+    - acid
+    - base
+
+- intent: inform_ph
+  examples: |
+    - What is ph?
+    - Can you explain the concept of ph?
+    - How does ph work?
+    - Does any liquid have ph properties?
+    - How is ph influencing our life?
+    - What is the deal with ph?
+    - I want an explanation on ph
+    - Tell me more about ph
+
+- intent: inform_cabbage_solution
+  examples: |
+    - Do you know how to make the cabbage solution at home?
+    - How can i make the cabbage solution?
+    - Why are we using a cabbage solution?
+    - What is the deal with the cabbage juice?
+    - How is the cabbafe solution made?
+    - What properties does the cabbage solution have?
+    - Why the cabbage solution?
+    - Do you know any other solution to check the ph level?
+    - How is the cabbage solution helping us?
+    - Is there any other solution i can use instead of the cabbage one?
+- intent: inform_color_change
+  examples: |
+    - Why does the cabbege solution turn [red]("color")?
+    - Why adding [lemon juice]("ingredient") does the solution turn [red]("color")?
+    - Why are we not mixing the liquids into each other?
+    - Why is the cabbage turning [yellow]("color")
+    - How come the cabbage juice is becoming [red]("color")
+    - How is it possible that the juice is now green
+    - Why did it change color?
+    - Can you explain the change in color
+    - Why it has a different color now
+    - What happened to the solution 
+    - What happens if i pour [milk]("ingredient") in the solution
+    - What if i drop the [lemon juice]("ingredient") in the cabbage juice
+- intent : inform_ingredient_property
+  examples: |
+    - What are the ph properties of [lemon juice]("ingredient")?
+- lookup: color
+  examples: |
+    - red
+    - blue
+    - green
+    - yellow
+    - purple
+    - orange
+
+- lookup: ingredient
+  examples: |
+    - lemon juice
+    - cleaning product
+    - water
+    - coffee
+    - milk
+    - cola
+    - soda

@@ -1,0 +1,12 @@
+from enum import Enum
+
+class State(Enum):
+    GREETING = 1
+    INTRODUCTION_START = 2
+    ACID_SELECTION = 3
+    BASE_SELECTION = 4
+    WAITING = 5
+    GUIDED_REASONING = 6
+    GUIDED_POURING = 7
+    PRACTICE_COLLECTING = 8
+    PRACTICE_CYCLE = 9

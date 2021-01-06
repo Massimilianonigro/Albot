@@ -1,0 +1,9 @@
+/__pycache__/
+/bin/
+/lib/
+pyvenv.cfg
+.pylintrc
+/include/
+/src/__pycache__/
+.DS_Store
+
