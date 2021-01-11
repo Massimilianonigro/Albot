@@ -3,7 +3,7 @@ from state_machine import StateMachine
 import json 
 from threading import Timer
 import random
-from app import client_receive_message
+import app
 
 class DialogueManager:
     
@@ -15,8 +15,8 @@ class DialogueManager:
 
     def add_user(self,user_session_id):
         self.users[user_session_id] = {
-            'current_state' : State.GREETING
-            'timer' : None
+            'current_state' : State.GREETING,
+            'timer' : None,
             'is_timer_ended' : None 
         }
         #The moment the user is added the chatbot greets him and introduces him to the lesson
@@ -27,6 +27,7 @@ class DialogueManager:
                         'id': 0,
                         'name': "connected"}
         } 
+        print("In dialogue_manager add_user: client connected and added, about to send message ")
         self.chatbot_sends_message(intent,user_session_id)
         
 
@@ -56,11 +57,13 @@ class DialogueManager:
         return utterance
     
     def generate_utterance(self,intent,user_session_id):
+        print("In dialogue_manager generate_utterance: beginning of the function ")
         user = self.users[user_session_id]
         current_state = user['current_state']
         if user['is_timer_ended'] is None or user['is_timer_ended'] == True:      
             #User either does not have a timer or the timer has finished, that means we are no longer in 
             # the branch/waiting state so we can behave normally 
+            print("In dialogue_manager generate_utterance: about to call input_function ")
             next_state , utterance_array = self.state_machine.input_function(intent,current_state)
             user['current_state'] = next_state
             #In the next section we proceed to see if the state we landed in is either a branch or waiting state
@@ -74,13 +77,16 @@ class DialogueManager:
                 branch_child_question,
                 [user_session_id]
                 )       
-        else if user['is_timer_ended'] == False:
+        elif user['is_timer_ended'] == False:
             #User has a timer and it is on going, meaning i do not update the state cause it will be
             # updated by the timer function and i do not start a new timer
             _ , utterance_array = self.state_machine.input_function(intent,current_state)
-           
-        msg['message'] = json.dump(utterance_array)
-        msg['sid'] = user_session_id
+        
+        message = json.dumps(utterance_array)
+        msg = {
+            'message' : message,
+            'sid': user_session_id
+        }
         return msg
     
     def select_intent(self,highlighted):
@@ -118,9 +124,10 @@ class DialogueManager:
         self.users[user_session_id]['current_state'] = self.state_machine.get_next_state(self.users[user_session_id]['current_state'])
 
     def chatbot_sends_message(self,intent,user_session_id):
+        print("In dialogue_manager chatbot_sends_message: ")
         utterance = self.generate_utterance(intent,user_session_id)
         #Call on the app service to send the message
-        client_receive_message(utterance)
+        app.client_receive_message(utterance)
 
 
    

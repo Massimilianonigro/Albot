@@ -12,8 +12,11 @@
     "core-js": "^3.6.5",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
+    "socket.io-client": "^3.0.5",
     "vue": "^2.6.11",
     "vue-simple-alert": "^1.1.1",
+    "vue-socket.io": "^3.0.10",
+    "vue-socket.io-extended": "^4.0.5",
     "vuescroll": "^4.17.0"
   },
   "devDependencies": {
