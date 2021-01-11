@@ -19,6 +19,17 @@ class DialogueManager:
             'timer' : None
             'is_timer_ended' : None 
         }
+        #The moment the user is added the chatbot greets him and introduces him to the lesson
+        intent = {
+            'entities' : [],
+
+            'intent': {'confidence': 1,
+                        'id': 0,
+                        'name': "connected"}
+        } 
+        self.chatbot_sends_message(intent,user_session_id)
+        
+
 
     def del_user(self,user_session_id):
         del self.users[user_session_id]
@@ -47,11 +58,7 @@ class DialogueManager:
     def generate_utterance(self,intent,user_session_id):
         user = self.users[user_session_id]
         current_state = user['current_state']
-        if user['is_timer_ended'] == False:            
-            #User has a timer and it is on going, meaning i do not update the state cause it will be
-            # updated by the timer function and i do not start a new timer
-            _ , utterance_array = self.state_machine.input_function(intent,current_state)
-        else:
+        if user['is_timer_ended'] is None or user['is_timer_ended'] == True:      
             #User either does not have a timer or the timer has finished, that means we are no longer in 
             # the branch/waiting state so we can behave normally 
             next_state , utterance_array = self.state_machine.input_function(intent,current_state)
@@ -66,7 +73,12 @@ class DialogueManager:
                 self.state_machine.get_waiting_time(),
                 branch_child_question,
                 [user_session_id]
-                ) 
+                )       
+        else if user['is_timer_ended'] == False:
+            #User has a timer and it is on going, meaning i do not update the state cause it will be
+            # updated by the timer function and i do not start a new timer
+            _ , utterance_array = self.state_machine.input_function(intent,current_state)
+           
         msg['message'] = json.dump(utterance_array)
         msg['sid'] = user_session_id
         return msg

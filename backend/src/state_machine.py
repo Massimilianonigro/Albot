@@ -18,14 +18,12 @@ class StateMachine:
     def greeting(self,intent,current_state): 
         utterance_array = []
         next_state = current_state
-        #Find out how to communicate the decision on the next phase: Idea use highlighted parameter
-        if intent['intent']['name'] == "greeting" :
+        if intent['intent']['name'] == "connected" :
             utterance_array.append(self.utterances['greeting'].choice())
             utterance_array.append(self.utterances['introduction_or_practice'].choice())
         else if intent['intent']['name'] == "clicked_practice":
             next_state = State.PRACTICE_COLLECTING
             utterance_array.append(self.utterances['practice_explanation'].choice())
-            utterance_array.append(self.utterances['ready_or_question'].choice())
         else if intent['intent']['name'] == "clicked_introduction":
             next_state = State.INTRODUCTION_START
             utterance_array.append(self.utterances['introduction_explanation'].choice())
@@ -65,7 +63,7 @@ class StateMachine:
             utterance_array.append(question_explanation)
             return next_state,utterance_array
         if intent['intent']['name'] == "clicked_next":
-            utterance_array.append(self.utterances['base_selection'].choice())
+            utterance_array.append(self.utterances['guided_reasoning_explanation'].choice())
             next_state = State.GUIDED_REASONING
         else if intent['intent']['name'] == "nlu_fallback":
             utterance_array.append(self.utterances['fallback'].choice())

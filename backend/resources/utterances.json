@@ -1,26 +1,37 @@
 {
     "greeting": [
-        ""
+        "Hi, I am Albot. let’s do some fun with Chemistry.",
+        "Let’s check the PH level of the items available in this kitchen"
     ],
 
     "ready_or_question":[
         ""
     ],
 
-    "introduction_or_practice":[""],
+    "introduction_or_practice":[
+        "You can choose between an introductory lesson or a practice lesson"
+    ],
 
     "introduction_explanation": [
-        ""
+        "Welcome to Introductory lesson! We will learn about PH level with item available in the kitchen."
     ],
 
     "acid_selection": [
-        ""
+        "The Highlighted item have acidic properties. Select any 2 item of your choice to test them."
+    ],
+
+    "next": [
+        "Click next to proceed"
     ],
 
     "base_selection": [
-        ""
+        "The Highlighted item have basic properties. Select any 2 item of your choice to test them."
     ],
 
+    "guided_reasoning_explanation": [
+        "You can now see all selected item on the table. Click on each item and mix it with cabbage solution"
+    ],
+    
     "practice_explanation": [
         ""
     ],

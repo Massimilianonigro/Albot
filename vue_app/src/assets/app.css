@@ -1,0 +1,57 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import url('https://fonts.google.com/specimen/Roboto+Mono?sidebar.open=true&selection.family=Roboto+Mono:wght@500');
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+	
+	background-color: #ffae35 !important;
+	border-color: #ffffff !important;
+	border-width: 3px;
+	border-radius: 40px !important;
+}
+
+.highlight {
+	color: #ffffff;
+	border-radius: 5px;
+	border: 5px;
+	border-style: double;
+	border-color: #00af0f;
+	background-color: #58eb6477;
+}
+.nothighlight {
+	color: #000000;
+	border-color: #ffffff00;
+	background-color: #ffffff00;
+}
+.image-container{
+	top:0;
+	left:0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #FFEDBE;
+}
+.background{
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	margin: auto;
+	width: 100vw;
+	height: 75vw;
+	max-width: 133.3vh;
+	max-height: 100vh;
+}
+.corner-3 {
+	position: absolute;
+	left: 1%;
+	bottom: 1%;
+}
+.corner-4 {
+	position: absolute;
+	right: 1%;
+	bottom: 1%;
+}
+.robo-font{
+	font-family: 'Roboto Mono', monospace;
+}
+.swal2-styled{
+	background-color: #ffae35 !important;
+}
