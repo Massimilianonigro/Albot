@@ -1,24 +1,27 @@
 <template>
   <div id="GameUI">
     <div class="GameUI" v-if="gameStatus == 1">
-      <ShelfBackground />
-      <Phase1 
+      <PickerBackground />
+      <PickerPhase 
         v-bind:items="items" 
+        v-on:homePress="homeScreen"
         v-on:nextPress="mixItems" 
       />
     </div>
     <div class="GameUI" v-if="gameStatus == 2">
-      <TableBackground />
-      <Phase2
+      <MixerBackground />
+      <MixerPhase
         v-bind:items="selItems"
-        v-on:nextPress="pourItem"
+        v-on:homePress="homeScreen"
         v-on:backPress="prevScreen"
+        v-on:practicePress="nextScreen"
       />
     </div>
     <div class="GameUI" v-if="gameStatus == 3">
-      <SolutionBackground />
-      <Phase3 
-        v-bind:item="selItem" 
+      <PracticeBackground />
+      <PracticePhase 
+        v-bind:items="items" 
+        v-on:homePress="homeScreen"
         v-on:backPress="prevScreen" 
       />
     </div>
@@ -26,33 +29,39 @@
 </template>
 
 <script>
-import ShelfBackground from "./ShelfBackground.vue";
-import TableBackground from "./TableBackground.vue";
-import SolutionBackground from "./SolutionBackground.vue";
-import Phase1 from "./Phase1.vue";
-import Phase2 from "./Phase2.vue";
-import Phase3 from "./Phase3.vue";
+import PickerBackground from "./PickerBackground.vue";
+import MixerBackground from "./MixerBackground.vue";
+import PracticeBackground from "./PracticeBackground.vue";
+import PickerPhase from "./PickerPhase.vue";
+import MixerPhase from "./MixerPhase.vue";
+import PracticePhase from "./PracticePhase.vue";
 
 export default {
   name: "GameScreen",
   components: {
-    ShelfBackground,
-    TableBackground,
-    SolutionBackground,
-    Phase1,
-    Phase2,
-    Phase3,
+    PickerBackground,
+    MixerBackground,
+    PracticeBackground,
+    PickerPhase,
+    MixerPhase,
+    PracticePhase,
   },
-  props: {},
+  props: {
+    gameType: {
+      type: Number,
+      required: true,
+      },
+  },
   data() {
     return {
-      gameStatus: 1,
+      gameStatus: this.gameType,
       items: [
         {
           item: "Baking Soda",
           selected: false,
           src: require("../assets/items/BakingSoda.png"),
           size: { x: "27%", y: "53.5%", w: "12%", h: "28%" },
+          prsize: { x: "0%", y: "0%", w: "10%", h: "40%" },
           ph: 8,
         },
         {
@@ -60,6 +69,7 @@ export default {
           selected: false,
           src: require("../assets/items/EggWhite.png"),
           size: { x: "40%", y: "53.5%", w: "9%", h: "35%" },
+          prsize: { x: "8%", y: "42%", w: "7%", h: "50%" },
           ph: 9.2,
         },
         {
@@ -67,6 +77,7 @@ export default {
           selected: false,
           src: require("../assets/items/Vinegar.png"),
           size: { x: "51%", y: "53.5%", w: "9%", h: "44%" },
+          prsize: { x: "22%", y: "42%", w: "7%", h: "60%" },
           ph: 3,
         },
         {
@@ -74,6 +85,7 @@ export default {
           selected: false,
           src: require("../assets/items/Bleach.png"),
           size: { x: "62%", y: "67%", w: "12%", h: "28%" },
+          prsize: { x: "60%", y: "0%", w: "10%", h: "42%" },
           ph: 12,
         },
         {
@@ -81,6 +93,7 @@ export default {
           selected: false,
           src: require("../assets/items/OvenCleaner.png"),
           size: { x: "75%", y: "67%", w: "9%", h: "28%" },
+          prsize: { x: "90%", y: "0%", w: "8%", h: "48%" },
           ph: 13,
         },
         {
@@ -88,6 +101,7 @@ export default {
           selected: false,
           src: require("../assets/items/Soap.png"),
           size: { x: "85%", y: "67%", w: "12%", h: "28%" },
+          prsize: { x: "74%", y: "0%", w: "12%", h: "48%" },
           ph: 1,
         },
         {
@@ -95,6 +109,7 @@ export default {
           selected: false,
           src: require("../assets/items/Cola.png"),
           size: { x: "63%", y: "36%", w: "9%", h: "22%" },
+          prsize: { x: "38%", y: "42%", w: "7%", h: "32%" },
           ph: 3,
         },
         {
@@ -102,6 +117,7 @@ export default {
           selected: false,
           src: require("../assets/items/LemonJuice.png"),
           size: { x: "63%", y: "2%", w: "9%", h: "28%" },
+          prsize: { x: "65%", y: "43%", w: "7%", h: "45%" },
           ph: 2,
         },
         {
@@ -109,6 +125,7 @@ export default {
           selected: false,
           src: require("../assets/items/Milk.png"),
           size: { x: "30%", y: "2%", w: "9%", h: "38%" },
+          prsize: { x: "50%", y: "42%", w: "8%", h: "55%" },
           ph: 6,
         },
         {
@@ -116,6 +133,7 @@ export default {
           selected: false,
           src: require("../assets/items/PureWater.png"),
           size: { x: "40%", y: "2%", w: "9%", h: "34%" },
+          prsize: { x: "15%", y: "0%", w: "7%", h: "56%" },
           ph: 7,
         },
         {
@@ -123,6 +141,7 @@ export default {
           selected: false,
           src: require("../assets/items/SparklingWater.png"),
           size: { x: "50%", y: "2%", w: "9%", h: "34%" },
+          prsize: { x: "30%", y: "0%", w: "7%", h: "56%" },
           ph: 6,
         },
       ],
@@ -149,6 +168,9 @@ export default {
     prevScreen() {
       this.gameStatus -= 1;
     },
+    homeScreen() {
+      this.$emit("goHome");
+    }
   },
 };
 </script>

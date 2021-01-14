@@ -59,8 +59,7 @@ export default {
       this.$emit("startIntro");
     },
     clickOnPractice() {
-      //this.$emit("startPractice");
-      this.$alert("Not implemented yet.");
+      this.$emit("startPractice");
     },
   },
 };

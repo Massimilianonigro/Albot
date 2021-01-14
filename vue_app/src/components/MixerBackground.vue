@@ -1,20 +1,19 @@
-
 <template>
   <div class="image-container">
 	<div class="background item">
 		<div class="shelf item"></div>
 		<div class="table-item item"></div>
-		<div class="tap item"></div>
 		<div class="blender item"></div>
 		<div class="basket item"></div>
-		<div class="cabbage item"></div>
+		<div class="pan1 item"></div>
+		<div class="pan2 item"></div>
 	</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ItemsBackground',
+  name: 'MixerBackground',
   props: {},
 };
 </script>
@@ -40,54 +39,69 @@ export default {
 }
 .table-item{
 	bottom: 0;
-	height: 25%;
+	height: 36%;
 	width:  100%;
 	z-index: 1;
 	background-position-x: center;
-	background-image: url("../assets/backgrounds/Table.png");
+	background-image: url("../assets/backgrounds/TabletopView.png");
 }
 .shelf{
 	top: 1%;
-	height: 50%;
+	height: 45%;
 	width:  100%;
 	z-index: 1;
-	background-position-x: center;
+	background-position: center;
 	background-image: url("../assets/backgrounds/Shelve.png");
 }
 .blender{
-	bottom: 23%;
-	right: 0;
+	top: 26.5%;
 	height: 18%;
 	width:  100%;
 	z-index: 2;
 	background-position-y: bottom;
-	background-position-x: 82%;
+	background-position-x: 22%;
 	background-image: url("../assets/backgrounds/Blender.png");
 }
 .basket{
-	bottom: 23%;
-	left: 0;
+	top: 36.5%;
 	height: 8%;
 	width:  100%;
 	z-index: 2;
 	background-position-y: bottom;
-	background-position-x: 71%;
+	background-position-x: 72%;
 	background-image: url("../assets/backgrounds/Basket.png");
 }
-.cabbage{
-	bottom: 23%;
-	height: 8%;
+.pan1{
+	top: 5%;
+	left: 0;
+	height: 11.8%;
 	width:  100%;
 	z-index: 2;
-	background-position-x: 75%;
-	background-image: url("../assets/items/Cabbage.png");
+	background-position-y: bottom;
+	background-position-x: 65%;
+	background-image: url("../assets/backgrounds/Pan1.png");
+}
+.pan2{
+	top: 5%;
+	left: 0;
+	height: 11.8%;
+	width:  100%;
+	z-index: 2;
+	background-position-y: bottom;
+	background-position-x: 80%;
+	background-image: url("../assets/backgrounds/Pan2.png");
 }
 .tap{
 	bottom: 25%;
 	height: 12%;
-	width:  100%;
+	width:  740px;
 	z-index: 2;
-	background-position-x: 18%;
+	background-position-x: 12%;
 	background-image: url("../assets/backgrounds/Tap.png");
+}
+.ImageContainer{
+	border: 0;
+	height: 100%;
+	width: 80%;
 }
 </style>

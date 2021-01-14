@@ -2,8 +2,10 @@
   <div>
     <div class="background">
       <div class="ItemShelf">
-        <div class="borderss" v-for="(data, index) in items" v-bind:key="index">
+        <div style="margin:5px; z-index:1000" >
           <button
+            v-for="(data, index) in items" 
+            v-bind:key="index"
             class="kitchen-item"
             v-on:click="data.selected = !data.selected"
             v-bind:class="{
@@ -30,7 +32,7 @@
 
 <script>
 export default {
-  name: "Phase1",
+  name: "PickerPhase",
   props: {
     items: {
       type: Array,
@@ -79,25 +81,6 @@ export default {
   z-index: 4;
   position: absolute;
   top: 0;
-}
-.kitchen-item {
-  position: absolute;
-  z-index: inherit;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: bottom;
-}
-.borderss {
-  z-index: 1000;
-  margin: 5px;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-  columns: 5;
-  -webkit-columns: 5;
-  -moz-columns: 5;
 }
 a {
   color: #42b983;
