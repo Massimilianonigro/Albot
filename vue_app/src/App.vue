@@ -18,7 +18,7 @@
   import HelloWorld from './components/HelloWorld.vue'
 -->
 <script>
-  const io = require('socket.io-client')
+  
   import MainScreen from './components/MainScreen.vue'
   import GameScreen from './components/GameScreen.vue'
   import Chat from './components/Chat.vue'
@@ -35,17 +35,23 @@ export default {
     return {
       message : "",
       mainStatus: 0,
-      socket: io('ws://localhost:2345', {
-        transports : ['websocket']
-      })
+      socket: new WebSocket('ws://localhost:2345')
+
     }
   },
 
-  mounted() {
+  created() {
     console.log(this.socket)
-    this.socket.on("MESSAGE", (socket) => {
-      console.log(socket);
-    })
+
+    this.socket.onopen = function(msg) {
+      console.log(msg)
+      console.log("socket is connected")
+    }
+
+     this.socket.onmessage = function(msg) {
+      console.log(msg)
+      console.log("message is displayed")
+    }
 
   },
 

@@ -1,44 +1,54 @@
-from flask import Flask, request
-from flask_socketio import SocketIO, join_room, leave_room
+import asyncio
+import websockets
 import dialogue_manager as dm
 from model_extractor import load_interpreter
 
 model_directory_path = './NLUmodule/models'
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret'
-socketio = SocketIO(app,cors_allowed_origins="*",always_connect=True)
+connected = {}
+counter = 0
+
+async def handler(websocket, path):
+    while True:
+        try:
+            if websocket not in connected.values():
+                await register(websocket)
+            message = await websocket.recv()
+            await handle_message(websocket,message)
+        except websockets.ConnectionClosed:
+            await unregister(websocket)
+            break 
+
+async def register(websocket):
+    counter = counter + 1 
+    connected[counter] = websocket
+    dialogueManager.add_user(counter)
 
 
-# Flaks or socket.Io layer can be added here
+async def unregister(websocket):
+    for key, item in connected.items(): 
+    if item is websocket: 
+        del connected[key] 
+        break
 
-@socketio.on('connect')
-def client_connect():
-    print("client connected")
-    dialogueManager.add_user(request.sid)
+async def handle_message(websocket,message)
+    user_id = -1 
+    for key, item in connected.items(): 
+    if item is websocket: 
+        user_id = key
+        break 
+    #TODO: Expeption if the user_id = -1 
+    response = dialogueManager.chatbot_receives_message(message,user_id)
+    websocket.send(response)
+
+#Check how to behave with the other send/recv 
+def send_message(user_id,message):
+    websocket = connected[user_id]
+    websocket.send(message)
     
-@socketio.on('disconnect')
-def client_disconnect():
-    print('client disconnect')
-    dialogueManager.del_user(request.sid)
     
-#TODO: Check how to emit to specific client
-@socketio.on('SEND_MESSAGE')
-def client_send_message(data):
-    print('client send message')
-    data['sid'] = request.sid
-    answer = dialogueManager.chatbot_receives_message(data)
-    socketio.send(answer.message,room = answer.sid)
-
-
-def client_receive_message(data):
-    print("sending the message ")
-    socketio.emit('MESSAGE',data['message'],room = data['sid'])
-
 if __name__ == "__main__":
-    app.debug = True 
     dialogueManager = dm.DialogueManager(load_interpreter(model_directory_path))
-    socketio.run(app,port = 2345)
+    start_server = websockets.serve(handler, 'localhost', 2345)
+    asyncio.get_event_loop().run_until_complete(start_server)
+    asyncio.get_event_loop().run_forever()
     
-    
-    
-

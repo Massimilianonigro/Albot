@@ -40,7 +40,7 @@ class DialogueManager:
     #                  "user_session_id": sessionId
     #                  "phase" : phaseName
     #                   } 
-    def chatbot_receives_message(self,msg):
+    def chatbot_receives_message(self,msg,user_id):
         #First the messsage has to be deserialized
         msg = json.load(msg)
         #Control if the text field is empty
@@ -52,7 +52,7 @@ class DialogueManager:
             intent = self.select_intent(msg.highlighted)
         
         #Now that i have the intent calculated i can generate a response and move the child on the state machine
-        utterance = self.generate_utterance(intent,msg.sid)
+        utterance = self.generate_utterance(intent,user_id)
         #TODO: Decide on the on click if we have to give the utterance or return None [Meaning we do not want to answer]
         return utterance
     
@@ -85,7 +85,6 @@ class DialogueManager:
         message = json.dumps(utterance_array)
         msg = {
             'message' : message,
-            'sid': user_session_id
         }
         return msg
     
@@ -127,7 +126,7 @@ class DialogueManager:
         print("In dialogue_manager chatbot_sends_message: ")
         utterance = self.generate_utterance(intent,user_session_id)
         #Call on the app service to send the message
-        app.client_receive_message(utterance)
+        app.send_message(user_session_id,utterance)
 
 
    
