@@ -1,0 +1,15 @@
+
+.kitchen-item {
+	position: absolute;
+	z-index: inherit;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: bottom;
+}
+.kitchen-item:hover {
+  background-color: #5a5a5a80;
+}
+.kitchen-item:focus {
+  outline: none;
+}

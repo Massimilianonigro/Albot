@@ -3,22 +3,18 @@
     <div v-if="mainStatus==0">
       <MainScreen v-on:startIntro="startIntroduction" v-on:startPractice="startPractice"/>
     </div>
-    <div v-if="mainStatus==1">
-      <GameScreen/>
-      <Chat/>
-    </div>
-    <div v-if="mainStatus==3">
-      <GameScreen/>
+    <div v-else>
+      <GameScreen
+        v-bind:gameType=mainStatus
+        v-on:goHome="resetHome"
+      />
       <Chat/>
     </div>
   </div>
 </template>
 
-<!-- 
-  import HelloWorld from './components/HelloWorld.vue'
--->
 <script>
-  
+  // const io = require('socket.io-client')
   import MainScreen from './components/MainScreen.vue'
   import GameScreen from './components/GameScreen.vue'
   import Chat from './components/Chat.vue'
@@ -35,33 +31,32 @@ export default {
     return {
       message : "",
       mainStatus: 0,
-      socket: new WebSocket('ws://localhost:2345')
-
+      /*
+      socket: io('ws://localhost:2345', {
+        transports : ['websocket']
+      })
+      */
     }
   },
-
-  created() {
+/*
+  mounted() {
     console.log(this.socket)
-
-    this.socket.onopen = function(msg) {
-      console.log(msg)
-      console.log("socket is connected")
-    }
-
-     this.socket.onmessage = function(msg) {
-      console.log(msg)
-      console.log("message is displayed")
-    }
+    this.socket.on("MESSAGE", (socket) => {
+      console.log(socket);
+    })
 
   },
-
+*/
   methods: {
+    resetHome(){
+      this.mainStatus = 0
+    },
     startIntroduction(){
       this.mainStatus = 1
     },
     startPractice(){
-      this.mainStatus = 2
-    }
+      this.mainStatus = 3
+    },
   }
 
 }

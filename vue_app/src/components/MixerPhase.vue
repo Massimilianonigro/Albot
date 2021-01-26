@@ -49,7 +49,7 @@
 
 <script>
 export default {
-  name: "Phase2",
+  name: "MixerPhase",
   props: {
     items: {
       type: Array,
@@ -101,32 +101,9 @@ export default {
       }
       this.$emit("backPress");
     },
-    nextButton(){
-      // TODO One itme must be selected
-      if (this.selected == undefined){
-        console.error("No item selected");
-      }
-      else{
-        this.$emit("nextPress", this.items[this.selected]);
-        /*
-        var selItems = []
-        this.items.forEach(element => {
-          if( element.selected == true){
-            let tempItem = { 
-              item: element.item,
-              size: element.size,
-              src: element.src,
-              ph: element.ph
-            };
-             selItems.push(tempItem);
-          }
-        });
-        this.$emit("nextPress", selItems[0]);
-        */
-      }
-    },
     practiceButton(){
-      this.$alert("Not implemented yet.");
+      this.$emit("practicePress");
+      //this.$alert("Not implemented yet.");
     }
   }
 };
@@ -134,15 +111,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.kitchen-item {
-  position: absolute;
-  z-index: inherit;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: bottom;
-}
 .item-container {
   margin: auto;
   position: absolute;
@@ -176,8 +144,9 @@ export default {
   left: 0%;
   right: 0%;
   bottom: 2%;
-  width: 100%;
+  width: 50%;
   height: 12%;
+  margin: auto;
 	background-position-y: bottom;
 	background-position-x: center;
 	background-repeat: no-repeat;
@@ -187,7 +156,7 @@ export default {
 .solution-ph-meter-label{
   color: white;
 	z-index: 3;
-  margin: 5.5% auto auto auto;
+  margin: 11.5% auto auto auto;
   left: 0%;
   right: 0%;
   bottom: 0%;

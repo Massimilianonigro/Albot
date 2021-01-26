@@ -4,6 +4,7 @@ import 'jquery'
 import 'popper.js'
 import 'bootstrap'
 import './assets/app.css'
+import './assets/items.css'
 import vuescroll from 'vuescroll';
 import VueSimpleAlert from "vue-simple-alert";
 
