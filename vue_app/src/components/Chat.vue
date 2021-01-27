@@ -99,6 +99,7 @@ export default {
       var result = true;
       if (result) {
         this.messages.push({ message: this.message, bot: false });
+        this.$emit("sendMessage", this.message);
         this.message = "";
         
       } else {

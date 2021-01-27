@@ -8,7 +8,7 @@
     </div>
     <div v-else>
       <GameScreen v-bind:gameType="mainStatus" v-on:goHome="resetHome" />
-      <Chat />
+      <Chat v-on:messageSent="sendMessage"/>
     </div>
     <button class="button-exe" v-on:click="sendMessage('message test')">Send Message</button>
   </div>
