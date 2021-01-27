@@ -3,17 +3,18 @@ from state_machine import StateMachine
 import json 
 from threading import Timer
 import random
-import app
+import asyncio 
 
 class DialogueManager:
     
     users = {}
 
-    def __init__(self, model):
+    def __init__(self, model,handler):
         self.model = model
         self.state_machine = StateMachine()
+        self.handler = handler
 
-    def add_user(self,user_session_id):
+    async def add_user(self,user_session_id):
         self.users[user_session_id] = {
             'current_state' : State.GREETING,
             'timer' : None,
@@ -28,7 +29,7 @@ class DialogueManager:
                         'name': "connected"}
         } 
         print("In dialogue_manager add_user: client connected and added, about to send message ")
-        self.chatbot_sends_message(intent,user_session_id)
+        await self.chatbot_sends_message(intent,user_session_id)
         
 
 
@@ -38,18 +39,18 @@ class DialogueManager:
     #msg structure is {"text": text
     #                  "highlighted": objectId
     #                  "user_session_id": sessionId
-    #                  "phase" : phaseName
     #                   } 
     def chatbot_receives_message(self,msg,user_id):
         #First the messsage has to be deserialized
-        msg = json.load(msg)
+        msg = json.loads(msg)
+        print(msg)
         #Control if the text field is empty
-        if len(msg.text) != 0:
+        if len(msg['text']) != 0:
             #The message is now forwarded to the Rasa NLU and an intent comes back
-            intent = self.model.parse(msg.text)
+            intent = self.model.parse(msg['text'])
         else:
             #If the length of the text is empty the user acted on the interface selecting an object
-            intent = self.select_intent(msg.highlighted)
+            intent = self.select_intent(msg['highlighted'])
         
         #Now that i have the intent calculated i can generate a response and move the child on the state machine
         utterance = self.generate_utterance(intent,user_id)
@@ -71,22 +72,21 @@ class DialogueManager:
             if self.state_machine.is_branch(next_state):
                 self.decide_branch(user_session_id)
             if self.state_machine.is_waiting(next_state):
+                print("Entered in waiting branch")
                 user['is_timer_ended'] = False
-                user['timer'] = threading.Timer(
+                user['timer'] = Timer(
                 self.state_machine.get_waiting_time(),
-                branch_child_question,
+                self.branch_child_question,
                 [user_session_id]
-                )       
+                )
+                user['timer'].start()
         elif user['is_timer_ended'] == False:
             #User has a timer and it is on going, meaning i do not update the state cause it will be
             # updated by the timer function and i do not start a new timer
             _ , utterance_array = self.state_machine.input_function(intent,current_state)
         
         message = json.dumps(utterance_array)
-        msg = {
-            'message' : message,
-        }
-        return msg
+        return message
     
     def select_intent(self,highlighted):
         intent_name = "clicked_" + highlighted
@@ -105,28 +105,31 @@ class DialogueManager:
         if rand == 0:
             #Calling the chatbot_question
             self.users[user_session_id]['is_timer_ended'] = False 
-            self.users[user_session_id]['timer'] = threading.Timer(0,branch_chatbot_question,[user_session_id])
+            self.users[user_session_id]['timer'] = Timer(0,await self.branch_chatbot_question,[user_session_id])
+            self.users[user_session_id]['timer'].start()
         else:
             #Calling the child question
             self.users[user_session_id]['is_timer_ended'] = False 
-            self.users[user_session_id]['timer'] = threading.Timer(self.state_machine.get_waiting_time(),branch_child_question,[user_session_id]) 
-        
-    def branch_chatbot_question(self,user_session_id):
+            self.users[user_session_id]['timer'] = Timer(self.state_machine.get_waiting_time(),self.branch_child_question,[user_session_id]) 
+            self.users[user_session_id]['timer'].start()
+    async def branch_chatbot_question(self,user_session_id):
         #Has to call the chatbot_sends_message method, 
         intent = "chatbot_question"
-        self.chatbot_sends_message(intent,user_session_id)
+        await self.chatbot_sends_message(intent,user_session_id)
         self.users[user_session_id]['is_timer_ended'] = True 
         self.users[user_session_id]['current_state'] = self.state_machine.get_next_state(self.users[user_session_id]['current_state'])
 
     def branch_child_question(self,user_session_id):
+        print("Entered in branch child question")
         self.users[user_session_id]['is_timer_ended'] = True
         self.users[user_session_id]['current_state'] = self.state_machine.get_next_state(self.users[user_session_id]['current_state'])
+        print("State changed succesfully to: " + str(self.users[user_session_id]['current_state']))
 
-    def chatbot_sends_message(self,intent,user_session_id):
+    async def chatbot_sends_message(self,intent,user_session_id):
         print("In dialogue_manager chatbot_sends_message: ")
         utterance = self.generate_utterance(intent,user_session_id)
         #Call on the app service to send the message
-        app.send_message(user_session_id,utterance)
+        await self.handler.send_message(user_session_id,utterance)
 
 
    

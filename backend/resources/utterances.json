@@ -5,7 +5,7 @@
     ],
 
     "ready_or_question":[
-        ""
+        "ready_or_question"
     ],
 
     "introduction_or_practice":[
@@ -33,51 +33,67 @@
     ],
     
     "practice_explanation": [
-        ""
+        "practice_explanation"
     ],
 
     "ph_explanation": [
-        "",
-        ""
+        "ph_explanation",
+        "aoooo"
     ],
 
     "cabbage_solution_explanation" : [
-        ""
+        "cabbage_solution_explanation"
     ],
 
     "collecting_items_answer" : [
-        ""
+        "collecting_items_answer"
     ],
 
     "acid_explanation": [
-        ""
+        "acid_explanation"
     ],
 
     "base_explanation": [
-        ""
+        "base_explanation"
     ],
 
-    "color_change_acid" : [],
+    "color_change_acid" : [
+        "color_change_acid"
+    ],
 
     "color_change_base": [
-        ""
+        "color_change_base"
     ],
 
     "color_change_neutral": [
-        ""
+        "color_change_neutral"
     ],
 
-    "properties_acid_ingredient": [],
+    "properties_acid_ingredient": [
+        "properties_acid_ingredient"
+    ],
 
-    "properties_neutral_ingredient": [],
+    "properties_neutral_ingredient": [
+        "properties_neutral_ingredient"
+    ],
 
-    "properties_base_ingredient": [],
+    "properties_base_ingredient": [
+        "properties_base_ingredient"
+    ],
 
-    "fallback": [],
+    "fallback": [
+        "fallback"
+    ],
 
-    "chatbot_question": [],
+    "chatbot_question": [
+        "chatbot_question"
+    ],
 
-    "practice_collecting_explanation": [],
+    "practice_collecting_explanation": [
+        "practice_collecting_explanation"
+    ],
 
-    "color_change_exclamation": []
+    "color_change_exclamation": [
+        "color_change_exclamation"
+    ]
 }
