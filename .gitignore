@@ -1,5 +1,9 @@
 .DS_Store
 
+
+websocketsClient.py
+websocketsTest.py
+
 vue_app/node_modules/
 vue_app/dist/
 
