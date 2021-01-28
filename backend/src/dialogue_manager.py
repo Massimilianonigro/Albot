@@ -97,7 +97,7 @@ class DialogueManager:
         utterance = self.generate_utterance(intent,user_session_id)
         await self.handler.send_message(user_session_id,utterance)
     
-    def _create_intent(intent):
+    def _create_intent(self,intent):
        return {
                 'entities' : [],
 
