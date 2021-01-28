@@ -50,6 +50,8 @@ class StateMachine:
         if question_explanation != None:
             utterance_array.append(question_explanation)
             return next_state,utterance_array
+        if intent['intent']['name'] == "wait_ended":
+            utterance_array.append(rand.choices(self.utterances['acid_selection'])[0])
         if intent['intent']['name'] == "clicked_next":
             utterance_array.append(rand.choices(self.utterances['base_selection'])[0])
             next_state = State.BASE_SELECTION

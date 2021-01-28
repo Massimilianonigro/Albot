@@ -41,7 +41,8 @@ class Handler():
             if item is websocket: 
                 user_id = key
                 break 
-        #TODO: Expeption if the user_id = -1 
+        if user_id == -1
+            raise RuntimeError("Message handled is sent from unregistered user")
         response = self.dialogue_manager.chatbot_receives_message(message,user_id)
         print(response)
         await websocket.send(response)
