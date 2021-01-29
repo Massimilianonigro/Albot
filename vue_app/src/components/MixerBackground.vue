@@ -43,46 +43,46 @@ export default {
 	width:  100%;
 	z-index: 1;
 	background-position-x: center;
-	background-image: url("../assets/backgrounds/TabletopView.png");
+	background-image: url("../assets/backgrounds/TableTopView.png");
 }
 .shelf{
 	top: 1%;
-	height: 45%;
+	height: 50%;
 	width:  100%;
-	z-index: 1;
-	background-position: center;
+	z-index: 0;
+	background-position-x: center;
 	background-image: url("../assets/backgrounds/Shelve.png");
 }
 .blender{
-	top: 26.5%;
+	top: 31.5%;
 	height: 18%;
 	width:  100%;
 	z-index: 2;
 	background-position-y: bottom;
-	background-position-x: 22%;
+	background-position-x: 20%;
 	background-image: url("../assets/backgrounds/Blender.png");
 }
 .basket{
-	top: 36.5%;
-	height: 8%;
+	top: 39.5%;
+	height: 10%;
 	width:  100%;
 	z-index: 2;
 	background-position-y: bottom;
-	background-position-x: 72%;
+	background-position-x: 76%;
 	background-image: url("../assets/backgrounds/Basket.png");
 }
 .pan1{
-	top: 5%;
-	left: 0;
+	top: 6.8%;
+	left: 0%;
 	height: 11.8%;
 	width:  100%;
 	z-index: 2;
 	background-position-y: bottom;
-	background-position-x: 65%;
+	background-position-x: 67%;
 	background-image: url("../assets/backgrounds/Pan1.png");
 }
 .pan2{
-	top: 5%;
+	top: 6.8%;
 	left: 0;
 	height: 11.8%;
 	width:  100%;
@@ -90,14 +90,6 @@ export default {
 	background-position-y: bottom;
 	background-position-x: 80%;
 	background-image: url("../assets/backgrounds/Pan2.png");
-}
-.tap{
-	bottom: 25%;
-	height: 12%;
-	width:  740px;
-	z-index: 2;
-	background-position-x: 12%;
-	background-image: url("../assets/backgrounds/Tap.png");
 }
 .ImageContainer{
 	border: 0;

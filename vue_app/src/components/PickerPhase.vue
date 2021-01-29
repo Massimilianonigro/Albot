@@ -19,14 +19,24 @@
               height: data.size.h,
               width: data.size.w,
             }"
-          ></button>
+          >
+            <div v-if="data.selected" class="selected-icon"></div>
+          </button>
         </div>
       </div>
+      
+      <button class="next-btn ui-btn" 
+        v-on:click="mixItems"> 
+      </button>
+      
+      <button class="setting-btn ui-btn" 
+        v-on:click="settingButton">
+      </button>
+      
+      <button class="home-btn ui-btn" 
+        v-on:click="homeButton">
+      </button>
     </div>
-    <button :style="{ width: '100px' }" class="btn btn-primary corner-4" 
-      v-on:click="mixItems">
-      Next
-    </button>
   </div>
 </template>
 
@@ -65,7 +75,13 @@ export default {
       else{
         this.$emit("nextPress", selItems);
       }
-    }
+    },
+    settingButton(){
+        this.$alert("Not implemented");
+    },
+    homeButton() {
+      this.$emit("homePress");
+    },
   }
 };
 </script>
@@ -81,6 +97,19 @@ export default {
   z-index: 4;
   position: absolute;
   top: 0;
+}
+.selected-icon{
+  pointer-events: none;
+  top:-10%;
+  left:-10%;
+  height: 4vh;
+  width: 4vh;
+	position: absolute;
+  z-index: 500;
+  background-image: url('../assets/icons/SelectedIcon.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 a {
   color: #42b983;

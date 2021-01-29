@@ -7,13 +7,7 @@
             class="kitchen-item"
             v-on:click="selectItem(index, data.ph)"
             v-bind:class="getHighlight(index)"
-            v-bind:style="{
-              backgroundImage: 'url(' + data.src + ')',
-              left: (index * 22 )+ '%',
-              top: '0',
-              height: '80%',
-              width: data.size.w,
-            }"
+            v-bind:style="getItemStyle(data,index)"
           ></button>
           <div class="solution-bowl"
             v-if="!poured[index]"
@@ -32,14 +26,21 @@
             </div>
         </div>
       </div>
-      <div class="solution-ph-meter">
+      <!--div class="solution-ph-meter">
         <h3 class="solution-ph-meter-label"> {{selectedPh}} </h3>
-      </div>
+      </div-->
+      <button class="back-btn ui-btn" 
+        v-on:click="backButton">
+      </button>
+      
+      <button class="setting-btn ui-btn" 
+        v-on:click="settingButton">
+      </button>
+      
+      <button class="home-btn ui-btn" 
+        v-on:click="settingButton">
+      </button>
     </div>
-    <button :style="{ width: '100px' }" class="btn btn-primary corner-3" 
-      v-on:click="backButton">
-      Back
-    </button>
     <button :style="{ width: '100px' }" class="btn btn-primary corner-4" 
       v-on:click="practiceButton">
       Practice!
@@ -81,6 +82,25 @@ export default {
         return 'highlight';
       return 'nothighlight';
     },
+    getItemStyle(data, index){
+      let styleItem
+      if (this.selected == index){
+        styleItem = {
+          backgroundImage: 'url(' + data.src + ')',
+          left: ((index * 22) - 6)+ '%',
+          width: data.size.w,
+          zIndex: 20,
+        }
+      }
+      else{
+        styleItem = {
+          backgroundImage: 'url(' + data.src + ')',
+          left: (index * 22 )+ '%',
+          width: data.size.w,
+        }
+      }
+      return styleItem
+    },
     getPhBowl(ph, index){
       let urlImg = require("../assets/solutions/Solution"+ Math.round(ph) +".png");
       let styleItem = {
@@ -103,7 +123,9 @@ export default {
     },
     practiceButton(){
       this.$emit("practicePress");
-      //this.$alert("Not implemented yet.");
+    },
+    settingButton(){
+        this.$alert("Not implemented");
     }
   }
 };
@@ -121,6 +143,37 @@ export default {
   width: 65%;
   height: 25%;
 }
+
+.nothighlight{
+  top: 0%;
+  height: 80%;
+}
+.kitchen-item:hover.nothighlight{
+	opacity: 0.8;
+	border-radius: 0;
+  border: 0;
+	border-style: none;
+  border-color: transparent;
+	background-color: #ffffff70;
+	border-radius: 5px;
+}
+.highlight {
+	color: #ffffff;
+	border-radius: 5px;
+	border: none;
+	background-color: transparent;
+	transform: rotate(115deg);
+  top: 34%;
+  height: 80%;
+}
+.kitchen-item:hover.highlight{
+	opacity: 0.8;
+	border-radius: 0;
+	border: 0;
+	border-style: none;
+	border-color: transparent;
+}
+
 .solution-bowl{
   position: absolute;
 	z-index: 2;

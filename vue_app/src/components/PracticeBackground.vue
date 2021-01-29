@@ -16,19 +16,6 @@ export default {
 
 <style scoped>
 
-.background{
-	position: absolute;
-	top: 0; bottom: 0; left: 0; right: 0;
-	margin: auto;
-	z-index: 0;
-	width: 100vw;
-	height: 75vw;
-	max-width: 133.3vh;
-	max-height: 100vh;
-	background-position: center;
-	background-size: contain;
-	/*background-image: url("../assets/backgrounds/OrangeBG.png");*/
-}
 .item{
 	position: absolute;
 	background-repeat: no-repeat;
@@ -40,7 +27,7 @@ export default {
 	width:  100%;
 	z-index: 1;
 	background-position-x: center;
-	background-image: url("../assets/backgrounds/TabletopView.png");
+	background-image: url("../assets/backgrounds/TableTopView.png");
 }
 .ImageContainer{
 	border: 0;

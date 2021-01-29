@@ -3,11 +3,8 @@
   <div class="image-container">
 	<div class="background item">
 		<div class="shelf item"></div>
-		<div class="table-item item"></div>
-		<div class="tap item"></div>
 		<div class="blender item"></div>
-		<div class="basket item"></div>
-		<div class="cabbage item"></div>
+		<div class="table-item item"></div>
 	</div>
   </div>
 </template>
@@ -40,28 +37,27 @@ export default {
 }
 .table-item{
 	bottom: 0;
-	height: 25%;
+	height: 38%;
 	width:  100%;
 	z-index: 1;
 	background-position-x: center;
-	background-image: url("../assets/backgrounds/Table.png");
+	background-image: url("../assets/backgrounds/Table-a.png");
 }
 .shelf{
 	top: 1%;
 	height: 50%;
 	width:  100%;
-	z-index: 1;
+	z-index: 0;
 	background-position-x: center;
 	background-image: url("../assets/backgrounds/Shelve.png");
 }
 .blender{
-	bottom: 23%;
-	right: 0;
+	top: 31.5%;
 	height: 18%;
 	width:  100%;
 	z-index: 2;
 	background-position-y: bottom;
-	background-position-x: 82%;
+	background-position-x: 20%;
 	background-image: url("../assets/backgrounds/Blender.png");
 }
 .basket{

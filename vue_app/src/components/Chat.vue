@@ -1,41 +1,42 @@
 <template>
-  <div class="chat">
-    <div class="chat-tittle robo-font" :style="{ height: '6%' }">
-      <h2>Chat with Albot</h2>
-    </div>
+  <div class="chat-bg-container">
+    <div class="chat">
+      <div class="chat-tittle robo-font" :style="{ height: '35px' }"></div>
 
-    <div class="message-box" :style="{ height: '70%', bottom: '40px' }">
-      <vuescroll ref="vs" :style="{ 'text-align': 'left' }" :ops="ops">
-        <div
-          v-bind:class="{ 'user-message': !data.bot, 'bot-message': data.bot }"
-          class="child-element message"
-          v-for="(data, index) in messages"
-          v-bind:key="index"
-        >
-          <span>{{ data.message }} </span>
-        </div>
-      </vuescroll>
-    </div>
-
-    <form @submit.prevent="sendMessage" autocomplete="off" class="form-style">
-      <div class="textbar">
-        <div class="text input-group mb-3">
-          <input
-            type="text"
-            class="form-control corner-left"
-            placeholder="Write your message here..."
-            v-model="message"
-            name="message"
-          />
-        </div>
-        <input
-          class="btn corner-right"
-          type="button"
-          value="Send"
-          v-on:click="sendMessage"
-        />
+      <div class="message-box" :style="{ width: '98%', height: '70%', bottom: '40px' }">
+        <vuescroll ref="vs" :style="{ 'text-align': 'left' }" :ops="ops">
+          <div
+            v-bind:class="{ 'user-message': !data.bot, 'bot-message': data.bot }"
+            class="child-element message"
+            v-for="(data, index) in messages"
+            v-bind:key="index"
+          >
+            <div v-bind:class="{ 'user-message-box': !data.bot, 'bot-message-box': data.bot }">
+              <span>
+                {{ data.message }} 
+              </span>
+            </div>
+          </div>
+        </vuescroll>
       </div>
-    </form>
+
+      <div class="division"></div>
+      
+      <form @submit.prevent="sendMessage" autocomplete="off" class="form-style">
+        <div class="textbar">
+          <div class="text input-group">
+            <input
+              type="text"
+              class="corner"
+              placeholder="Write your message here..."
+              v-model="message"
+              name="message"
+            />
+          </div>
+        </div>
+      </form>
+      <div :style="{ height: '10px' }"></div>
+    </div>
   </div>
 </template>
 
@@ -52,7 +53,7 @@ export default {
     return {
       message: "",
       messages: [
-        { message: "Hi, I'm over here now", bot: true },
+        { message: "Hi -Name-, how are you", bot: true },
         {
           message: "I'm an Artificial Intelligence(AI) powered bot",
           bot: true,
@@ -60,7 +61,7 @@ export default {
         {
           message: "If you want to ask me something, just type it down here.",
           bot: true,
-        },
+        }
       ],
       ops: {
         rail: {
@@ -73,8 +74,8 @@ export default {
           keepShow: false,
         },
         bar: {
-          background: "#a06000",
-          keepShow: true,
+          background: "#ffa000",
+          keepShow: false,
           size: "10px",
           minSize: 0.2,
         },
@@ -106,6 +107,9 @@ export default {
         console.log("Too Short message");
       }
     },
+    receiveMessage(message) {
+        this.messages.push({ message: message, bot: true });
+    },
   },
   updated(){
     this.$refs["vs"].scrollTo(
@@ -134,18 +138,35 @@ a {
 }
 
 .chat {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+  width: 20%;
+  position: fixed;
+  z-index: 1;
+  top: 2.5%;
+  padding-top: 5px;
+  overflow-x: hidden;
+  right: 1%;
+  border: 4px solid;
+  border-radius: 60px;
+  border-color: #ffa000;
+}
+
+.chat-bg-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 20%;
+  width: 22%;
   position: fixed;
   z-index: 1;
   top: 0;
   padding-top: 5px;
   overflow-x: hidden;
   right: 0;
-  border-left: 4px solid;
-  border-color: #ffffff;
+  border: 0px none;
+  background: transparent;
 }
 
 .chat-tittle .textbar {
@@ -156,7 +177,7 @@ a {
   flex: none;
   bottom: 0;
   width: 100%;
-  background-color: #ff9900;
+  background-color: transparent;
   display: table;
   padding: 7px;
 }
@@ -164,13 +185,6 @@ a {
 .textbar .text {
   display: table-cell;
   width: 100%;
-}
-
-.textbar .text > input {
-  width: 100%;
-  margin: 2px;
-  padding: 2px;
-  box-sizing: border-box;
 }
 
 .message {
@@ -191,18 +205,36 @@ a {
   background-size: 18px 24px;
 }
 
+.user-message-box {
+  color: #ffa000;
+  border: 2px solid #ffa000;
+  border-radius: 20px;
+  padding: 4px 8px 4px 8px;
+  width: 100%;
+}
+
 .bot-message {
-  padding-left: 40px;
-  padding-right: 24px;
+  padding-left: 20px;
+  padding-right: 30px;
   margin-right: 10px;
   background-position: right;
-  background-color: #ffe5be;
   background-image: url("../assets/icons/botchaticon.png");
   background-size: 24px 24px;
 }
 
+.bot-message-box {
+  color: #fff;
+  background-color: #ffa000;
+  border: 2px solid #ffa000;
+  border-radius: 20px;
+  padding: 4px 8px 4px 8px;
+  width: 100%;
+}
+
 .message-box {
   flex: auto;
+  margin-right: 1%;
+  margin-left: 1%;
 }
 
 .form-style {
@@ -211,18 +243,26 @@ a {
   margin-bottom: 4px;
 }
 
-.corner-right {
-  background-color: #ffae35 !important;
-  border-color: #ffffff !important;
-  color: #ffffff !important;
-  border-bottom-right-radius: 10px !important;
-  border-top-right-radius: 10px !important;
-  border-width: 0px;
+.division{
+  border: solid 2px #ffa000;
+  border-radius: 1px;
+  width: 90%;
+  margin:  0 auto;
 }
 
-.corner-left {
-  border-bottom-left-radius: 10px !important;
-  border-top-left-radius: 10px !important;
+.corner {
+  background-color: transparent !important;
+  color: #ffa000 !important;
+  border-radius: 10px !important;
+  border: solid 3px !important;
+  border-color: #ffa000 !important;
   height: 40px;
+  width: 90% !important;
+  bottom: 100px !important;
+  left: 5%;
+  right: 5%;
+  margin: 2px;
+  padding: 2px;
+  box-sizing: border-box;
 }
 </style>

@@ -8,9 +8,9 @@
     </div>
     <div v-else>
       <GameScreen v-bind:gameType="mainStatus" v-on:goHome="resetHome" />
-      <Chat v-on:messageSent="sendMessage"/>
+      <Chat ref="chat" v-on:messageSent="sendMessage"/>
     </div>
-    <button class="button-exe" v-on:click="sendMessage('message test')">Send Message</button>
+   
   </div>
 </template>
 
@@ -56,11 +56,12 @@ export default {
 
     this.connection.onmessage = function (event) {
       console.log(event);
+      this.$refs.chat.receiveMessage(event)
     };
 
     this.connection.onopen = function (event) {
       console.log(event);
-      console.log("Successfully connected to the echo websocket server...");
+      console.log("Successfully connected to the websocket server...");
     };
   },
 };

@@ -1,29 +1,29 @@
 <template>
   <div class="main-bg">
     <div class="background">
-      <div class="settings icon"></div>
-      <div class="share icon"></div>
       <div class="report icon"></div>
+      <div class="settings icon"></div>
+      <div class="magic-colors-sign icon"></div>
+      <div class="bot-tittle icon"></div>
+      
+      <button
+        class="start-btn"
+        type="button"
+        v-on:click="clickOnStart"
+      >
+      </button>
     </div>
-    <button
-      :style="{ width: '140px' }"
-      class="btn btn-primary main-btn"
-      type="button"
-      v-on:click="clickOnStart"
-    >
-      Start!
-    </button>
     <div
       v-if="start" 
       class="bot-bg">
         <div class="bot-welcome"></div>
       <transition name="fade">
-        <p class="bubble speech bubble-1"> Hi, I'm Albot, lets have some fun with chemistry</p>
+        <p class="bubble speech bubble-1"> Hi -name-, I'm Albot.</p>
       </transition>
       <transition name="fade">
         <p v-if="part2" class="bubble speech bubble-2"> 
           <button v-on:click="clickOnIntro" class="bubble-btn fade-in" :style="{'left': '8%'}"> Introduction </button>
-          or 
+          We  will  execute  this  experiment  together.  Please  choose a lesson to start:
           <button v-on:click="clickOnPractice" class="bubble-btn fade-in" :style="{'right': '8%'}"> Practice </button>
         </p>
       </transition>
@@ -73,15 +73,19 @@ h3 {
 a {
   color: #42b983;
 }
-.main-btn {
-  position: absolute;
+.start-btn {
+	position: absolute;
   top: 48%;
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
+  height: 12%;
+  width: 24% ;
+  left: 38%;
+	background-repeat: no-repeat;
+	background-size: contain;
+  background-color: transparent;
+  background-position: top;
+  background-image: url("../assets/uibuttons/StartButton.png");
+  border: 0px;
 
-  background-color: #ff9900 !important;
-  border-color: #ffffff !important;
-  border-width: 3px;
 }
 .main-bg {
   position: absolute;
@@ -91,7 +95,9 @@ a {
   left: 0;
 	width: 100%;
 	height: 100%;
-  background-color: #ff9100;
+  background-color: #ffffff;
+	background-size: contain;
+	background-image: url('../assets/backgrounds/WhiteBG.png');
 }
 .background{
 	position: absolute;
@@ -102,10 +108,29 @@ a {
 	height: 75vw;
 	max-width: 133.3vh;
 	max-height: 100vh;
-  background-image: url("../assets/backgrounds/StartPage.png");
-  background-position: center;
+  background-image: url("../assets/backgrounds/Welcome.png");
+  background-position-x: center;
+  background-position-y: bottom;
   background-size: contain;
   background-repeat: no-repeat;
+}
+.magic-colors-sign{
+	top: 35%;
+  left: 30%;
+	height: 7%;
+	width:  40%;
+	z-index: 1;
+  background-position-x: center;
+	background-image: url("../assets/backgrounds/MagicColors.png");
+}
+.bot-tittle{
+	top: 10%;
+  right: 18%;
+	height: 30%;
+	width:  18%;
+	z-index: 1;
+  background-position-x: center;
+	background-image: url("../assets/backgrounds/BotTittle.png");
 }
 .icon{
 	position: absolute;
@@ -113,31 +138,22 @@ a {
 	background-size: contain;
 }
 .settings{
-	top: 8.5%;
-  left: 4.5%;
-	height: 5%;
-	width:  5%;
+	top: 18%;
+  left: 4%;
+	height: 8%;
+	width:  20%;
 	z-index: 1;
 	background-position-x: center;
-	background-image: url("../assets/icons/SettingIcon.png");
-}
-.share{
-	top: 15%;
-  left: 4.5%;
-	height: 5%;
-	width:  5%;
-	z-index: 1;
-	background-position-x: center;
-	background-image: url("../assets/icons/ShareIcon.png");
+	background-image: url("../assets/uibuttons/SettingButton.png");
 }
 .report{
-	top: 22%;
-  left: 4.5%;
-	height: 5%;
-	width:  5%;
+	top: 9%;
+  left: 4%;
+	height: 8%;
+	width:  20%;
 	z-index: 1;
 	background-position-x: center;
-	background-image: url("../assets/icons/ReportIcon.png");
+	background-image: url("../assets/uibuttons/ReportButton.png");
 }
 .bot-bg{
   position: absolute;
@@ -161,14 +177,15 @@ a {
 
 .bubble {
 	position: absolute;
-	text-align: center;
+  text-align: left;
+  color: #fbb13d;
 	line-height: 1.4em;
 	font-family: sans-serif;
 	font-size: large;
   right: 35%;
 	width: 50%;
 	margin: 40px auto;
-	border: 4px solid #ff9100;
+	border: 4px solid #fbb13d;
 	border-radius: 30px;
 	padding: 20px 30px;
 	background-color: #fff;
@@ -185,24 +202,25 @@ a {
 	right: 24px;
 	bottom: -40px;
 	border: 20px solid;
-	border-color: #ff9100 #ff9100 transparent transparent;
+	border-color: #fbb13d #fbb13d transparent transparent;
 }
 .speech:after {
 	right: 28px;
 	bottom: -30px;
-	border: 15px solid;
+	border: 16px solid;
 	border-color: #ffffff #ffffff transparent transparent;
 }
 
 .bubble-1{
-  top: 10%;
+  top: 8%;
+  height: 9%;
 }
 .bubble-2{
-  top: 28%;
-  height: 12%;
+  top: 24%;
+  height: 9%;
 }
 .bubble-3{
-  top: 48%;
+  top: 46%;
   height: 15%;
 }
 .bubble-btn {
@@ -211,14 +229,14 @@ a {
 	line-height: 1.4em;
 	font-family: sans-serif;
 	font-size: large;
-  top: -35%;
+  top: 70%;
 	width: 30%;
 	margin: 40px auto;
-  color: #ffaa00;
-	border: 2px solid #ff9100;
+  color: #fff;
+	border: 8px double #fff;
 	border-radius: 30px;
 	padding: 10px;
-	background-color: #fff;
+	background-color: #fbb13d;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s

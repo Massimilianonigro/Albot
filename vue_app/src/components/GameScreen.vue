@@ -179,7 +179,7 @@ export default {
 <style scoped>
 .GameUI {
   height: 100%;
-  width: 80%;
+  width: 75%;
   position: fixed;
   z-index: 1;
   top: 0;

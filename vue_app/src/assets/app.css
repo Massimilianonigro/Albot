@@ -7,28 +7,16 @@
 	border-radius: 40px !important;
 }
 
-.highlight {
-	color: #ffffff;
-	border-radius: 5px;
-	border: 5px;
-	border-style: double;
-	border-color: #00af0f;
-	background-color: #58eb6477;
-}
-
-.nothighlight {
-	color: #000000;
-	border-color: #ffffff00;
-	background-color: #ffffff00;
-}
-
 .image-container {
 	top: 0;
 	left: 0;
 	margin: 0;
 	height: 100%;
 	width: 100%;
-	background-color: #FFEDBE;
+	background-color: #ffffff;
+	background-size: contain;
+	background-image: url('../assets/backgrounds/WhiteBG.png');
+
 }
 
 .background {
@@ -50,22 +38,44 @@
 	top: 1%;
 }
 
-.corner-1a {
+.ui-btn{
 	position: absolute;
-	left: 1%;
-	top: 1%;
+	height: 8%;
+	width: 16.5%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color: transparent;
+	background-position: center;
+	border: 0px;
+	z-index: 1000;
 }
 
-.corner-1b {
-	position: absolute;
-	left: 1%;
-	top: 1%;
+.home-btn {
+	top: 11.5%;
+	left: 13.5%;
+	background-size: cover;
+	background-image: url("../assets/uibuttons/BackButton.png");
 }
 
-.corner-1c {
-	position: absolute;
-	left: 1%;
-	top: 1%;
+.back-btn {
+	top: 3%;
+	left: 13.5%;
+	background-image: url("../assets/uibuttons/BackButton.png");
+}
+
+.setting-btn {
+	top: 20%;
+	left: 13.5%;
+	background-image: url("../assets/uibuttons/SettingButton.png");
+}
+
+.next-btn {
+	top: 3%;
+	left: 13.5%;
+	
+	height: 9%;
+	width: 18%;
+	background-image: url("../assets/uibuttons/NextButton.png");
 }
 
 .corner-2 {
@@ -87,6 +97,10 @@
 }
 
 .robo-font {
+	font-family: 'Roboto Mono', monospace;
+}
+
+.berlin-font {
 	font-family: 'Roboto Mono', monospace;
 }
 
