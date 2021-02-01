@@ -117,6 +117,66 @@ class StateMachine:
         return next_state, utterance_array
 
     def practice_cycle(self,intent,current_state):
+        utterance_array = []
+        next_state = current_state
+        question_explanation = self.general_questions(intent)
+        if question_explanation != None:
+            utterance_array.append(question_explanation)
+        if intent['intent']['name'] == "chatbot_question":
+            utterance_array.append(rand.choices(self.utterances['chatbot_question'])[0]) 
+            next_state = State.PRACTICE_CHATBOT_QUESTION 
+        elif intent['intent']['name'] == "nlu_fallback":
+            utterance_array.append(rand.choices(self.utterances['fallback'])[0])
+        return next_state,utterance_array
+
+    def practice_chatbot_question(self,intent,current_state):
+
+        pass
+
+    def practice_child_question(self,intent,current_state):
+        utterance_array = []
+        next_state = current_state
+        question_explanation = self.general_questions(intent)
+        if question_explanation != None:
+            utterance_array.append(question_explanation)
+        elif intent['intent']['name'] == "nlu_fallback":
+            utterance_array.append(rand.choices(self.utterances['fallback'])[0]) 
+        return next_state,utterance_array
+
+    def practice_information(self,intent,current_state):
+        utterance_array = []
+        next_state = current_state
+        question_explanation = self.general_questions(intent)
+        if question_explanation != None:
+            utterance_array.append(question_explanation)
+            return next_state,utterance_array
+        if intent['intent']['name'] == "wait_ended":
+            utterance_array.append(rand.choices(self.utterances['acid_selection'])[0])
+        elif intent['intent']['name'] == "nlu_fallback":
+            utterance_array.append(rand.choices(self.utterances['fallback'])[0]) 
+        return next_state,utterance_array
+
+    def practice_reset(self,intent,current_state):
+        utterance_array = []
+        next_state = current_state
+        question_explanation = self.general_questions(intent)
+        if question_explanation != None:
+            utterance_array.append(question_explanation)
+            return next_state,utterance_array
+        if intent['intent']['name'] == "wait_ended":
+            utterance_array.append(rand.choices(self.utterances['acid_selection'])[0])
+        elif intent['intent']['name'] == "clicked_reset":
+            utterance_array.append(rand.choices(self.utterances['acid_selection'])[0])
+            next_state = State.PRACTICE_CYCLE
+        elif intent['intent']['name'] == "clicked_next":
+            utterance_array.append(rand.choices(self.utterances['acid_selection'])[0])
+            next_state = State.PRACTICE_CLARIFICATION
+        elif intent['intent']['name'] == "nlu_fallback":
+            utterance_array.append(rand.choices(self.utterances['fallback'])[0]) 
+        return next_state,utterance_array 
+
+    def practice_clarification(self,intent,current_state):
+
         pass
 
     #Answer general questions of the user that can be done over all the interaction, takes in an intent and gives back a string
@@ -173,7 +233,7 @@ class StateMachine:
         return self.waiting_time
 
     def get_next_state(self,state):
-        if state == State.GUIDED_POURING:
+        if state in self.cycle_states:
             return state
         else:
             return State(state.value + 1)
@@ -188,9 +248,15 @@ class StateMachine:
             State.GUIDED_REASONING : guided_reasoning,
             State.GUIDED_POURING : guided_pouring,
             State.PRACTICE_COLLECTING : practice_collecting,
-            State.PRACTICE_CYCLE : practice_cycle
+            State.PRACTICE_CYCLE : practice_cycle,
+            State.PRACTICE_CHATBOT_QUESTION : practice_chatbot_question,
+            State.PRACTICE_CHILD_QUESTION : practice_child_question,
+            State.PRACTICE_INFORMATION : practice_information,
+            State.PRACTICE_RESET : practice_reset,
+            State.PRACTICE_CLARIFICATION : practice_clarification
         }
-    optional_states = [State.GUIDED_REASONING,State.GUIDED_POURING,State.PRACTICE_CYCLE]
-    waiting_states = [State.INTRODUCTION_START]
+    cycle_states = [State.GUIDED_POURING,State.PRACTICE_CHATBOT_QUESTION,State.PRACTICE_CLARIFICATION]
+    optional_states = [State.GUIDED_REASONING,State.GUIDED_POURING,State.PRACTICE_CYCLE,State.PRACTICE_CLARIFICATION]
+    waiting_states = [State.INTRODUCTION_START,State.PRACTICE_CHILD_QUESTION,State.PRACTICE_INFORMATION]
     utterances = {}
     waiting_time = 3
