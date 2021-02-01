@@ -53,15 +53,7 @@ export default {
     return {
       message: "",
       messages: [
-        { message: "Hi -Name-, how are you", bot: true },
-        {
-          message: "I'm an Artificial Intelligence(AI) powered bot",
-          bot: true,
-        },
-        {
-          message: "If you want to ask me something, just type it down here.",
-          bot: true,
-        }
+        { message: "Hi I'm Albot, what is your name?", bot: true },
       ],
       ops: {
         rail: {
@@ -244,7 +236,7 @@ a {
 }
 
 .division{
-  border: solid 2px #ffa000;
+  border-bottom: solid 5px #ffa000;
   border-radius: 1px;
   width: 90%;
   margin:  0 auto;

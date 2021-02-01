@@ -58,6 +58,7 @@ export default {
       items: [
         {
           item: "Baking Soda",
+          id: 1,
           selected: false,
           src: require("../assets/items/BakingSoda.png"),
           size: { x: "27%", y: "53.5%", w: "12%", h: "28%" },
@@ -66,6 +67,7 @@ export default {
         },
         {
           item: "Egg White",
+          id: 2,
           selected: false,
           src: require("../assets/items/EggWhite.png"),
           size: { x: "40%", y: "53.5%", w: "9%", h: "35%" },
@@ -74,6 +76,7 @@ export default {
         },
         {
           item: "Vinegar",
+          id: 3,
           selected: false,
           src: require("../assets/items/Vinegar.png"),
           size: { x: "51%", y: "53.5%", w: "9%", h: "44%" },
@@ -82,6 +85,7 @@ export default {
         },
         {
           item: "Bleach",
+          id: 4,
           selected: false,
           src: require("../assets/items/Bleach.png"),
           size: { x: "62%", y: "67%", w: "12%", h: "28%" },
@@ -90,6 +94,7 @@ export default {
         },
         {
           item: "Oven Cleaner",
+          id: 5,
           selected: false,
           src: require("../assets/items/OvenCleaner.png"),
           size: { x: "75%", y: "67%", w: "9%", h: "28%" },
@@ -98,6 +103,7 @@ export default {
         },
         {
           item: "Soap",
+          id: 6,
           selected: false,
           src: require("../assets/items/Soap.png"),
           size: { x: "85%", y: "67%", w: "12%", h: "28%" },
@@ -106,6 +112,7 @@ export default {
         },
         {
           item: "Cola",
+          id: 7,
           selected: false,
           src: require("../assets/items/Cola.png"),
           size: { x: "63%", y: "36%", w: "9%", h: "22%" },
@@ -114,6 +121,7 @@ export default {
         },
         {
           item: "Lemon Juice",
+          id: 8,
           selected: false,
           src: require("../assets/items/LemonJuice.png"),
           size: { x: "63%", y: "2%", w: "9%", h: "28%" },
@@ -122,6 +130,7 @@ export default {
         },
         {
           item: "Milk",
+          id: 9,
           selected: false,
           src: require("../assets/items/Milk.png"),
           size: { x: "30%", y: "2%", w: "9%", h: "38%" },
@@ -130,6 +139,7 @@ export default {
         },
         {
           item: "Pure Water",
+          id: 10,
           selected: false,
           src: require("../assets/items/PureWater.png"),
           size: { x: "40%", y: "2%", w: "9%", h: "34%" },
@@ -138,6 +148,7 @@ export default {
         },
         {
           item: "Sparkling Water",
+          id: 11,
           selected: false,
           src: require("../assets/items/SparklingWater.png"),
           size: { x: "50%", y: "2%", w: "9%", h: "34%" },

@@ -8,7 +8,7 @@
     </div>
     <div v-else>
       <GameScreen v-bind:gameType="mainStatus" v-on:goHome="resetHome" />
-      <Chat ref="chat" v-on:messageSent="sendMessage"/>
+      <Chat ref="chatRef" v-on:sendMessage="sendMessage"/>
     </div>
    
   </div>
@@ -30,7 +30,8 @@ export default {
   data() {
     return {
       message: "",
-      mainStatus: 0
+      mainStatus: 0,
+      chatLink: undefined,
     };
   },
   methods: {
@@ -49,19 +50,21 @@ export default {
     }
   },
   created: function () {
-    console.log("Starting connection to WebSocket Server");
+    console.log("Starting connection to Server...");
     this.connection = new WebSocket("ws://localhost:2345");
 
-    
-
+    let self = this
     this.connection.onmessage = function (event) {
+      console.log("Event Log:");
       console.log(event);
-      this.$refs.chat.receiveMessage(event)
+      console.log("Data Log:");
+      console.log(event.data)
+      self.$refs.chatRef.receiveMessage(event.data)
     };
 
     this.connection.onopen = function (event) {
       console.log(event);
-      console.log("Successfully connected to the websocket server...");
+      console.log("Successfully connected to the websocket");
     };
   },
 };
