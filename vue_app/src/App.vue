@@ -50,11 +50,11 @@ export default {
       this.mainStatus = 0;
     },
     startIntroduction() {
-      sendIntroductoryJSON();
+      this.sendIntroductoryJSON();
       this.mainStatus = 1;
     },
     startPractice() {
-      sendPracticeJSON();
+      this.sendPracticeJSON();
       this.mainStatus = 3;
     },
     sendMessage: function(message) {
@@ -77,7 +77,7 @@ export default {
       this.sendMessage(message);
     },
     sendPracticeJSON(){
-      let message = '{"highlighted":"practise", "text":""}'
+      let message = '{"highlighted":"practice", "text":""}'
       this.sendMessage(message);
     },
     sendItemClick(id){

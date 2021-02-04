@@ -37,12 +37,13 @@ class DialogueManager:
         #Control if the text field is empty
         if len(msg['text']) != 0:
             #The message is now forwarded to the Rasa NLU and an intent comes back
+            print("text received " + str(msg['text']))
             intent = self.model.parse(msg['text'])
         else:
             #If the length of the text is empty the user acted on the interface selecting an object
             obj = msg['highlighted'].replace(" ", "")
             obj = obj.lower()
-            print(obj)
+            print("object clicked "+ obj)
             intent = self._create_intent('clicked_' + obj)
         
         #Now that i have the intent calculated i can generate a response and move the child on the state machine
@@ -71,8 +72,10 @@ class DialogueManager:
             # updated by the timer function and i do not start a new timer
             new_pending_question ,_ , utterance_array = self.state_machine.input_function(intent,current_state,pending_question)
             user['pending_question'] = new_pending_question
-        
-        message = json.dumps(utterance_array)
+        if len(utterance_array) == 0:
+            message = None
+        else:
+            message = json.dumps(utterance_array)
         return message
 
     def decide_branch(self,user_session_id):

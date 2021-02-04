@@ -15,7 +15,7 @@ class StateMachine:
             self.ingredients_list = json.load(read_file)['ingredients']
 
     def input_function(self,intent,current_state,pending_question):
-        print("In state_machine input_function: " + str(current_state) + ", intent recognized is: " + str(intent))
+        print("In state_machine input_function: " + str(current_state) + ", intent recognized is: " + str(intent['intent']['name']))
         pending_question , next_state , utterance_array = self.options[current_state](self,intent,current_state,pending_question)
         return pending_question, next_state , utterance_array
     
