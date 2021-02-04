@@ -40,7 +40,10 @@ class DialogueManager:
             intent = self.model.parse(msg['text'])
         else:
             #If the length of the text is empty the user acted on the interface selecting an object
-            intent = self._create_intent('clicked_' + msg['highlighted'])
+            obj = msg['highlighted'].replace(" ", "")
+            obj = obj.lower()
+            print(obj)
+            intent = self._create_intent('clicked_' + obj)
         
         #Now that i have the intent calculated i can generate a response and move the child on the state machine
         utterance = self.generate_utterance(intent,user_id)

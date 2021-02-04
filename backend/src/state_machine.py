@@ -154,12 +154,12 @@ class StateMachine:
         if intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
             return new_pending_question,next_state,utterance_array
-        elif intent['intent']['name'] == "clicked_Try Again":
+        elif intent['intent']['name'] == "clicked_tryagain":
             question_id = self.question_handler.get_random_question("gamification")
             question = self.question_handler.get_question_by_id(question_id)
             new_pending_question = question_id
             utterance_array.append(question)
-        elif intent['intent']['name'] == "clicked_Continue":
+        elif intent['intent']['name'] == "clicked_continue":
             next_state = State.PRACTICE_INFORMATION
         if self.question_handler.get_category_by_id(pending_question) == "gamification":
             if self.question_handler.verify_answer(pending_question,intent['intent']['name']):
