@@ -12,11 +12,12 @@ class DialogueManager:
         self.model = model
         self.state_machine = StateMachine()
         self.handler = handler
-
+    
     async def add_user(self,user_session_id):
         self.users[user_session_id] = {
             'current_state' : State.GREETING,
-            'is_coro_ended' : None 
+            'is_coro_ended' : None,
+            'pending_question': None 
         }
         #The moment the user is added the chatbot greets him and introduces him to the lesson
         intent = self._create_intent("connected")
@@ -39,7 +40,10 @@ class DialogueManager:
             intent = self.model.parse(msg['text'])
         else:
             #If the length of the text is empty the user acted on the interface selecting an object
-            intent = self._create_intent('clicked_' + msg['highlighted'])
+            obj = msg['highlighted'].replace(" ", "")
+            obj = obj.lower()
+            print(obj)
+            intent = self._create_intent('clicked_' + obj)
         
         #Now that i have the intent calculated i can generate a response and move the child on the state machine
         utterance = self.generate_utterance(intent,user_id)
@@ -48,11 +52,13 @@ class DialogueManager:
     def generate_utterance(self,intent,user_session_id):
         user = self.users[user_session_id]
         current_state = user['current_state']
+        pending_question = user['pending_question']
         if user['is_coro_ended'] is None or user['is_coro_ended'] == True:      
             #User either does not have a timer or the timer has finished, that means we are no longer in 
             # the branch/waiting state so we can behave normally 
-            next_state , utterance_array = self.state_machine.input_function(intent,current_state)
+            new_pending_question,next_state , utterance_array = self.state_machine.input_function(intent,current_state,pending_question)
             user['current_state'] = next_state
+            user['pending_question'] = new_pending_question
             #In the next section we proceed to see if the state we landed in is either a branch or waiting state
             # we start a timer accordingly
             if self.state_machine.is_branch(next_state):
@@ -63,7 +69,8 @@ class DialogueManager:
         elif user['is_coro_ended'] == False:
             #User has a timer and it is on going, meaning i do not update the state cause it will be
             # updated by the timer function and i do not start a new timer
-            _ , utterance_array = self.state_machine.input_function(intent,current_state)
+            new_pending_question ,_ , utterance_array = self.state_machine.input_function(intent,current_state,pending_question)
+            user['pending_question'] = new_pending_question
         
         message = json.dumps(utterance_array)
         return message
@@ -81,6 +88,7 @@ class DialogueManager:
             asyncio.ensure_future(self.branch_child_question(user_session_id))
     
     async def branch_chatbot_question(self,user_session_id):
+        #Decide chatbot question
         intent = self._create_intent("chatbot_question") 
         await self.chatbot_sends_message(intent,user_session_id)
         self.users[user_session_id]['is_coro_ended'] = True 
@@ -105,6 +113,7 @@ class DialogueManager:
                             'id': 0,
                             'name': intent}
                }  
+
 
 
    
