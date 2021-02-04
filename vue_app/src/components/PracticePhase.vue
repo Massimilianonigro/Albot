@@ -29,17 +29,21 @@
         
       </div>
       <button class="back-btn ui-btn" 
-          v-on:click="backButton()">
-        </button>
+        v-on:click="backButton()">
+      </button>
+      
+      <button class="setting-btn ui-btn" 
+        v-on:click="settingButton()">
+      </button>
+      <SettingsWindow v-on:close="settingButton()" v-if="settings"/>
+      
+      <button class="home-btn ui-btn" 
+        v-on:click="homeButton()">
+      </button>
         
-        <button class="setting-btn ui-btn" 
-          v-on:click="settingButton()">
-        </button>
-        <SettingsWindow v-on:close="settingButton()" v-if="settings"/>
-        
-        <button class="home-btn ui-btn" 
-          v-on:click="homeButton()">
-        </button>
+      <button class="reset-btn" 
+        v-on:click="resetButton()">
+      </button>
     </div>
   </div>
 </template>
@@ -75,6 +79,9 @@ export default {
     homeButton() {
       this.$emit("homePress");
     },
+    resetButton(){
+      this.$alert("A unexpected problem occured");
+    }
   },
 };
 </script>
@@ -165,5 +172,20 @@ ul {
 }
 a {
   color: #42b983;
+}
+.reset-btn{
+	position: absolute;
+	height: 12%;
+	width: 50%;
+	bottom: 20%;
+	left: 25%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color: transparent;
+	background-position: center;
+	border: 0px;
+	z-index: 1000;
+	background-size: contain;
+  background-image: url("../assets/uibuttons/ResetButton.png");
 }
 </style>
