@@ -50,9 +50,11 @@ export default {
       this.mainStatus = 0;
     },
     startIntroduction() {
+      sendIntroductoryJSON();
       this.mainStatus = 1;
     },
     startPractice() {
+      sendPracticeJSON();
       this.mainStatus = 3;
     },
     sendMessage: function(message) {
