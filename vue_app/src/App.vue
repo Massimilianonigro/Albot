@@ -7,8 +7,17 @@
       />
     </div>
     <div v-else>
-      <GameScreen v-bind:gameType="mainStatus" v-on:goHome="resetHome" />
-      <Chat ref="chatRef" v-on:sendMessage="sendMessage"/>
+      <Chat ref="chatRef" 
+      :style="{zIndex:'20'}"
+      v-on:sendMessage="sendMessage"
+      v-on:nextClicked="handleNextClick"
+      v-on:nextPracticeClicked="handleNextPracticeClick"/>
+      <GameScreen ref="gameRef"
+      :style="{overflow:'visible'}"
+      v-bind:gameType="mainStatus" 
+      v-on:goHome="resetHome" 
+      v-on:sendNextInChat="displayNextButton"
+      v-on:sendPracNextInChat="displayNextPracticeButton"/>
     </div>
    
   </div>
@@ -45,8 +54,19 @@ export default {
       this.mainStatus = 3;
     },
     sendMessage: function(message) {
-      console.log(this.connection);
       this.connection.send(message);
+    },
+    displayNextButton(){
+      this.$refs.chatRef.printNextButton();
+    },
+    displayNextPracticeButton(){
+      this.$refs.chatRef.printNextPracticeButton();
+    },
+    handleNextClick(){
+      this.$refs.gameRef.nextClicked();
+    },
+    handleNextPracticeClick(){
+      this.$refs.gameRef.nextPracticeClicked();
     }
   },
   created: function () {
@@ -72,7 +92,7 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Berlin Sans FB';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

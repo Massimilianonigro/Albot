@@ -1,0 +1,43 @@
+.item{
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.shelf{
+	top: 1%;
+	height: 50%;
+	width:  100%;
+	z-index: 0;
+	background-position-x: center;
+	background-image: url("../assets/backgrounds/Shelve.png");
+}
+.blender{
+	top: 31.5%;
+	height: 18%;
+	width:  100%;
+	z-index: 2;
+	background-position-y: bottom;
+	background-position-x: 11%;
+	background-image: url("../assets/backgrounds/Blender.png");
+}
+.pan1{
+	top: 6.8%;
+	left: 0%;
+	height: 11.8%;
+	width:  100%;
+	z-index: 2;
+	background-position-y: bottom;
+	background-position-x: 72%;
+	background-image: url("../assets/backgrounds/Pan1.png");
+}
+.pan2{
+	top: 6.8%;
+	left: 0;
+	height: 11.8%;
+	width:  100%;
+	z-index: 2;
+	background-position-y: bottom;
+	background-position-x: 90%;
+	background-image: url("../assets/backgrounds/Pan2.png");
+}

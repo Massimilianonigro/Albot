@@ -25,11 +25,20 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	margin: auto;
+	margin: auto auto auto auto;
+	/* Ipad Res*/
+	width: 100vw;
+	height: 93.70424597364568vw;
+	max-width: 106.71875vh;
+	max-height: 100vh;
+/* PC resolution
 	width: 100vw;
 	height: 75vw;
 	max-width: 133.3vh;
 	max-height: 100vh;
+*/
+	overflow: visible;
+	background-color: transparent;
 }
 
 .corner-1 {
@@ -41,40 +50,42 @@
 .ui-btn{
 	position: absolute;
 	height: 8%;
-	width: 16.5%;
+	width: 21.5%;
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-color: transparent;
 	background-position: center;
-	border: 0px;
+	border: none;
 	z-index: 1000;
+}
+.ui-btn:focus {
+	outline: none;
 }
 
 .home-btn {
 	top: 11.5%;
-	left: 13.5%;
-	background-size: cover;
-	background-image: url("../assets/uibuttons/BackButton.png");
+	left: 4%;
+	background-image: url("../assets/uibuttons/HomeButton.png");
 }
 
 .back-btn {
 	top: 3%;
-	left: 13.5%;
+	left: 4%;
 	background-image: url("../assets/uibuttons/BackButton.png");
 }
 
 .setting-btn {
 	top: 20%;
-	left: 13.5%;
+	left: 4%;
 	background-image: url("../assets/uibuttons/SettingButton.png");
 }
 
 .next-btn {
 	top: 3%;
-	left: 13.5%;
+	left: 5%;
 	
-	height: 9%;
-	width: 18%;
+	height: 8%;
+	width: 20%;
 	background-image: url("../assets/uibuttons/NextButton.png");
 }
 
@@ -99,9 +110,20 @@
 .robo-font {
 	font-family: 'Roboto Mono', monospace;
 }
+@font-face { 
+    font-family: 'Berlin Sans FB';
+    src: url('./fonts/BerlinSansFB-Reg.woff2') format('woff2'),
+        url('./fonts/BerlinSansFB-Reg.woff') format('woff'),
+        url('./fonts/BerlinSansFB-Reg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 .berlin-font {
-	font-family: 'Roboto Mono', monospace;
+	font-family: 'Berlin Sans FB';
+    font-weight: normal;
+    font-style: normal;
 }
 
 .swal2-styled {

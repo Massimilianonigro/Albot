@@ -2,7 +2,7 @@
   <div>
     <div class="background">
       <div class="solution-ph-meter">
-        <h2 class="solution-ph-meter-label">8</h2>
+        <h2 class="solution-ph-meter-label">06</h2>
       </div>
       <div class="scoreboard">
         <h3 class="scoreboard-label">8 Points</h3>
@@ -26,20 +26,30 @@
           ></button>
         </div>
         <div class="solution"></div>
+        
       </div>
+      <button class="back-btn ui-btn" 
+          v-on:click="backButton()">
+        </button>
+        
+        <button class="setting-btn ui-btn" 
+          v-on:click="settingButton()">
+        </button>
+        <SettingsWindow v-on:close="settingButton()" v-if="settings"/>
+        
+        <button class="home-btn ui-btn" 
+          v-on:click="homeButton()">
+        </button>
     </div>
-    <button
-      :style="{ width: '100px' }"
-      class="btn btn-primary corner-1"
-      v-on:click="homeButton"
-    >
-      Home
-    </button>
   </div>
 </template>
 
 <script>
+import SettingsWindow from "./SettingsWindow.vue";
 export default {
+  components: {
+    SettingsWindow,
+  },
   name: "PracticePhase",
   props: {
     items: {
@@ -47,7 +57,21 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      settings: false,
+    };
+  },
   methods: {
+    backButton(){
+      while(this.items.length > 0) {
+        this.items.pop();
+      }
+      this.$emit("backPress");
+    },
+    settingButton(){
+      this.settings = !this.settings;
+    },
     homeButton() {
       this.$emit("homePress");
     },
@@ -73,7 +97,7 @@ export default {
 .scoreboard{
   position: absolute;
 	z-index: 2;
-  left: 20%;
+  left: 30%;
   top: 0%;
   width: 30%;
   height: 14%;
@@ -86,7 +110,7 @@ export default {
 }
 .scoreboard-label{
   position: absolute;
-  color: gray;
+  color: #ffffff;
 	z-index: 3;
   margin: auto auto auto auto;
   left: 16%;
@@ -99,21 +123,22 @@ export default {
 .solution-ph-meter{
   position: absolute;
 	z-index: 2;
-  left: 35%;
-  top: 10%;
-  width: 30%;
-  height: 20%;
+  left: 25%;
+  top: 20%;
+  width: 50%;
+  height: 23%;
   margin: auto;
-	background-position-y: bottom;
+	background-position-y: center;
 	background-position-x: center;
 	background-repeat: no-repeat;
-	background-size: contain;
-	background-image: url("../assets/uibuttons/PHIndicator.png");
+  background-size: contain;
+	background-image: url("../assets/uibuttons/PHMeterAcid.png");
 }
 .solution-ph-meter-label{
   color: gray;
 	z-index: 3;
-  margin: 37.5% auto auto auto;
+  margin: 13% auto auto auto;
+  top: 0%;
   left: 0%;
   right: 0%;
   bottom: 0%;
@@ -124,8 +149,8 @@ export default {
 .item-container {
   margin: auto;
   position: absolute;
-  z-index: 1000;
-  bottom: 26%;
+  z-index: 50;
+  bottom: 22%;
   left: 0%;
   right: 0;
   width: 88%;

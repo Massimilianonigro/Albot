@@ -1,47 +1,48 @@
 <template>
-  <div>
-    <div class="background">
-      <div class="ItemShelf">
-        <div style="margin:5px; z-index:1000" >
-          <button
-            v-for="(data, index) in items" 
-            v-bind:key="index"
-            class="kitchen-item"
-            v-on:click="data.selected = !data.selected"
-            v-bind:class="{
-              highlight: data.selected,
-              nothighlight: !data.selected,
-            }"
-            v-bind:style="{
-              backgroundImage: 'url(' + data.src + ')',
-              left: data.size.x,
-              bottom: data.size.y,
-              height: data.size.h,
-              width: data.size.w,
-            }"
-          >
-            <div v-if="data.selected" class="selected-icon"></div>
-          </button>
-        </div>
+  <div class="background">
+    <div class="ItemShelf">
+      <div style="margin:5px; z-index:1000" >
+        <button
+          v-for="(data, index) in items" 
+          v-bind:key="index"
+          class="kitchen-item"
+          v-on:click="handleClickedItem(data)"
+          v-bind:class="{
+            highlight: data.selected,
+            nothighlight: !data.selected,
+            unclickable: getUnclickable(data.ph, data.selected),
+          }"
+          v-bind:style="{
+            backgroundImage: 'url(' + data.src + ')',
+            left: data.size.x,
+            bottom: data.size.y,
+            height: data.size.h,
+            width: data.size.w,
+          }"
+          v-bind:disabled="getDisabled(data)"
+        >
+          <div v-if="data.selected" class="selected-icon"></div>
+        </button>
       </div>
-      
-      <button class="next-btn ui-btn" 
-        v-on:click="mixItems"> 
-      </button>
-      
-      <button class="setting-btn ui-btn" 
-        v-on:click="settingButton">
-      </button>
-      
-      <button class="home-btn ui-btn" 
-        v-on:click="homeButton">
-      </button>
     </div>
+    
+    <button class="setting-btn ui-btn" 
+      v-on:click="settingButton">
+    </button>
+    <SettingsWindow v-on:close="settingButton" v-if="settings"/>
+    
+    <button class="home-btn ui-btn" 
+      v-on:click="homeButton">
+    </button>
   </div>
 </template>
 
 <script>
+import SettingsWindow from "./SettingsWindow.vue";
 export default {
+  components: {
+    SettingsWindow,
+  },
   name: "PickerPhase",
   props: {
     items: {
@@ -49,9 +50,17 @@ export default {
       required: true,
     }
   },
+  data() {
+    return {
+      part: "acid",
+      selection: 0,
+      settings: false,
+    };
+  },
   methods:{
     mixItems(){
-      var selItems = []
+      let selItems = []
+      let nonSelItems = []
       this.items.forEach(element => {
         if( element.selected == true){
           let tempItem = { 
@@ -61,6 +70,9 @@ export default {
             ph: element.ph
           };
           selItems.push(tempItem);
+        }
+        else{
+          nonSelItems.push(element);
         }
       });
       if (selItems.length > 5) {
@@ -73,11 +85,66 @@ export default {
         console.error("No item selected");
       }
       else{
-        this.$emit("nextPress", selItems);
+        this.$emit("nextPress", selItems, nonSelItems);
       }
     },
+    changePart(){
+      if (this.part == "acid" && this.selection == 2){
+      this.$emit("sendNextInChat");
+      }
+      else if(this.part == "basic"  && this.selection == 4){
+      this.$emit("sendNextInChat");
+      }
+      else if(this.part == "water"  && this.selection == 5){
+      this.$emit("sendNextInChat");
+      }
+    },
+    updatePart(){
+      if (this.part == "acid" && this.selection == 2){
+        this.part = "basic";
+      }
+      else if(this.part == "basic"  && this.selection == 4){
+        this.part = "water";
+      }
+      else if(this.part == "water"  && this.selection == 5){
+        this.mixItems()
+      }
+    },
+    getUnclickable(ph, selected){
+      if(selected && this.part != "acid" && ph < 7) {
+        return true;
+      }
+      else if( selected && this.part != "basic" && ph > 7){
+        return true;
+      }
+      return false;
+    },
+    getDisabled(data){
+      if (data.selected){
+        return false;
+      }
+      else if (this.part == "acid"){
+        return data.ph > 7;
+      }
+      else if(this.part == "basic"){
+        return data.ph < 7;
+      }
+      else if(this.part == "water"){
+        return data.ph != 7;
+      }
+    },
+    handleClickedItem(data){
+      data.selected = !data.selected
+      if (data.selected) {
+        this.selection += 1;
+      }
+      else{
+        this.selection -= 1;
+      }
+      this.changePart();
+    },
     settingButton(){
-        this.$alert("Not implemented");
+      this.settings = !this.settings;
     },
     homeButton() {
       this.$emit("homePress");
@@ -88,16 +155,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.ItemShelf {
-  margin: 2% auto;
-  left: 0;
-  right: 0;
-  height: 48%;
-  width: 77%;
-  z-index: 4;
-  position: absolute;
-  top: 0;
-}
 .selected-icon{
   pointer-events: none;
   top:-10%;

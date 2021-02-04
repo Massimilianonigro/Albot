@@ -3,21 +3,36 @@
     <div class="GameUI" v-if="gameStatus == 1">
       <PickerBackground />
       <PickerPhase 
+        ref="picker"
         v-bind:items="items" 
+        v-on:sendNextInChat="displayNextButton"
         v-on:homePress="homeScreen"
         v-on:nextPress="mixItems" 
       />
     </div>
     <div class="GameUI" v-if="gameStatus == 2">
-      <MixerBackground />
+      <MixerBackground 
+        v-bind:items="nonSelItems"/>
+        
       <MixerPhase
         v-bind:items="selItems"
+        v-bind:nsitems="nonSelItems"
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen"
         v-on:practicePress="nextScreen"
       />
     </div>
     <div class="GameUI" v-if="gameStatus == 3">
+      <PickerBackground/>
+      <PickerPracticePhase 
+        ref="pracpicker"
+        v-bind:items="items" 
+        v-on:sendNextInPracticeChat="displayNextPracticeButton"
+        v-on:nextPress="practiceMix"
+        v-on:homePress="homeScreen"
+      />
+    </div>
+    <div class="GameUI" v-if="gameStatus == 4">
       <PracticeBackground />
       <PracticePhase 
         v-bind:items="items" 
@@ -34,6 +49,7 @@ import MixerBackground from "./MixerBackground.vue";
 import PracticeBackground from "./PracticeBackground.vue";
 import PickerPhase from "./PickerPhase.vue";
 import MixerPhase from "./MixerPhase.vue";
+import PickerPracticePhase from "./PickerPracticePhase.vue";
 import PracticePhase from "./PracticePhase.vue";
 
 export default {
@@ -44,6 +60,7 @@ export default {
     PracticeBackground,
     PickerPhase,
     MixerPhase,
+    PickerPracticePhase,
     PracticePhase,
   },
   props: {
@@ -61,7 +78,7 @@ export default {
           id: 1,
           selected: false,
           src: require("../assets/items/BakingSoda.png"),
-          size: { x: "27%", y: "53.5%", w: "12%", h: "28%" },
+          size: { x: "68%", y: "2%", w: "12%", h: "28%" },
           prsize: { x: "0%", y: "0%", w: "10%", h: "40%" },
           ph: 8,
         },
@@ -70,7 +87,7 @@ export default {
           id: 2,
           selected: false,
           src: require("../assets/items/EggWhite.png"),
-          size: { x: "40%", y: "53.5%", w: "9%", h: "35%" },
+          size: { x: "84%", y: "2%", w: "9%", h: "30%" },
           prsize: { x: "8%", y: "42%", w: "7%", h: "50%" },
           ph: 9.2,
         },
@@ -79,7 +96,7 @@ export default {
           id: 3,
           selected: false,
           src: require("../assets/items/Vinegar.png"),
-          size: { x: "51%", y: "53.5%", w: "9%", h: "44%" },
+          size: { x: "53%", y: "2%", w: "8%", h: "40%" },
           prsize: { x: "22%", y: "42%", w: "7%", h: "60%" },
           ph: 3,
         },
@@ -88,7 +105,7 @@ export default {
           id: 4,
           selected: false,
           src: require("../assets/items/Bleach.png"),
-          size: { x: "62%", y: "67%", w: "12%", h: "28%" },
+          size: { x: "85%", y: "36%", w: "12%", h: "28%" },
           prsize: { x: "60%", y: "0%", w: "10%", h: "42%" },
           ph: 12,
         },
@@ -97,7 +114,7 @@ export default {
           id: 5,
           selected: false,
           src: require("../assets/items/OvenCleaner.png"),
-          size: { x: "75%", y: "67%", w: "9%", h: "28%" },
+          size: { x: "63%", y: "36%", w: "9%", h: "28%" },
           prsize: { x: "90%", y: "0%", w: "8%", h: "48%" },
           ph: 13,
         },
@@ -106,7 +123,7 @@ export default {
           id: 6,
           selected: false,
           src: require("../assets/items/Soap.png"),
-          size: { x: "85%", y: "67%", w: "12%", h: "28%" },
+          size: { x: "73%", y: "36%", w: "12%", h: "28%" },
           prsize: { x: "74%", y: "0%", w: "12%", h: "48%" },
           ph: 1,
         },
@@ -115,7 +132,7 @@ export default {
           id: 7,
           selected: false,
           src: require("../assets/items/Cola.png"),
-          size: { x: "63%", y: "36%", w: "9%", h: "22%" },
+          size: { x: "35%", y: "2%", w: "8%", h: "25%" },
           prsize: { x: "38%", y: "42%", w: "7%", h: "32%" },
           ph: 3,
         },
@@ -124,7 +141,7 @@ export default {
           id: 8,
           selected: false,
           src: require("../assets/items/LemonJuice.png"),
-          size: { x: "63%", y: "2%", w: "9%", h: "28%" },
+          size: { x: "26%", y: "2%", w: "8.5%", h: "32%" },
           prsize: { x: "65%", y: "43%", w: "7%", h: "45%" },
           ph: 2,
         },
@@ -133,7 +150,7 @@ export default {
           id: 9,
           selected: false,
           src: require("../assets/items/Milk.png"),
-          size: { x: "30%", y: "2%", w: "9%", h: "38%" },
+          size: { x: "43.5%", y: "2%", w: "9%", h: "38%" },
           prsize: { x: "50%", y: "42%", w: "8%", h: "55%" },
           ph: 6,
         },
@@ -142,7 +159,7 @@ export default {
           id: 10,
           selected: false,
           src: require("../assets/items/PureWater.png"),
-          size: { x: "40%", y: "2%", w: "9%", h: "34%" },
+          size: { x: "51%", y: "53%", w: "9%", h: "45%" },
           prsize: { x: "15%", y: "0%", w: "7%", h: "56%" },
           ph: 7,
         },
@@ -151,17 +168,38 @@ export default {
           id: 11,
           selected: false,
           src: require("../assets/items/SparklingWater.png"),
-          size: { x: "50%", y: "2%", w: "9%", h: "34%" },
+          size: {  x: "30%", y: "53%", w: "9%", h: "45%" },
+          prsize: { x: "30%", y: "0%", w: "7%", h: "56%" },
+          ph: 6,
+        },
+        {
+          item: "Sparkling Water",
+          id: 11,
+          selected: false,
+          src: require("../assets/items/SparklingWater.png"),
+          size: {  x: "40.5%", y: "53%", w: "9%", h: "45%" },
           prsize: { x: "30%", y: "0%", w: "7%", h: "56%" },
           ph: 6,
         },
       ],
       selItems: [],
+      nonSelItems: [],
       selItem: undefined,
     };
   },
   methods: {
-    mixItems(selectedItems) {
+    mixItems(selectedItems, nonSelectedItems) {
+      this.selItems = [];
+      this.nonSelItems = [];
+      selectedItems.forEach((element) => {
+        this.selItems.push(element);
+      });
+      nonSelectedItems.forEach((element) => {
+        this.nonSelItems.push(element);
+      });
+      this.gameStatus += 1;
+    },
+    practiceMix(selectedItems) {
       this.selItems = [];
       selectedItems.forEach((element) => {
         this.selItems.push(element);
@@ -173,10 +211,28 @@ export default {
       this.selItem = selectedItem;
       this.gameStatus += 1;
     },
+    displayNextButton(){
+      this.$emit("sendNextInChat");
+    },
+    displayNextPracticeButton(){
+      this.$emit("sendPracNextInChat");
+    },
+    nextClicked(){
+      if(this.gameStatus == 1)
+        this.$refs.picker.updatePart()
+    },
+    nextPracticeClicked(){
+      if(this.gameStatus == 3)
+        this.$refs.pracpicker.nextClick()
+    },
     nextScreen() {
+      if(this.gameStatus == 2){ // Reset on Practise picking
+        this.items.forEach(element => element.selected = false);
+      }
       this.gameStatus += 1;
     },
     prevScreen() {
+      this.items.forEach(element => element.selected = false);
       this.gameStatus -= 1;
     },
     homeScreen() {
@@ -190,7 +246,7 @@ export default {
 <style scoped>
 .GameUI {
   height: 100%;
-  width: 75%;
+  width: 80%;
   position: fixed;
   z-index: 1;
   top: 0;

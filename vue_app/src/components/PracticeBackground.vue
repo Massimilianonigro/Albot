@@ -27,6 +27,7 @@ export default {
 	width:  100%;
 	z-index: 1;
 	background-position-x: center;
+	background-position-y: bottom;
 	background-image: url("../assets/backgrounds/TableTopView.png");
 }
 .ImageContainer{

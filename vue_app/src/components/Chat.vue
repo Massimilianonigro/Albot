@@ -3,31 +3,47 @@
     <div class="chat">
       <div class="chat-tittle robo-font" :style="{ height: '35px' }"></div>
 
-      <div class="message-box" :style="{ width: '98%', height: '70%', bottom: '40px' }">
+      <div
+        class="message-box"
+        :style="{ width: '98%', height: '70%', bottom: '40px' }"
+      >
         <vuescroll ref="vs" :style="{ 'text-align': 'left' }" :ops="ops">
           <div
-            v-bind:class="{ 'user-message': !data.bot, 'bot-message': data.bot }"
-            class="child-element message"
+            v-bind:class="getClass(data)"
+            class="message"
             v-for="(data, index) in messages"
             v-bind:key="index"
           >
-            <div v-bind:class="{ 'user-message-box': !data.bot, 'bot-message-box': data.bot }">
+            <div v-bind:class="getBoxClass(data)">
               <span>
-                {{ data.message }} 
+                {{ data.message }}
               </span>
+              <img 
+                class="img-chat"
+                v-if="data.type == 'image'"
+                :src="data.src"
+              />
             </div>
+            
+            <button
+              v-if="data.type == 'button'"
+              :class="getButtonClass(data.func)"
+              v-on:click="handleClick(data.func)"
+              :style="{ backgroundImage: 'url(' + data.src + ')' }"
+              
+            ></button>
           </div>
         </vuescroll>
       </div>
 
       <div class="division"></div>
-      
+
       <form @submit.prevent="sendMessage" autocomplete="off" class="form-style">
         <div class="textbar">
           <div class="text input-group">
             <input
               type="text"
-              class="corner"
+              class="corner berlin-font"
               placeholder="Write your message here..."
               v-model="message"
               name="message"
@@ -53,7 +69,16 @@ export default {
     return {
       message: "",
       messages: [
-        { message: "Hi I'm Albot, what is your name?", bot: true },
+        {
+          message: "Hi I'm Albot, what is your name?",
+          bot: true,
+          type: "text",
+        },
+        {
+          message: "To continue you have to select at least 2 items",
+          bot: true,
+          type: "text",
+        },
       ],
       ops: {
         rail: {
@@ -88,29 +113,76 @@ export default {
     };
   },
   methods: {
+    getClass(data) {
+      let styleItem = "";
+      if (data.bot) {
+        styleItem = styleItem + "bot-message";
+      } else {
+        styleItem = styleItem + "user-message";
+      }
+      return styleItem;
+    },
+    getBoxClass(data) {
+      let styleItem = "";
+      if (data.bot) {
+        styleItem = styleItem + "bot-message-box";
+      } else {
+        styleItem = styleItem + "user-message-box";
+      }
+      return styleItem;
+    },
+    getButtonClass(functionType) {
+      let styleItem = "";
+      if (functionType == "next" || functionType == "nextPractice") {
+        styleItem = styleItem + "btn-chat";
+      } else {
+        styleItem = styleItem + "btn-chat";
+      }
+      return styleItem;
+    },
+    handleClick(functionType) {
+      if (functionType == "next") {
+        this.$emit("nextClicked");
+      } else if (functionType == "nextPractice") {
+        this.$emit("nextPracticeClicked");
+      }
+    },
     sendMessage() {
       var result = true;
       if (result) {
-        this.messages.push({ message: this.message, bot: false });
-        this.$emit("sendMessage", this.message);
+        let jsonMessage = '{"highlighted":"", "text":"' + this.message + ' "}';
+
+        this.messages.push({ message: this.message, bot: false, type: "text" });
+        this.$emit("sendMessage", jsonMessage);
         this.message = "";
-        
       } else {
         console.log("Too Short message");
       }
     },
     receiveMessage(message) {
-        this.messages.push({ message: message, bot: true });
+      this.messages.push({ message: message, bot: true, type: "text" });
+    },
+    printNextButton() {
+      this.messages.push({
+        message: "Click on next button to continue!",
+        bot: true,
+        type: "button",
+        src: require("../assets/uibuttons/NextButton.png"),
+        func: "next",
+      });
+    },
+    printNextPracticeButton() {
+      this.messages.push({ message: "Click on next button to continue!",
+        bot: true,
+        type: "button",
+        src: require("../assets/uibuttons/NextButton.png"),
+        func: "nextPractice",
+      });
     },
   },
-  updated(){
-    this.$refs["vs"].scrollTo(
-        {
-          y: "100%",
-        },
-        500
-      );
-  }
+  updated() {
+    this.$refs["vs"].scrollTo({ y: "100%" }, 500);
+  },
 };
 </script>
 
@@ -134,7 +206,7 @@ a {
   display: flex;
   flex-direction: column;
   height: 95%;
-  width: 20%;
+  width: 23%;
   position: fixed;
   z-index: 1;
   top: 2.5%;
@@ -144,13 +216,15 @@ a {
   border: 4px solid;
   border-radius: 60px;
   border-color: #ffa000;
+  background-color: #fff;
+  background-image: url("../assets/backgrounds/WhiteBG.png");
 }
 
 .chat-bg-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 22%;
+  width: 20%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -183,6 +257,7 @@ a {
   text-align: left;
   background-repeat: no-repeat;
   display: block;
+  font-size: 2.2vh;
   margin-top: 2px;
   padding-top: 2px;
   margin-bottom: 2px;
@@ -235,11 +310,32 @@ a {
   margin-bottom: 4px;
 }
 
-.division{
+.division {
   border-bottom: solid 5px #ffa000;
   border-radius: 1px;
   width: 90%;
-  margin:  0 auto;
+  margin: 0 auto;
+}
+
+.btn-chat {
+  position: relative;
+  top: -8px;
+  height: 30px;
+  left: 20%;
+  width: 60%;
+  border: none;
+  background-color: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.btn-chat:focus {
+  outline: none;
+}
+.btn-chat:active {
+  opacity: 0.8;
+}
+.img-chat{
+  max-width:100%;
 }
 
 .corner {

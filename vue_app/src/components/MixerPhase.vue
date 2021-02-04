@@ -26,9 +26,17 @@
             </div>
         </div>
       </div>
-      <!--div class="solution-ph-meter">
-        <h3 class="solution-ph-meter-label"> {{selectedPh}} </h3>
-      </div-->
+
+      <div class="white-block" v-if="complete">
+        <div  class="gj-banner" >
+          <h2> Good Job! </h2>
+          <h2> Lets try: </h2>
+        </div>
+        <button class="practice-btn"
+          v-on:click="practiceButton">
+        </button>
+      </div>
+
       <button class="back-btn ui-btn" 
         v-on:click="backButton">
       </button>
@@ -36,20 +44,21 @@
       <button class="setting-btn ui-btn" 
         v-on:click="settingButton">
       </button>
+      <SettingsWindow v-on:close="settingButton" v-if="settings"/>
       
       <button class="home-btn ui-btn" 
-        v-on:click="settingButton">
+        v-on:click="homeButton">
       </button>
     </div>
-    <button :style="{ width: '100px' }" class="btn btn-primary corner-4" 
-      v-on:click="practiceButton">
-      Practice!
-    </button>
   </div>
 </template>
 
 <script>
+import SettingsWindow from "./SettingsWindow.vue";
 export default {
+  components: {
+    SettingsWindow,
+  },
   name: "MixerPhase",
   props: {
     items: {
@@ -61,7 +70,9 @@ export default {
     return {
       selected: undefined,
       selectedPh: "Select",
-      poured: [false, false, false, false, false]
+      complete: false,
+      poured: [false, false, false, false, false],
+      settings: false,
     }
   },
   methods:{
@@ -76,6 +87,8 @@ export default {
       }
       if(!this.poured[index])
         this.poured[index] = true;
+
+      this.complete = this.poured.every(v => v === true)
     },
     getHighlight(index){
       if(this.selected == index)
@@ -115,18 +128,22 @@ export default {
     pourItem(index){
       this.poured[index] = true;
     },
+    practiceButton(){
+      this.$emit("practicePress");
+    },
     backButton(){
       while(this.items.length > 0) {
         this.items.pop();
       }
       this.$emit("backPress");
     },
-    practiceButton(){
-      this.$emit("practicePress");
-    },
     settingButton(){
-        this.$alert("Not implemented");
-    }
+      console.log(this.settings)
+      this.settings = !this.settings
+    },
+    homeButton() {
+      this.$emit("homePress");
+    },
   }
 };
 </script>
@@ -136,11 +153,11 @@ export default {
 .item-container {
   margin: auto;
   position: absolute;
-  z-index: 1000;
+  z-index: 50;
   bottom: 28%;
   left: 0%;
   right: 0;
-  width: 65%;
+  width: 82%;
   height: 25%;
 }
 
@@ -226,5 +243,47 @@ ul {
 }
 a {
   color: #42b983;
+}
+.practice-btn{
+	position: absolute;
+	height: 12%;
+	width: 50%;
+	top: 40%;
+	left: 25%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color: transparent;
+	background-position: center;
+	border: 0px;
+	z-index: 1000;
+	background-size: contain;
+	background-image: url("../assets/uibuttons/PracticeButton.png");
+}
+.gj-banner{
+  position: absolute;
+  padding-top: 7%;
+	height: 30%;
+	width: 68%;
+	top: 22%;
+	left: 16%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color: transparent;
+	background-position: center;
+  border: 0px;
+  z-index: 999;
+	background-size: contain;
+	background-image: url("../assets/uibuttons/gj.png");
+}
+.gj-banner > h2{
+  color: white;
+  text-align: center;
+}
+.white-block{
+  position: absolute;
+  background-color: #ffffffb0;
+  z-index: 105;
+  height: 100%;
+  width:  100%;
 }
 </style>
