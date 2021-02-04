@@ -17,20 +17,6 @@ nlu:
     - goodevening
     - good afternoon
 
-- intent: goodbye
-  examples: |
-    - good afternoon
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
-
 - intent: affirm
   examples: |
     - yes
@@ -82,6 +68,46 @@ nlu:
     - I want an explanation on ph
     - Tell me more about ph
 
+- intent: acid_acid_compare
+  examples: |
+   - The two ingredients are similar. They are both acids but have different ph
+   - One element has ph slighltly more acid than the other
+   - One element is more acidic than the other
+   - They are two acidics solutions, one more than the other
+   - Not much. They are both acids
+
+- intent: basic_acid_compare
+  examples: |
+   - The two ingredients have vastly different ph properties, one is basic the other is acid
+   - One of the two is a base the other is an acid
+   - One has a ph lower than 7 the other has a ph higher than 7 
+   - One is more acidic than water the other is more basic than water
+   - They are at opposite sides of the ph spectrum 
+   - One is a basic solution the other an acidic one
+
+- intent: basic_basic_compare
+  examples: |
+   - They are both bases, not much difference
+   - Their ph is both above 7 but is slightly different
+   - The two solutions are bases, one of the two is more basic than the other
+   - Not a lot, they are bases hence they are similar
+   - They have diverse ph but are both bases
+
+- intent: neutral_basic_compare
+  examples: |
+   - One of them has ph 7 the other has an higher ph
+   - Water is a neutral substance, the other is a basis
+   - Water is at the center of the ph spectrum, the other is higher
+   - One is a basic solution , with a much higher ph than water
+
+- intent: neutral_acid_compare
+  examples: |
+   - Water has ph 7 and the other has a lower ph
+   - Water is a neutral substance the other is an acid
+   - There is an acidic substance and a neutral one
+   - One of them is an acid the other a neutral substance
+   - One acid other neutral
+   - One has ph lower than 7 the other 7
 - intent: inform_cabbage_solution
   examples: |
     - Do you know how to make the cabbage solution at home?

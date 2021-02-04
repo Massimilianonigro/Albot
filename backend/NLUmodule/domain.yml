@@ -2,13 +2,17 @@ version: "2.0"
 
 intents:
   - greet
-  - goodbye
   - affirm
   - deny
   - inform_color_change
   - inform_cabbage_solution
   - inform_ph
   - inform_ph_property
+  - acid_acid_compare
+  - basic_acid_compare
+  - basic_basic_compare
+  - neutral_basic_compare
+  - neutral_acid_compare
 
 
 

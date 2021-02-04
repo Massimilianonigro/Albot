@@ -1,0 +1,119 @@
+{
+    "gamification": [
+        {
+            "color_defining":{
+                "base": "Try to get the cabbage solution to turn in this specific ",
+                "values":[
+                     {
+                         "id": 0,
+                         "option": "light_green",
+                         "answer": "clicked_Lemon Juice",
+                         "explanation": ""
+                     },
+                     {
+                         "id": 1,
+                         "option": "light_orange",
+                         "answer": "clicked_Cola",
+                         "explanation": ""
+                     },
+                     {   "id": 2,
+                         "option": "purple",
+                         "answer": "clicked_Baking Soda",
+                         "explanation": ""
+                     }
+                ]
+            },
+            "number_defining":{
+                "base": "Can you add the item which have PH Level of ",
+                "values":[
+                    {   
+                        "id": 3,
+                        "option": "2",
+                        "answer": "clicked_Lemon Juice",
+                        "explanation": ""
+                    },
+                    {
+                        "id": 4,
+                        "option":"7",
+                        "answer":"clicked_Pure Water",
+                        "explanation": ""
+                    },
+                    {
+                        "id": 5,
+                        "option": "3",
+                        "answer": "clicked_Cola",
+                        "explanation": ""
+                    },
+                    {
+                        "id": 6,
+                        "option":"6",
+                        "answer":"clicked_Milk",
+                        "explanation": ""
+                    },
+                    {  
+                        "id": 7,
+                        "option":"13",
+                        "answer":"clicked_Oven Cleaner",
+                        "explanation": ""
+                    }
+                ]
+            },
+            "nature_defining":{
+                "base": "What is the difference between the PH Nature of ",
+                "values": [
+                    {   
+                        "id": 8,
+                        "option": "Lemon Juice and Milk",
+                        "answer": "acid_acid_compare",
+                        "explanation":""
+                    },
+                    {   
+                        "id": 9,
+                        "option": "Oven Cleaner and Cola",
+                        "answer":"basic_acid_compare",
+                        "explanation": ""
+                    },
+                    {
+                        "id": 10,
+                        "option": "Oven Cleaner and Egg White",
+                        "answer":"basic_basic_compare",
+                        "explanation": ""
+                    },
+                    {   
+                        "id": 11,
+                        "option":"Pure Water and Baking Soda",
+                        "answer": "neutral_basic_compare",
+                        "explanation": ""
+                    },
+                    {   
+                        "id": 12,
+                        "option": "Pure Water and Vinegar",
+                        "answer": "neutral_acid_compare",
+                        "explanation": ""
+                    }
+                ]
+            }
+        }
+    ],
+
+    "other":[{
+        "ph_related":{
+            "base": "What is ph?",
+            "values":[{
+                "id": 13,
+                "option":"",
+                "answer":"",
+                "explanation":""
+            }]
+        },
+        "cabbage_related":{
+            "base":"Why do we use the cabbage solution?",
+            "values":[{
+                "id": 14,
+                "option": "",
+                "answer": "",
+                "explanation":""
+            }]
+        }
+    }]
+}

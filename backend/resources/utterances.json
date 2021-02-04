@@ -4,10 +4,6 @@
         "Let’s check the PH level of the items available in this kitchen"
     ],
 
-    "ready_or_question":[
-        "ready_or_question"
-    ],
-
     "introduction_or_practice":[
         "You can choose between an introductory lesson or a practice lesson"
     ],
@@ -33,67 +29,86 @@
     ],
     
     "practice_explanation": [
-        "practice_explanation"
+        "Welcome to practice Lesson. You can select item of your choice from the shelf."
     ],
 
     "ph_explanation": [
-        "ph_explanation",
-        "aoooo"
+        "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base."
     ],
 
     "cabbage_solution_explanation" : [
-        "cabbage_solution_explanation"
+        "When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green. We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour."
     ],
 
     "collecting_items_answer" : [
-        "collecting_items_answer"
+        "In the introduction part you have to collect 2 acidic elements and 2 basic, in the practice one you are free to bring whatever object you prefer to the table"
     ],
 
     "acid_explanation": [
-        "acid_explanation"
+        "Whether a liquid is an acid or base depends on the type of ions in it. If it has a lot of hydrogen ions, then it is an acid. If it has a lot of hydroxide ions, then it is a base. Scientists use something called a pH scale to measure how acidic or basic a liquid is."
     ],
 
     "base_explanation": [
-        "base_explanation"
+        "Basic substances contain lots of hydroxide ions. These are a different type of molecule with a small electrical charge. In foods, this means they will taste more bitter. Plenty of things other than food can be basic, however."
     ],
 
     "color_change_acid" : [
-        "color_change_acid"
+        "Red cabbage contains a chemical called anthocyanin that changes color when it is mixed with an acid or a base. When the liquid is a red or purple color it means that it is more acidic. When the liquid is a blue, green, or yellow color it means that the liquid is more basic."
     ],
 
     "color_change_base": [
-        "color_change_base"
+        "Red cabbage contains a chemical called anthocyanin that changes color when it is mixed with an acid or a base. When the liquid is a red or purple color it means that it is more acidic. When the liquid is a blue, green, or yellow color it means that the liquid is more basic."
     ],
 
     "color_change_neutral": [
-        "color_change_neutral"
+        "Red cabbage contains a chemical called anthocyanin that changes color when it is mixed with an acid or a base. When the liquid is a red or purple color it means that it is more acidic. When the liquid is a blue, green, or yellow color it means that the liquid is more basic."
     ],
 
     "properties_acid_ingredient": [
-        "properties_acid_ingredient"
+        "Aqueous solutions of acids are electrolytes, meaning that they conduct electrical current. Some acids are strong electrolytes because they ionize completely in water, yielding a great many ions. Other acids are weak electrolytes that exist primarily in a non-ionized form when dissolved in water.",
+        "Acids have a sour taste. Lemons, vinegar, and sour candies all contain acids."
     ],
 
     "properties_neutral_ingredient": [
-        "properties_neutral_ingredient"
+        "If a substance has a pH of exactly 7, it's neutral. This means it has equal amounts of hydrogen and hydroxide ions. Pure water is a neutral substance."
     ],
 
     "properties_base_ingredient": [
-        "properties_base_ingredient"
+        "Bases taste bitter, feel slippery, and conduct electricity when dissolved in water. Indicator compounds such as litmus can be used to detect bases. "
     ],
 
     "fallback": [
-        "fallback"
-    ],
-
-    "chatbot_question": [
-        "chatbot_question"
-    ],
-
-    "practice_collecting_explanation": [
-        "practice_collecting_explanation"
+        "I am sorry, could you repeat? I was too focused on this beatiful cabbage solution"
     ],
 
     "color_change_exclamation": [
-        "color_change_exclamation"
+        "You can see the colour of solution changed."
+    ],
+
+    "wrong_answer":[
+        "You tried well!"
+    ],
+
+    "try_again":[
+        "Do you want to give it another shot?"
+    ],
+
+    "chatbot_appreciation": [
+        "Good job! That was not an easy task but you mamaged to solve it anyway"
+    ],
+
+    "grant_points": [
+        "Congrats you won 10 points. Click to Continue"
+    ],
+
+    "practice_information":[
+        "You can also check 3D animated molecular formula of items by clicking over them."
+    ],
+    "practice_reset":[
+        "You can add new solution to check PH value by resetting the cabbage solution"
+    ],
+
+    "end_experience":[
+        "We did it, we completed the experiment! I am happy with your growth! Come back whenever you want to learn more about ph"
     ]
 }
