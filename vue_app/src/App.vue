@@ -16,6 +16,7 @@
       :style="{overflow:'visible'}"
       v-bind:gameType="mainStatus" 
       v-on:goHome="resetHome" 
+      v-on:practicePress="handlePracticePress"
       v-on:introClick="sendIntroductoryJSON"
       v-on:practClick="sendPracticeJSON"
       v-on:sendNextInChat="displayNextButton"
@@ -71,9 +72,11 @@ export default {
       this.$refs.gameRef.nextClicked();
       this.sendMessage('{"highlighted":"next", "text":""}')
     },
+    handlePracticePress(){
+      this.sendMessage('{"highlighted":"next", "text":""}')
+    },
     handleNextPracticeClick(){
       this.$refs.gameRef.nextPracticeClicked();
-      this.sendMessage('{"highlighted":"next", "text":""}')
     },
     sendIntroductoryJSON(){
       let message = '{"highlighted":"introduction", "text":""}'

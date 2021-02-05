@@ -19,7 +19,7 @@
         v-bind:nsitems="nonSelItems"
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen"
-        v-on:practicePress="nextScreen"
+        v-on:practicePress="practicePress"
       />
     </div>
     <div class="GameUI" v-if="gameStatus == 3">
@@ -224,6 +224,10 @@ export default {
     nextPracticeClicked(){
       if(this.gameStatus == 3)
         this.$refs.pracpicker.nextClick()
+    },
+    practicePress(){
+      this.nextScreen()
+      this.$emit("practicePress")
     },
     nextScreen() {
       if(this.gameStatus == 2){ // Reset on Practise picking
