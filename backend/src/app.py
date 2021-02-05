@@ -27,7 +27,7 @@ class Handler():
         self.counter = self.counter + 1 
         self.connected[self.counter] = websocket
         await self.dialogue_manager.add_user(self.counter)
-        
+
 
 
     async def unregister(self,websocket):
@@ -53,7 +53,8 @@ class Handler():
     async def send_message(self,user_id,message):
         websocket = self.connected[user_id]
         print(message)
-        await websocket.send(message)
+        if message != None:
+            await websocket.send(message)
 
     
 if __name__ == "__main__":

@@ -72,12 +72,27 @@ class StateMachine:
             utterance_array.append(question_explanation)
             return new_pending_question,next_state,utterance_array
         if intent['intent']['name'] == "clicked_next":
+            utterance_array = self._append_utterances(utterance_array,['water_selection_explanation'])
+            next_state = State.WATER_SELECTION
+        elif intent['intent']['name'] == "nlu_fallback":
+            utterance_array = self._append_utterances(utterance_array,['fallback'])
+        return new_pending_question,next_state,utterance_array
+    
+    def water_selection(self,intent,current_state,pending_question):
+        utterance_array = []
+        new_pending_question = pending_question
+        next_state = current_state
+        question_explanation = self.general_questions(intent)
+        if question_explanation != None:
+            utterance_array.append(question_explanation)
+            return new_pending_question,next_state,utterance_array
+        if intent['intent']['name'] == "clicked_next":
             utterance_array = self._append_utterances(utterance_array,['guided_reasoning_explanation'])
             next_state = State.GUIDED_REASONING
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
         return new_pending_question,next_state,utterance_array
-    
+
     def guided_reasoning(self,intent,current_state,pending_question):
         utterance_array = []
         new_pending_question = pending_question
@@ -169,9 +184,8 @@ class StateMachine:
         question_explanation = self.general_questions(intent)
         if question_explanation != None:
             utterance_array.append(question_explanation)
-        if intent['intent']['name'] == "nlu_fallback":
+        if intent['intent']['name'] == "nlu_fallback" and new_pending_question == None:
             utterance_array = self._append_utterances(utterance_array,['fallback'])
-            return new_pending_question,next_state,utterance_array
         elif intent['intent']['name'] == "clicked_tryagain":
             question_id = self.question_handler.get_random_question("gamification")
             question = self.question_handler.get_question_by_id(question_id)
@@ -188,6 +202,7 @@ class StateMachine:
                 explanation = self.question_handler.get_explanation_by_id(pending_question)
                 utterance_array.append(explanation)
                 new_pending_question = None
+        return new_pending_question,next_state,utterance_array
         
 
     def practice_child_question(self,intent,current_state,pending_question):
@@ -245,21 +260,19 @@ class StateMachine:
             new_pending_question = self.question_handler.get_random_question("other")
             question = self.question_handler.get_question_by_id(new_pending_question)
             utterance_array.append(question)
-        elif intent['intent']['name'] == "nlu_fallback":
+        elif intent['intent']['name'] == "nlu_fallback" and new_pending_question == None:
             utterance_array = self._append_utterances(utterance_array,['fallback'])
         elif intent['intent']['name'] == "wait_ended":
             utterance_array = self._append_utterances(utterance_array,['end_experience'])
         if self.question_handler.get_category_by_id(pending_question) == "other":
             if self.question_handler.verify_answer(pending_question,intent['intent']['name']):
-                utterance_array = self._append_utterances(utterance_array,['chatbot_appreciation','grant_points'])
+                utterance_array = self._append_utterances(utterance_array,['chatbot_appreciation'])
                 new_pending_question = None
             else:
                 utterance_array = self._append_utterances(utterance_array,['wrong_answer'])
                 explanation = self.question_handler.get_explanation_by_id(pending_question)
                 utterance_array.append(explanation)
-                utterance_array = self._append_utterances(utterance_array,['wrong_answer']) 
-                new_pending_question = No
-
+                new_pending_question = None
         return new_pending_question,next_state,utterance_array
 
     #Answer general questions of the user that can be done over all the interaction, takes in an intent and gives back a string
@@ -332,6 +345,7 @@ class StateMachine:
             State.INTRODUCTION_START : introduction_start,
             State.ACID_SELECTION : acid_selection,
             State.BASE_SELECTION : base_selection,
+            State.WATER_SELECTION : water_selection,
             State.GUIDED_REASONING : guided_reasoning,
             State.GUIDED_POURING : guided_pouring,
             State.PRACTICE_COLLECTING : practice_collecting,

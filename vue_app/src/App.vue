@@ -69,10 +69,11 @@ export default {
     },
     handleNextClick(){
       this.$refs.gameRef.nextClicked();
-      this.connection.send('{"highlighted":"next", "text":""}')
+      this.sendMessage('{"highlighted":"next", "text":""}')
     },
     handleNextPracticeClick(){
       this.$refs.gameRef.nextPracticeClicked();
+      this.sendMessage('{"highlighted":"next", "text":""}')
     },
     sendIntroductoryJSON(){
       let message = '{"highlighted":"introduction", "text":""}'
@@ -97,7 +98,9 @@ export default {
       console.log(event);
       console.log("Data Log:");
       console.log(event.data)
-      self.$refs.chatRef.receiveMessage(event.data)
+      let messages = JSON.parse(event.data)
+      console.log(messages)
+      self.$refs.chatRef.receiveMessage(messages)
     };
 
     this.connection.onopen = function (event) {

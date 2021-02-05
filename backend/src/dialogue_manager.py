@@ -95,6 +95,7 @@ class DialogueManager:
     
     async def branch_chatbot_question(self,user_session_id):
         #Decide chatbot question
+        await asyncio.sleep(self.state_machine.get_waiting_time())
         intent = self._create_intent("chatbot_question") 
         await self.chatbot_sends_message(intent,user_session_id)
         self.users[user_session_id]['is_coro_ended'] = True 

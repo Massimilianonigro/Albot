@@ -161,8 +161,10 @@ export default {
         console.log("Too Short message");
       }
     },
-    receiveMessage(message) {
-      this.messages.push({ message: message, bot: true, type: "text" });
+    receiveMessage(messages) {
+      messages.forEach(message => {
+        this.messages.push({ message: message, bot: true, type: "text" });
+      });
     },
     printNextButton() {
       this.messages.push({

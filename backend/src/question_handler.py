@@ -21,6 +21,8 @@ class QuestionHandler:
             return False
     
     def get_question_by_id(self,question_id):
+        if question_id == None:
+            return None
         result = ""
         for question_list in self.question_classification.values():
             for question in question_list[0].values():
@@ -32,6 +34,8 @@ class QuestionHandler:
         return result
     
     def _get_answer_by_id(self,question_id):
+        if question_id == None:
+            return None
         answer = None 
         for question_list in self.question_classification.values():
             for question in question_list[0].values():
@@ -42,7 +46,9 @@ class QuestionHandler:
         return answer
     
     def get_explanation_by_id(self,question_id):
-        explanation = None 
+        if question_id == None:
+            return None
+        explanation = None
         for question_list in self.question_classification.values():
             for question in question_list[0].values():
                 for option in question['values']:
@@ -52,7 +58,9 @@ class QuestionHandler:
         return explanation
     
     def get_category_by_id(self,question_id):
-        question_category = None 
+        if question_id == None:
+            return None
+        question_category = None
         for category,question_list in self.question_classification.items():
             question_category = category
             for question in question_list[0].values():
