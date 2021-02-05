@@ -114,5 +114,9 @@
 
     "end_experience":[
         "We did it, we completed the experiment! I am happy with your growth! Come back whenever you want to learn more about ph"
+    ],
+
+    "practice_cycle_explanation": [
+        "Here you can see all the selected items on the table. By clicking on the each items, you can mix it with the cabbage solution to check PH level."
     ]
 }

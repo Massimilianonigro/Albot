@@ -149,7 +149,14 @@ nlu:
     - Some substancese in the cabbage solution change color when they are paired with the ions that characterize acids
 - intent : inform_ingredient_property
   examples: |
-    - What are the ph properties of [lemon juice]("ingredient")?
+    - What are the ph properties of [Lemon Juice]("ingredient")?
+    - What are the properties of [Vinegar]("ingredient")?
+    - What is the ph of [Bleach]("ingredient")?
+    - Why should i select [Egg White]("ingredient")?
+    - is [Milk]("ingredient") a base?
+    - is [Sparkling Water]("ingredient") an acid?
+    - how does [Cola]("ingredient") scale in the ph indicator?
+
 - lookup: color
   examples: |
     - red
@@ -161,10 +168,13 @@ nlu:
 
 - lookup: ingredient
   examples: |
-    - lemon juice
-    - cleaning product
-    - water
-    - coffee
-    - milk
-    - cola
-    - soda
+    - Baking Soda
+    - Egg White
+    - Vinegar
+    - Bleach
+    - Oven Cleaner
+    - Cola
+    - Lemon Juice
+    - Milk
+    - Pure Water
+    - Sparkling Water
