@@ -70,18 +70,7 @@ export default {
     return {
       fontSize: 2.0,
       message: "",
-      messages: [
-        {
-          message: "Hi I'm Albot, what is your name?",
-          bot: true,
-          type: "text",
-        },
-        {
-          message: "To continue you have to select at least 2 items",
-          bot: true,
-          type: "text",
-        },
-      ],
+      messages: [],
       ops: {
         rail: {
           background: "#01a99a",

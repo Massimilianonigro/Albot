@@ -12,6 +12,7 @@ class DialogueManager:
         self.model = model
         self.state_machine = StateMachine()
         self.handler = handler
+        
     
     async def add_user(self,user_session_id):
         self.users[user_session_id] = {
@@ -51,7 +52,7 @@ class DialogueManager:
         #Now that i have the intent calculated i can generate a response and move the child on the state machine
         utterance = self.generate_utterance(intent,user_id)
         return utterance
-    
+  
     def generate_utterance(self,intent,user_session_id):
         user = self.users[user_session_id]
         current_state = user['current_state']

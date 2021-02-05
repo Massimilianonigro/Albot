@@ -21,7 +21,9 @@
       v-on:practClick="sendPracticeJSON"
       v-on:sendNextInChat="displayNextButton"
       v-on:sendPracNextInChat="displayNextPracticeButton"
-      v-on:sendItemMessage="sendItemClick"/>
+      v-on:sendItemMessage="sendItemClick"
+      v-on:selectItem="handleSelectItem"
+      />
     </div>
    
   </div>
@@ -78,6 +80,7 @@ export default {
     },
     handleNextPracticeClick(){
       this.$refs.gameRef.nextPracticeClicked();
+      this.sendMessage('{"highlighted":"next", "text":""}')
     },
     sendIntroductoryJSON(){
       let message = '{"highlighted":"introduction", "text":""}'
@@ -90,6 +93,10 @@ export default {
     sendItemClick(id){
       let message = '{"highlighted":"'+ id +'", "text":""}'
       this.sendMessage(message);
+    },
+    handleSelectItem(id){
+      let message = '{"highlighted":"'+ id +'", "text":""}'
+      this.sendMessage(message); 
     }
   },
   created: function () {

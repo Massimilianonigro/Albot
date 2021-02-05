@@ -7,18 +7,18 @@
                      {
                          "id": 0,
                          "option": "light_green",
-                         "answer": "clicked_Lemon Juice",
+                         "answer": "clicked_8",
                          "explanation": ""
                      },
                      {
                          "id": 1,
                          "option": "light_orange",
-                         "answer": "clicked_Cola",
+                         "answer": "clicked_7",
                          "explanation": ""
                      },
                      {   "id": 2,
                          "option": "purple",
-                         "answer": "clicked_Baking Soda",
+                         "answer": "clicked_8",
                          "explanation": ""
                      }
                 ]
@@ -29,31 +29,31 @@
                     {   
                         "id": 3,
                         "option": "2",
-                        "answer": "clicked_Lemon Juice",
+                        "answer": "clicked_8",
                         "explanation": ""
                     },
                     {
                         "id": 4,
                         "option":"7",
-                        "answer":"clicked_Pure Water",
+                        "answer":"clicked_10",
                         "explanation": ""
                     },
                     {
                         "id": 5,
                         "option": "3",
-                        "answer": "clicked_Cola",
+                        "answer": "clicked_7",
                         "explanation": ""
                     },
                     {
                         "id": 6,
                         "option":"6",
-                        "answer":"clicked_Milk",
+                        "answer":"clicked_9",
                         "explanation": ""
                     },
                     {  
                         "id": 7,
                         "option":"13",
-                        "answer":"clicked_Oven Cleaner",
+                        "answer":"clicked_5",
                         "explanation": ""
                     }
                 ]

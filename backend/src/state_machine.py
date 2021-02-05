@@ -156,7 +156,7 @@ class StateMachine:
             utterance_array.append(question_explanation)
         if intent['intent']['name'] == "clicked_next":
             next_state = State.PRACTICE_CYCLE
-            utterance_array = self._append_utterances(utterance_array,['practice_collecting_explanation'])
+            utterance_array = self._append_utterances(utterance_array,['practice_cycle_explanation'])
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
         return new_pending_question,next_state, utterance_array
@@ -289,23 +289,26 @@ class StateMachine:
         elif intent['intent']['name'] == "inform_cabbage_solution":
             return rand.choices(self.utterances['cabbage_solution_explanation'])[0]
         elif intent['intent']['name'] == "inform_ingredient_property":
-            ingredient = intent['entities'][0]["value"]
+            ingredient = intent['entities'][0]["value"].replace(" ", "")
+            ingredient = ingredient.lower()
             ingredient_is_in_list = False
             ingredient_ph = -1
             for i in self.ingredients_list:
-                if i['name'] == ingredient:
+                name_in_list = i['name'].replace(" ", "")
+                name_in_list = name_in_list.lower() 
+                if name_in_list == ingredient:
                     ingredient_is_in_list = True 
                     ingredient_ph = i['ph']
                     break 
             if ingredient_is_in_list: 
                 #Check on ph to deliver explanation
-                explanation = "The " + ingredient + "has a ph of " + str(ingredient_ph)
+                explanation = "The " + ingredient + " has a ph of " + str(ingredient_ph)
                 if ingredient_ph == 7:
-                    explanation = explanation + "and is thus a neutral substance." +  rand.choices(self.utterances['properties_neutral_ingredient'])[0]
+                    explanation = explanation + " and is thus a neutral substance. " +  rand.choices(self.utterances['properties_neutral_ingredient'])[0]
                 elif ingredient_ph < 7:
-                    explanation = explanation + "and is thus an acid substance." +  rand.choices(self.utterances['properties_acid_ingredient'])[0]
+                    explanation = explanation + " and is thus an acid substance. " +  rand.choices(self.utterances['properties_acid_ingredient'])[0]
                 elif ingredient_ph > 7:
-                    explanation = explanation + "and is thus a basic substance." +  rand.choices(self.utterances['properties_base_ingredient'])[0]
+                    explanation = explanation + " and is thus a basic substance. " +  rand.choices(self.utterances['properties_base_ingredient'])[0]
                 return explanation
             else:
                 return "Ingredient not recognized"
@@ -360,4 +363,4 @@ class StateMachine:
     optional_states = [State.GUIDED_REASONING,State.GUIDED_POURING,State.PRACTICE_CYCLE,State.PRACTICE_CLARIFICATION]
     waiting_states = [State.INTRODUCTION_START,State.PRACTICE_CHILD_QUESTION,State.PRACTICE_INFORMATION]
     utterances = {}
-    waiting_time = 3
+    waiting_time = 5

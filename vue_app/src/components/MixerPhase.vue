@@ -77,6 +77,7 @@ export default {
   },
   methods:{
     selectItem(index, ph){
+      this.$emit("selectItem",index)
       if(this.selected == index){
         this.selected = undefined;
         this.selectedPh = "Select";

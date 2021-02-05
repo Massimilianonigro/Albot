@@ -20,6 +20,7 @@
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen"
         v-on:practicePress="practicePress"
+        v-on:selectItem="selectItem"
       />
     </div>
     <div class="GameUI" v-if="gameStatus == 3">
@@ -245,6 +246,9 @@ export default {
     },
     homeScreen() {
       this.$emit("goHome");
+    },
+    selectItem(index) {
+      this.$emit("selectItem",index)
     }
   },
 };
