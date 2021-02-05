@@ -69,13 +69,13 @@
 }
 
 .back-btn {
-	top: 3%;
+	top: 20%;
 	left: 4%;
 	background-image: url("../assets/uibuttons/BackButton.png");
 }
 
 .setting-btn {
-	top: 20%;
+	top: 3%;
 	left: 4%;
 	background-image: url("../assets/uibuttons/SettingButton.png");
 }

@@ -58,6 +58,7 @@ export default {
       this.mainStatus = 3;
     },
     sendMessage: function(message) {
+      console.log(message)
       this.connection.send(message);
     },
     displayNextButton(){

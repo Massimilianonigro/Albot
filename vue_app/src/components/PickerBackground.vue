@@ -3,9 +3,9 @@
   <div class="image-container">
 	<div class="background item">
 		<div class="shelf item"></div>
-		<div class="pan1 item"></div>
-		<div class="pan2 item"></div>
-		<div class="blender item"></div>
+		<div class="pan1 item low-opacity"></div>
+		<div class="pan2 item low-opacity"></div>
+		<div class="blender item low-opacity"></div>
 		<div class="table-item item"></div>
 	</div>
   </div>
@@ -19,6 +19,9 @@ export default {
 </script>
 
 <style scoped>
+.low-opacity{
+	opacity: 0.5;
+}
 .table-item{
 	bottom: 0;
 	height: 38%;

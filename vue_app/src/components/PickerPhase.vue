@@ -123,15 +123,16 @@ export default {
       if (data.selected){
         return false;
       }
-      else if (this.part == "acid"){
+      else if (this.part == "acid" && data.ph != 7){
         return data.ph > 7;
       }
-      else if(this.part == "basic"){
+      else if(this.part == "basic" && data.ph != 7){
         return data.ph < 7;
       }
-      else if(this.part == "water"){
-        return data.ph != 7;
+      else if(this.part == "water" && data.ph == 7){
+        return false;
       }
+      return true;
     },
     handleClickedItem(data){
       data.selected = !data.selected

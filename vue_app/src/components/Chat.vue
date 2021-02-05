@@ -1,8 +1,8 @@
 <template>
   <div class="chat-bg-container">
     <div class="chat">
-      <div class="chat-tittle robo-font" :style="{ height: '35px' }"></div>
-
+      <!--div class="chat-tittle robo-font" :style="{ height: '35px' }"></div -->
+      <input type="text" v-model="fontSize" :style="{ height: '35px', width:'19%', marginLeft:'10%' }" class="chat-tittle robo-font corner berlin-font" name="text" />
       <div
         class="message-box"
         :style="{ width: '98%', height: '70%', bottom: '40px' }"
@@ -11,6 +11,7 @@
           <div
             v-bind:class="getClass(data)"
             class="message"
+            :style="{fontSize: fontSize+'vh'}"
             v-for="(data, index) in messages"
             v-bind:key="index"
           >
@@ -67,6 +68,7 @@ export default {
   props: {},
   data() {
     return {
+      fontSize: 2.0,
       message: "",
       messages: [
         {
@@ -257,18 +259,18 @@ a {
   text-align: left;
   background-repeat: no-repeat;
   display: block;
-  font-size: 2.2vh;
   margin-top: 2px;
   padding-top: 2px;
   margin-bottom: 2px;
-  padding-bottom: 2px;
+  padding-bottom: 8px;
 }
 
 .user-message {
-  padding-left: 32px;
-  padding-right: 26px;
+  padding-left: 2vw;
+  padding-right: 3.6vw;
   background-image: url("../assets/icons/userchaticon.png");
-  background-position: 4px;
+  background-position-x: 0.5vw;
+  background-position-y: 15%;
   background-size: 18px 24px;
 }
 
@@ -281,12 +283,13 @@ a {
 }
 
 .bot-message {
-  padding-left: 20px;
-  padding-right: 30px;
+  padding-left: 2.5vw;
+  padding-right: 2.25vw;
   margin-right: 10px;
-  background-position: right;
+  background-position-x: right;
+  background-position-y: 15%;
   background-image: url("../assets/icons/botchaticon.png");
-  background-size: 24px 24px;
+  background-size: 2vw;
 }
 
 .bot-message-box {
@@ -320,12 +323,13 @@ a {
 .btn-chat {
   position: relative;
   top: -8px;
-  height: 30px;
+  height: 45px;
   left: 20%;
   width: 60%;
   border: none;
   background-color: transparent;
-  background-size: cover;
+  background-position: center;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 .btn-chat:focus {
@@ -345,7 +349,7 @@ a {
   border: solid 3px !important;
   border-color: #ffa000 !important;
   height: 40px;
-  width: 90% !important;
+  width: 90%;
   bottom: 100px !important;
   left: 5%;
   right: 5%;

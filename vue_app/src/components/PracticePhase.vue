@@ -130,10 +130,10 @@ export default {
 .solution-ph-meter{
   position: absolute;
 	z-index: 2;
-  left: 25%;
+  left: 30%;
   top: 20%;
-  width: 50%;
-  height: 23%;
+  width: 40%;
+  height: 20%;
   margin: auto;
 	background-position-y: center;
 	background-position-x: center;
@@ -144,13 +144,14 @@ export default {
 .solution-ph-meter-label{
   color: gray;
 	z-index: 3;
-  margin: 13% auto auto auto;
+  margin: 14.5% auto auto auto;
   top: 0%;
   left: 0%;
   right: 0%;
   bottom: 0%;
   width: 15%;
   height: 50%;
+  font-size: 4vh;
   font-weight: 100;
 }
 .item-container {
@@ -175,17 +176,45 @@ a {
 }
 .reset-btn{
 	position: absolute;
-	height: 12%;
-	width: 50%;
-	bottom: 20%;
-	left: 25%;
+	height: 14%;
+	width: 30%;
+	bottom: 9%;
+	left: 35%;
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-color: transparent;
 	background-position: center;
-	border: 0px;
+  border: 0px;
+  border-radius: 40px;
 	z-index: 1000;
 	background-size: contain;
   background-image: url("../assets/uibuttons/ResetButton.png");
+}
+
+.ui-btn{
+	position: absolute;
+	height: 8%;
+	width: 19%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color: transparent;
+	background-position: center;
+	border: none;
+	z-index: 1000;
+}
+
+.setting-btn {
+	top: 3%;
+	left: 3%;
+}
+
+.home-btn {
+	top: 10%;
+	left: 3%;
+}
+
+.back-btn {
+	top: 17%;
+	left: 3%;
 }
 </style>

@@ -16,9 +16,9 @@
 			</div>
 		</div>
 		<div class="table-item item"></div>
-		<div class="blender item"></div>
-		<div class="pan1 item"></div>
-		<div class="pan2 item"></div>
+		<div class="blender item low-opacity"></div>
+		<div class="pan1 item low-opacity"></div>
+		<div class="pan2 item low-opacity"></div>
 	</div>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style scoped>
-.kitchen-item {
+.kitchen-item, .low-opacity{
 	opacity: 0.7;
 }
 
