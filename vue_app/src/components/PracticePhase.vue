@@ -108,7 +108,8 @@ export default {
       if (this.pouredIndex != index){
         this.pouredPh = data.ph;
         this.pouredIndex = index;
-        this.$emit("selectedPractItem",data.id)
+        console.log("Emitting from Phase");
+        this.$emit("selectedPractItem",data.id);
       }
       else{
         this.pouredPh = -1;

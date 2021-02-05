@@ -62,7 +62,6 @@ export default {
       this.mainStatus = 3;
     },
     sendMessage: function(message) {
-      console.log(message)
       this.connection.send(message);
     },
     displayNextButton(){
@@ -92,6 +91,7 @@ export default {
     },
     sendItemClick(id){
       let message = '{"highlighted":"'+ id +'", "text":""}'
+      console.log("Sending message "+message)
       this.sendMessage(message);
     },
     handleSelectItem(id){

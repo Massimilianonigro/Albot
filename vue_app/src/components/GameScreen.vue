@@ -37,7 +37,7 @@
       <PracticeBackground />
       <PracticePhase 
         v-bind:items="selItems" 
-        v-on:selectedPracItem="sendItemMessage" 
+        v-on:selectedPractItem="sendItemMessage" 
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen" 
       />
@@ -220,6 +220,7 @@ export default {
       this.$emit("sendPracNextInChat");
     },
     sendItemMessage(id){
+      console.log("Emmiting from Game Controller")
       this.$emit("sendItemMessage",id);
     },
     nextClicked(){
