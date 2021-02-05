@@ -69,6 +69,7 @@ export default {
     },
     handleNextClick(){
       this.$refs.gameRef.nextClicked();
+      this.connection.send('{"highlighted":"next", "text":""}')
     },
     handleNextPracticeClick(){
       this.$refs.gameRef.nextPracticeClicked();
