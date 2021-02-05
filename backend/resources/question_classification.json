@@ -102,8 +102,8 @@
             "values":[{
                 "id": 13,
                 "option":"",
-                "answer":"",
-                "explanation":""
+                "answer":"ph_answer",
+                "explanation":"Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base."
             }]
         },
         "cabbage_related":{
@@ -111,8 +111,8 @@
             "values":[{
                 "id": 14,
                 "option": "",
-                "answer": "",
-                "explanation":""
+                "answer": "cabbage_answer",
+                "explanation":"When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green. We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour."
             }]
         }
     }]

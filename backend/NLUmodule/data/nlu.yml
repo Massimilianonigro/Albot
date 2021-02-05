@@ -50,7 +50,10 @@ nlu:
     - What does [base]("ph_property")
     - Can you explain the concept of [acid]("ph_property")?
     - What is a [base]("ph_property")?
-    
+    - What is [base]("ph_property")?
+    - What are the properties of [acid]("ph_property")?
+    - What characterizes a [base]("ph_property")?
+    - How do we recognize an [acid]("ph_property")?
 
 - lookup: ph_property
   examples: |
@@ -134,6 +137,16 @@ nlu:
     - What happened to the solution 
     - What happens if i pour [milk]("ingredient") in the solution
     - What if i drop the [lemon juice]("ingredient") in the cabbage juice
+- intent: ph_answer
+  examples: |
+    - Ph is an indicator on how acid or basic a solution is
+    - It is a scale that measures how acid or basic a solution is, it ranges from 0 to 14
+    - It is something the scientists use to describe acidity of solutions
+- intent: cabbage_answer
+  examples: |
+    - We use it because it is a natural ph indicator
+    - Cabbage juice has an high degree of anthocyanin substances, when they come in contact with an acid full of hydronium ions it changes color
+    - Some substancese in the cabbage solution change color when they are paired with the ions that characterize acids
 - intent : inform_ingredient_property
   examples: |
     - What are the ph properties of [lemon juice]("ingredient")?

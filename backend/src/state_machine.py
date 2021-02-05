@@ -16,8 +16,8 @@ class StateMachine:
 
     def input_function(self,intent,current_state,pending_question):
         print("In state_machine input_function: " + str(current_state) + ", intent recognized is: " + str(intent['intent']['name']))
-        pending_question , next_state , utterance_array = self.options[current_state](self,intent,current_state,pending_question)
-        return pending_question, next_state , utterance_array
+        new_pending_question , next_state , utterance_array = self.options[current_state](self,intent,current_state,pending_question)
+        return new_pending_question, next_state , utterance_array
     
     def greeting(self,intent,current_state,pending_question): 
         utterance_array = []
@@ -53,13 +53,13 @@ class StateMachine:
         question_explanation = self.general_questions(intent)
         if question_explanation != None:
             utterance_array.append(question_explanation)
-            return next_state,utterance_array
+            return new_pending_question,next_state,utterance_array
         if intent['intent']['name'] == "wait_ended":
             utterance_array = self._append_utterances(utterance_array,['acid_selection'])
         if intent['intent']['name'] == "clicked_next":
             utterance_array = self._append_utterances(utterance_array,['base_selection'])
             next_state = State.BASE_SELECTION
-        elif intent['intent']['name'] == "nlu_fallback":
+        elif intent['intent']['name'] == "nlu_fallback" and pending_question != None:
             utterance_array = self._append_utterances(utterance_array,['fallback'])
         return new_pending_question,next_state,utterance_array
     
@@ -70,7 +70,7 @@ class StateMachine:
         question_explanation = self.general_questions(intent)
         if question_explanation != None:
             utterance_array.append(question_explanation)
-            return next_state,utterance_array
+            return new_pending_question,next_state,utterance_array
         if intent['intent']['name'] == "clicked_next":
             utterance_array = self._append_utterances(utterance_array,['guided_reasoning_explanation'])
             next_state = State.GUIDED_REASONING
@@ -89,8 +89,17 @@ class StateMachine:
             new_pending_question = self.question_handler.get_random_question("other")
             question = self.question_handler.get_question_by_id(new_pending_question)
             utterance_array.append(question)
-        elif intent['intent']['name'] == "nlu_fallback":
+        elif intent['intent']['name'] == "nlu_fallback" and new_pending_question == None:
            utterance_array = self._append_utterances(utterance_array,['fallback'])
+        if self.question_handler.get_category_by_id(pending_question) == "other":
+            if self.question_handler.verify_answer(pending_question,intent['intent']['name']):
+                utterance_array = self._append_utterances(utterance_array,['chatbot_appreciation'])
+                new_pending_question = None
+            else:
+                utterance_array = self._append_utterances(utterance_array,['wrong_answer'])
+                explanation = self.question_handler.get_explanation_by_id(pending_question)
+                utterance_array.append(explanation)
+                new_pending_question = None
         return new_pending_question,next_state, utterance_array
     
     def guided_pouring(self,intent,current_state,pending_question):
@@ -105,13 +114,22 @@ class StateMachine:
             new_pending_question = self.question_handler.get_random_question("other")
             question = self.question_handler.get_question_by_id(new_pending_question)
             utterance_array.append(question)
-        elif intent['intent']['name'] == "nlu_fallback":
+        elif intent['intent']['name'] == "nlu_fallback" and new_pending_question == None:
             utterance_array = self._append_utterances(utterance_array,['fallback'])
         elif intent['intent']['name'] == "clicked_next":
             next_state = State.PRACTICE_COLLECTING
             utterance_array = self._append_utterances(utterance_array,['practice_explanation'])
         elif intent['intent']['name'] != "clicked_next" and intent['intent']['name'][0:7] == "clicked":
             utterance_array = self._append_utterances(utterance_array,['color_change_exclamation'])
+        if self.question_handler.get_category_by_id(pending_question) == "other":
+            if self.question_handler.verify_answer(pending_question,intent['intent']['name']):
+                utterance_array = self._append_utterances(utterance_array,['chatbot_appreciation'])
+                new_pending_question = None
+            else:
+                utterance_array = self._append_utterances(utterance_array,['wrong_answer'])
+                explanation = self.question_handler.get_explanation_by_id(pending_question)
+                utterance_array.append(explanation)
+                new_pending_question = None
         return new_pending_question,next_state, utterance_array
     
     def practice_collecting(self,intent,current_state,pending_question):

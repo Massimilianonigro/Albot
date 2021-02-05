@@ -34,6 +34,8 @@ class DialogueManager:
     def chatbot_receives_message(self,msg,user_id):
         #First the messsage has to be deserialized
         msg = json.loads(msg)
+        print("Message received")
+        print(msg)
         #Control if the text field is empty
         if len(msg['text']) != 0:
             #The message is now forwarded to the Rasa NLU and an intent comes back
@@ -54,6 +56,7 @@ class DialogueManager:
         user = self.users[user_session_id]
         current_state = user['current_state']
         pending_question = user['pending_question']
+        print(pending_question)
         if user['is_coro_ended'] is None or user['is_coro_ended'] == True:      
             #User either does not have a timer or the timer has finished, that means we are no longer in 
             # the branch/waiting state so we can behave normally 

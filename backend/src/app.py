@@ -27,6 +27,7 @@ class Handler():
         self.counter = self.counter + 1 
         self.connected[self.counter] = websocket
         await self.dialogue_manager.add_user(self.counter)
+        
 
 
     async def unregister(self,websocket):
@@ -44,8 +45,8 @@ class Handler():
         if user_id == -1:
             raise RuntimeError("Message handled is sent from unregistered user")
         response = self.dialogue_manager.chatbot_receives_message(message,user_id)
-        print(response)
         if response != None:
+            print("sending " +str(response))
             await websocket.send(response)
 
     #Check how to behave with the other send/recv 
