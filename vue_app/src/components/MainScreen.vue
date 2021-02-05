@@ -199,13 +199,19 @@ a {
   z-index: 21;
   border: none;
   background-position-x: center;
-  background-image: url("../assets/uibuttons/SettingButton.png");
+  background-image: url("../assets/uibuttons/HomeSetting.png");
 }
 .settings:focus,
 .report:focus,
 .start-btn:focus,
 .bubble-btn:focus {
   outline: none;
+}
+.settings:active,
+.report:active,
+.start-btn:active,
+.bubble-btn:active {
+	opacity: 0.7;
 }
 .bot-bg {
   position: absolute;
@@ -297,4 +303,5 @@ a {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
 </style>

@@ -1,8 +1,14 @@
 <template>
   <div>
     <div class="background">
-      <div class="solution-ph-meter">
-        <h2 class="solution-ph-meter-label">06</h2>
+      <div 
+        v-if="pouredPh !== -1" 
+        class="solution-ph-meter" 
+        :class="{
+          acid: pouredPh < 7,
+          basic: pouredPh >= 7,
+        }">
+        <h2 class="solution-ph-meter-label"> {{pouredPh}}</h2>
       </div>
       <div class="scoreboard">
         <h3 class="scoreboard-label">8 Points</h3>
@@ -11,21 +17,25 @@
         <div v-for="(data, index) in items" v-bind:key="index">
           <button
             class="kitchen-item"
-            v-on:click="data.selected = !data.selected"
+            v-on:click="selectItem(data, index)"
             v-bind:class="{
-              highlight: data.selected,
-              nothighlight: !data.selected,
+              highlight: index == pouredIndex,
+              nothighlight: index != pouredIndex,
             }"
             v-bind:style="{
               backgroundImage: 'url(' + data.src + ')',
-              left: data.prsize.x,
-              bottom: data.prsize.y,
+              left: getXbyIndex(index),
+              bottom:  getYbyIndex(index),
               height: data.prsize.h,
               width: data.prsize.w,
             }"
           ></button>
         </div>
-        <div class="solution"></div>
+        <div 
+          :style="getPhBowl()"
+          class="solution-style"
+        >
+        </div>
         
       </div>
       <button class="back-btn ui-btn" 
@@ -64,9 +74,60 @@ export default {
   data() {
     return {
       settings: false,
+      pouredPh: -1,
+      pouredIndex: -1,
+      settingsArray: [
+        {x: "30%", y: "0%"},
+        {x: "60%", y: "0%"},
+        {x: "38%", y: "42%"},
+        {x: "50%", y: "42%"},
+        {x: "15%", y: "0%"},
+        {x: "74%", y: "0%"},
+        {x: "22%", y: "42%"},
+        {x: "65%", y: "43%"},
+        {x: "00%", y: "0%"},
+        {x: "90%", y: "0%"},
+        {x: "08%", y: "42%"},
+      ]
     };
   },
   methods: {
+    getXbyIndex(index) {
+      if ( this.pouredIndex == index ){
+        return "40%"
+      }
+      return this.settingsArray[index].x
+    },
+    getYbyIndex(index) {
+      if ( this.pouredIndex == index ){
+        return "10%"
+      }
+      return this.settingsArray[index].y
+    },
+    selectItem(data, index){
+      if (this.pouredIndex != index){
+        this.pouredPh = data.ph;
+        this.pouredIndex = index;
+        this.$emit("selectedPractItem",data.id)
+      }
+      else{
+        this.pouredPh = -1;
+        this.pouredIndex = -1;
+      }
+    },
+    getPhBowl(){
+      let urlImg;
+      if (this.pouredPh  == -1){
+        urlImg = require("../assets/solutions/Solutionbowl.png");
+      }
+      else{
+        urlImg = require("../assets/solutions/Solution"+ Math.round(this.pouredPh) +".png");
+      }
+      let styleItem = {
+        'background-image': 'url('+ urlImg +')',
+      }
+      return styleItem;
+    },
     backButton(){
       while(this.items.length > 0) {
         this.items.pop();
@@ -80,7 +141,8 @@ export default {
       this.$emit("homePress");
     },
     resetButton(){
-      this.$alert("A unexpected problem occured");
+      this.pouredPh = -1;
+      this.pouredIndex = -1;
     }
   },
 };
@@ -101,6 +163,21 @@ export default {
   background-size: contain;
   background-image: url("../assets/solutions/Solutionbowl.png");
 }
+
+.solution-style{
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  height: 40%;
+  width: 14%;
+  right: 43%;
+  z-index: 2;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .scoreboard{
   position: absolute;
 	z-index: 2;
@@ -139,7 +216,13 @@ export default {
 	background-position-x: center;
 	background-repeat: no-repeat;
   background-size: contain;
+}
+.acid{
 	background-image: url("../assets/uibuttons/PHMeterAcid.png");
+
+}
+.basic{
+	background-image: url("../assets/uibuttons/PHMeterBasic.png");
 }
 .solution-ph-meter-label{
   color: gray;
@@ -189,6 +272,22 @@ a {
 	z-index: 1000;
 	background-size: contain;
   background-image: url("../assets/uibuttons/ResetButton.png");
+}
+
+.reset-btn:active{
+  opacity: 0.7;
+}
+
+.reset-btn:focus{
+  outline: none;
+}
+
+.highlight {
+	border-radius: 5px;
+	border: none;
+	background-color: transparent;
+  transform: rotate(115deg);
+  z-index: 100;
 }
 
 .ui-btn{

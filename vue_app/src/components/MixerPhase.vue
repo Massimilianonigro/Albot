@@ -259,6 +259,12 @@ a {
 	background-size: contain;
 	background-image: url("../assets/uibuttons/PracticeButton.png");
 }
+.practice-btn:focus{
+  outline: none
+}
+.practice-btn:active{
+  opacity: 0.7;
+}
 .gj-banner{
   position: absolute;
   padding-top: 7%;

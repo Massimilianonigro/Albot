@@ -1,8 +1,8 @@
 <template>
   <div class="chat-bg-container">
     <div class="chat">
-      <!--div class="chat-tittle robo-font" :style="{ height: '35px' }"></div -->
-      <input type="text" v-model="fontSize" :style="{ height: '35px', width:'19%', marginLeft:'10%' }" class="chat-tittle robo-font corner berlin-font" name="text" />
+      <div class="chat-tittle robo-font" :style="{ height: '15px' }"></div >
+      <!--input type="text" v-model="fontSize" :style="{ height: '25px', width:'19%', marginLeft:'10%' }" class="chat-tittle robo-font corner berlin-font" name="text" /-->
       <div
         class="message-box"
         :style="{ width: '98%', height: '70%', bottom: '40px' }"
@@ -11,7 +11,7 @@
           <div
             v-bind:class="getClass(data)"
             class="message"
-            :style="{fontSize: fontSize+'vh'}"
+            :style="getMessageStyle(data.type)" 
             v-for="(data, index) in messages"
             v-bind:key="index"
           >
@@ -141,6 +141,12 @@ export default {
         styleItem = styleItem + "btn-chat";
       }
       return styleItem;
+    },
+    getMessageStyle(type){
+      if(type == "text")
+        return {'font-size': this.fontSize+'vh'}
+      if(type == "button")
+        return {'font-size': this.fontSize+'vh', 'padding-top':'2px', 'padding-bottom':'0px', 'margin-bottom':'-10px'}
     },
     handleClick(functionType) {
       if (functionType == "next") {
@@ -324,6 +330,7 @@ a {
 
 .btn-chat {
   position: relative;
+  padding-bottom: 10px;
   top: -8px;
   height: 45px;
   left: 20%;

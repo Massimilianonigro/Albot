@@ -20,7 +20,8 @@
       v-on:introClick="sendIntroductoryJSON"
       v-on:practClick="sendPracticeJSON"
       v-on:sendNextInChat="displayNextButton"
-      v-on:sendPracNextInChat="displayNextPracticeButton"/>
+      v-on:sendPracNextInChat="displayNextPracticeButton"
+      v-on:sendItemMessage="sendItemClick"/>
     </div>
    
   </div>

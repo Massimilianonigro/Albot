@@ -67,7 +67,7 @@ export default {
             item: element.item,
             id: element.id,
             src: element.src,
-            size: element.prsize,
+            prsize: element.prsize,
             ph: element.ph,
           };
           this.selItems.push(tempItem);

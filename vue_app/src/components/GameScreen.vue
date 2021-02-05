@@ -35,7 +35,8 @@
     <div class="GameUI" v-if="gameStatus == 4">
       <PracticeBackground />
       <PracticePhase 
-        v-bind:items="items" 
+        v-bind:items="selItems" 
+        v-on:selectedPracItem="sendItemMessage" 
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen" 
       />
@@ -79,7 +80,7 @@ export default {
           selected: false,
           src: require("../assets/items/BakingSoda.png"),
           size: { x: "68%", y: "2%", w: "10%", h: "24%" },
-          prsize: { x: "0%", y: "0%", w: "10%", h: "40%" },
+          prsize: { w: "10%", h: "40%" },
           ph: 8,
         },
         {
@@ -88,7 +89,7 @@ export default {
           selected: false,
           src: require("../assets/items/EggWhite.png"),
           size: { x: "84%", y: "2%", w: "9%", h: "30%" },
-          prsize: { x: "8%", y: "42%", w: "7%", h: "50%" },
+          prsize: { w: "7%", h: "50%" },
           ph: 9.2,
         },
         {
@@ -97,7 +98,7 @@ export default {
           selected: false,
           src: require("../assets/items/Vinegar.png"),
           size: { x: "53%", y: "2%", w: "7%", h: "34%" },
-          prsize: { x: "22%", y: "42%", w: "7%", h: "60%" },
+          prsize: { w: "7%", h: "60%" },
           ph: 3,
         },
         {
@@ -106,7 +107,7 @@ export default {
           selected: false,
           src: require("../assets/items/Bleach.png"),
           size: { x: "85%", y: "36%", w: "10%", h: "24%" },
-          prsize: { x: "60%", y: "0%", w: "10%", h: "42%" },
+          prsize: { w: "10%", h: "42%" },
           ph: 12,
         },
         {
@@ -115,7 +116,7 @@ export default {
           selected: false,
           src: require("../assets/items/OvenCleaner.png"),
           size: { x: "63%", y: "36%", w: "8.5%", h: "26%" },
-          prsize: { x: "90%", y: "0%", w: "8%", h: "48%" },
+          prsize: { w: "8%", h: "48%" },
           ph: 13,
         },
         {
@@ -124,7 +125,7 @@ export default {
           selected: false,
           src: require("../assets/items/Soap.png"),
           size: { x: "73%", y: "36%", w: "10%", h: "24%" },
-          prsize: { x: "74%", y: "0%", w: "12%", h: "48%" },
+          prsize: {w: "12%", h: "48%" },
           ph: 1,
         },
         {
@@ -133,7 +134,7 @@ export default {
           selected: false,
           src: require("../assets/items/Cola.png"),
           size: { x: "35%", y: "2%", w: "8%", h: "23%" },
-          prsize: { x: "38%", y: "42%", w: "7%", h: "32%" },
+          prsize: {w: "7%", h: "32%" },
           ph: 3,
         },
         {
@@ -142,7 +143,7 @@ export default {
           selected: false,
           src: require("../assets/items/LemonJuice.png"),
           size: { x: "27%", y: "2%", w: "8%", h: "30%" },
-          prsize: { x: "65%", y: "43%", w: "7%", h: "45%" },
+          prsize: {w: "7%", h: "45%" },
           ph: 2,
         },
         {
@@ -151,7 +152,7 @@ export default {
           selected: false,
           src: require("../assets/items/Milk.png"),
           size: { x: "43.5%", y: "2%", w: "8%", h: "33%" },
-          prsize: { x: "50%", y: "42%", w: "8%", h: "55%" },
+          prsize: {w: "8%", h: "55%" },
           ph: 6,
         },
         {
@@ -160,7 +161,7 @@ export default {
           selected: false,
           src: require("../assets/items/PureWater.png"),
           size: { x: "51%", y: "53%", w: "7%", h: "38%" },
-          prsize: { x: "15%", y: "0%", w: "7%", h: "56%" },
+          prsize: {w: "7%", h: "56%" },
           ph: 7,
         },
         {
@@ -169,7 +170,7 @@ export default {
           selected: false,
           src: require("../assets/items/SparklingWater.png"),
           size: {  x: "30%", y: "53%", w: "7%", h: "38%" },
-          prsize: { x: "30%", y: "0%", w: "7%", h: "56%" },
+          prsize: { w: "7%", h: "56%" },
           ph: 6,
         },
         {
@@ -178,7 +179,7 @@ export default {
           selected: false,
           src: require("../assets/items/SparklingWater.png"),
           size: {  x: "40.5%", y: "53%", w: "7%", h: "38%" },
-          prsize: { x: "30%", y: "0%", w: "7%", h: "56%" },
+          prsize: {w: "7%", h: "56%" },
           ph: 6,
         },
       ],
@@ -216,6 +217,9 @@ export default {
     },
     displayNextPracticeButton(){
       this.$emit("sendPracNextInChat");
+    },
+    sendItemMessage(id){
+      this.$emit("sendItemMessage",id);
     },
     nextClicked(){
       if(this.gameStatus == 1)
