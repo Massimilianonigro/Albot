@@ -22,6 +22,7 @@
       v-on:sendNextInChat="displayNextButton"
       v-on:sendPracNextInChat="displayNextPracticeButton"
       v-on:sendItemMessage="sendItemClick"
+      v-on:sendResetMessage="sendResetClick"
       v-on:selectItem="handleSelectItem"
       />
     </div>
@@ -62,6 +63,7 @@ export default {
       this.mainStatus = 3;
     },
     sendMessage: function(message) {
+      console.log("Sending:" + message)
       this.connection.send(message);
     },
     displayNextButton(){
@@ -91,7 +93,10 @@ export default {
     },
     sendItemClick(id){
       let message = '{"highlighted":"'+ id +'", "text":""}'
-      console.log("Sending message "+message)
+      this.sendMessage(message);
+    },
+    sendResetClick(){
+      let message = '{"highlighted":"reset", "text":""}'
       this.sendMessage(message);
     },
     handleSelectItem(id){

@@ -144,6 +144,7 @@ export default {
     resetButton(){
       this.pouredPh = -1;
       this.pouredIndex = -1;
+      this.$emit("resetPress");
     }
   },
 };

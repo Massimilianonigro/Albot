@@ -38,6 +38,7 @@
       <PracticePhase 
         v-bind:items="selItems" 
         v-on:selectedPractItem="sendItemMessage" 
+        v-on:resetPress="sendResetMessage"
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen" 
       />
@@ -220,8 +221,10 @@ export default {
       this.$emit("sendPracNextInChat");
     },
     sendItemMessage(id){
-      console.log("Emmiting from Game Controller")
       this.$emit("sendItemMessage",id);
+    },
+    sendResetMessage(){
+      this.$emit("sendResetMessage");
     },
     nextClicked(){
       if(this.gameStatus == 1)
@@ -233,7 +236,10 @@ export default {
     },
     practicePress(){
       this.nextScreen()
-      this.$emit("practicePress")
+      this.$emit("practicePress");
+    },
+    selectItem(index) {
+      this.$emit("selectItem",index);
     },
     nextScreen() {
       if(this.gameStatus == 2){ // Reset on Practise picking
@@ -248,9 +254,6 @@ export default {
     homeScreen() {
       this.$emit("goHome");
     },
-    selectItem(index) {
-      this.$emit("selectItem",index)
-    }
   },
 };
 </script>
