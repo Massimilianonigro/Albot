@@ -5,6 +5,7 @@
       <PickerPhase 
         ref="picker"
         v-bind:items="items" 
+        v-on:sendItemMessage="selectItem"
         v-on:sendNextInChat="displayNextButton"
         v-on:homePress="homeScreen"
         v-on:nextPress="mixItems" 
@@ -29,6 +30,7 @@
         ref="pracpicker"
         v-bind:items="items" 
         v-on:sendNextInPracticeChat="displayNextPracticeButton"
+        v-on:sendItemMessage="selectItem"
         v-on:nextPress="practiceMix"
         v-on:homePress="homeScreen"
       />
@@ -36,6 +38,7 @@
     <div class="GameUI" v-if="gameStatus == 4">
       <PracticeBackground />
       <PracticePhase 
+        ref="game"
         v-bind:items="selItems" 
         v-on:selectedPractItem="sendItemMessage" 
         v-on:resetPress="sendResetMessage"
@@ -240,6 +243,9 @@ export default {
     },
     selectItem(index) {
       this.$emit("selectItem",index);
+    },
+    addPoints(){
+      this.$refs.game.addPoints();
     },
     nextScreen() {
       if(this.gameStatus == 2){ // Reset on Practise picking

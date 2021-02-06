@@ -77,6 +77,9 @@ export default {
         this.$alert("Select more items!");
       }
       else{
+        this.selItems.forEach(element => {
+          this.$emit("sendItemMessage", element.id)
+        });
         this.$emit("nextPress", this.selItems);
       }
     },

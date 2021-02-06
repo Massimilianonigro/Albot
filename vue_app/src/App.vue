@@ -82,7 +82,7 @@ export default {
       this.sendMessage('{"highlighted":"next", "text":""}')
     },
     handlePracticePress(){
-      this.sendMessage('{"highlighted":"next", "text":""}')
+      this.sendMessage('{"highlighted":"practise", "text":""}')
     },
     handleNextPracticeClick(){
       this.$refs.gameRef.nextPracticeClicked();
@@ -93,6 +93,7 @@ export default {
     },
     handleContinueClick(){
       this.sendMessage('{"highlighted":"continue", "text":""}')
+      this.$refs.gameRef.addPoints()
     },
     sendIntroductoryJSON(){
       let message = '{"highlighted":"introduction", "text":""}'
@@ -100,10 +101,6 @@ export default {
     },
     sendPracticeJSON(){
       let message = '{"highlighted":"practice", "text":""}'
-      this.sendMessage(message);
-    },
-    sendItemClick(id){
-      let message = '{"highlighted":"'+ id +'", "text":""}'
       this.sendMessage(message);
     },
     sendResetClick(){
@@ -116,6 +113,10 @@ export default {
     },
     sendTryAgainClick(){
       let message = '{"highlighted":"tryagain", "text":""}'
+      this.sendMessage(message);
+    },
+    sendItemClick(id){
+      let message = '{"highlighted":"'+ id +'", "text":""}'
       this.sendMessage(message);
     },
     handleSelectItem(id){

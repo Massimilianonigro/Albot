@@ -95,22 +95,31 @@ nlu:
    - The two solutions are bases, one of the two is more basic than the other
    - Not a lot, they are bases hence they are similar
    - They have diverse ph but are both bases
-
+   - [Oven Cleaner]("base") is a base and [Egg White]("base") too, but their phs are different
+   - [Bleach]("base") is more basic than [Egg White]("base")
+   - [Bleach]("base") is less basic than [Oven Cleaner]("base")
 - intent: neutral_basic_compare
   examples: |
    - One of them has ph 7 the other has an higher ph
    - Water is a neutral substance, the other is a basis
    - Water is at the center of the ph spectrum, the other is higher
    - One is a basic solution , with a much higher ph than water
-
+   - [Water]("neutral") is neutral [Egg White]("base") is a base
+   - [Oven Cleaner]("base") base other neutral
+   - [Bleach]("base") is basic, [Water]("neutral") is neutral
+   - [Baking Soda]("base") has a ph higher than 7, [Water]("neutral") has 7
 - intent: neutral_acid_compare
   examples: |
-   - Water has ph 7 and the other has a lower ph
-   - Water is a neutral substance the other is an acid
+   - [Water]("neutral") has ph 7 and the other has a lower ph
+   - [Water]("neutral") is a neutral substance the other is an acid
    - There is an acidic substance and a neutral one
    - One of them is an acid the other a neutral substance
    - One acid other neutral
    - One has ph lower than 7 the other 7
+   - [Water]("neutral") is neutral [Lemon Juice]("acid") is acid
+   - [Vinegar]("acid") acid other neutral
+   - [Cola]("acid") is acidic, [Water]("neutral") is neutral
+   - [Milk]("acid") has a ph lower than 7, [Water]("neutral") has 7
 - intent: inform_cabbage_solution
   examples: |
     - Do you know how to make the cabbage solution at home?
@@ -130,7 +139,7 @@ nlu:
     - Why are we not mixing the liquids into each other?
     - Why is the cabbage turning [yellow]("color")
     - How come the cabbage juice is becoming [red]("color")
-    - How is it possible that the juice is now green
+    - How is it possible that the juice is now [green]("color")
     - Why did it change color?
     - Can you explain the change in color
     - Why it has a different color now
@@ -174,7 +183,28 @@ nlu:
     - Bleach
     - Oven Cleaner
     - Cola
+    - Soap
     - Lemon Juice
     - Milk
     - Pure Water
     - Sparkling Water
+
+- lookup: acid
+  examples: |
+    - Vinegar
+    - Lemon Juice
+    - Soap
+    - Cola
+    - Milk
+    - Sparkling Water
+
+- lookup: base
+  examples: |
+    - Baking Soda
+    - Egg White
+    - Bleach
+    - Oven Cleaner
+
+- lookup: neutral
+  examples: |
+    - Pure Water

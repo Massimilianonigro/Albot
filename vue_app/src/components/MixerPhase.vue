@@ -5,7 +5,7 @@
         <div v-for="(data, index) in items" v-bind:key="index">
           <button 
             class="kitchen-item"
-            v-on:click="selectItem(index, data.ph)"
+            v-on:click="selectItem(index, data.ph, data.id)"
             v-bind:class="getHighlight(index)"
             v-bind:style="getItemStyle(data,index)"
           ></button>
@@ -76,8 +76,8 @@ export default {
     }
   },
   methods:{
-    selectItem(index, ph){
-      this.$emit("selectItem",index)
+    selectItem(index, ph, id){
+      this.$emit("selectItem",id)
       if(this.selected == index){
         this.selected = undefined;
         this.selectedPh = "Select";
