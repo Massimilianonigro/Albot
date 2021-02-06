@@ -7,23 +7,28 @@
       />
     </div>
     <div v-else>
-      <Chat ref="chatRef" 
-      :style="{zIndex:'20'}"
-      v-on:sendMessage="sendMessage"
-      v-on:nextClicked="handleNextClick"
-      v-on:nextPracticeClicked="handleNextPracticeClick"/>
-      <GameScreen ref="gameRef"
-      :style="{overflow:'visible'}"
-      v-bind:gameType="mainStatus" 
-      v-on:goHome="resetHome" 
-      v-on:practicePress="handlePracticePress"
-      v-on:introClick="sendIntroductoryJSON"
-      v-on:practClick="sendPracticeJSON"
-      v-on:sendNextInChat="displayNextButton"
-      v-on:sendPracNextInChat="displayNextPracticeButton"
-      v-on:sendItemMessage="sendItemClick"
-      v-on:sendResetMessage="sendResetClick"
-      v-on:selectItem="handleSelectItem"
+      <Chat 
+        ref="chatRef" 
+        :style="{zIndex:'20'}"
+        v-on:sendMessage="sendMessage"
+        v-on:nextClicked="handleNextClick"
+        v-on:nextPracticeClicked="handleNextPracticeClick"
+        v-on:tryAgainClicked="handleTryAgainClick"
+        v-on:continueClicked="handleContinueClick"
+      />
+      <GameScreen 
+      ref="gameRef"
+        :style="{overflow:'visible'}"
+        v-bind:gameType="mainStatus" 
+        v-on:goHome="resetHome" 
+        v-on:practicePress="handlePracticePress"
+        v-on:introClick="sendIntroductoryJSON"
+        v-on:practClick="sendPracticeJSON"
+        v-on:sendNextInChat="displayNextButton"
+        v-on:sendPracNextInChat="displayNextPracticeButton"
+        v-on:sendItemMessage="sendItemClick"
+        v-on:sendResetMessage="sendResetClick"
+        v-on:selectItem="handleSelectItem"
       />
     </div>
    
@@ -83,6 +88,12 @@ export default {
       this.$refs.gameRef.nextPracticeClicked();
       this.sendMessage('{"highlighted":"next", "text":""}')
     },
+    handleTryAgainClick(){
+      this.sendMessage('{"highlighted":"tryAgain", "text":""}')
+    },
+    handleContinueClick(){
+      this.sendMessage('{"highlighted":"continue", "text":""}')
+    },
     sendIntroductoryJSON(){
       let message = '{"highlighted":"introduction", "text":""}'
       this.sendMessage(message);
@@ -99,6 +110,14 @@ export default {
       let message = '{"highlighted":"reset", "text":""}'
       this.sendMessage(message);
     },
+    sendContinueClick(){
+      let message = '{"highlighted":"Continue", "text":""}'
+      this.sendMessage(message);
+    },
+    sendTryAgainClick(){
+      let message = '{"highlighted":"tryagain", "text":""}'
+      this.sendMessage(message);
+    },
     handleSelectItem(id){
       let message = '{"highlighted":"'+ id +'", "text":""}'
       this.sendMessage(message); 
@@ -110,10 +129,6 @@ export default {
 
     let self = this
     this.connection.onmessage = function (event) {
-      console.log("Event Log:");
-      console.log(event);
-      console.log("Data Log:");
-      console.log(event.data)
       let messages = JSON.parse(event.data)
       console.log(messages)
       self.$refs.chatRef.receiveMessage(messages)

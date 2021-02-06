@@ -140,8 +140,15 @@ export default {
     handleClick(functionType) {
       if (functionType == "next") {
         this.$emit("nextClicked");
-      } else if (functionType == "nextPractice") {
+      } 
+      else if (functionType == "nextPractice") {
         this.$emit("nextPracticeClicked");
+      } 
+      else if (functionType == "tryAgain") {
+        this.$emit("tryAgainClicked");
+      } 
+      else if (functionType == "continue") {
+        this.$emit("continueClicked");
       }
     },
     sendMessage() {
@@ -158,6 +165,12 @@ export default {
     },
     receiveMessage(messages) {
       messages.forEach(message => {
+        if (message.includes("another shot?")) {
+          this.messages.push({ message: message, bot: true, type: "button", func: "tryAgain" });
+        }
+        else if(message.includes("Congrats")) {
+          this.messages.push({ message: message, bot: true, type: "button", func: "continue" });
+        }
         this.messages.push({ message: message, bot: true, type: "text" });
       });
     },
@@ -176,6 +189,22 @@ export default {
         type: "button",
         src: require("../assets/uibuttons/NextButton.png"),
         func: "nextPractice",
+      });
+    },
+    printContinueButton() {
+      this.messages.push({ message: "Congrats, you won 10 points. Click to continue",
+        bot: true,
+        type: "button",
+        src: require("../assets/uibuttons/ContinueButton.png"),
+        func: "continue",
+      });
+    },
+    printTryAgainButton() {
+      this.messages.push({ message: "Do you want to give it another shot?",
+        bot: true,
+        type: "button",
+        src: require("../assets/uibuttons/TryAgainButton.png"),
+        func: "tryAgain",
       });
     },
   },
