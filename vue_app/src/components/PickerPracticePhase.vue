@@ -84,6 +84,7 @@ export default {
       data.selected = !data.selected
       if (data.selected) {
         this.selection += 1;
+        this.$emit("sendItemMessage", data.id)
       }
       else{
         this.selection -= 1;

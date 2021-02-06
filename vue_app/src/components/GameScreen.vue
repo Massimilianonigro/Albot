@@ -29,6 +29,7 @@
         ref="pracpicker"
         v-bind:items="items" 
         v-on:sendNextInPracticeChat="displayNextPracticeButton"
+        v-on:sendItemMessage="selectItem"
         v-on:nextPress="practiceMix"
         v-on:homePress="homeScreen"
       />

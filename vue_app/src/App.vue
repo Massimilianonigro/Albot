@@ -103,10 +103,6 @@ export default {
       let message = '{"highlighted":"practice", "text":""}'
       this.sendMessage(message);
     },
-    sendItemClick(id){
-      let message = '{"highlighted":"'+ id +'", "text":""}'
-      this.sendMessage(message);
-    },
     sendResetClick(){
       let message = '{"highlighted":"reset", "text":""}'
       this.sendMessage(message);
@@ -117,6 +113,10 @@ export default {
     },
     sendTryAgainClick(){
       let message = '{"highlighted":"tryagain", "text":""}'
+      this.sendMessage(message);
+    },
+    sendItemClick(id){
+      let message = '{"highlighted":"'+ id +'", "text":""}'
       this.sendMessage(message);
     },
     handleSelectItem(id){
