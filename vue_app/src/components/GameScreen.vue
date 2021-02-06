@@ -5,6 +5,7 @@
       <PickerPhase 
         ref="picker"
         v-bind:items="items" 
+        v-on:sendItemMessage="selectItem"
         v-on:sendNextInChat="displayNextButton"
         v-on:homePress="homeScreen"
         v-on:nextPress="mixItems" 

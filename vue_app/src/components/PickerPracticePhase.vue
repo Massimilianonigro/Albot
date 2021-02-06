@@ -77,6 +77,9 @@ export default {
         this.$alert("Select more items!");
       }
       else{
+        this.selItems.forEach(element => {
+          this.$emit("sendItemMessage", element.id)
+        });
         this.$emit("nextPress", this.selItems);
       }
     },
@@ -84,7 +87,6 @@ export default {
       data.selected = !data.selected
       if (data.selected) {
         this.selection += 1;
-        this.$emit("sendItemMessage", data.id)
       }
       else{
         this.selection -= 1;

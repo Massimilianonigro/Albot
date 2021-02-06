@@ -82,7 +82,7 @@ export default {
       this.sendMessage('{"highlighted":"next", "text":""}')
     },
     handlePracticePress(){
-      this.sendMessage('{"highlighted":"next", "text":""}')
+      this.sendMessage('{"highlighted":"practise", "text":""}')
     },
     handleNextPracticeClick(){
       this.$refs.gameRef.nextPracticeClicked();

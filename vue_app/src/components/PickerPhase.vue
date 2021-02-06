@@ -67,6 +67,7 @@ export default {
             item: element.item,
             size: element.size,
             src: element.src,
+            id: element.id,
             ph: element.ph
           };
           selItems.push(tempItem);
@@ -85,6 +86,9 @@ export default {
         console.error("No item selected");
       }
       else{
+        selItems.forEach(element => {
+          this.$emit("sendItemMessage", element.id)
+        });
         this.$emit("nextPress", selItems, nonSelItems);
       }
     },
