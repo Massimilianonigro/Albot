@@ -11,7 +11,11 @@
         <h2 class="solution-ph-meter-label"> {{pouredPh}}</h2>
       </div>
       <div class="scoreboard">
-        <h3 class="scoreboard-label">8 Points</h3>
+        <chat
+        ref = $root
+        v-on:addPoints="addPoints" 
+      />
+        <h3 class="scoreboard-label">{{score}} Points</h3>
       </div>
       <div class="item-container">
         <div v-for="(data, index) in items" v-bind:key="index">
@@ -59,10 +63,12 @@
 </template>
 
 <script>
+import Chat from './Chat.vue';
 import SettingsWindow from "./SettingsWindow.vue";
 export default {
   components: {
     SettingsWindow,
+    Chat,
   },
   name: "PracticePhase",
   props: {
@@ -74,6 +80,7 @@ export default {
   data() {
     return {
       settings: false,
+      score: 0,
       pouredPh: -1,
       pouredIndex: -1,
       settingsArray: [
@@ -145,6 +152,9 @@ export default {
       this.pouredPh = -1;
       this.pouredIndex = -1;
       this.$emit("resetPress");
+    },
+    addPoints(){
+      this.score = this.score + 10 
     }
   },
 };

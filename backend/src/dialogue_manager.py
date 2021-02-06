@@ -18,7 +18,8 @@ class DialogueManager:
         self.users[user_session_id] = {
             'current_state' : State.GREETING,
             'is_coro_ended' : None,
-            'pending_question': None 
+            'pending_question': None,
+            'question_probability': 1
         }
         #The moment the user is added the chatbot greets him and introduces him to the lesson
         intent = self._create_intent("connected")
@@ -74,8 +75,13 @@ class DialogueManager:
         elif user['is_coro_ended'] == False:
             #User has a timer and it is on going, meaning i do not update the state cause it will be
             # updated by the timer function and i do not start a new timer
-            new_pending_question ,_ , utterance_array = self.state_machine.input_function(intent,current_state,pending_question)
+            new_pending_question ,next_state, utterance_array = self.state_machine.input_function(intent,current_state,pending_question)
             user['pending_question'] = new_pending_question
+            user['current_state'] = next_state
+            if next_state != current_state:
+                #Means i moved while i was waiting for a question 
+                user['is_coro_ended'] == True 
+                user['question_probability'] = 1
         if len(utterance_array) == 0:
             message = None
         else:
@@ -83,12 +89,13 @@ class DialogueManager:
         return message
 
     def decide_branch(self,user_session_id):
-        rand = random.randint(0,1)
+        rand = random.randint(0,1*self.users[user_session_id]['question_probability'])
         if rand == 0:
             #Calling the chatbot_question
             self.users[user_session_id]['is_coro_ended'] = False 
             asyncio.ensure_future(self.branch_chatbot_question(user_session_id))
-           
+            question_probability = self.users[user_session_id]['question_probability'] 
+            self.users[user_session_id]['question_probability'] = question_probability * self.state_machine.get_question_multiplier()
         else:
             #Calling the child question
             self.users[user_session_id]['is_coro_ended'] = False 
@@ -97,17 +104,27 @@ class DialogueManager:
     async def branch_chatbot_question(self,user_session_id):
         #Decide chatbot question
         await asyncio.sleep(self.state_machine.get_waiting_time())
-        intent = self._create_intent("chatbot_question") 
-        await self.chatbot_sends_message(intent,user_session_id)
-        self.users[user_session_id]['is_coro_ended'] = True 
-        self.users[user_session_id]['current_state'] = self.state_machine.get_next_state(self.users[user_session_id]['current_state'])
+        if self.users[user_session_id]['is_coro_ended'] == True:
+            return
+        else:
+            intent = self._create_intent("chatbot_question") 
+            await self.chatbot_sends_message(intent,user_session_id)
+            self.users[user_session_id]['is_coro_ended'] = True 
+            if not self.state_machine.is_cycle(self.users[user_session_id]['current_state']):
+                self.users[user_session_id]['question_probability'] = 1 
+            self.users[user_session_id]['current_state'] = self.state_machine.get_next_state(self.users[user_session_id]['current_state'])
 
     async def branch_child_question(self,user_session_id):
         await asyncio.sleep(self.state_machine.get_waiting_time())
-        self.users[user_session_id]['current_state'] = self.state_machine.get_next_state(self.users[user_session_id]['current_state'])
-        intent = self._create_intent("wait_ended")
-        await self.chatbot_sends_message(intent,user_session_id)
-        self.users[user_session_id]['is_coro_ended'] = True
+        if self.users[user_session_id]['is_coro_ended'] == True:
+            return
+        else:
+            if not self.state_machine.is_cycle(self.users[user_session_id]['current_state']):
+                self.users[user_session_id]['question_probability'] = 1 
+            self.users[user_session_id]['current_state'] = self.state_machine.get_next_state(self.users[user_session_id]['current_state'])
+            intent = self._create_intent("wait_ended")
+            await self.chatbot_sends_message(intent,user_session_id)
+            self.users[user_session_id]['is_coro_ended'] = True
 
     async def chatbot_sends_message(self,intent,user_session_id):
         utterance = self.generate_utterance(intent,user_session_id)

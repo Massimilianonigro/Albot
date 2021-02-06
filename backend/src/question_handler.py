@@ -30,7 +30,7 @@ class QuestionHandler:
                 for option in question['values']:
                     if option['id'] == question_id:
                        result = base + option['option']
-                       break
+                       return result
         return result
     
     def _get_answer_by_id(self,question_id):
@@ -42,7 +42,7 @@ class QuestionHandler:
                 for option in question['values']:
                     if option['id'] == question_id:
                         answer = option['answer']
-                        break 
+                        return answer 
         return answer
     
     def get_explanation_by_id(self,question_id):
@@ -54,7 +54,7 @@ class QuestionHandler:
                 for option in question['values']:
                     if option['id'] == question_id:
                         explanation = option['explanation']
-                        break 
+                        return explanation 
         return explanation
     
     def get_category_by_id(self,question_id):
@@ -66,7 +66,7 @@ class QuestionHandler:
             for question in question_list[0].values():
                 for option in question['values']:
                     if option['id'] == question_id:
-                        break
+                        return question_category
         return question_category
 
     

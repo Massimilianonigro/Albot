@@ -113,7 +113,8 @@ class StateMachine:
             else:
                 utterance_array = self._append_utterances(utterance_array,['wrong_answer'])
                 explanation = self.question_handler.get_explanation_by_id(pending_question)
-                utterance_array.append(explanation)
+                if explanation != "" and explanation != None:
+                    utterance_array.append(explanation)
                 new_pending_question = None
         return new_pending_question,next_state, utterance_array
     
@@ -143,7 +144,8 @@ class StateMachine:
             else:
                 utterance_array = self._append_utterances(utterance_array,['wrong_answer'])
                 explanation = self.question_handler.get_explanation_by_id(pending_question)
-                utterance_array.append(explanation)
+                if explanation != "" and explanation != None:
+                    utterance_array.append(explanation)
                 new_pending_question = None
         return new_pending_question,next_state, utterance_array
     
@@ -175,6 +177,9 @@ class StateMachine:
             next_state = State.PRACTICE_CHATBOT_QUESTION 
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
+        elif intent['intent']['name'] == "wait_ended":
+            utterance_array = self._append_utterances(utterance_array,['practice_information'])
+            next_state = State.PRACTICE_INFORMATION
         return new_pending_question,next_state,utterance_array
 
     def practice_chatbot_question(self,intent,current_state,pending_question):
@@ -192,6 +197,7 @@ class StateMachine:
             new_pending_question = question_id
             utterance_array.append(question)
         elif intent['intent']['name'] == "clicked_continue":
+            utterance_array = self._append_utterances(utterance_array,['practice_information'])
             next_state = State.PRACTICE_INFORMATION
         if self.question_handler.get_category_by_id(pending_question) == "gamification":
             if self.question_handler.verify_answer(pending_question,intent['intent']['name']):
@@ -200,7 +206,8 @@ class StateMachine:
             else:
                 utterance_array = self._append_utterances(utterance_array,['wrong_answer','try_again'])
                 explanation = self.question_handler.get_explanation_by_id(pending_question)
-                utterance_array.append(explanation)
+                if explanation != "" and explanation != None:
+                    utterance_array.append(explanation)
                 new_pending_question = None
         return new_pending_question,next_state,utterance_array
         
@@ -212,8 +219,11 @@ class StateMachine:
         question_explanation = self.general_questions(intent)
         if question_explanation != None:
             utterance_array.append(question_explanation)
+            next_state = State.PRACTICE_INFORMATION
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback']) 
+        elif intent['intent']['name'] == "wait_ended":
+            next_state = State.PRACTICE_INFORMATION
         return new_pending_question,next_state,utterance_array
 
     def practice_information(self,intent,current_state,pending_question):
@@ -223,7 +233,7 @@ class StateMachine:
         question_explanation = self.general_questions(intent)
         if question_explanation != None:
             utterance_array.append(question_explanation)
-            return next_state,utterance_array
+            return new_pending_question,next_state,utterance_array
         if intent['intent']['name'] == "wait_ended":
             utterance_array = self._append_utterances(utterance_array,['practice_information']) 
         elif intent['intent']['name'] == "nlu_fallback":
@@ -237,11 +247,11 @@ class StateMachine:
         question_explanation = self.general_questions(intent)
         if question_explanation != None:
             utterance_array.append(question_explanation)
-            return next_state,utterance_array
+            return new_pending_question,next_state,utterance_array
         if intent['intent']['name'] == "wait_ended":
             utterance_array = self._append_utterances(utterance_array,['practice_reset']) 
         elif intent['intent']['name'] == "clicked_reset":
-            utterance_array = self._append_utterances(utterance_array,['practice_explanation']) 
+            utterance_array = self._append_utterances(utterance_array,['practice_cycle_explanation']) 
             next_state = State.PRACTICE_CYCLE
         elif intent['intent']['name'] == "clicked_next":
             next_state = State.PRACTICE_CLARIFICATION
@@ -271,7 +281,8 @@ class StateMachine:
             else:
                 utterance_array = self._append_utterances(utterance_array,['wrong_answer'])
                 explanation = self.question_handler.get_explanation_by_id(pending_question)
-                utterance_array.append(explanation)
+                if explanation != "" and explanation != None:
+                    utterance_array.append(explanation)
                 new_pending_question = None
         return new_pending_question,next_state,utterance_array
 
@@ -286,7 +297,7 @@ class StateMachine:
                 return rand.choices(self.utterances['acid_explanation'])[0]
             else:
                 return "Did not understand the ph entity you want info about"
-        elif intent['intent']['name'] == "inform_cabbage_solution":
+        elif intent['intent']['name'] == "inform_cabbage_solution" or intent['intent']['name'] == "inform_color_change":
             return rand.choices(self.utterances['cabbage_solution_explanation'])[0]
         elif intent['intent']['name'] == "inform_ingredient_property":
             ingredient = intent['entities'][0]["value"].replace(" ", "")
@@ -330,6 +341,15 @@ class StateMachine:
 
     def get_waiting_time(self):
         return self.waiting_time
+    
+    def get_question_multiplier(self):
+        return self.question_multiplier
+
+    def is_cycle(self,state):
+        if state in self.cycle_states:
+            return True 
+        else:
+            return False 
 
     def get_next_state(self,state):
         if state in self.cycle_states:
@@ -359,8 +379,9 @@ class StateMachine:
             State.PRACTICE_RESET : practice_reset,
             State.PRACTICE_CLARIFICATION : practice_clarification
         }
-    cycle_states = [State.GUIDED_POURING,State.PRACTICE_CHATBOT_QUESTION,State.PRACTICE_CLARIFICATION]
+    cycle_states = [State.GUIDED_POURING,State.PRACTICE_CHATBOT_QUESTION,State.PRACTICE_CLARIFICATION,State.PRACTICE_CYCLE,State.PRACTICE_CHILD_QUESTION]
     optional_states = [State.GUIDED_REASONING,State.GUIDED_POURING,State.PRACTICE_CYCLE,State.PRACTICE_CLARIFICATION]
     waiting_states = [State.INTRODUCTION_START,State.PRACTICE_CHILD_QUESTION,State.PRACTICE_INFORMATION]
     utterances = {}
     waiting_time = 5
+    question_multiplier = 2

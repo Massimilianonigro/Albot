@@ -165,13 +165,15 @@ export default {
     },
     receiveMessage(messages) {
       messages.forEach(message => {
+        let toPush = { message: message, bot: true, type: "text" }
         if (message.includes("another shot?")) {
-          this.messages.push({ message: message, bot: true, type: "button", func: "tryAgain" });
+          toPush = { message: message, bot: true, type: "button", func: "tryAgain" };
         }
         else if(message.includes("Congrats")) {
-          this.messages.push({ message: message, bot: true, type: "button", func: "continue" });
+          toPush = { message: message, bot: true, type: "button", func: "continue" };
+          this.$root.$emit("addPoints");
         }
-        this.messages.push({ message: message, bot: true, type: "text" });
+        this.messages.push(toPush);
       });
     },
     printNextButton() {
@@ -210,7 +212,7 @@ export default {
   },
   updated() {
     this.$refs["vs"].scrollTo({ y: "100%" }, 500);
-  },
+  }
 };
 </script>
 
