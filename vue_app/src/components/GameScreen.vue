@@ -36,6 +36,7 @@
     <div class="GameUI" v-if="gameStatus == 4">
       <PracticeBackground />
       <PracticePhase 
+        ref="game"
         v-bind:items="selItems" 
         v-on:selectedPractItem="sendItemMessage" 
         v-on:resetPress="sendResetMessage"
@@ -240,6 +241,9 @@ export default {
     },
     selectItem(index) {
       this.$emit("selectItem",index);
+    },
+    addPoints(){
+      this.$refs.game.addPoints();
     },
     nextScreen() {
       if(this.gameStatus == 2){ // Reset on Practise picking

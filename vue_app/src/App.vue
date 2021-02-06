@@ -93,6 +93,7 @@ export default {
     },
     handleContinueClick(){
       this.sendMessage('{"highlighted":"continue", "text":""}')
+      this.$refs.gameRef.addPoints()
     },
     sendIntroductoryJSON(){
       let message = '{"highlighted":"introduction", "text":""}'

@@ -11,7 +11,7 @@
         <h2 class="solution-ph-meter-label"> {{pouredPh}}</h2>
       </div>
       <div class="scoreboard">
-        <h3 class="scoreboard-label">8 Points</h3>
+        <h3 class="scoreboard-label"> {{score}} Points</h3>
       </div>
       <div class="item-container">
         <div v-for="(data, index) in items" v-bind:key="index">
@@ -74,6 +74,7 @@ export default {
   data() {
     return {
       settings: false,
+      score: 0,
       pouredPh: -1,
       pouredIndex: -1,
       settingsArray: [
@@ -115,6 +116,9 @@ export default {
         this.pouredPh = -1;
         this.pouredIndex = -1;
       }
+    },
+    addPoints(){
+      this.score += 10;
     },
     getPhBowl(){
       let urlImg;

@@ -166,10 +166,10 @@ export default {
     receiveMessage(messages) {
       messages.forEach(message => {
         if (message.includes("another shot?")) {
-          this.messages.push({ message: message, bot: true, type: "button", func: "tryAgain" });
+          this.messages.push({ message: message, bot: true, type: "button", src: require("../assets/uibuttons/TryAgainButton.png"), func: "tryAgain" });
         }
         else if(message.includes("Congrats")) {
-          this.messages.push({ message: message, bot: true, type: "button", func: "continue" });
+          this.messages.push({ message: message, bot: true, type: "button", src: require("../assets/uibuttons/TryAgainButton.png"), func: "continue" });
         }
         this.messages.push({ message: message, bot: true, type: "text" });
       });
