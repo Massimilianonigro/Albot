@@ -1,8 +1,8 @@
-import random 
+import random as rand
 import json 
 class InformHandler:
 
-    def __init__():
+    def __init__(self):
         with open("./resources/ingredients_list.json", "r") as read_file:
             self.ingredients_list = json.load(read_file)
         with open("./resources/utterances.json", "r") as read_file:
@@ -17,11 +17,11 @@ class InformHandler:
     
     def inform_ph_property(self,intent):
         if intent['entities'][0]["value"][0:4] == 'base':
-                return rand.choices(self.utterances['base_explanation'])[0]
-            elif intent['entities'][0]["value"][0:4] == 'acid':
-                return rand.choices(self.utterances['acid_explanation'])[0]
-            else:
-                return "Did not understand the ph entity you want info about"
+            return rand.choices(self.utterances['base_explanation'])[0]
+        elif intent['entities'][0]["value"][0:4] == 'acid':
+            return rand.choices(self.utterances['acid_explanation'])[0]
+        else:
+            return "Did not understand the ph entity you want info about"
     
     def inform_cabbage_solution(self,intent):
        return rand.choices(self.utterances['cabbage_solution_explanation'])[0]
@@ -46,7 +46,7 @@ class InformHandler:
         ingredient = ingredient_used.replace(" ", "")
         ingredient = ingredient.lower()
         ingredient_ph = -1
-        for i in self.ingredients_list:
+        for i in self.ingredients_list['ingredients']:
             name_in_list = i['name'].replace(" ", "")
             name_in_list = name_in_list.lower() 
             if name_in_list == ingredient:
@@ -56,7 +56,7 @@ class InformHandler:
     def inform_color_change(self,intent):
         color = self._get_color_used(intent)
         ingredient = self._get_ingredient_used(intent)
-        elif color != None and ingredient != None:
+        if color != None and ingredient != None:
             #NLU recognized both the ingredient and the color
             ph = self._get_ingredient_ph(ingredient)
             #TODO: Add filtering on color if needed
@@ -88,11 +88,11 @@ class InformHandler:
         return color
 
     def _get_ingredient_used(self,intent):
-       if len(intent['entities']) == 0:
-            return None
         ingredient = None
+        if len(intent['entities']) == 0:
+            return None
         for entity in intent['entities']:
-            if "ingredient" in entity['entity']:
+            if "ingredient" in entity['entity'] or "base" in entity['entity'] or "acid" in entity['entity'] or "neutral" in entity['entity']:
                 ingredient = entity['value']
         return ingredient
     

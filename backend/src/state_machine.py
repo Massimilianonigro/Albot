@@ -61,7 +61,7 @@ class StateMachine:
         if intent['intent']['name'] == "clicked_next":
             utterance_array = self._append_utterances(utterance_array,['base_selection'])
             next_state = State.BASE_SELECTION
-        elif intent['intent']['name'] == "nlu_fallback" and pending_question != None:
+        elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
         return new_pending_question,next_state,utterance_array
     
