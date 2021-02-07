@@ -13,12 +13,21 @@ class QuestionHandler:
             question_id = random.choices(q['values'])[0]['id']
         return question_id
 
+    #Returns 0 if the answer is wrong, 1 if the answer is good, 2 if the intent is not meant to answer the question
     def verify_answer(self,question_id,intent):
         answer = self._get_answer_by_id(question_id)
-        if intent == answer:
-            return True 
+        if (self._is_click_answer(answer) and self._is_click_answer(intent)) or (self._is_text_answer(answer) and self._is_text_answer(intent)):
+            #This means answer and intent are either both text or click
+            if answer == intent:
+                return 1
+            elif not self._is_clarification(intent):
+                return 0
         else:
-            return False
+            return 2
+
+        
+            
+
     
     def get_question_by_id(self,question_id):
         if question_id == None:
@@ -32,6 +41,21 @@ class QuestionHandler:
                        result = base + option['option']
                        return result
         return result
+    
+    def _is_click_answer(self,answer):
+        if answer[0:7] == "clicked":
+            return True
+        else:
+            return False
+    
+    def _is_text_answer(self,answer):
+        return not self._is_click_answer(answer)
+    
+    def _is_clarification(self,intent):
+        if intent[0:6] == "inform":
+            return True
+        else:
+            return False
     
     def _get_answer_by_id(self,question_id):
         if question_id == None:

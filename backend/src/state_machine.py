@@ -2,11 +2,13 @@ from state import State
 import json
 import random as rand
 from question_handler import QuestionHandler
+from inform_handler import InformHandler
 
 class StateMachine:
     def __init__(self):
         self.load_json()
         self.question_handler = QuestionHandler()
+        self.inform_handler = InformHandler()
 
     def load_json(self):
         with open("./resources/utterances.json", "r") as read_file:
@@ -107,10 +109,11 @@ class StateMachine:
         elif intent['intent']['name'] == "nlu_fallback" and new_pending_question == None:
            utterance_array = self._append_utterances(utterance_array,['fallback'])
         if self.question_handler.get_category_by_id(pending_question) == "other":
-            if self.question_handler.verify_answer(pending_question,intent['intent']['name']):
+            is_answer_correct = self.question_handler.verify_answer(pending_question,intent['intent']['name'])
+            if is_answer_correct == 1:
                 utterance_array = self._append_utterances(utterance_array,['chatbot_appreciation'])
                 new_pending_question = None
-            else:
+            elif is_answer_correct == 0:
                 utterance_array = self._append_utterances(utterance_array,['wrong_answer'])
                 explanation = self.question_handler.get_explanation_by_id(pending_question)
                 if explanation != "" and explanation != None:
@@ -138,10 +141,11 @@ class StateMachine:
         elif intent['intent']['name'] != "clicked_next" and intent['intent']['name'][0:7] == "clicked":
             utterance_array = self._append_utterances(utterance_array,['color_change_exclamation'])
         if self.question_handler.get_category_by_id(pending_question) == "other":
-            if self.question_handler.verify_answer(pending_question,intent['intent']['name']):
+            is_answer_correct = self.question_handler.verify_answer(pending_question,intent['intent']['name'])
+            if is_answer_correct == 1:
                 utterance_array = self._append_utterances(utterance_array,['chatbot_appreciation'])
                 new_pending_question = None
-            else:
+            elif is_answer_correct == 0:
                 utterance_array = self._append_utterances(utterance_array,['wrong_answer'])
                 explanation = self.question_handler.get_explanation_by_id(pending_question)
                 if explanation != "" and explanation != None:
@@ -199,16 +203,18 @@ class StateMachine:
         elif intent['intent']['name'] == "clicked_continue":
             utterance_array = self._append_utterances(utterance_array,['practice_information'])
             next_state = State.PRACTICE_INFORMATION
+        elif intent['intent']['name'] == "clicked_moreinfo":
+            #Now i can give the explanation and set the pending question to None
+            explanation = self.question_handler.get_explanation_by_id(pending_question)
+            utterance_array.append(explanation)
+            new_pending_question = None
         if self.question_handler.get_category_by_id(pending_question) == "gamification":
-            if self.question_handler.verify_answer(pending_question,intent['intent']['name']):
+            is_answer_correct = self.question_handler.verify_answer(pending_question,intent['intent']['name'])
+            if is_answer_correct == 1:
                 utterance_array = self._append_utterances(utterance_array,['chatbot_appreciation','grant_points'])
                 new_pending_question = None
-            else:
+            elif is_answer_correct == 0:
                 utterance_array = self._append_utterances(utterance_array,['wrong_answer','try_again'])
-                explanation = self.question_handler.get_explanation_by_id(pending_question)
-                if explanation != "" and explanation != None:
-                    utterance_array.append(explanation)
-                new_pending_question = None
         return new_pending_question,next_state,utterance_array
         
 
@@ -275,10 +281,11 @@ class StateMachine:
         elif intent['intent']['name'] == "wait_ended":
             utterance_array = self._append_utterances(utterance_array,['end_experience'])
         if self.question_handler.get_category_by_id(pending_question) == "other":
-            if self.question_handler.verify_answer(pending_question,intent['intent']['name']):
+            is_answer_correct = self.question_handler.verify_answer(pending_question,intent['intent']['name'])
+            if is_answer_correct == 1:
                 utterance_array = self._append_utterances(utterance_array,['chatbot_appreciation'])
                 new_pending_question = None
-            else:
+            elif is_answer_correct == 0:
                 utterance_array = self._append_utterances(utterance_array,['wrong_answer'])
                 explanation = self.question_handler.get_explanation_by_id(pending_question)
                 if explanation != "" and explanation != None:
@@ -288,41 +295,8 @@ class StateMachine:
 
     #Answer general questions of the user that can be done over all the interaction, takes in an intent and gives back a string
     def general_questions(self,intent):
-        if intent['intent']['name'] == "inform_ph":
-            return rand.choices(self.utterances['ph_explanation'])[0]
-        elif intent['intent']['name'] == "inform_ph_property":
-            if intent['entities'][0]["value"][0:4] == 'base':
-                return rand.choices(self.utterances['base_explanation'])[0]
-            elif intent['entities'][0]["value"][0:4] == 'acid':
-                return rand.choices(self.utterances['acid_explanation'])[0]
-            else:
-                return "Did not understand the ph entity you want info about"
-        elif intent['intent']['name'] == "inform_cabbage_solution" or intent['intent']['name'] == "inform_color_change":
-            return rand.choices(self.utterances['cabbage_solution_explanation'])[0]
-        elif intent['intent']['name'] == "inform_ingredient_property":
-            ingredient = intent['entities'][0]["value"].replace(" ", "")
-            ingredient = ingredient.lower()
-            ingredient_is_in_list = False
-            ingredient_ph = -1
-            for i in self.ingredients_list:
-                name_in_list = i['name'].replace(" ", "")
-                name_in_list = name_in_list.lower() 
-                if name_in_list == ingredient:
-                    ingredient_is_in_list = True 
-                    ingredient_ph = i['ph']
-                    break 
-            if ingredient_is_in_list: 
-                #Check on ph to deliver explanation
-                explanation = "The " + ingredient + " has a ph of " + str(ingredient_ph)
-                if ingredient_ph == 7:
-                    explanation = explanation + " and is thus a neutral substance. " +  rand.choices(self.utterances['properties_neutral_ingredient'])[0]
-                elif ingredient_ph < 7:
-                    explanation = explanation + " and is thus an acid substance. " +  rand.choices(self.utterances['properties_acid_ingredient'])[0]
-                elif ingredient_ph > 7:
-                    explanation = explanation + " and is thus a basic substance. " +  rand.choices(self.utterances['properties_base_ingredient'])[0]
-                return explanation
-            else:
-                return "Ingredient not recognized"
+        if intent['intent']['name'][0:6] == "inform": 
+            return self.inform_handler.grant_information(intent)
         else:
             return None
 

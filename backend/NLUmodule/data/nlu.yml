@@ -78,6 +78,9 @@ nlu:
    - One element is more acidic than the other
    - They are two acidics solutions, one more than the other
    - Not much. They are both acids
+   - [Cola]("acid") is an acid and [Soap]("acid") too, but their phs are different
+   - [Lemon Juice]("acid") is more acid than [Milk]("acid")
+   - [Cola]("acid") is less acid than [Soap]("acid")
 
 - intent: basic_acid_compare
   examples: |
@@ -87,6 +90,9 @@ nlu:
    - One is more acidic than water the other is more basic than water
    - They are at opposite sides of the ph spectrum 
    - One is a basic solution the other an acidic one
+   - [Bleach]("base") is a basic solution [Cola]("acid") is an acidic one
+   - [Oven Cleaner]("base") has ph higher than 7, while [Lemon Juice]("acid") has ph lower than 7
+   - [Cola]("acid") is acidic, while [Egg White]("base") is basic
 
 - intent: basic_basic_compare
   examples: |
@@ -156,6 +162,9 @@ nlu:
     - We use it because it is a natural ph indicator
     - Cabbage juice has an high degree of anthocyanin substances, when they come in contact with an acid full of hydronium ions it changes color
     - Some substancese in the cabbage solution change color when they are paired with the ions that characterize acids
+    - Because it helps us measure ph having substances that change color when in touch with acids or bases
+    - Because mixing it with substances can reveal their ph
+    - It is an easy-to-do way to measure ph at home
 - intent : inform_ingredient_property
   examples: |
     - What are the ph properties of [Lemon Juice]("ingredient")?

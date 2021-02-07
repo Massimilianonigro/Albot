@@ -67,9 +67,9 @@ class DialogueManager:
             user['pending_question'] = new_pending_question
             #In the next section we proceed to see if the state we landed in is either a branch or waiting state
             # we start a timer accordingly
-            if self.state_machine.is_branch(next_state):
+            if self.state_machine.is_branch(next_state) and user['pending_question'] == None:
                 self.decide_branch(user_session_id)
-            if self.state_machine.is_waiting(next_state):
+            if self.state_machine.is_waiting(next_state) and user['pending_question'] == None:
                 user['is_coro_ended'] = False
                 asyncio.ensure_future(self.branch_child_question(user_session_id))
         elif user['is_coro_ended'] == False:
