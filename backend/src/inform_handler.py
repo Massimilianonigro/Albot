@@ -56,9 +56,9 @@ class InformHandler:
     def inform_color_change(self,intent):
         color = self._get_color_used(intent)
         ingredient = self._get_ingredient_used(intent)
+        ph = self._get_ingredient_ph(ingredient)
         if color != None and ingredient != None:
             #NLU recognized both the ingredient and the color
-            ph = self._get_ingredient_ph(ingredient)
             #TODO: Add filtering on color if needed
             if ph == 7:
                 return ingredient + " did not change the color of the solution because it is neutral"

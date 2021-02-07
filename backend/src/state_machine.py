@@ -241,7 +241,10 @@ class StateMachine:
             utterance_array.append(question_explanation)
             return new_pending_question,next_state,utterance_array
         if intent['intent']['name'] == "wait_ended":
-            utterance_array = self._append_utterances(utterance_array,['practice_information']) 
+            utterance_array = self._append_utterances(utterance_array,['practice_information'])
+        elif intent['intent']['name'] != "clicked_reset" and intent['intent']['name'] != "clicked_reset" and intent['intent']['name'][0:7] == "clicked":
+            toAppend = "display " + str(intent['intent']['name'][8:])
+            utterance_array.append(toAppend)
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback']) 
         return new_pending_question,next_state,utterance_array
@@ -259,6 +262,9 @@ class StateMachine:
         elif intent['intent']['name'] == "clicked_reset":
             utterance_array = self._append_utterances(utterance_array,['practice_cycle_explanation']) 
             next_state = State.PRACTICE_CYCLE
+        elif intent['intent']['name'] != "clicked_reset" and intent['intent']['name'] != "clicked_reset" and intent['intent']['name'][0:7] == "clicked":
+            toAppend = "display " + str(intent['intent']['name'][8:])
+            utterance_array.append(toAppend)
         elif intent['intent']['name'] == "clicked_next":
             next_state = State.PRACTICE_CLARIFICATION
         elif intent['intent']['name'] == "nlu_fallback":
