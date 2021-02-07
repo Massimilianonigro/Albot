@@ -167,21 +167,47 @@ export default {
       messages.forEach(message => {
         let toPush = { message: message, bot: true, type: "text" }
         if (message.includes("another shot?")) {
-<<<<<<< HEAD
           toPush = { message: message, bot: true, type: "button", func: "tryAgain" };
+          this.$root.$emit("showTryAgain");
         }
         else if(message.includes("Congrats")) {
           toPush = { message: message, bot: true, type: "button", func: "continue" };
           this.$root.$emit("addPoints");
-=======
-          this.messages.push({ message: message, bot: true, type: "button", src: require("../assets/uibuttons/TryAgainButton.png"), func: "tryAgain" });
         }
-        else if(message.includes("Congrats")) {
-          this.messages.push({ message: message, bot: true, type: "button", src: require("../assets/uibuttons/TryAgainButton.png"), func: "continue" });
->>>>>>> faf5d9613b5a4197b5bdb9bf1e17dfc79a4034dc
+        else if(message.includes("display")) {
+          toPush = { message: "", bot: true, type: "image", src:this.getImageById(message.split(" ")[1]) };
         }
+      
         this.messages.push(toPush);
       });
+    },
+    getImageById(id){
+      switch (id){
+        case("1"):
+          return require("../assets/molecules/BakingSoda.png")
+        case("2"):
+          return require("../assets/molecules/EggWhite.png")
+        case("3"):
+          return require("../assets/molecules/Vinegar.png")
+        case("4"):
+          return require("../assets/molecules/Bleach.png")
+        case("5"):
+          return require("../assets/molecules/OvenCleaner.png")
+        case("6"):
+          return require("../assets/molecules/Soap.png")
+        case("7"):
+          return require("../assets/molecules/Cola.png")
+        case("8"):
+          return require("../assets/molecules/LemonJuice.png")
+        case("9"):
+          return require("../assets/molecules/Milk.png")
+        case("10"):
+          return require("../assets/molecules/PureWater.png")
+        case("11"):
+          return require("../assets/molecules/SparklingWater.png")
+        default:
+          return require("../assets/molecules/PureWater.png")
+      }
     },
     printNextButton() {
       this.messages.push({

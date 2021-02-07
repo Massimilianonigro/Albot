@@ -11,10 +11,12 @@
         ref="chatRef" 
         :style="{zIndex:'20'}"
         v-on:sendMessage="sendMessage"
+        v-on:addPoints="addPractisePoints"
         v-on:nextClicked="handleNextClick"
         v-on:nextPracticeClicked="handleNextPracticeClick"
         v-on:tryAgainClicked="handleTryAgainClick"
         v-on:continueClicked="handleContinueClick"
+        v-on:showTryAgain="showTryAgain"
       />
       <GameScreen 
       ref="gameRef"
@@ -29,6 +31,9 @@
         v-on:sendItemMessage="sendItemClick"
         v-on:sendResetMessage="sendResetClick"
         v-on:selectItem="handleSelectItem"
+        v-on:sendContinueMessage="handleContinueClick"
+        v-on:sendTryAgainMessage="handleTryAgainClick"
+        v-on:sendInfoMessage="handleInfoClick"
       />
     </div>
    
@@ -91,8 +96,16 @@ export default {
     handleTryAgainClick(){
       this.sendMessage('{"highlighted":"tryAgain", "text":""}')
     },
+    handleInfoClick(){
+      this.sendMessage('{"highlighted":"moreinfo", "text":""}')
+    },
     handleContinueClick(){
       this.sendMessage('{"highlighted":"continue", "text":""}')
+    },
+    showTryAgain(){
+      this.$refs.gameRef.showTryAgain()
+    },
+    addPractisePoints(){
       this.$refs.gameRef.addPoints()
     },
     sendIntroductoryJSON(){
