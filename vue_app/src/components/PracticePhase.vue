@@ -11,8 +11,28 @@
         <h2 class="solution-ph-meter-label"> {{pouredPh}}</h2>
       </div>
       <div class="scoreboard">
-        <h3 class="scoreboard-label">{{score}} Points</h3>
+        <h3 class="scoreboard-label"> {{score}} Points</h3>
       </div>
+
+      <div 
+        v-if="showCompliment" 
+        v-on:click="continueButton"
+        class="congrats" >
+      </div>
+
+      <div
+        v-if="showTryAgain" 
+        class="wrong">
+        <button 
+          v-on:click="tryAgainButton"
+          class="try-again-btn" >
+        </button>
+        <button 
+          v-on:click="moreInfoButton"
+          class="info-btn" >
+        </button>
+      </div>
+
       <div class="item-container">
         <div v-for="(data, index) in items" v-bind:key="index">
           <button
@@ -59,12 +79,10 @@
 </template>
 
 <script>
-import Chat from './Chat.vue';
 import SettingsWindow from "./SettingsWindow.vue";
 export default {
   components: {
     SettingsWindow,
-    Chat,
   },
   name: "PracticePhase",
   props: {
@@ -78,7 +96,13 @@ export default {
       settings: false,
       score: 0,
       pouredPh: -1,
-      pouredIndex: -1,
+      pouredIndex: -1,      
+      showCompliment: false,
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+
+      showTryAgain: true,
+      showInfo: true,
       settingsArray: [
         {x: "30%", y: "0%"},
         {x: "60%", y: "0%"},
@@ -91,6 +115,7 @@ export default {
         {x: "00%", y: "0%"},
         {x: "90%", y: "0%"},
         {x: "08%", y: "42%"},
+        {x: "82%", y: "45%"},
       ]
     };
   },
@@ -120,7 +145,9 @@ export default {
       }
     },
     addPoints(){
+      this.showCompliment = true;
       this.score += 10;
+      setTimeout(() => this.showCompliment = false, 1800);
     },
     getPhBowl(){
       let urlImg;
@@ -135,11 +162,28 @@ export default {
       }
       return styleItem;
     },
+    showTryAgainWindow(){
+      this.showTryAgain = true;
+      this.showInfo = true;
+    },
     backButton(){
       while(this.items.length > 0) {
         this.items.pop();
       }
       this.$emit("backPress");
+    },
+    continueButton(){
+      this.showCompliment = false;
+      this.$emit("continuePress");
+    },
+    tryAgainButton(){
+      this.showTryAgain = false;
+      this.$emit("tryAgainPress");
+    },
+    infoButton(){
+      if(this.showInfo)
+        this.$emit("infoPress");
+      this.showInfo = false;
     },
     settingButton(){
       this.settings = !this.settings;
@@ -151,9 +195,6 @@ export default {
       this.pouredPh = -1;
       this.pouredIndex = -1;
       this.$emit("resetPress");
-    },
-    addPoints(){
-      this.score = this.score + 10 
     }
   },
 };
@@ -326,5 +367,83 @@ a {
 .back-btn {
 	top: 17%;
 	left: 3%;
+}
+
+.congrats{
+  position: absolute;
+	z-index: 2;
+  left: 20%;
+  top: 24%;
+  width: 57%;
+  height: 30%;
+  margin: auto;
+  color: white;
+	background-position-y: center;
+	background-position-x: center;
+	background-repeat: no-repeat;
+  background-size: contain;
+	background-image: url("../assets/uibuttons/WellDone.png");
+}
+
+.wrong{
+  overflow: visible;
+  position: absolute;
+	z-index: 2;
+  left: 20%;
+  top: 19%;
+  width: 57%;
+  height: 30%;
+  margin: auto;
+  color: white;
+	background-position-y: center;
+	background-position-x: center;
+	background-repeat: no-repeat;
+  background-size: contain;
+	background-image: url("../assets/uibuttons/Wrong.png");
+}
+
+.try-again-btn{
+  position: absolute;
+	z-index: 4;
+  left: -10%;
+  top: 70%;
+  width: 57%;
+  height: 30%;
+  margin: auto;
+  border: none;
+  background-color: transparent;
+	background-position-y: center;
+	background-position-x: center;
+	background-repeat: no-repeat;
+  background-size: contain;
+	background-image: url("../assets/uibuttons/TryAgain.png");
+  outline: none;
+}
+
+.info-btn{
+  position: absolute;
+	z-index: 4;
+  right: -10%;
+  top: 70%;
+  width: 57%;
+  height: 30%;
+  margin: auto;
+  border: none;
+  background-color: transparent;
+	background-position-y: center;
+	background-position-x: center;
+	background-repeat: no-repeat;
+  background-size: contain;
+	background-image: url("../assets/uibuttons/Info.png");
+  outline: none;
+}
+
+.info-btn:active,
+.try-again-btn:active{
+  opacity: 0.7;
+}
+.info-btn:focus,
+.try-again-btn:focus{
+  outline: none;
 }
 </style>

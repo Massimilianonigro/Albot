@@ -128,9 +128,13 @@ export default {
         return false;
       }
       else if (this.part == "acid" && data.ph != 7){
+        if(this.selection == 2)
+          return true;
         return data.ph > 7;
       }
       else if(this.part == "basic" && data.ph != 7){
+        if(this.selection == 4)
+          return true;
         return data.ph < 7;
       }
       else if(this.part == "water" && data.ph == 7){

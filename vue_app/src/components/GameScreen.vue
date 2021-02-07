@@ -44,6 +44,8 @@
         v-on:resetPress="sendResetMessage"
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen" 
+        v-on:continuePress="continueClick"
+        v-on:tryAgainPress="tryAgainClick"
       />
     </div>
   </div>
@@ -229,6 +231,15 @@ export default {
     sendResetMessage(){
       this.$emit("sendResetMessage");
     },
+    continueClick(){
+      this.$emit("sendContinueMessage");
+    },
+    tryAgainClick(){
+      this.$emit("sendTryAgainMessage");
+    },
+    infoClick(){
+      this.$emit("sendInfoMessage");
+    },
     nextClicked(){
       if(this.gameStatus == 1)
         this.$refs.picker.updatePart()
@@ -246,6 +257,9 @@ export default {
     },
     addPoints(){
       this.$refs.game.addPoints();
+    },
+    displayTryAgain(){
+      this.$refs.game.showTryAgainWindow();
     },
     nextScreen() {
       if(this.gameStatus == 2){ // Reset on Practise picking
