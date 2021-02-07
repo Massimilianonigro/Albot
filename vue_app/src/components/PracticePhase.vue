@@ -11,15 +11,7 @@
         <h2 class="solution-ph-meter-label"> {{pouredPh}}</h2>
       </div>
       <div class="scoreboard">
-<<<<<<< HEAD
-        <chat
-        ref = $root
-        v-on:addPoints="addPoints" 
-      />
         <h3 class="scoreboard-label">{{score}} Points</h3>
-=======
-        <h3 class="scoreboard-label"> {{score}} Points</h3>
->>>>>>> faf5d9613b5a4197b5bdb9bf1e17dfc79a4034dc
       </div>
       <div class="item-container">
         <div v-for="(data, index) in items" v-bind:key="index">

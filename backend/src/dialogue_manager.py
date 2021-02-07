@@ -90,16 +90,17 @@ class DialogueManager:
 
     def decide_branch(self,user_session_id):
         rand = random.randint(0,1*self.users[user_session_id]['question_probability'])
-        if rand == 0:
+        print("question probability is : " +  str(self.users[user_session_id]['question_probability']))
+        #if rand == 0:
             #Calling the chatbot_question
-            self.users[user_session_id]['is_coro_ended'] = False 
-            asyncio.ensure_future(self.branch_chatbot_question(user_session_id))
-            question_probability = self.users[user_session_id]['question_probability'] 
-            self.users[user_session_id]['question_probability'] = question_probability * self.state_machine.get_question_multiplier()
-        else:
+        self.users[user_session_id]['is_coro_ended'] = False 
+        asyncio.ensure_future(self.branch_chatbot_question(user_session_id))
+        question_probability = self.users[user_session_id]['question_probability'] 
+        self.users[user_session_id]['question_probability'] = question_probability * self.state_machine.get_question_multiplier()
+        #else:
             #Calling the child question
-            self.users[user_session_id]['is_coro_ended'] = False 
-            asyncio.ensure_future(self.branch_child_question(user_session_id))
+        #    self.users[user_session_id]['is_coro_ended'] = False 
+        #    asyncio.ensure_future(self.branch_child_question(user_session_id))
     
     async def branch_chatbot_question(self,user_session_id):
         #Decide chatbot question
