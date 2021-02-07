@@ -167,12 +167,12 @@ export default {
       messages.forEach(message => {
         let toPush = { message: message, bot: true, type: "text" }
         if (message.includes("another shot?")) {
-          toPush = { message: message, bot: true, type: "button", func: "tryAgain" };
-          this.$root.$emit("showTryAgain");
+          toPush = { message: message, bot: true, type: "button", src: require("../assets/uibuttons/TryAgainButton.png"), func: "tryAgain" };
+          this.$emit("showTryAgain");
         }
         else if(message.includes("Congrats")) {
-          toPush = { message: message, bot: true, type: "button", func: "continue" };
-          this.$root.$emit("addPoints");
+          toPush = { message: message, bot: true, type: "button", src: require("../assets/uibuttons/ContinueButton.png"), func: "continue", };
+          this.$emit("addPoints");
         }
         else if(message.includes("display")) {
           toPush = { message: "", bot: true, type: "image", src:this.getImageById(message.split(" ")[1]) };

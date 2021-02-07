@@ -106,6 +106,7 @@ export default {
       this.$refs.gameRef.showTryAgain()
     },
     addPractisePoints(){
+          console.log("Adding Points")
       this.$refs.gameRef.addPoints()
     },
     sendIntroductoryJSON(){

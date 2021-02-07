@@ -71,7 +71,7 @@
         v-on:click="homeButton()">
       </button>
         
-      <button class="reset-btn" 
+      <button class="reset-btn" v-if="showReset"
         v-on:click="resetButton()">
       </button>
     </div>
@@ -98,11 +98,9 @@ export default {
       pouredPh: -1,
       pouredIndex: -1,      
       showCompliment: false,
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------
-
-      showTryAgain: true,
-      showInfo: true,
+      showTryAgain: false,
+      showInfo: false,
+      showReset: false,
       settingsArray: [
         {x: "30%", y: "0%"},
         {x: "60%", y: "0%"},
@@ -133,6 +131,7 @@ export default {
       return this.settingsArray[index].y
     },
     selectItem(data, index){
+      this.showReset = true;
       if (this.pouredIndex != index){
         this.pouredPh = data.ph;
         this.pouredIndex = index;
@@ -147,7 +146,7 @@ export default {
     addPoints(){
       this.showCompliment = true;
       this.score += 10;
-      setTimeout(() => this.showCompliment = false, 1800);
+      setTimeout(() => this.showCompliment = false, 2800);
     },
     getPhBowl(){
       let urlImg;
@@ -192,6 +191,7 @@ export default {
       this.$emit("homePress");
     },
     resetButton(){
+      this.showReset = false;
       this.pouredPh = -1;
       this.pouredIndex = -1;
       this.$emit("resetPress");
