@@ -294,13 +294,15 @@ class StateMachine:
             return new_pending_question,next_state,utterance_array
         if intent['intent']['name'] == "wait_ended":
             utterance_array = self._append_utterances(utterance_array,['practice_information'])
-        elif intent['intent']['name'] != "clicked_reset" and intent['intent']['name'] != "clicked_reset" and intent['intent']['name'][0:7] == "clicked":
+        elif intent['intent']['name'] not in ["clicked_reset","clicked_home","clicked_back"] and intent['intent']['name'][0:7] == "clicked":
             toAppend = "display " + str(intent['intent']['name'][8:])
             utterance_array.append(toAppend)
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback']) 
         elif intent['intent']['name'] == "clicked_home":
             next_state = State.GREETING
+        elif intent['intent']['name'] == "clicked_back":
+            next_state = State.PRACTICE_COLLECTING
         elif intent['intent']['name'] == "next_step_practice_collecting":
             utterance_array = self._append_utterances(utterance_array,['next_step_practice_information'])
         return new_pending_question,next_state,utterance_array

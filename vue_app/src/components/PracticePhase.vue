@@ -102,7 +102,7 @@ export default {
       pouredPh: -1,
       pouredIndex: -1,      
       showCompliment: false,
-      showTryAgain: true,
+      showTryAgain: false,
       showInfo: false,
       showReset: false,
       settingsArray: [
