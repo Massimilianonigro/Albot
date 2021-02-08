@@ -67,6 +67,10 @@ class DialogueManager:
             user['pending_question'] = new_pending_question
             #In the next section we proceed to see if the state we landed in is either a branch or waiting state
             # we start a timer accordingly
+            if next_state.value < user['current_state'].value:
+                #Means back or home or reset buttons where used
+                user['pending_question'] = None
+                user['is_coro_ended'] = None 
             if self.state_machine.is_branch(next_state) and user['pending_question'] == None:
                 self.decide_branch(user_session_id)
             if self.state_machine.is_waiting(next_state) and user['pending_question'] == None:
@@ -82,6 +86,10 @@ class DialogueManager:
                 #Means i moved while i was waiting for a question 
                 user['is_coro_ended'] == True 
                 user['question_probability'] = 1
+            if next_state.value < user['current_state'].value:
+                #Means back or home or reset buttons where used
+                user['pending_question'] = None
+                user['is_coro_ended'] = None 
         if len(utterance_array) == 0:
             message = None
         else:

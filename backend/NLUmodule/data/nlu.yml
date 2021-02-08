@@ -1,41 +1,6 @@
 version: "2.0"
 
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
-
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
-
 - intent: inform_collecting_items
   examples: |
     - How many items should i select?
@@ -47,7 +12,7 @@ nlu:
 
 - intent: inform_ph_property
   examples: |
-    - What does [base]("ph_property")
+    - What does [acid]("ph_property") mean?
     - Can you explain the concept of [acid]("ph_property")?
     - What is a [base]("ph_property")?
     - What is [base]("ph_property")?
@@ -174,6 +139,113 @@ nlu:
     - is [Milk]("ingredient") a base?
     - is [Sparkling Water]("ingredient") an acid?
     - how does [Cola]("ingredient") scale in the ph indicator?
+
+- intent: inform_ph_cabbage_solution
+  examples: |
+   - What is the PH level of the Cabbage solution?
+   - Can you tell me the ph level of the cabbage juice?
+   - What are the ph properties of cabbage solution?
+   - Is the cabbage solution acid or basic?
+   - What is the pH nature of cabbage juice?
+   - How does the cabbage solution scale on the ph measure?
+   - Is cabbage solution an acid?
+   - Is cabbage solution a base?
+   - Is the cabbage solution neutral?
+   - Does this cabbage also have PH level? 
+   - The mixture has a ph level?
+   - Cabbage have ph?
+
+- intent: inform_every_liq_ph
+  examples: |
+    - Does every liquid have PH nature?
+    - Does all liquid possess the PH level/property?
+    - Is ph a property of all elements?
+    - Is ph something all liquid have?
+    - Liquids have ph in any case?
+    - Can we find PH level/property for every liquid?
+    - Is it possible to know the PH level/property of every liquid?
+
+- intent: inform_why_not_item_mixed
+  examples: |
+    - Why are we not mixing the items with each other? 
+    - Why do we not put the items together? 
+    - Can we put the ingredients with each other instead?
+    - Isn't it funnier to put the ingredients with each other?
+    - Why do we have to put the ingredients in the mixture?
+    - Is it efficient to blend the ingredients with each other instead of using the mixture?
+    - Can we measure ph by putting the ingredients together?
+
+- intent: inform_other_way_to_measure_ph
+  examples: |
+    - Is there any other solution I can use instead of cabbage?
+    - Can I use another solution that is not cabbage?
+    - Can I replace the cabbage juice?
+    - The cabbage can be replaced with other things?
+    - Can other things measure ph instead of the cabbage solution?
+    - Can I measure ph in another way?
+    - Can we use another thing to get the ph of ingredients?
+
+- intent: inform_cabbage_at_home
+  examples: |
+    - Can I make cabbage solution at home?  
+    - Is it possible to make the solution at home?
+    - How can I make the cabbage juice at home?
+    - What are the steps to make cabbage juice?
+    - What is the procedure to do the cabbage solution?
+    - How do I prepare the cabbage juice?
+    - How can I make the cabbage mixture by myself?
+
+- intent: inform_ph_change_on_item_measure
+  examples: |
+    - Does the PH level change if we mix 2 items together. 
+    - What happens to ph if we mix items ?
+    - If we mix 2 items their ph changes?
+    - Does mixing 2 items change the ph of the solution?
+    - Is the ph changing when we mix two ingredients?
+    - Is the ph changing when ingredients are mixed?
+    - Blending ingredients together present a change in the ph?
+    - Items together ph change
+
+- intent: inform_why_only_these_select
+  examples: |
+    - Why are we selecting only 2 solutions? 
+    - Why can't I select other items?
+    - Why can’t I select more than two solutions?
+    - Is it possible to select more than two solutions?
+    - Why any two items I have to select?
+    - Why do I have to select two acids?
+    - Why do I have to select two bases?
+    - Why do I need to select what you tell me?
+    - Why can't I choose more ingredients?
+    - Is it possible to choose more ingredients now?
+
+- intent: inform_why_this_test
+  examples: |
+    - What kind of test is it? 
+    - What type of experiment is it?
+    - What is the use of this experiment?
+    - How can this experiment be useful?
+    - How is the experiment useful for me?
+    - Why do we do this procedure?
+    - Why do we follow this procedure?
+
+- intent: next_step_information
+  examples: |
+    - Now what do I have to do? 
+    - What should I do next?
+    - How do I continue?
+    - How can I proceed?
+    - How to continue?
+    - What do I do now? 
+    - Now what?
+    - What’s next?
+    - What is the next step?
+    - I'm stuck
+    - How can I proceed?
+    - Can I go back?
+
+
+
 
 - lookup: color
   examples: |

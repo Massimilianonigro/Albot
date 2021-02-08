@@ -46,6 +46,10 @@ class StateMachine:
             utterance_array.append(question_explanation)
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
+        elif intent['intent']['name'] == "next_step_information":
+            utterance_array = self._append_utterances(utterance_array,['next_step_introduction'])
         return new_pending_question,next_state,utterance_array
 
     def acid_selection(self,intent,current_state,pending_question):
@@ -58,11 +62,15 @@ class StateMachine:
             return new_pending_question,next_state,utterance_array
         if intent['intent']['name'] == "wait_ended":
             utterance_array = self._append_utterances(utterance_array,['acid_selection'])
-        if intent['intent']['name'] == "clicked_next":
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
+        elif intent['intent']['name'] == "clicked_next":
             utterance_array = self._append_utterances(utterance_array,['base_selection'])
             next_state = State.BASE_SELECTION
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
+        elif intent['intent']['name'] == "next_step_information":
+            utterance_array = self._append_utterances(utterance_array,['next_step_acid'])
         return new_pending_question,next_state,utterance_array
     
     def base_selection(self,intent,current_state,pending_question):
@@ -76,8 +84,12 @@ class StateMachine:
         if intent['intent']['name'] == "clicked_next":
             utterance_array = self._append_utterances(utterance_array,['water_selection_explanation'])
             next_state = State.WATER_SELECTION
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
+        elif intent['intent']['name'] == "next_step_information":
+            utterance_array = self._append_utterances(utterance_array,['next_step_base'])
         return new_pending_question,next_state,utterance_array
     
     def water_selection(self,intent,current_state,pending_question):
@@ -91,8 +103,12 @@ class StateMachine:
         if intent['intent']['name'] == "clicked_next":
             utterance_array = self._append_utterances(utterance_array,['guided_reasoning_explanation'])
             next_state = State.GUIDED_REASONING
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
+        elif intent['intent']['name'] == "next_step_information":
+            utterance_array = self._append_utterances(utterance_array,['next_step_water'])
         return new_pending_question,next_state,utterance_array
 
     def guided_reasoning(self,intent,current_state,pending_question):
@@ -108,6 +124,12 @@ class StateMachine:
             utterance_array.append(question)
         elif intent['intent']['name'] == "nlu_fallback" and new_pending_question == None:
            utterance_array = self._append_utterances(utterance_array,['fallback'])
+        elif intent['intent']['name'] == "clicked_back":
+            next_state = State.INTRODUCTION_START
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
+        elif intent['intent']['name'] == "next_step_information":
+            utterance_array = self._append_utterances(utterance_array,['next_step_guided'])
         if self.question_handler.get_category_by_id(pending_question) == "other":
             is_answer_correct = self.question_handler.verify_answer(pending_question,intent['intent']['name'])
             if is_answer_correct == 1:
@@ -136,9 +158,16 @@ class StateMachine:
         elif intent['intent']['name'] == "nlu_fallback" and new_pending_question == None:
             utterance_array = self._append_utterances(utterance_array,['fallback'])
         elif intent['intent']['name'] == "clicked_next":
+            new_pending_question = None
             next_state = State.PRACTICE_COLLECTING
             utterance_array = self._append_utterances(utterance_array,['practice_explanation'])
-        elif intent['intent']['name'] != "clicked_next" and intent['intent']['name'][0:7] == "clicked":
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
+        elif intent['intent']['name'] == "clicked_back":
+            next_state = State.INTRODUCTION_START
+        elif intent['intent']['name'] == "next_step_information":
+            utterance_array = self._append_utterances(utterance_array,['next_step_guided'])
+        elif intent['intent']['name'] not in ["clicked_next","clicked_back","clicked_home"] and intent['intent']['name'][0:7] == "clicked":
             utterance_array = self._append_utterances(utterance_array,['color_change_exclamation'])
         if self.question_handler.get_category_by_id(pending_question) == "other":
             is_answer_correct = self.question_handler.verify_answer(pending_question,intent['intent']['name'])
@@ -163,8 +192,12 @@ class StateMachine:
         if intent['intent']['name'] == "clicked_next":
             next_state = State.PRACTICE_CYCLE
             utterance_array = self._append_utterances(utterance_array,['practice_cycle_explanation'])
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
+        elif intent['intent']['name'] == "next_step_practice_collecting":
+            utterance_array = self._append_utterances(utterance_array,['next_step_guided'])
         return new_pending_question,next_state, utterance_array
 
     def practice_cycle(self,intent,current_state,pending_question):
@@ -181,9 +214,16 @@ class StateMachine:
             next_state = State.PRACTICE_CHATBOT_QUESTION 
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback'])
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
         elif intent['intent']['name'] == "wait_ended":
+            new_pending_question = None
             utterance_array = self._append_utterances(utterance_array,['practice_information'])
             next_state = State.PRACTICE_INFORMATION
+        elif intent['intent']['name'] == "clicked_back":
+            next_state = State.PRACTICE_COLLECTING
+        elif intent['intent']['name'] == "next_step_practice_collecting":
+            utterance_array = self._append_utterances(utterance_array,['next_step_practice_cycle'])
         return new_pending_question,next_state,utterance_array
 
     def practice_chatbot_question(self,intent,current_state,pending_question):
@@ -203,6 +243,12 @@ class StateMachine:
         elif intent['intent']['name'] == "clicked_continue":
             utterance_array = self._append_utterances(utterance_array,['practice_information'])
             next_state = State.PRACTICE_INFORMATION
+        elif intent['intent']['name'] == "clicked_back":
+            next_state = State.PRACTICE_COLLECTING
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
+        elif intent['intent']['name'] == "next_step_practice_collecting":
+            utterance_array = self._append_utterances(utterance_array,['next_step_practice_cycle'])
         elif intent['intent']['name'] == "clicked_moreinfo":
             #Now i can give the explanation and set the pending question to None
             explanation = self.question_handler.get_explanation_by_id(pending_question)
@@ -228,8 +274,14 @@ class StateMachine:
             next_state = State.PRACTICE_INFORMATION
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback']) 
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
         elif intent['intent']['name'] == "wait_ended":
             next_state = State.PRACTICE_INFORMATION
+        elif intent['intent']['name'] == "clicked_back":
+            next_state = State.PRACTICE_COLLECTING
+        elif intent['intent']['name'] == "next_step_practice_collecting":
+            utterance_array = self._append_utterances(utterance_array,['next_step_practice_cycle'])
         return new_pending_question,next_state,utterance_array
 
     def practice_information(self,intent,current_state,pending_question):
@@ -247,6 +299,10 @@ class StateMachine:
             utterance_array.append(toAppend)
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback']) 
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
+        elif intent['intent']['name'] == "next_step_practice_collecting":
+            utterance_array = self._append_utterances(utterance_array,['next_step_practice_information'])
         return new_pending_question,next_state,utterance_array
 
     def practice_reset(self,intent,current_state,pending_question):
@@ -262,13 +318,17 @@ class StateMachine:
         elif intent['intent']['name'] == "clicked_reset":
             utterance_array = self._append_utterances(utterance_array,['practice_cycle_explanation']) 
             next_state = State.PRACTICE_CYCLE
-        elif intent['intent']['name'] != "clicked_reset" and intent['intent']['name'] != "clicked_reset" and intent['intent']['name'][0:7] == "clicked":
+        elif intent['intent']['name'] not in ["clicked_reset","clicked_home","clicked_back","clicked_next","clicked_tryagain","clicked_moreinfo"] and intent['intent']['name'][0:7] == "clicked":
             toAppend = "display " + str(intent['intent']['name'][8:])
             utterance_array.append(toAppend)
         elif intent['intent']['name'] == "clicked_next":
             next_state = State.PRACTICE_CLARIFICATION
         elif intent['intent']['name'] == "nlu_fallback":
             utterance_array = self._append_utterances(utterance_array,['fallback']) 
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
+        elif intent['intent']['name'] == "next_step_practice_collecting":
+            utterance_array = self._append_utterances(utterance_array,['next_step_practice_information'])
         return new_pending_question,next_state,utterance_array 
 
     def practice_clarification(self,intent,current_state,pending_question):
@@ -286,6 +346,8 @@ class StateMachine:
             utterance_array = self._append_utterances(utterance_array,['fallback'])
         elif intent['intent']['name'] == "wait_ended":
             utterance_array = self._append_utterances(utterance_array,['end_experience'])
+        elif intent['intent']['name'] == "clicked_home":
+            next_state = State.GREETING
         if self.question_handler.get_category_by_id(pending_question) == "other":
             is_answer_correct = self.question_handler.verify_answer(pending_question,intent['intent']['name'])
             if is_answer_correct == 1:
