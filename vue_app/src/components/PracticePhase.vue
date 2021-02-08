@@ -25,11 +25,15 @@
         class="wrong">
         <button 
           v-on:click="tryAgainButton"
-          class="try-again-btn" >
+          class="try-again-btn">
         </button>
         <button 
           v-on:click="moreInfoButton"
-          class="info-btn" >
+          class="info-btn">
+        </button>
+        <button 
+          v-on:click="continueFailButton"
+          class="continue-btn">
         </button>
       </div>
 
@@ -98,7 +102,7 @@ export default {
       pouredPh: -1,
       pouredIndex: -1,      
       showCompliment: false,
-      showTryAgain: false,
+      showTryAgain: true,
       showInfo: false,
       showReset: false,
       settingsArray: [
@@ -173,6 +177,10 @@ export default {
     },
     continueButton(){
       this.showCompliment = false;
+      this.$emit("continuePress");
+    },
+    continueFailButton(){
+      this.showTryAgain = false;
       this.$emit("continuePress");
     },
     tryAgainButton(){
@@ -390,7 +398,7 @@ a {
   position: absolute;
 	z-index: 2;
   left: 20%;
-  top: 19%;
+  top: 12%;
   width: 57%;
   height: 30%;
   margin: auto;
@@ -438,10 +446,31 @@ a {
   outline: none;
 }
 
+.continue-btn{
+  position: absolute;
+	z-index: 4;
+  left: 20%;
+  top: 95%;
+  width: 57%;
+  height: 30%;
+  margin: auto;
+  border: none;
+  background-color: transparent;
+	background-position-y: center;
+	background-position-x: center;
+	background-repeat: no-repeat;
+  background-size: contain;
+	background-image: url("../assets/uibuttons/ContinueFail.png");
+  outline: none;
+}
+
+.continue-btn:active,
 .info-btn:active,
 .try-again-btn:active{
   opacity: 0.7;
 }
+
+.continue-btn:focus,
 .info-btn:focus,
 .try-again-btn:focus{
   outline: none;
