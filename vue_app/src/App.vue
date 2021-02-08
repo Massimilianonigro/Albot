@@ -16,7 +16,7 @@
         v-on:nextPracticeClicked="handleNextPracticeClick"
         v-on:tryAgainClicked="handleTryAgainClick"
         v-on:continueClicked="handleContinueClick"
-        v-on:showTryAgain="showTryAgain"
+        v-on:showTryAgain="displayTryAgain"
       />
       <GameScreen 
       ref="gameRef"
@@ -110,8 +110,8 @@ export default {
     handleContinueClick(){
       this.sendMessage('{"highlighted":"continue", "text":""}')
     },
-    showTryAgain(){
-      this.$refs.gameRef.showTryAgain()
+    displayTryAgain(){
+      this.$refs.gameRef.displayTryAgain()
     },
     addPractisePoints(){
           console.log("Adding Points")
