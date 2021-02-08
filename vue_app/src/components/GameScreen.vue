@@ -46,6 +46,7 @@
         v-on:backPress="prevScreen" 
         v-on:continuePress="continueClick"
         v-on:tryAgainPress="tryAgainClick"
+        v-on:infoPress="infoClick"
       />
     </div>
   </div>
@@ -270,6 +271,7 @@ export default {
     prevScreen() {
       this.items.forEach(element => element.selected = false);
       this.gameStatus -= 1;
+      this.$emit("goBack");
     },
     homeScreen() {
       this.$emit("goHome");

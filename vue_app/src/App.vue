@@ -23,6 +23,7 @@
         :style="{overflow:'visible'}"
         v-bind:gameType="mainStatus" 
         v-on:goHome="resetHome" 
+        v-on:goBack="sendBackClick" 
         v-on:practicePress="handlePracticePress"
         v-on:introClick="sendIntroductoryJSON"
         v-on:practClick="sendPracticeJSON"
@@ -63,6 +64,7 @@ export default {
   methods: {
     resetHome() {
       this.mainStatus = 0;
+      this.sendHomeClick();
     },
     startIntroduction() {
       this.sendIntroductoryJSON();
@@ -85,6 +87,12 @@ export default {
     handleNextClick(){
       this.$refs.gameRef.nextClicked();
       this.sendMessage('{"highlighted":"next", "text":""}')
+    },
+    sendBackClick(){
+      this.sendMessage('{"highlighted":"back", "text":""}')
+    },
+    sendHomeClick(){
+      this.sendMessage('{"highlighted":"home", "text":""}')
     },
     handlePracticePress(){
       this.sendMessage('{"highlighted":"next", "text":""}')

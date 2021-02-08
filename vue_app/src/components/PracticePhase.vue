@@ -179,7 +179,7 @@ export default {
       this.showTryAgain = false;
       this.$emit("tryAgainPress");
     },
-    infoButton(){
+    moreInfoButton(){
       if(this.showInfo)
         this.$emit("infoPress");
       this.showInfo = false;
