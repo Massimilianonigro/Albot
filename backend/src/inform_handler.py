@@ -16,6 +16,8 @@ class InformHandler:
        return rand.choices(self.utterances['ph_explanation'])[0]
     
     def inform_ph_property(self,intent):
+        if len(intent['entities']) == 0:
+           return "Did not understand the ph entity you want info about" 
         if intent['entities'][0]["value"][0:4] == 'base':
             return rand.choices(self.utterances['base_explanation'])[0]
         elif intent['entities'][0]["value"][0:4] == 'acid':
@@ -56,10 +58,8 @@ class InformHandler:
     def inform_color_change(self,intent):
         color = self._get_color_used(intent)
         ingredient = self._get_ingredient_used(intent)
-        ph = self._get_ingredient_ph(ingredient)
         if color != None and ingredient != None:
-            #NLU recognized both the ingredient and the color
-            #TODO: Add filtering on color if needed
+            ph = self._get_ingredient_ph(ingredient)
             if ph == 7:
                 return ingredient + " did not change the color of the solution because it is neutral"
             elif ph > 7:
@@ -76,6 +76,30 @@ class InformHandler:
             elif ph < 7:
                 return ingredient + " is an acid hence it changed the color of the solution in this way" 
         return rand.choices(self.utterances['cabbage_solution_explanation'])[0]
+    
+    def inform_ph_cabbage_solution(self,intent):
+        return "Cabbage Solution is at about pH 7. But also it’s exact color you get depends on the pH of the water."
+    
+    def inform_every_liq_ph(self,intent):
+        return "Most definitely. Since pH is the measure of The potential of hydrogen ions in a substance a liquid that doesn't contain any hydrogen protons will most likely not have pH ."
+    
+    def inform_why_not_item_mixed(self,intent):
+        return "You can mix the items, but the ph level will not be consistent, because the mixing of items changes the ph value of the mixtures depending on the specific item properties and quantities."
+    
+    def inform_other_way_to_measure_ph(self,intent):
+        return "Cabbage juice contains a special molecule called anthocyanin ( an organic compound called a flavin), which gives red cabbage its colour. Anthocyanin is also found in blueberries, grapes and lots of other plants. When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green.We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour. Other pH indicators are litmus paper and phenolphthalein."
+    
+    def inform_cabbage_at_home(self,intent):
+        return "Yes you have to blend the purple cabbage in the mixer or blender and extract the juice, remember to ask for an adult for help."
+    
+    def inform_ph_change_on_item_measure(self,intent):
+        return "Yes, it changes, but pH is a logarithmic measurement, so directly averaging them doesn't give correct values"
+    
+    def inform_why_only_these_select(self,intent):
+        return "By selecting two items, I want to demonstrate to you how we can proceed in the experiment and also I want to share some basic information about PH level in chemistry which is interesting to know."
+    
+    def inform_why_this_test(self,intent):
+        return "It is the experiment to learn the PH level. With PH level you can understand the concept of acidic and basic"
     
     #Returns None if no color is found, the color otherwise
     def _get_color_used(self,intent):
@@ -102,4 +126,12 @@ class InformHandler:
             'inform_cabbage_solution':inform_cabbage_solution,
             'inform_color_change': inform_color_change,
             'inform_ingredient_property': inform_ingredient_property,
+            'inform_ph_cabbage_solution': inform_ph_cabbage_solution,
+            'inform_every_liq_ph': inform_every_liq_ph,
+            'inform_why_not_item_mixed':inform_why_not_item_mixed,
+            'inform_other_way_to_measure_ph': inform_other_way_to_measure_ph,
+            'inform_cabbage_at_home':inform_cabbage_at_home,
+            'inform_ph_change_on_item_measure':inform_ph_change_on_item_measure,
+            'inform_why_only_these_select': inform_why_only_these_select,
+            'inform_why_this_test':inform_why_this_test,
         }

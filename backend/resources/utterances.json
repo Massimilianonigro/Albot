@@ -118,5 +118,31 @@
 
     "practice_cycle_explanation": [
         "Here you can see all the selected items on the table. By clicking on the each items, you can mix it with the cabbage solution to check PH level."
+    ],
+
+    "next_step_introduction":[
+        "You will need to select two acid items, and then click next"
+    ],
+
+    "next_step_acid":[
+        "After having selected two of the acid items of your choice just press next"
+    ],
+    "next_step_base":[
+        "After having selected two of the basic items of your choice just press next"
+    ],
+    "next_step_water":[
+        "After having selected the water just press next"
+    ],
+    "next_step_guided":[
+        "After having poured all the items in the respective cabbage solution, you can click the practise lesson button to go on"
+    ],
+    "next_step_practice_collecting":[
+        "After having collected all the items of your choice you can press next"
+    ],
+    "next_step_practice_cycle":[
+        "You can either question me or answer the incoming questions, if i ask you a question answer the best way you can then pressing the continue button will make you go to the next phase"
+    ],
+    "next_step_practice_information":[
+        "You can reset the solution to try another time or you can wait for the end of the experience"
     ]
 }

@@ -2,8 +2,8 @@ import asyncio
 import websockets
 import dialogue_manager as dm
 from model_extractor import load_interpreter
-
-model_directory_path = './NLUmodule/models'
+from pathlib import Path
+model_directory_path = Path().joinpath('./NLUmodule/models')
 
 class Handler():
     def __init__(self):
