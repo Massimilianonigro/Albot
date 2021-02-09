@@ -329,6 +329,8 @@ class StateMachine:
             utterance_array = self._append_utterances(utterance_array,['fallback']) 
         elif intent['intent']['name'] == "clicked_home":
             next_state = State.GREETING
+        elif intent['intent']['name'] == "clicked_back":
+            next_state = State.PRACTICE_COLLECTING
         elif intent['intent']['name'] == "next_step_practice_collecting":
             utterance_array = self._append_utterances(utterance_array,['next_step_practice_information'])
         return new_pending_question,next_state,utterance_array 
@@ -350,6 +352,8 @@ class StateMachine:
             utterance_array = self._append_utterances(utterance_array,['end_experience'])
         elif intent['intent']['name'] == "clicked_home":
             next_state = State.GREETING
+        elif intent['intent']['name'] == "clicked_back":
+            next_state = State.PRACTICE_COLLECTING
         if self.question_handler.get_category_by_id(pending_question) == "other":
             is_answer_correct = self.question_handler.verify_answer(pending_question,intent['intent']['name'])
             if is_answer_correct == 1:
