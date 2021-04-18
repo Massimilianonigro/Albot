@@ -1,119 +1,152 @@
 {
-    "gamification": [
-        {
-            "color_defining":{
-                "base": "Try to get the cabbage solution to turn in this specific ",
-                "values":[
-                     {
-                         "id": 0,
-                         "option": "light green",
-                         "answer": "clicked_8",
-                         "explanation": "Adding lemon juice will turn the solution light green"
-                     },
-                     {
-                         "id": 1,
-                         "option": "light orange",
-                         "answer": "clicked_7",
-                         "explanation": "Adding cola will turn the solution light orange"
-                     },
-                     {   "id": 2,
-                         "option": "purple",
-                         "answer": "clicked_1",
-                         "explanation": "Adding Baking soda will turn the solution purple"
-                     }
-                ]
+    "gamification": {
+        "explanation": false,
+        "more_info": true,
+        "positive_responses": [
+            "chatbot_appreciation",
+            "grant_points"
+        ],
+        "negative_responses": [
+            "wrong_answer",
+            "try_again"
+        ],
+        "questions": [
+            {
+                "color_defining": {
+                    "base": "Try to get the cabbage solution to turn in this specific ",
+                    "values": [
+                        {
+                            "id": 0,
+                            "option": "light green",
+                            "answer": "clicked_8",
+                            "explanation": "Adding lemon juice will turn the solution light green"
+                        },
+                        {
+                            "id": 1,
+                            "option": "light orange",
+                            "answer": "clicked_7",
+                            "explanation": "Adding cola will turn the solution light orange"
+                        },
+                        {
+                            "id": 2,
+                            "option": "purple",
+                            "answer": "clicked_1",
+                            "explanation": "Adding Baking soda will turn the solution purple"
+                        }
+                    ]
+                }
             },
-            "number_defining":{
-                "base": "Can you add the item which have PH Level of ",
-                "values":[
-                    {   
-                        "id": 3,
-                        "option": "2",
-                        "answer": "clicked_8",
-                        "explanation": "The element with ph 2 is lemon juice"
-                    },
-                    {
-                        "id": 4,
-                        "option":"7",
-                        "answer":"clicked_10",
-                        "explanation": "The element with ph 7 is pure water"
-                    },
-                    {
-                        "id": 5,
-                        "option": "3",
-                        "answer": "clicked_7",
-                        "explanation": "The item that has ph 3 is cola"
-                    },
-                    {
-                        "id": 6,
-                        "option":"6",
-                        "answer":"clicked_9",
-                        "explanation": "The item which possess a ph of 6 is milk"
-                    },
-                    {  
-                        "id": 7,
-                        "option":"13",
-                        "answer":"clicked_5",
-                        "explanation": "The ingredient which has the ph of 13 is the oven cleaner"
-                    }
-                ]
+            {
+                "number_defining": {
+                    "base": "Can you add the item which have PH Level of ",
+                    "values": [
+                        {
+                            "id": 3,
+                            "option": "2",
+                            "answer": "clicked_8",
+                            "explanation": "The element with ph 2 is lemon juice"
+                        },
+                        {
+                            "id": 4,
+                            "option": "7",
+                            "answer": "clicked_10",
+                            "explanation": "The element with ph 7 is pure water"
+                        },
+                        {
+                            "id": 5,
+                            "option": "3",
+                            "answer": "clicked_7",
+                            "explanation": "The item that has ph 3 is cola"
+                        },
+                        {
+                            "id": 6,
+                            "option": "6",
+                            "answer": "clicked_9",
+                            "explanation": "The item which possess a ph of 6 is milk"
+                        },
+                        {
+                            "id": 7,
+                            "option": "13",
+                            "answer": "clicked_5",
+                            "explanation": "The ingredient which has the ph of 13 is the oven cleaner"
+                        }
+                    ]
+                }
             },
-            "nature_defining":{
-                "base": "What is the difference between the PH Nature of ",
-                "values": [
-                    {   
-                        "id": 8,
-                        "option": "Lemon Juice and Milk",
-                        "answer": "acid_acid_compare",
-                        "explanation":"They are both acids, but one is more acidic than the other"
-                    },
-                    {   
-                        "id": 9,
-                        "option": "Oven Cleaner and Cola",
-                        "answer":"basic_acid_compare",
-                        "explanation": "One of the two is a base another is an acid"
-                    },
-                    {
-                        "id": 10,
-                        "option": "Oven Cleaner and Egg White",
-                        "answer":"basic_basic_compare",
-                        "explanation": "They are both bases but have different ph"
-                    },
-                    {   
-                        "id": 11,
-                        "option":"Pure Water and Baking Soda",
-                        "answer": "neutral_basic_compare",
-                        "explanation": "Pure water is a neutral substance while baking soda is a base"
-                    },
-                    {   
-                        "id": 12,
-                        "option": "Pure Water and Vinegar",
-                        "answer": "neutral_acid_compare",
-                        "explanation": "Pure water is a neutral substance while vinegar is an acid one"
-                    }
-                ]
+            {
+                "nature_defining": {
+                    "base": "What is the difference between the PH Nature of ",
+                    "values": [
+                        {
+                            "id": 8,
+                            "option": "Lemon Juice and Milk",
+                            "answer": "acid_acid_compare",
+                            "explanation": "They are both acids, but one is more acidic than the other"
+                        },
+                        {
+                            "id": 9,
+                            "option": "Oven Cleaner and Cola",
+                            "answer": "basic_acid_compare",
+                            "explanation": "One of the two is a base another is an acid"
+                        },
+                        {
+                            "id": 10,
+                            "option": "Oven Cleaner and Egg White",
+                            "answer": "basic_basic_compare",
+                            "explanation": "They are both bases but have different ph"
+                        },
+                        {
+                            "id": 11,
+                            "option": "Pure Water and Baking Soda",
+                            "answer": "neutral_basic_compare",
+                            "explanation": "Pure water is a neutral substance while baking soda is a base"
+                        },
+                        {
+                            "id": 12,
+                            "option": "Pure Water and Vinegar",
+                            "answer": "neutral_acid_compare",
+                            "explanation": "Pure water is a neutral substance while vinegar is an acid one"
+                        }
+                    ]
+                }
             }
-        }
-    ],
-
-    "other":[{
-        "ph_related":{
-            "base": "What is ph?",
-            "values":[{
-                "id": 13,
-                "option":"",
-                "answer":"ph_answer",
-                "explanation":"Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base."
-            }]
-        },
-        "cabbage_related":{
-            "base":"Why do we use the cabbage solution?",
-            "values":[{
-                "id": 14,
-                "option": "",
-                "answer": "cabbage_answer",
-                "explanation":"When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green. We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour."
-            }]
-        }
-    }]
+        ]
+    },
+    "other": {
+        "explanation": true,
+        "positive_responses": [
+            "chatbot_appreciation"
+        ],
+        "negative_responses": [
+            "wrong_answer"
+        ],
+        "questions": [
+            {
+                "ph_related": {
+                    "base": "What is ph?",
+                    "values": [
+                        {
+                            "id": 13,
+                            "option": "",
+                            "answer": "ph_answer",
+                            "explanation": "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base."
+                        }
+                    ]
+                }
+            },
+            {
+                "cabbage_related": {
+                    "base": "Why do we use the cabbage solution?",
+                    "values": [
+                        {
+                            "id": 14,
+                            "option": "",
+                            "answer": "cabbage_answer",
+                            "explanation": "When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green. We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour."
+                        }
+                    ]
+                }
+            }
+        ]
+    }
 }

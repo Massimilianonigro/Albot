@@ -3,64 +3,65 @@ import websockets
 import dialogue_manager as dm
 from model_extractor import load_interpreter
 from pathlib import Path
-model_directory_path = Path().joinpath('./NLUmodule/models')
 
-class Handler():
+model_directory_path = Path().joinpath("./NLUmodule/models")
+
+
+class Handler:
     def __init__(self):
         self.counter = 0
         self.connected = {}
-        self.dialogue_manager =  dm.DialogueManager(load_interpreter(model_directory_path),self)
-    
-    async def handle(self,websocket,path):
+        self.dialogue_manager = dm.DialogueManager(
+            load_interpreter(model_directory_path), self
+        )
+
+    async def handle(self, websocket, path):
         while True:
             try:
                 if websocket not in self.connected.values():
                     await self.register(websocket)
                 message = await websocket.recv()
-                await self.handle_message(websocket,message)
+                await self.handle_message(websocket, message)
             except websockets.ConnectionClosed:
                 await self.unregister(websocket)
-                break 
+                break
 
-    async def register(self,websocket):
+    async def register(self, websocket):
         print("Registering user")
-        self.counter = self.counter + 1 
+        self.counter = self.counter + 1
         self.connected[self.counter] = websocket
         await self.dialogue_manager.add_user(self.counter)
 
-
-
-    async def unregister(self,websocket):
-        for key, item in self.connected.items(): 
-            if item is websocket: 
-                del self.connected[key] 
+    async def unregister(self, websocket):
+        for key, item in self.connected.items():
+            if item is websocket:
+                del self.connected[key]
                 break
 
-    async def handle_message(self,websocket,message):
-        user_id = -1 
-        for key, item in self.connected.items(): 
-            if item is websocket: 
+    async def handle_message(self, websocket, message):
+        user_id = -1
+        for key, item in self.connected.items():
+            if item is websocket:
                 user_id = key
-                break 
+                break
         if user_id == -1:
             raise RuntimeError("Message handled is sent from unregistered user")
-        response = self.dialogue_manager.chatbot_receives_message(message,user_id)
+        response = self.dialogue_manager.chatbot_receives_message(message, user_id)
         if response != None:
-            print("sending " +str(response))
+            print("sending " + str(response))
             await websocket.send(response)
 
-    #Check how to behave with the other send/recv 
-    async def send_message(self,user_id,message):
+    # Check how to behave with the other send/recv
+    async def send_message(self, user_id, message):
         websocket = self.connected[user_id]
         print(message)
         if message != None:
             await websocket.send(message)
 
-    
+
 if __name__ == "__main__":
     handler = Handler()
-    start_server = websockets.serve(handler.handle, 'localhost', 2345)
+    start_server = websockets.serve(handler.handle, "localhost", 2345)
     print("Server started on localhost:2345")
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()
-   

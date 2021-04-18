@@ -1,0 +1,529 @@
+{
+    "waiting_time": 5,
+    "question_multiplier": 2,
+    "state_machine": [
+        {
+            "state": {
+                "__enum__": "State.GREETING"
+            },
+            "utterances": [
+                {
+                    "intent": "connected",
+                    "to_send_back": [
+                        "greeting",
+                        "introduction_explanation"
+                    ]
+                },
+                {
+                    "intent": "clicked_practice",
+                    "to_send_back": [
+                        "practice_explanation"
+                    ],
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_COLLECTING"
+                    }
+                },
+                {
+                    "intent": "clicked_introduction",
+                    "to_send_back": [
+                        "introduction_explanation"
+                    ],
+                    "next_state": {
+                        "__enum__": "State.INTRODUCTION_START"
+                    }
+                }
+            ]
+        },
+        {
+            "state": {
+                "__enum__": "State.INTRODUCTION_START"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_introduction"
+                    ]
+                }
+            ],
+            "child_question": true,
+            "waiting": true
+        },
+        {
+            "state": {
+                "__enum__": "State.ACID_SELECTION"
+            },
+            "utterances": [
+                {
+                    "intent": "wait_ended",
+                    "to_send_back": [
+                        "acid_selection"
+                    ]
+                },
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_next",
+                    "to_send_back": [
+                        "base_selection"
+                    ],
+                    "next_state": {
+                        "__enum__": "State.BASE_SELECTION"
+                    }
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_acid"
+                    ]
+                }
+            ],
+            "child_question": true
+        },
+        {
+            "state": {
+                "__enum__": "State.BASE_SELECTION"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    }
+                },
+                {
+                    "intent": "clicked_next",
+                    "to_send_back": [
+                        "water_selection_explanation"
+                    ],
+                    "next_state": {
+                        "__enum__": "State.WATER_SELECTION"
+                    }
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_base"
+                    ]
+                }
+            ],
+            "child_question": true
+        },
+        {
+            "state": {
+                "__enum__": "State.WATER_SELECTION"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    }
+                },
+                {
+                    "intent": "clicked_next",
+                    "to_send_back": [
+                        "guided_reasoning_explanation"
+                    ],
+                    "next_state": {
+                        "__enum__": "State.GUIDED_REASONING"
+                    }
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_water"
+                    ]
+                }
+            ],
+            "child_question": true
+        },
+        {
+            "state": {
+                "__enum__": "State.GUIDED_REASONING"
+            },
+            "utterances": [
+                {
+                    "intent": "chatbot_question",
+                    "question_type": "other"
+                },
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_back",
+                    "next_state": {
+                        "__enum__": "State.INTRODUCTION_START"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_guided"
+                    ]
+                }
+            ],
+            "click_object_reaction": [
+                "color_change_exclamation"
+            ],
+            "child_question": true,
+            "child_answer": "other",
+            "optional": true
+        },
+        {
+            "state": {
+                "__enum__": "State.GUIDED_POURING"
+            },
+            "utterances": [
+                {
+                    "intent": "chatbot_question",
+                    "question_type": "other"
+                },
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_next",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_COLLECTING"
+                    },
+                    "to_send_back": [
+                        "practice_explanation"
+                    ],
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_back",
+                    "next_state": {
+                        "__enum__": "State.INTRODUCTION_START"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_guided"
+                    ]
+                }
+            ],
+            "child_question": true,
+            "child_answer": "other",
+            "click_object_reaction": [
+                "color_change_exclamation"
+            ],
+            "optional": true,
+            "cycle": true
+        },
+        {
+            "state": {
+                "__enum__": "State.PRACTICE_COLLECTING"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_next",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_CYCLE"
+                    },
+                    "to_send_back": [
+                        "practice_cycle_explanation"
+                    ]
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_practice_collecting"
+                    ]
+                }
+            ],
+            "child_question": true
+        },
+        {
+            "state": {
+                "__enum__": "State.PRACTICE_CYCLE"
+            },
+            "utterances": [
+                {
+                    "intent": "chatbot_question",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_CHATBOT_QUESTION"
+                    },
+                    "question_type": "gamification"
+                },
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_back",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_COLLECTING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "wait_ended",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_INFORMATION"
+                    },
+                    "to_send_back": [
+                        "practice_information"
+                    ],
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_practice_collecting"
+                    ]
+                }
+            ],
+            "child_question": true,
+            "optional": true,
+            "cycle": true
+        },
+        {
+            "state": {
+                "__enum__": "State.PRACTICE_CHATBOT_QUESTION"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_tryagain",
+                    "question_type": "gamification"
+                },
+                {
+                    "intent": "clicked_continue",
+                    "to_send_back": [
+                        "practice_information"
+                    ],
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_INFORMATION"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_back",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_COLLECTING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_practice_cycle"
+                    ]
+                },
+                {
+                    "intent": "clicked_moreinfo",
+                    "child_answer": "gamification",
+                    "new_pending_question": null
+                }
+            ],
+            "child_question": true,
+            "cycle": true
+        },
+        {
+            "state": {
+                "__enum__": "State.PRACTICE_CHILD_QUESTION"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_back",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_COLLECTING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "wait_ended",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_INFORMATION"
+                    }
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_practice_cycle"
+                    ]
+                }
+            ],
+            "child_question": true,
+            "cycle": true,
+            "waiting": true
+        },
+        {
+            "state": {
+                "__enum__": "State.PRACTICE_INFORMATION"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_back",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_COLLECTING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "wait_ended",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_RESET"
+                    }
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_practice_cycle"
+                    ]
+                }
+            ],
+            "child_question": true,
+            "click_object_reaction": [
+                "molecular_formula"
+            ],
+            "display": true,
+            "waiting": true
+        },
+        {
+            "state": {
+                "__enum__": "State.PRACTICE_RESET"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_back",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_COLLECTING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_next",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_CLARIFICATION"
+                    }
+                },
+                {
+                    "intent": "clicked_reset",
+                    "to_send_back": [
+                        "practice_cycle_explanation"
+                    ],
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_CYCLE"
+                    }
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_practice_information"
+                    ]
+                }
+            ],
+            "child_question": true,
+            "click_object_reaction": [
+                "molecular_formula"
+            ],
+            "display": true
+        },
+        {
+            "state": {
+                "__enum__": "State.PRACTICE_CLARIFICATION"
+            },
+            "utterances": [
+                {
+                    "intent": "chatbot_question",
+                    "question_type": "other"
+                },
+                {
+                    "intent": "wait_ended",
+                    "to_send_back": [
+                        "end_experience"
+                    ]
+                },
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_back",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_COLLECTING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_practice_information"
+                    ]
+                }
+            ],
+            "child_question": true,
+            "child_answer": "other",
+            "click_object_reaction": "molecular_formula",
+            "display": true,
+            "cycle": true,
+            "optional": true
+        }
+    ]
+}

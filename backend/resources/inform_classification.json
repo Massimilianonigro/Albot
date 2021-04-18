@@ -1,0 +1,112 @@
+{
+    "inform_ph": [
+        {
+            "explanation": "ph_explanation"
+        }
+    ],
+    "inform_ph_property": [
+        {
+            "entity_name": "acid",
+            "explanation": "acid_explanation"
+        },
+        {
+            "entity_name": "base",
+            "explanation": "base_explanation"
+        },
+        {
+            "explanation": "general_ph_property_explanation"
+        }
+    ],
+    "inform_cabbage_solution": [
+        {
+            "explanation": "cabbage_solution_explanation"
+        }
+    ],
+    "inform_color_change": [
+        {
+            "entity_group": "acid",
+            "explanation": "acid_color_change_explanation"
+        },
+        {
+            "entity_group": "base",
+            "explanation": "base_color_change_explanation"
+        },
+        {
+            "entity_group": "neutral",
+            "explanation": "neutral_color_change_explanation"
+        },
+        {
+            "entity_group": "ingredient",
+            "explanation": "ingredient_color_change_explanation"
+        },
+        {
+            "explanation": "ingredient_color_change_explanation"
+        }
+    ],
+    "inform_ingredient_property": [
+        {
+            "entity_group": "acid",
+            "explanation": "acid_ingredient_explanation"
+        },
+        {
+            "entity_group": "base",
+            "explanation": "base_ingredient_explanation"
+        },
+        {
+            "entity_group": "neutral",
+            "explanation": "neutral_ingredient_explanation"
+        },
+        {
+            "entity_group": "ingredient",
+            "explanation": "general_ingredient_explanation"
+        },
+        {
+            "explanation": "general_ingredient_explanation"
+        }
+    ],
+    "inform_ph_cabbage_solution": [
+        {
+            "explanation": "ph_cabbage_solution_explanation"
+        }
+    ],
+    "inform_every_liq_ph": [
+        {
+            "explanation": "inform_every_liq_ph_explanation"
+        }
+    ],
+    "inform_why_not_item_mixed": [
+        {
+            "explanation": "inform_why_not_item_mixed_explanation"
+        }
+    ],
+    "inform_other_way_to_measure_ph": [
+        {
+            "explanation": "inform_other_way_to_measure_ph_explanation"
+        }
+    ],
+    "inform_cabbage_at_home": [
+        {
+            "explanation": "inform_cabbage_at_home_explanation"
+        }
+    ],
+    "inform_ph_change_on_item_measure": [
+        {
+            "explanation": "inform_ph_change_on_item_measure_explanation"
+        }
+    ],
+    "inform_why_only_these_select": [
+        {
+            "explanation": "inform_why_only_these_select_explanation"
+        }
+    ],
+    "inform_why_this_test": [
+        {
+            "explanation": "inform_why_this_test_explanation"
+        }
+    ],
+    "inform_collecting_items": [
+        {
+            "explanation": "inform_collecting_items_explanation"
+        }
+    ]
+}
