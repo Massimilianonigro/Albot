@@ -167,28 +167,28 @@
         "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base."
     ],
     "acid_color_change_explanation": [
-        "acid_color_change"
+        "Purple cabbage juice turns red when it mixes with something acidic"
     ],
     "base_color_change_explanation": [
-        "base_color_change"
+        "Purple cabbage juice turns green when it mixes with something basic"
     ],
     "neutral_color_change_explanation": [
-        "neutral_color_change"
+        "A neutral substance does not trigger a color change in the cabbage solution"
     ],
     "ingredient_color_change_explanation": [
-        "ingredient_color_change"
+        "Purple cabbage juice turns red when it mixes with something acidic. Purple cabbage juice turns green when it mixes with something basic.A neutral substance does not trigger a color change in the cabbage solution"
     ],
     "acid_ingredient_explanation": [
-        "acid_ingredient_explanation"
+        "A solution with a sour-taste and low pH value."
     ],
     "base_ingredient_explanation": [
-        "base_ingredient_explanation"
+        "A solution with a sweet taste and high pH value."
     ],
     "neutral_ingredient_explanation": [
-        "neutral_ingredient_explanation"
+        "A neutral substance has a ph of 7 hence it is neither acid nor basic"
     ],
     "general_ingredient_explanation": [
-        "neutral_ingredient_explanation"
+        "An acid is a solution with a sour-taste and low pH value. A base is asolution with a sweet taste and high pH value.A neutral substance has a ph of 7 hence it is neither acid nor basic"
     ],
     "ph_cabbage_solution_explanation": [
         "Cabbage Solution is at about pH 7. But also it’s exact color you get depends on the pH of the water."
@@ -215,6 +215,6 @@
         "It is the experiment to learn the PH level. With PH level you can understand the concept of acidic and basic"
     ],
     "inform_collecting_items_explanation": [
-        "inform_collecting_items_explanation"
+        "In the introduction phase you can collect only 2 acidic items, 2 basic items and a neutral one(water).In the practice part you are free to collect as many items as you want"
     ]
 }
