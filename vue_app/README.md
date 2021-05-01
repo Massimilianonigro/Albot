@@ -1,5 +1,5 @@
-# albot2
-
+# Frontend
+Frontend implementation for the albot project, built leveraging vue.js.
 ## Project setup
 ```
 npm install
