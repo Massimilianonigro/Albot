@@ -1,4 +1,4 @@
-from state import State
+from albot_backend.state import State
 import json
 
 

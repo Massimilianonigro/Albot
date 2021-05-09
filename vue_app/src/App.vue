@@ -7,9 +7,9 @@
       />
     </div>
     <div v-else>
-      <Chat 
-        ref="chatRef" 
-        :style="{zIndex:'20'}"
+      <Chat
+        ref="chatRef"
+        :style="{ zIndex: '20' }"
         v-on:sendMessage="sendMessage"
         v-on:addPoints="addPractisePoints"
         v-on:nextClicked="handleNextClick"
@@ -18,12 +18,12 @@
         v-on:continueClicked="handleContinueClick"
         v-on:showTryAgain="displayTryAgain"
       />
-      <GameScreen 
-      ref="gameRef"
-        :style="{overflow:'visible'}"
-        v-bind:gameType="mainStatus" 
-        v-on:goHome="resetHome" 
-        v-on:goBack="sendBackClick" 
+      <GameScreen
+        ref="gameRef"
+        :style="{ overflow: 'visible' }"
+        v-bind:gameType="mainStatus"
+        v-on:goHome="resetHome"
+        v-on:goBack="sendBackClick"
         v-on:practicePress="handlePracticePress"
         v-on:introClick="sendIntroductoryJSON"
         v-on:practClick="sendPracticeJSON"
@@ -37,7 +37,6 @@
         v-on:sendInfoMessage="handleInfoClick"
       />
     </div>
-   
   </div>
 </template>
 
@@ -74,87 +73,87 @@ export default {
       this.sendPracticeJSON();
       this.mainStatus = 3;
     },
-    sendMessage: function(message) {
-      console.log("Sending:" + message)
+    sendMessage: function (message) {
+      console.log("Sending:" + message);
       this.connection.send(message);
     },
-    displayNextButton(){
+    displayNextButton() {
       this.$refs.chatRef.printNextButton();
     },
-    displayNextPracticeButton(){
+    displayNextPracticeButton() {
       this.$refs.chatRef.printNextPracticeButton();
     },
-    handleNextClick(){
+    handleNextClick() {
       this.$refs.gameRef.nextClicked();
-      this.sendMessage('{"highlighted":"next", "text":""}')
+      this.sendMessage('{"highlighted":"next", "text":""}');
     },
-    sendBackClick(){
-      this.sendMessage('{"highlighted":"back", "text":""}')
+    sendBackClick() {
+      this.sendMessage('{"highlighted":"back", "text":""}');
     },
-    sendHomeClick(){
-      this.sendMessage('{"highlighted":"home", "text":""}')
+    sendHomeClick() {
+      this.sendMessage('{"highlighted":"home", "text":""}');
     },
-    handlePracticePress(){
-      this.sendMessage('{"highlighted":"next", "text":""}')
+    handlePracticePress() {
+      this.sendMessage('{"highlighted":"next", "text":""}');
     },
-    handleNextPracticeClick(){
+    handleNextPracticeClick() {
       this.$refs.gameRef.nextPracticeClicked();
-      this.sendMessage('{"highlighted":"next", "text":""}')
+      this.sendMessage('{"highlighted":"next", "text":""}');
     },
-    handleTryAgainClick(){
-      this.sendMessage('{"highlighted":"tryAgain", "text":""}')
+    handleTryAgainClick() {
+      this.sendMessage('{"highlighted":"tryAgain", "text":""}');
     },
-    handleInfoClick(){
-      this.sendMessage('{"highlighted":"moreinfo", "text":""}')
+    handleInfoClick() {
+      this.sendMessage('{"highlighted":"moreinfo", "text":""}');
     },
-    handleContinueClick(){
-      this.sendMessage('{"highlighted":"continue", "text":""}')
+    handleContinueClick() {
+      this.sendMessage('{"highlighted":"continue", "text":""}');
     },
-    displayTryAgain(){
-      this.$refs.gameRef.displayTryAgain()
+    displayTryAgain() {
+      this.$refs.gameRef.displayTryAgain();
     },
-    addPractisePoints(){
-          console.log("Adding Points")
-      this.$refs.gameRef.addPoints()
+    addPractisePoints() {
+      console.log("Adding Points");
+      this.$refs.gameRef.addPoints();
     },
-    sendIntroductoryJSON(){
-      let message = '{"highlighted":"introduction", "text":""}'
+    sendIntroductoryJSON() {
+      let message = '{"highlighted":"introduction", "text":""}';
       this.sendMessage(message);
     },
-    sendPracticeJSON(){
-      let message = '{"highlighted":"practice", "text":""}'
+    sendPracticeJSON() {
+      let message = '{"highlighted":"practice", "text":""}';
       this.sendMessage(message);
     },
-    sendResetClick(){
-      let message = '{"highlighted":"reset", "text":""}'
+    sendResetClick() {
+      let message = '{"highlighted":"reset", "text":""}';
       this.sendMessage(message);
     },
-    sendContinueClick(){
-      let message = '{"highlighted":"Continue", "text":""}'
+    sendContinueClick() {
+      let message = '{"highlighted":"Continue", "text":""}';
       this.sendMessage(message);
     },
-    sendTryAgainClick(){
-      let message = '{"highlighted":"tryagain", "text":""}'
+    sendTryAgainClick() {
+      let message = '{"highlighted":"tryagain", "text":""}';
       this.sendMessage(message);
     },
-    sendItemClick(id){
-      let message = '{"highlighted":"'+ id +'", "text":""}'
+    sendItemClick(id) {
+      let message = '{"highlighted":"' + id + '", "text":""}';
       this.sendMessage(message);
     },
-    handleSelectItem(id){
-      let message = '{"highlighted":"'+ id +'", "text":""}'
-      this.sendMessage(message); 
-    }
+    handleSelectItem(id) {
+      let message = '{"highlighted":"' + id + '", "text":""}';
+      this.sendMessage(message);
+    },
   },
   created: function () {
     console.log("Starting connection to Server...");
     this.connection = new WebSocket("ws://localhost:2345");
 
-    let self = this
+    let self = this;
     this.connection.onmessage = function (event) {
-      let messages = JSON.parse(event.data)
-      console.log(messages)
-      self.$refs.chatRef.receiveMessage(messages)
+      let messages = JSON.parse(event.data);
+      console.log(messages);
+      self.$refs.chatRef.receiveMessage(messages);
     };
 
     this.connection.onopen = function (event) {
@@ -167,13 +166,13 @@ export default {
 
 <style>
 #app {
-  font-family: 'Berlin Sans FB';
+  font-family: "Berlin Sans FB";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #828e99;
 }
-.button-exe{
+.button-exe {
   position: absolute;
   z-index: 100;
   top: 105%;

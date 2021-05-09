@@ -1,5 +1,5 @@
-from state import State
-from state_machine import StateMachine
+from albot_backend.state import State
+from albot_backend.state_machine import StateMachine
 import json
 import random
 import asyncio
@@ -39,6 +39,7 @@ class DialogueManager:
             # The message is now forwarded to the Rasa NLU and an intent comes back
             print("text received " + str(msg["text"]))
             intent = self.model.parse(msg["text"])
+            #Request to do http requests to rasa container
         else:
             # If the length of the text is empty the user acted on the interface selecting an object
             obj = msg["highlighted"].replace(" ", "")

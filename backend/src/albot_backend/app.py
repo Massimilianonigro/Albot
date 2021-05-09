@@ -1,7 +1,7 @@
 import asyncio
 import websockets
-import dialogue_manager as dm
-from model_extractor import load_interpreter
+import albot_backend.dialogue_manager as dm
+from albot_backend.model_extractor import load_interpreter
 from pathlib import Path
 
 model_directory_path = Path().joinpath("./NLUmodule/models")
@@ -59,9 +59,13 @@ class Handler:
             await websocket.send(message)
 
 
-if __name__ == "__main__":
+def main():
     handler = Handler()
-    start_server = websockets.serve(handler.handle, "localhost", 2345)
+    start_server = websockets.serve(handler.handle, "0.0.0.0", 2345)
     print("Server started on localhost:2345")
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()
+
+
+if __name__ == "__main__":
+    main()

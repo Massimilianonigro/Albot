@@ -422,6 +422,15 @@
                     }
                 },
                 {
+                    "intent": "clicked_reset",
+                    "to_send_back": [
+                        "practice_cycle_explanation"
+                    ],
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_CYCLE"
+                    }
+                },
+                {
                     "intent": "next_step_information",
                     "to_send_back": [
                         "next_step_practice_cycle"

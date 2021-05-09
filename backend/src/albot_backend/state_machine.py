@@ -1,9 +1,9 @@
-from state import State
+from albot_backend.state import State
 import json
 import random as rand
-from question_handler import QuestionHandler
-from inform_handler import InformHandler
-from enum_encoder import get_dict
+from albot_backend.question_handler import QuestionHandler
+from albot_backend.inform_handler import InformHandler
+from albot_backend.enum_encoder import get_dict
 
 
 RESOURCES_PATH = "./resources"
@@ -70,7 +70,9 @@ class StateMachine:
             )
             return new_pending_question, next_state, utterance_array
         # Case 5: Intent not understood, fallback
-        if intent_name == "nlu_fallback" or not self._is_intent_click(intent_name):
+        if (
+            intent_name == "nlu_fallback" or not self._is_intent_click(intent_name)
+        ) and intent_name != "wait_ended":
             utterance_array = utterance_array + self._get_utterances(["fallback"])
         return new_pending_question, next_state, utterance_array
 

@@ -1,0 +1,5 @@
+FROM python:3.8-slim-buster
+
+CMD ["python", "-uc", "print (0)\nimport time\nwhile 1:\n\tprint(time.sleep(1))"]
+
+
