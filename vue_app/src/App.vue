@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       message: "",
-      mainStatus: 0,
+      mainStatus: 0, // 0 -> Main Screen, 1 ->
       chatLink: undefined,
     };
   },
@@ -87,29 +87,29 @@ export default {
     },
     handleNextClick(){
       this.$refs.gameRef.nextClicked();
-      this.sendMessage('{"highlighted":"next", "text":""}')
+      this.sendItemClick("next");
     },
     sendBackClick(){
-      this.sendMessage('{"highlighted":"back", "text":""}')
+      this.sendItemClick("back");
     },
     sendHomeClick(){
-      this.sendMessage('{"highlighted":"home", "text":""}')
+      this.sendItemClick("home");
     },
     handlePracticePress(){
-      this.sendMessage('{"highlighted":"next", "text":""}')
+      this.sendItemClick("next");
     },
     handleNextPracticeClick(){
       this.$refs.gameRef.nextPracticeClicked();
-      this.sendMessage('{"highlighted":"next", "text":""}')
+      this.sendItemClick("next");
     },
     handleTryAgainClick(){
-      this.sendMessage('{"highlighted":"tryAgain", "text":""}')
+      this.sendItemClick("tryAgain");
     },
     handleInfoClick(){
-      this.sendMessage('{"highlighted":"moreinfo", "text":""}')
+      this.sendItemClick("moreinfo");
     },
     handleContinueClick(){
-      this.sendMessage('{"highlighted":"continue", "text":""}')
+      this.sendItemClick("continue");
     },
     displayTryAgain(){
       this.$refs.gameRef.displayTryAgain()
@@ -119,32 +119,20 @@ export default {
       this.$refs.gameRef.addPoints()
     },
     sendIntroductoryJSON(){
-      let message = '{"highlighted":"introduction", "text":""}'
-      this.sendMessage(message);
+      this.sendItemClick("introduction")
     },
     sendPracticeJSON(){
-      let message = '{"highlighted":"practice", "text":""}'
-      this.sendMessage(message);
+      this.sendItemClick("practice");
     },
     sendResetClick(){
-      let message = '{"highlighted":"reset", "text":""}'
-      this.sendMessage(message);
-    },
-    sendContinueClick(){
-      let message = '{"highlighted":"Continue", "text":""}'
-      this.sendMessage(message);
-    },
-    sendTryAgainClick(){
-      let message = '{"highlighted":"tryagain", "text":""}'
-      this.sendMessage(message);
+      this.sendItemClick("reset");
     },
     sendItemClick(id){
-      let message = '{"highlighted":"'+ id +'", "text":""}'
+      let message = '{"content":"'+ id +'", "type":"click"}';
       this.sendMessage(message);
     },
     handleSelectItem(id){
-      let message = '{"highlighted":"'+ id +'", "text":""}'
-      this.sendMessage(message); 
+      this.sendItemClick(id);
     },
     handleChangePhase(){
      // change phase

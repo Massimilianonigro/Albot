@@ -1,6 +1,6 @@
 <template>
   <div id="GameUI">
-    <div class="GameUI" v-if="gameStatus == 1">
+    <div class="GameUI" v-if="gameStatus === 1">
       <PickerBackground />
       <PickerPhase 
         ref="picker"
@@ -11,7 +11,7 @@
         v-on:nextPress="mixItems" 
       />
     </div>
-    <div class="GameUI" v-if="gameStatus == 2">
+    <div class="GameUI" v-if="gameStatus === 2">
       <MixerBackground 
         v-bind:items="nonSelItems"/>
         
@@ -24,7 +24,7 @@
         v-on:selectItem="selectItem"
       />
     </div>
-    <div class="GameUI" v-if="gameStatus == 3">
+    <div class="GameUI" v-if="gameStatus === 3">
       <PickerBackground/>
       <PickerPracticePhase 
         ref="pracpicker"
@@ -35,7 +35,7 @@
         v-on:homePress="homeScreen"
       />
     </div>
-    <div class="GameUI" v-if="gameStatus == 4">
+    <div class="GameUI" v-if="gameStatus === 4">
       <PracticeBackground />
       <PracticePhase 
         ref="game"
