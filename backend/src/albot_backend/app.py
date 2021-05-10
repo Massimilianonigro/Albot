@@ -1,19 +1,14 @@
 import asyncio
 import websockets
 import albot_backend.dialogue_manager as dm
-from albot_backend.model_extractor import load_interpreter
 from pathlib import Path
-
-model_directory_path = Path().joinpath("./NLUmodule/models")
 
 
 class Handler:
     def __init__(self):
         self.counter = 0
         self.connected = {}
-        self.dialogue_manager = dm.DialogueManager(
-            load_interpreter(model_directory_path), self
-        )
+        self.dialogue_manager = dm.DialogueManager(self)
 
     async def handle(self, websocket, path):
         while True:

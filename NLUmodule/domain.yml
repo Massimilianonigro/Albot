@@ -1,21 +1,69 @@
-version: "2.0"
-
-intents:
-  - greet
-  - affirm
-  - deny
-  - inform_color_change
-  - inform_cabbage_solution
-  - inform_ph
-  - inform_ph_property
-  - acid_acid_compare
-  - basic_acid_compare
-  - basic_basic_compare
-  - neutral_basic_compare
-  - neutral_acid_compare
-
-
-
+version: '2.0'
+config:
+  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- inform_color_change:
+    use_entities: true
+- inform_cabbage_solution:
+    use_entities: true
+- inform_ph:
+    use_entities: true
+- inform_ph_property:
+    use_entities: true
+- acid_acid_compare:
+    use_entities: true
+- basic_acid_compare:
+    use_entities: true
+- basic_basic_compare:
+    use_entities: true
+- neutral_basic_compare:
+    use_entities: true
+- neutral_acid_compare:
+    use_entities: true
+- inform_why_only_these_select:
+    use_entities: true
+- ph_answer:
+    use_entities: true
+- inform_every_liq_ph:
+    use_entities: true
+- inform_collecting_items:
+    use_entities: true
+- cabbage_answer:
+    use_entities: true
+- next_step_information:
+    use_entities: true
+- inform_why_this_test:
+    use_entities: true
+- inform_ph_change_on_item_measure:
+    use_entities: true
+- inform_other_way_to_measure_ph:
+    use_entities: true
+- inform_ingredient_property:
+    use_entities: true
+- inform_cabbage_at_home:
+    use_entities: true
+- inform_why_not_item_mixed:
+    use_entities: true
+- inform_ph_cabbage_solution:
+    use_entities: true
+entities:
+- '"ph_property"'
+- '"acid"'
+- '"ingredient"'
+- '"base"'
+- '"neutral"'
+- '"color"'
+slots: {}
+responses: {}
+actions: []
+forms: {}
+e2e_actions: []

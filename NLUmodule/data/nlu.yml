@@ -1,5 +1,4 @@
 version: "2.0"
-
 nlu:
 - intent: inform_collecting_items
   examples: |
@@ -9,7 +8,6 @@ nlu:
     - How much stuff can i pick up?
     - Can i take more items?
     - Can i pick up more items?
-
 - intent: inform_ph_property
   examples: |
     - What does [acid]("ph_property") mean?
@@ -19,12 +17,6 @@ nlu:
     - What are the properties of [acid]("ph_property")?
     - What characterizes a [base]("ph_property")?
     - How do we recognize an [acid]("ph_property")?
-
-- lookup: ph_property
-  examples: |
-    - acid
-    - base
-
 - intent: inform_ph
   examples: |
     - What is ph?
@@ -35,62 +27,60 @@ nlu:
     - What is the deal with ph?
     - I want an explanation on ph
     - Tell me more about ph
-
+    - What is an alkaline
 - intent: acid_acid_compare
   examples: |
-   - The two ingredients are similar. They are both acids but have different ph
-   - One element has ph slighltly more acid than the other
-   - One element is more acidic than the other
-   - They are two acidics solutions, one more than the other
-   - Not much. They are both acids
-   - [Cola]("acid") is an acid and [Soap]("acid") too, but their phs are different
-   - [Lemon Juice]("acid") is more acid than [Milk]("acid")
-   - [Cola]("acid") is less acid than [Soap]("acid")
-
+    - The two ingredients are similar. They are both acids but have different ph
+    - One element has ph slighltly more acid than the other
+    - One element is more acidic than the other
+    - They are two acidics solutions, one more than the other
+    - Not much. They are both acids
+    - [Cola]("acid") is an acid and [Soap]("acid") too, but their phs are different
+    - [Lemon Juice]("acid") is more acid than [Milk]("acid")
+    - [Cola]("acid") is less acid than [Soap]("acid")
 - intent: basic_acid_compare
   examples: |
-   - The two ingredients have vastly different ph properties, one is basic the other is acid
-   - One of the two is a base the other is an acid
-   - One has a ph lower than 7 the other has a ph higher than 7 
-   - One is more acidic than water the other is more basic than water
-   - They are at opposite sides of the ph spectrum 
-   - One is a basic solution the other an acidic one
-   - [Bleach]("base") is a basic solution [Cola]("acid") is an acidic one
-   - [Oven Cleaner]("base") has ph higher than 7, while [Lemon Juice]("acid") has ph lower than 7
-   - [Cola]("acid") is acidic, while [Egg White]("base") is basic
-
+    - The two ingredients have vastly different ph properties, one is basic the other is acid
+    - One of the two is a base the other is an acid
+    - One has a ph lower than 7 the other has a ph higher than 7
+    - One is more acidic than water the other is more basic than water
+    - They are at opposite sides of the ph spectrum
+    - One is a basic solution the other an acidic one
+    - [Bleach]("base") is a basic solution [Cola]("acid") is an acidic one
+    - [Oven Cleaner]("base") has ph higher than 7, while [Lemon Juice]("acid") has ph lower than 7
+    - [Cola]("acid") is acidic, while [Egg White]("base") is basic
 - intent: basic_basic_compare
   examples: |
-   - They are both bases, not much difference
-   - Their ph is both above 7 but is slightly different
-   - The two solutions are bases, one of the two is more basic than the other
-   - Not a lot, they are bases hence they are similar
-   - They have diverse ph but are both bases
-   - [Oven Cleaner]("base") is a base and [Egg White]("base") too, but their phs are different
-   - [Bleach]("base") is more basic than [Egg White]("base")
-   - [Bleach]("base") is less basic than [Oven Cleaner]("base")
+    - They are both bases, not much difference
+    - Their ph is both above 7 but is slightly different
+    - The two solutions are bases, one of the two is more basic than the other
+    - Not a lot, they are bases hence they are similar
+    - They have diverse ph but are both bases
+    - [Oven Cleaner]("base") is a base and [Egg White]("base") too, but their phs are different
+    - [Bleach]("base") is more basic than [Egg White]("base")
+    - [Bleach]("base") is less basic than [Oven Cleaner]("base")
 - intent: neutral_basic_compare
   examples: |
-   - One of them has ph 7 the other has an higher ph
-   - Water is a neutral substance, the other is a basis
-   - Water is at the center of the ph spectrum, the other is higher
-   - One is a basic solution , with a much higher ph than water
-   - [Water]("neutral") is neutral [Egg White]("base") is a base
-   - [Oven Cleaner]("base") base other neutral
-   - [Bleach]("base") is basic, [Water]("neutral") is neutral
-   - [Baking Soda]("base") has a ph higher than 7, [Water]("neutral") has 7
+    - One of them has ph 7 the other has an higher ph
+    - Water is a neutral substance, the other is a basis
+    - Water is at the center of the ph spectrum, the other is higher
+    - One is a basic solution , with a much higher ph than water
+    - [Water]("neutral") is neutral [Egg White]("base") is a base
+    - [Oven Cleaner]("base") base other neutral
+    - [Bleach]("base") is basic, [Water]("neutral") is neutral
+    - [Baking Soda]("base") has a ph higher than 7, [Water]("neutral") has 7
 - intent: neutral_acid_compare
   examples: |
-   - [Water]("neutral") has ph 7 and the other has a lower ph
-   - [Water]("neutral") is a neutral substance the other is an acid
-   - There is an acidic substance and a neutral one
-   - One of them is an acid the other a neutral substance
-   - One acid other neutral
-   - One has ph lower than 7 the other 7
-   - [Water]("neutral") is neutral [Lemon Juice]("acid") is acid
-   - [Vinegar]("acid") acid other neutral
-   - [Cola]("acid") is acidic, [Water]("neutral") is neutral
-   - [Milk]("acid") has a ph lower than 7, [Water]("neutral") has 7
+    - [Water]("neutral") has ph 7 and the other has a lower ph
+    - [Water]("neutral") is a neutral substance the other is an acid
+    - There is an acidic substance and a neutral one
+    - One of them is an acid the other a neutral substance
+    - One acid other neutral
+    - One has ph lower than 7 the other 7
+    - [Water]("neutral") is neutral [Lemon Juice]("acid") is acid
+    - [Vinegar]("acid") acid other neutral
+    - [Cola]("acid") is acidic, [Water]("neutral") is neutral
+    - [Milk]("acid") has a ph lower than 7, [Water]("neutral") has 7
 - intent: inform_cabbage_solution
   examples: |
     - Do you know how to make the cabbage solution at home?
@@ -114,7 +104,7 @@ nlu:
     - Why did it change color?
     - Can you explain the change in color
     - Why it has a different color now
-    - What happened to the solution 
+    - What happened to the solution
     - What happens if i pour [milk]("ingredient") in the solution
     - What if i drop the [lemon juice]("ingredient") in the cabbage juice
 - intent: ph_answer
@@ -130,7 +120,7 @@ nlu:
     - Because it helps us measure ph having substances that change color when in touch with acids or bases
     - Because mixing it with substances can reveal their ph
     - It is an easy-to-do way to measure ph at home
-- intent : inform_ingredient_property
+- intent: inform_ingredient_property
   examples: |
     - What are the ph properties of [Lemon Juice]("ingredient")?
     - What are the properties of [Vinegar]("ingredient")?
@@ -139,22 +129,21 @@ nlu:
     - is [Milk]("ingredient") a base?
     - is [Sparkling Water]("ingredient") an acid?
     - how does [Cola]("ingredient") scale in the ph indicator?
-
+    - I want to know the properties of [cola]("acid")
 - intent: inform_ph_cabbage_solution
   examples: |
-   - What is the PH level of the Cabbage solution?
-   - Can you tell me the ph level of the cabbage juice?
-   - What are the ph properties of cabbage solution?
-   - Is the cabbage solution acid or basic?
-   - What is the pH nature of cabbage juice?
-   - How does the cabbage solution scale on the ph measure?
-   - Is cabbage solution an acid?
-   - Is cabbage solution a base?
-   - Is the cabbage solution neutral?
-   - Does this cabbage also have PH level? 
-   - The mixture has a ph level?
-   - Cabbage have ph?
-
+    - What is the PH level of the Cabbage solution?
+    - Can you tell me the ph level of the cabbage juice?
+    - What are the ph properties of cabbage solution?
+    - Is the cabbage solution acid or basic?
+    - What is the pH nature of cabbage juice?
+    - How does the cabbage solution scale on the ph measure?
+    - Is cabbage solution an acid?
+    - Is cabbage solution a base?
+    - Is the cabbage solution neutral?
+    - Does this cabbage also have PH level?
+    - The mixture has a ph level?
+    - Cabbage have ph?
 - intent: inform_every_liq_ph
   examples: |
     - Does every liquid have PH nature?
@@ -164,17 +153,15 @@ nlu:
     - Liquids have ph in any case?
     - Can we find PH level/property for every liquid?
     - Is it possible to know the PH level/property of every liquid?
-
 - intent: inform_why_not_item_mixed
   examples: |
-    - Why are we not mixing the items with each other? 
-    - Why do we not put the items together? 
+    - Why are we not mixing the items with each other?
+    - Why do we not put the items together?
     - Can we put the ingredients with each other instead?
     - Isn't it funnier to put the ingredients with each other?
     - Why do we have to put the ingredients in the mixture?
     - Is it efficient to blend the ingredients with each other instead of using the mixture?
     - Can we measure ph by putting the ingredients together?
-
 - intent: inform_other_way_to_measure_ph
   examples: |
     - Is there any other solution I can use instead of cabbage?
@@ -184,20 +171,18 @@ nlu:
     - Can other things measure ph instead of the cabbage solution?
     - Can I measure ph in another way?
     - Can we use another thing to get the ph of ingredients?
-
 - intent: inform_cabbage_at_home
   examples: |
-    - Can I make cabbage solution at home?  
+    - Can I make cabbage solution at home?
     - Is it possible to make the solution at home?
     - How can I make the cabbage juice at home?
     - What are the steps to make cabbage juice?
     - What is the procedure to do the cabbage solution?
     - How do I prepare the cabbage juice?
     - How can I make the cabbage mixture by myself?
-
 - intent: inform_ph_change_on_item_measure
   examples: |
-    - Does the PH level change if we mix 2 items together. 
+    - Does the PH level change if we mix 2 items together.
     - What happens to ph if we mix items ?
     - If we mix 2 items their ph changes?
     - Does mixing 2 items change the ph of the solution?
@@ -205,10 +190,9 @@ nlu:
     - Is the ph changing when ingredients are mixed?
     - Blending ingredients together present a change in the ph?
     - Items together ph change
-
 - intent: inform_why_only_these_select
   examples: |
-    - Why are we selecting only 2 solutions? 
+    - Why are we selecting only 2 solutions?
     - Why can't I select other items?
     - Why can’t I select more than two solutions?
     - Is it possible to select more than two solutions?
@@ -218,35 +202,33 @@ nlu:
     - Why do I need to select what you tell me?
     - Why can't I choose more ingredients?
     - Is it possible to choose more ingredients now?
-
 - intent: inform_why_this_test
   examples: |
-    - What kind of test is it? 
+    - What kind of test is it?
     - What type of experiment is it?
     - What is the use of this experiment?
     - How can this experiment be useful?
     - How is the experiment useful for me?
     - Why do we do this procedure?
     - Why do we follow this procedure?
-
+    - Why are we doing thia
 - intent: next_step_information
   examples: |
-    - Now what do I have to do? 
+    - Now what do I have to do?
     - What should I do next?
     - How do I continue?
     - How can I proceed?
     - How to continue?
-    - What do I do now? 
+    - What do I do now?
     - Now what?
     - What’s next?
     - What is the next step?
     - I'm stuck
-    - How can I proceed?
     - Can I go back?
-
-
-
-
+- lookup: ph_property
+  examples: |
+    - acid
+    - base
 - lookup: color
   examples: |
     - red
@@ -255,7 +237,6 @@ nlu:
     - yellow
     - purple
     - orange
-
 - lookup: ingredient
   examples: |
     - Baking Soda
@@ -269,7 +250,6 @@ nlu:
     - Milk
     - Pure Water
     - Sparkling Water
-
 - lookup: acid
   examples: |
     - Vinegar
@@ -278,14 +258,12 @@ nlu:
     - Cola
     - Milk
     - Sparkling Water
-
 - lookup: base
   examples: |
     - Baking Soda
     - Egg White
     - Bleach
     - Oven Cleaner
-
 - lookup: neutral
   examples: |
     - Pure Water

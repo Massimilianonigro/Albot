@@ -3,14 +3,14 @@ from albot_backend.state_machine import StateMachine
 import json
 import random
 import asyncio
+import requests
 
 
 class DialogueManager:
 
     users = {}
 
-    def __init__(self, model, handler):
-        self.model = model
+    def __init__(self, handler):
         self.state_machine = StateMachine()
         self.handler = handler
 
@@ -35,18 +35,19 @@ class DialogueManager:
         # First the messsage has to be deserialized
         msg = json.loads(msg)
         # Control if the text field is empty
-        if len(msg["text"]) != 0:
+        if msg["type"] == "text":
             # The message is now forwarded to the Rasa NLU and an intent comes back
-            print("text received " + str(msg["text"]))
-            intent = self.model.parse(msg["text"])
-            #Request to do http requests to rasa container
-        else:
+            print("text received " + str(msg["content"]))
+            intent = self._nlu_parse(msg["content"])
+            # Request to do http requests to rasa container
+        elif msg["type"] == "click":
             # If the length of the text is empty the user acted on the interface selecting an object
-            obj = msg["highlighted"].replace(" ", "")
+            obj = msg["content"].replace(" ", "")
             obj = obj.lower()
             print("object clicked " + obj)
             intent = self._create_intent("clicked_" + obj)
-
+        elif msg["type"] == "name":
+            self.users[user_id]["name"] = msg["content"]
         # Now that i have the intent calculated i can generate a response and move the child on the state machine
         utterance = self.generate_utterance(intent, user_id)
         return utterance
@@ -175,3 +176,12 @@ class DialogueManager:
 
     def _create_intent(self, intent):
         return {"entities": [], "intent": {"confidence": 1, "id": 0, "name": intent}}
+
+    def _nlu_parse(self, text):
+        import requests
+
+        data_dict = {"text": text}
+        data_json = json.dumps(data_dict)
+        response = requests.post("http://localhost:5005/model/parse", data=data_json)
+        print(response.content)
+        return json.loads(response.content)

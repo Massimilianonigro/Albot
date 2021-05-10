@@ -1,220 +1,442 @@
 {
     "greeting": [
-        "Hi, I am Albot. let\u2019s do some fun with Chemistry.",
-        "Let\u2019s check the PH level of the items available in this kitchen"
+        {
+            "text": "Hi, I am Albot. let\u2019s do some fun with Chemistry.",
+            "ui_effect": ""
+        },
+        {
+            "text": "Let\u2019s check the PH level of the items available in this kitchen",
+            "ui_effect": ""
+        }
     ],
     "introduction_or_practice": [
-        "You can choose between an introductory lesson or a practice lesson"
+        {
+            "text": "You can choose between an introductory lesson or a practice lesson",
+            "ui_effect": ""
+        }
     ],
     "introduction_explanation": [
-        "Welcome to Introductory lesson! We will learn about PH level with item available in the kitchen."
+        {
+            "text": "Welcome to Introductory lesson! We will learn about PH level with item available in the kitchen.",
+            "ui_effect": ""
+        }
     ],
     "acid_selection": [
-        "The Highlighted item have acidic properties. Select any 2 item of your choice to test them."
+        {
+            "text": "The Highlighted item have acidic properties. Select any 2 item of your choice to test them.",
+            "ui_effect": ""
+        }
     ],
     "next": [
-        "Click next to proceed"
+        {
+            "text": "Click next to proceed",
+            "ui_effect": "next"
+        }
     ],
     "base_selection": [
-        "The Highlighted item have basic properties. Select any 2 item of your choice to test them."
+        {
+            "text": "The Highlighted item have basic properties. Select any 2 item of your choice to test them.",
+            "ui_effect": ""
+        }
     ],
     "guided_reasoning_explanation": [
-        "You can now see all selected item on the table. Click on each item and mix it with cabbage solution"
+        {
+            "text": "You can now see all selected item on the table. Click on each item and mix it with cabbage solution",
+            "ui_effect": ""
+        }
     ],
     "practice_explanation": [
-        "Welcome to practice Lesson. You can select item of your choice from the shelf."
+        {
+            "text": "Welcome to practice Lesson. You can select item of your choice from the shelf.",
+            "ui_effect": ""
+        }
     ],
     "ph_explanation": [
-        "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base."
+        {
+            "text": "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base.",
+            "ui_effect": ""
+        }
     ],
     "cabbage_solution_explanation": [
-        "When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green. We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour."
+        {
+            "text": "When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green. We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour.",
+            "ui_effect": ""
+        }
     ],
     "water_selection_explanation": [
-        "Now select the last ingredient: water"
+        {
+            "text": "Now select the last ingredient: water",
+            "ui_effect": ""
+        }
     ],
     "collecting_items_answer": [
-        "In the introduction part you have to collect 2 acidic elements and 2 basic, in the practice one you are free to bring whatever object you prefer to the table"
+        {
+            "text": "In the introduction part you have to collect 2 acidic elements and 2 basic, in the practice one you are free to bring whatever object you prefer to the table",
+            "ui_effect": ""
+        }
     ],
     "acid_explanation": [
-        "Whether a liquid is an acid or base depends on the type of ions in it. If it has a lot of hydrogen ions, then it is an acid. If it has a lot of hydroxide ions, then it is a base. Scientists use something called a pH scale to measure how acidic or basic a liquid is."
+        {
+            "text": "Whether a liquid is an acid or base depends on the type of ions in it. If it has a lot of hydrogen ions, then it is an acid. If it has a lot of hydroxide ions, then it is a base. Scientists use something called a pH scale to measure how acidic or basic a liquid is.",
+            "ui_effect": ""
+        }
     ],
     "base_explanation": [
-        "Basic substances contain lots of hydroxide ions. These are a different type of molecule with a small electrical charge. In foods, this means they will taste more bitter. Plenty of things other than food can be basic, however."
+        {
+            "text": "Basic substances contain lots of hydroxide ions. These are a different type of molecule with a small electrical charge. In foods, this means they will taste more bitter. Plenty of things other than food can be basic, however.",
+            "ui_effect": ""
+        }
     ],
     "color_change_acid": [
-        "Red cabbage contains a chemical called anthocyanin that changes color when it is mixed with an acid or a base. When the liquid is a red or purple color it means that it is more acidic. When the liquid is a blue, green, or yellow color it means that the liquid is more basic."
+        {
+            "text": "Red cabbage contains a chemical called anthocyanin that changes color when it is mixed with an acid or a base. When the liquid is a red or purple color it means that it is more acidic. When the liquid is a blue, green, or yellow color it means that the liquid is more basic.",
+            "ui_effect": ""
+        }
     ],
     "color_change_base": [
-        "Red cabbage contains a chemical called anthocyanin that changes color when it is mixed with an acid or a base. When the liquid is a red or purple color it means that it is more acidic. When the liquid is a blue, green, or yellow color it means that the liquid is more basic."
+        {
+            "text": "Red cabbage contains a chemical called anthocyanin that changes color when it is mixed with an acid or a base. When the liquid is a red or purple color it means that it is more acidic. When the liquid is a blue, green, or yellow color it means that the liquid is more basic.",
+            "ui_effect": ""
+        }
     ],
     "color_change_neutral": [
-        "Red cabbage contains a chemical called anthocyanin that changes color when it is mixed with an acid or a base. When the liquid is a red or purple color it means that it is more acidic. When the liquid is a blue, green, or yellow color it means that the liquid is more basic."
+        {
+            "text": "Red cabbage contains a chemical called anthocyanin that changes color when it is mixed with an acid or a base. When the liquid is a red or purple color it means that it is more acidic. When the liquid is a blue, green, or yellow color it means that the liquid is more basic.",
+            "ui_effect": ""
+        }
     ],
     "properties_acid_ingredient": [
-        "Aqueous solutions of acids are electrolytes, meaning that they conduct electrical current. Some acids are strong electrolytes because they ionize completely in water, yielding a great many ions. Other acids are weak electrolytes that exist primarily in a non-ionized form when dissolved in water.",
-        "Acids have a sour taste. Lemons, vinegar, and sour candies all contain acids."
+        {
+            "text": "Aqueous solutions of acids are electrolytes, meaning that they conduct electrical current. Some acids are strong electrolytes because they ionize completely in water, yielding a great many ions. Other acids are weak electrolytes that exist primarily in a non-ionized form when dissolved in water.",
+            "ui_effect": ""
+        },
+        {
+            "text": "Acids have a sour taste. Lemons, vinegar, and sour candies all contain acids.",
+            "ui_effect": ""
+        }
     ],
     "properties_neutral_ingredient": [
-        "If a substance has a pH of exactly 7, it's neutral. This means it has equal amounts of hydrogen and hydroxide ions. Pure water is a neutral substance."
+        {
+            "text": "If a substance has a pH of exactly 7, it's neutral. This means it has equal amounts of hydrogen and hydroxide ions. Pure water is a neutral substance.",
+            "ui_effect": ""
+        }
     ],
     "properties_base_ingredient": [
-        "Bases taste bitter, feel slippery, and conduct electricity when dissolved in water. Indicator compounds such as litmus can be used to detect bases. "
+        {
+            "text": "Bases taste bitter, feel slippery, and conduct electricity when dissolved in water. Indicator compounds such as litmus can be used to detect bases. ",
+            "ui_effect": ""
+        }
     ],
     "fallback": [
-        "I am sorry, could you repeat? I was too focused on this beatiful cabbage solution"
+        {
+            "text": "I am sorry, could you repeat? I was too focused on this beatiful cabbage solution",
+            "ui_effect": ""
+        }
     ],
     "color_change_exclamation": [
-        "You can see the colour of solution changed."
+        {
+            "text": "You can see the colour of solution changed.",
+            "ui_effect": ""
+        }
     ],
     "wrong_answer": [
-        "You tried well!"
+        {
+            "text": "You tried well!",
+            "ui_effect": ""
+        }
     ],
     "try_again": [
-        "Do you want to give it another shot?"
+        {
+            "text": "Do you want to give it another shot?",
+            "ui_effect": "tryAgain"
+        }
     ],
     "chatbot_appreciation": [
-        "Good job! That was not an easy task but you mamaged to solve it anyway"
+        {
+            "text": "Good job! That was not an easy task but you mamaged to solve it anyway",
+            "ui_effect": ""
+        }
     ],
     "grant_points": [
-        "Congrats you won 10 points. Click to Continue"
+        {
+            "text": "Congrats you won 10 points. Click to Continue",
+            "ui_effect": "continue"
+        }
     ],
     "practice_information": [
-        "You can also check 3D animated molecular formula of items by clicking over them."
+        {
+            "text": "You can also check 3D animated molecular formula of items by clicking over them.",
+            "ui_effect": ""
+        }
     ],
     "practice_reset": [
-        "You can add new solution to check PH value by resetting the cabbage solution"
+        {
+            "text": "You can add new solution to check PH value by resetting the cabbage solution",
+            "ui_effect": ""
+        }
     ],
     "end_experience": [
-        "We did it, we completed the experiment! I am happy with your growth! Come back whenever you want to learn more about ph"
+        {
+            "text": "We did it, we completed the experiment! I am happy with your growth! Come back whenever you want to learn more about ph",
+            "ui_effect": ""
+        }
     ],
     "practice_cycle_explanation": [
-        "Here you can see all the selected items on the table. By clicking on the each items, you can mix it with the cabbage solution to check PH level."
+        {
+            "text": "Here you can see all the selected items on the table. By clicking on the each items, you can mix it with the cabbage solution to check PH level.",
+            "ui_effect": ""
+        }
     ],
     "next_step_introduction": [
-        "You will need to select two acid items, and then click next"
+        {
+            "text": "You will need to select two acid items, and then click next",
+            "ui_effect": ""
+        }
     ],
     "next_step_acid": [
-        "After having selected two of the acid items of your choice just press next"
+        {
+            "text": "After having selected two of the acid items of your choice just press next",
+            "ui_effect": ""
+        }
     ],
     "next_step_base": [
-        "After having selected two of the basic items of your choice just press next"
+        {
+            "text": "After having selected two of the basic items of your choice just press next",
+            "ui_effect": ""
+        }
     ],
     "next_step_water": [
-        "After having selected the water just press next"
+        {
+            "text": "After having selected the water just press next",
+            "ui_effect": ""
+        }
     ],
     "next_step_guided": [
-        "After having poured all the items in the respective cabbage solution, you can click the practise lesson button to go on"
+        {
+            "text": "After having poured all the items in the respective cabbage solution, you can click the practise lesson button to go on",
+            "ui_effect": ""
+        }
     ],
     "next_step_practice_collecting": [
-        "After having collected all the items of your choice you can press next"
+        {
+            "text": "After having collected all the items of your choice you can press next",
+            "ui_effect": ""
+        }
     ],
     "next_step_practice_cycle": [
-        "You can either question me or answer the incoming questions, if i ask you a question answer the best way you can then pressing the continue button will make you go to the next phase"
+        {
+            "text": "You can either question me or answer the incoming questions, if i ask you a question answer the best way you can then pressing the continue button will make you go to the next phase",
+            "ui_effect": ""
+        }
     ],
     "next_step_practice_information": [
-        "You can reset the solution to try another time or you can wait for the end of the experience"
+        {
+            "text": "You can reset the solution to try another time or you can wait for the end of the experience",
+            "ui_effect": ""
+        }
     ],
     "molecular_formula": [
-        "Here is the molecular formula"
+        {
+            "text": "Here is the molecular formula",
+            "ui_effect": ""
+        }
     ],
     "explanation_0": [
-        "Adding lemon juice will turn the solution light green"
+        {
+            "text": "Adding lemon juice will turn the solution light green",
+            "ui_effect": ""
+        }
     ],
     "explanation_1": [
-        "Adding cola will turn the solution light orange"
+        {
+            "text": "Adding cola will turn the solution light orange",
+            "ui_effect": ""
+        }
     ],
     "explanation_2": [
-        "Adding Baking soda will turn the solution purple"
+        {
+            "text": "Adding Baking soda will turn the solution purple",
+            "ui_effect": ""
+        }
     ],
     "explanation_3": [
-        "The element with ph 2 is lemon juice"
+        {
+            "text": "The element with ph 2 is lemon juice",
+            "ui_effect": ""
+        }
     ],
     "explanation_4": [
-        "The element with ph 7 is pure water"
+        {
+            "text": "The element with ph 7 is pure water",
+            "ui_effect": ""
+        }
     ],
     "explanation_5": [
-        "The item that has ph 3 is cola"
+        {
+            "text": "The item that has ph 3 is cola",
+            "ui_effect": ""
+        }
     ],
     "explanation_6": [
-        "The item which possess a ph of 6 is milk"
+        {
+            "text": "The item which possess a ph of 6 is milk",
+            "ui_effect": ""
+        }
     ],
     "explanation_7": [
-        "The ingredient which has the ph of 13 is the oven cleaner"
+        {
+            "text": "The ingredient which has the ph of 13 is the oven cleaner",
+            "ui_effect": ""
+        }
     ],
     "explanation_8": [
-        "They are both acids, but one is more acidic than the other"
+        {
+            "text": "They are both acids, but one is more acidic than the other",
+            "ui_effect": ""
+        }
     ],
     "explanation_9": [
-        "One of the two is a base another is an acid"
+        {
+            "text": "One of the two is a base another is an acid",
+            "ui_effect": ""
+        }
     ],
     "explanation_10": [
-        "They are both bases but have different ph"
+        {
+            "text": "They are both bases but have different ph",
+            "ui_effect": ""
+        }
     ],
     "explanation_11": [
-        "Pure water is a neutral substance while baking soda is a base"
+        {
+            "text": "Pure water is a neutral substance while baking soda is a base",
+            "ui_effect": ""
+        }
     ],
     "explanation_12": [
-        "Pure water is a neutral substance while vinegar is an acid one"
+        {
+            "text": "Pure water is a neutral substance while vinegar is an acid one",
+            "ui_effect": ""
+        }
     ],
     "explanation_13": [
-        "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base."
+        {
+            "text": "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base.",
+            "ui_effect": ""
+        }
     ],
     "explanation_14": [
-        "When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green. We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour."
+        {
+            "text": "When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green. We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour.",
+            "ui_effect": ""
+        }
     ],
     "general_ph_property_explanation": [
-        "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base."
+        {
+            "text": "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base.",
+            "ui_effect": ""
+        }
     ],
     "acid_color_change_explanation": [
-        "Purple cabbage juice turns red when it mixes with something acidic"
+        {
+            "text": "Purple cabbage juice turns red when it mixes with something acidic",
+            "ui_effect": ""
+        }
     ],
     "base_color_change_explanation": [
-        "Purple cabbage juice turns green when it mixes with something basic"
+        {
+            "text": "Purple cabbage juice turns green when it mixes with something basic",
+            "ui_effect": ""
+        }
     ],
     "neutral_color_change_explanation": [
-        "A neutral substance does not trigger a color change in the cabbage solution"
+        {
+            "text": "A neutral substance does not trigger a color change in the cabbage solution",
+            "ui_effect": ""
+        }
     ],
     "ingredient_color_change_explanation": [
-        "Purple cabbage juice turns red when it mixes with something acidic. Purple cabbage juice turns green when it mixes with something basic.A neutral substance does not trigger a color change in the cabbage solution"
+        {
+            "text": "Purple cabbage juice turns red when it mixes with something acidic. Purple cabbage juice turns green when it mixes with something basic.A neutral substance does not trigger a color change in the cabbage solution",
+            "ui_effect": ""
+        }
     ],
     "acid_ingredient_explanation": [
-        "A solution with a sour-taste and low pH value."
+        {
+            "text": "A solution with a sour-taste and low pH value.",
+            "ui_effect": ""
+        }
     ],
     "base_ingredient_explanation": [
-        "A solution with a sweet taste and high pH value."
+        {
+            "text": "A solution with a sweet taste and high pH value.",
+            "ui_effect": ""
+        }
     ],
     "neutral_ingredient_explanation": [
-        "A neutral substance has a ph of 7 hence it is neither acid nor basic"
+        {
+            "text": "A neutral substance has a ph of 7 hence it is neither acid nor basic",
+            "ui_effect": ""
+        }
     ],
     "general_ingredient_explanation": [
-        "An acid is a solution with a sour-taste and low pH value. A base is asolution with a sweet taste and high pH value.A neutral substance has a ph of 7 hence it is neither acid nor basic"
+        {
+            "text": "An acid is a solution with a sour-taste and low pH value. A base is asolution with a sweet taste and high pH value.A neutral substance has a ph of 7 hence it is neither acid nor basic",
+            "ui_effect": ""
+        }
     ],
     "ph_cabbage_solution_explanation": [
-        "Cabbage Solution is at about pH 7. But also it’s exact color you get depends on the pH of the water."
+        {
+            "text": "Cabbage Solution is at about pH 7. But also it\u2019s exact color you get depends on the pH of the water.",
+            "ui_effect": ""
+        }
     ],
     "inform_every_liq_ph_explanation": [
-        "Most definitely. Since pH is the measure of The potential of hydrogen ions in a substance a liquid that doesn't contain any hydrogen protons will most likely not have pH ."
+        {
+            "text": "Most definitely. Since pH is the measure of The potential of hydrogen ions in a substance a liquid that doesn't contain any hydrogen protons will most likely not have pH .",
+            "ui_effect": ""
+        }
     ],
     "inform_why_not_item_mixed_explanation": [
-        "You can mix the items, but the ph level will not be consistent, because the mixing of items changes the ph value of the mixtures depending on the specific item properties and quantities."
+        {
+            "text": "You can mix the items, but the ph level will not be consistent, because the mixing of items changes the ph value of the mixtures depending on the specific item properties and quantities.",
+            "ui_effect": ""
+        }
     ],
     "inform_other_way_to_measure_ph_explanation": [
-        "Cabbage juice contains a special molecule called anthocyanin ( an organic compound called a flavin), which gives red cabbage its colour. Anthocyanin is also found in blueberries, grapes and lots of other plants. When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green.We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour. Other pH indicators are litmus paper and phenolphthalein."
+        {
+            "text": "Cabbage juice contains a special molecule called anthocyanin ( an organic compound called a flavin), which gives red cabbage its colour. Anthocyanin is also found in blueberries, grapes and lots of other plants. When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green.We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour. Other pH indicators are litmus paper and phenolphthalein.",
+            "ui_effect": ""
+        }
     ],
     "inform_cabbage_at_home_explanation": [
-        "Yes you have to blend the purple cabbage in the mixer or blender and extract the juice, remember to ask for an adult for help."
+        {
+            "text": "Yes you have to blend the purple cabbage in the mixer or blender and extract the juice, remember to ask for an adult for help.",
+            "ui_effect": ""
+        }
     ],
     "inform_ph_change_on_item_measure_explanation": [
-        "Yes, it changes, but pH is a logarithmic measurement, so directly averaging them doesn't give correct values"
+        {
+            "text": "Yes, it changes, but pH is a logarithmic measurement, so directly averaging them doesn't give correct values",
+            "ui_effect": ""
+        }
     ],
     "inform_why_only_these_select_explanation": [
-        "By selecting two items, I want to demonstrate to you how we can proceed in the experiment and also I want to share some basic information about PH level in chemistry which is interesting to know."
+        {
+            "text": "By selecting two items, I want to demonstrate to you how we can proceed in the experiment and also I want to share some basic information about PH level in chemistry which is interesting to know.",
+            "ui_effect": ""
+        }
     ],
     "inform_why_this_test_explanation": [
-        "It is the experiment to learn the PH level. With PH level you can understand the concept of acidic and basic"
+        {
+            "text": "It is the experiment to learn the PH level. With PH level you can understand the concept of acidic and basic",
+            "ui_effect": ""
+        }
     ],
     "inform_collecting_items_explanation": [
-        "In the introduction phase you can collect only 2 acidic items, 2 basic items and a neutral one(water).In the practice part you are free to collect as many items as you want"
+        {
+            "text": "In the introduction phase you can collect only 2 acidic items, 2 basic items and a neutral one(water).In the practice part you are free to collect as many items as you want",
+            "ui_effect": ""
+        }
     ]
 }
