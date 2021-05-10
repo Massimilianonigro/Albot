@@ -1,6 +1,9 @@
 from albot_backend.state import State
 import json
 
+""" [summary] Utility class that helps with json encoding and decoding of the State Enum
+"""
+
 
 class StateEncoder(json.JSONEncoder):
     def default(self, obj):

@@ -8,6 +8,9 @@ from albot_backend.enum_encoder import get_dict
 
 RESOURCES_PATH = "./resources"
 
+""" [summary] StateMachine class decides the utterances and changes of state given from the chatbot, given user's state and input.
+"""
+
 
 class StateMachine:
     def __init__(self):
@@ -41,6 +44,7 @@ class StateMachine:
         utterance_array = []
         new_pending_question = pending_question
         next_state = state["state"]
+        bot_response = {}
         # Case 1: The intent is recognized in the state's utterances
         if utterance != None:
             return self._response_to_intent(
@@ -61,29 +65,33 @@ class StateMachine:
             if response != None:
                 print("entering in case 3 with intent: " + intent_name)
                 utterance_array = utterance_array + self._get_utterances(response)
-                return new_pending_question, next_state, utterance_array
+                bot_response = self._create_message(utterance_array)
+                return new_pending_question, next_state, bot_response
         # Case 4: Intent could be asking for an explanation
         question_explanation = self._general_questions(intent)
         if question_explanation != None:
             utterance_array = utterance_array + self._get_utterances(
                 [question_explanation]
             )
-            return new_pending_question, next_state, utterance_array
+            bot_response = self._create_message(utterance_array)
+            return new_pending_question, next_state, bot_response
         # Case 5: Intent not understood, fallback
         if (
             intent_name == "nlu_fallback" or not self._is_intent_click(intent_name)
         ) and intent_name != "wait_ended":
             utterance_array = utterance_array + self._get_utterances(["fallback"])
-        return new_pending_question, next_state, utterance_array
+            bot_response = self._create_message(utterance_array)
+        return new_pending_question, next_state, bot_response
 
     def _response_to_intent(
         self, utterance, new_pending_question, next_state, utterance_array
     ):
+        change_phase = ""
         if "question_type" in utterance.keys():
             new_pending_question, question = self._get_chatbot_question(
                 utterance["question_type"]
             )
-            utterance_array.append(question)
+            utterance_array = utterance_array + self._create_utterance(text=question)
         elif "child_answer" in utterance.keys():
             utterance_array = utterance_array + self._get_utterances(
                 [self.question_handler.get_explanation_by_id(new_pending_question)]
@@ -98,11 +106,21 @@ class StateMachine:
             utterance_array = utterance_array + self._get_utterances(
                 utterance["to_send_back"]
             )
+        if "change_phase" in utterance.keys():
+            change_phase = utterance["change_phase"]
+        response = self._create_message(utterance_array, change_phase)
         print("Next state will be: " + str(next_state))
-        return new_pending_question, next_state, utterance_array
+        return new_pending_question, next_state, response
 
     def _is_intent_click(self, intent):
         return intent[0:7] == "clicked"
+
+    def _create_utterance(self, text="", ui_effect=""):
+        return {"text": text, "ui_effect": ui_effect}
+
+    def _create_message(self, utterance_array, change_phase=""):
+        response = {"messages": utterance_array, "change_phase": change_phase}
+        return response
 
     def _click_reaction(
         self, state, intent_name, new_pending_question, next_state, utterance_array
@@ -113,8 +131,11 @@ class StateMachine:
         )
         print(self._get_utterances(state["click_object_reaction"]))
         if self._has_display(state):
-            utterance_array.append("display" + str(intent_name[8:]))
-        return new_pending_question, next_state, utterance_array
+            utterance_array = utterance_array + self._create_utterance(
+                text="display_" + str(intent_name[8:])
+            )
+        response = self._create_message(utterance_array)
+        return new_pending_question, next_state, response
 
     def _check_question_answer(self, pending_question, intent):
         is_answer_correct = self.question_handler.verify_answer(

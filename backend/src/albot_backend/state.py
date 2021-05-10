@@ -1,5 +1,9 @@
 from enum import Enum
 
+""" [summary] Enum classes that specifies state machine's states
+ """
+
+
 class State(Enum):
     GREETING = 1
     INTRODUCTION_START = 2

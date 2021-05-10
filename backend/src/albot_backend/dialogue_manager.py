@@ -5,6 +5,9 @@ import random
 import asyncio
 import requests
 
+""" [summary] DialogueManager is the link between the NLU Module and the State Machine, fully controls user's experience 
+"""
+
 
 class DialogueManager:
 
@@ -106,7 +109,7 @@ class DialogueManager:
                 # Means back or home or reset buttons where used
                 # user["pending_question"] = None
                 user["is_coro_ended"] = None
-        if len(utterance_array) == 0:
+        if not bool(utterance_array):
             message = None
         else:
             message = json.dumps(utterance_array)

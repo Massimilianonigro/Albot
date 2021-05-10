@@ -3,6 +3,12 @@ import websockets
 import albot_backend.dialogue_manager as dm
 from pathlib import Path
 
+"""[summary] Handler class takes care of the communication with the front-end leveraging websocket
+[extended_summary] Handler takes care of connected users, and relays all the interaction of the users with the chatbot to the dialogue manager.
+Which formulates a response that is then sent back.
+:raises RuntimeError: When user_id handling does not go correctly. [description]
+"""
+
 
 class Handler:
     def __init__(self):

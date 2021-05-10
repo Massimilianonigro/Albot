@@ -3,6 +3,9 @@ import json
 
 RESOURCES_PATH = "./resources"
 
+""" [summary] Handles the explanations to user's purely informative questions
+"""
+
 
 class InformHandler:
     def __init__(self):

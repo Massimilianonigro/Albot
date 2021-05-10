@@ -3,6 +3,9 @@ import json
 
 RESOURCES_PATH = "./resources"
 
+""" [summary] Handles the questions from the bot to the user and the users' answers evaluating their correctness.
+"""
+
 
 class QuestionHandler:
     def __init__(self):
