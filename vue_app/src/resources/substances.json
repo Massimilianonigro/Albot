@@ -1,0 +1,71 @@
+{
+  "ingredients": [
+    {
+      "id" : 1,
+      "name" : "Baking Soda",
+      "ph" : 8,
+      "asset" : "../assets/items/BakingSoda.png"
+    },
+    {
+      "id" : 2,
+      "name" : "Egg White",
+      "ph" : 9.2,
+      "asset" : "../assets/items/EggWhite.png"
+    },
+    {
+      "id" : 3,
+      "name" : "Vinegar",
+      "ph" : 3,
+      "asset" : "../assets/items/Vinegar.png"
+    },
+    {
+      "id" : 4,
+      "name": "Bleach",
+      "ph" : 12,
+      "asset" : "../assets/items/Bleach.png"
+    },
+    {
+      "id" : 5,
+      "name" : "Oven Cleaner",
+      "ph" : 13,
+      "asset" : "../assets/items/OvenCleaner.png"
+    },
+    {
+      "id" : 6,
+      "name" : "Soap",
+      "ph" : 1,
+      "asset" : "../assets/items/Soap.png"
+    },
+    {
+      "id" : 7,
+      "name" : "Cola",
+      "ph" : 3,
+      "asset" : "../assets/items/Cola.png"
+    },
+    {
+      "id" : 8,
+      "name" : "Lemon Juice",
+      "ph" : 2,
+      "asset" : "../assets/items/LemonJuice.png"
+    },
+    {
+      "id" : 9,
+      "name" : "Milk",
+      "ph" : 6,
+      "asset" : "../assets/items/Milk.png"
+    },
+    {
+      "id" : 10,
+      "name" : "Pure Water",
+      "ph" : 7,
+      "asset" : "../assets/items/PureWater.ong"
+    },
+    {
+      "id" : 11,
+      "name" : "Sparkling Water",
+      "ph" : 6,
+      "asset" : "../assets/items/SparklingWater.png"
+    }
+
+  ]
+}

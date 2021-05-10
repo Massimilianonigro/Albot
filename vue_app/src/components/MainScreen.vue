@@ -34,22 +34,22 @@
             class="bubble-btn fade-in berlin-font"
             :style="{ left: '8%' }"
           >
-            Introduction
+            Tutorial
           </button>
-          We will execute this experiment together. Please choose a lesson to
+          We will carry out this experiment together. Please choose a lesson to
           start:
           <button
             v-on:click="clickOnPractice"
             class="bubble-btn fade-in berlin-font"
             :style="{ right: '8%' }"
           >
-            Practice
+            Experiment
           </button>
         </p>
       </transition>
       <transition name="fade">
         <p v-if="part3" class="bubble bubble-3 fade-in berlin-font">
-          If whis topic is new for you, you can click on Introduction, or if you
+          If this topic is new for you, you can click on Introduction, or if you
           already know it, you can practice!
         </p>
       </transition>
@@ -82,16 +82,17 @@ export default {
       this.start = true;
     },
     clickPart() {
-      if (this.start == true) {
+      if (this.start === true) {
         this.current += 1;
-        if (this.current == 2) {
+        if (this.current === 2) {
           this.part2 = true;
-        } else if (this.current == 3) {
+        } else if (this.current === 3) {
           this.part3 = true;
         }
       }
     },
     clickOnIntro() {
+      //TODO: when we click, we send message to backend and wait for the backend to reply
       this.$emit("startIntro");
     },
     clickOnPractice() {
@@ -126,7 +127,7 @@ a {
   background-color: transparent;
   background-position: top;
   background-image: url("../assets/uibuttons/StartButton.png");
-  border: 0px;
+  border: 0;
 }
 .main-bg {
   position: absolute;
@@ -183,7 +184,7 @@ a {
 }
 .report {
   top: 2%;
-  left: 0%;
+  left: 0;
   height: 8%;
   width: 20%;
   z-index: 21;
@@ -193,7 +194,7 @@ a {
 }
 .settings {
   top: 11%;
-  left: 0%;
+  left: 0;
   height: 8%;
   width: 20%;
   z-index: 21;
@@ -223,7 +224,7 @@ a {
 .bot-welcome {
   position: absolute;
   top: 18%;
-  right: 0%;
+  right: 0;
   height: 30%;
   width: 30%;
   background-repeat: no-repeat;

@@ -1,17 +1,17 @@
 <template>
   <div class="chat-bg-container">
     <div class="chat">
-      <div class="chat-tittle robo-font" :style="{ height: '15px' }"></div>
+      <div class="chat-title robo-font" :style="{ height: '15px' }"></div >
       <!--input type="text" v-model="fontSize" :style="{ height: '25px', width:'19%', marginLeft:'10%' }" class="chat-tittle robo-font corner berlin-font" name="text" /-->
       <div
         class="message-box"
-        :style="{ width: '98%', height: '70%', bottom: '40px' }"
+        :style="{ width: '98%', height: '70%', bottom: '100%'}"
       >
         <vuescroll ref="vs" :style="{ 'text-align': 'left' }" :ops="ops">
           <div
             v-bind:class="getClass(data)"
             class="message"
-            :style="getMessageStyle(data.type)"
+            :style="getMessageStyle(data.type)" 
             v-for="(data, index) in messages"
             v-bind:key="index"
           >
@@ -19,18 +19,20 @@
               <span>
                 {{ data.message }}
               </span>
-              <img
+              <img 
                 class="img-chat"
-                v-if="data.type == 'image'"
+                alt="chat background"
+                v-if="data.type === 'image'"
                 :src="data.src"
               />
             </div>
-
+            
             <button
-              v-if="data.type == 'button'"
+              v-if="data.type === 'button'"
               :class="getButtonClass(data.func)"
               v-on:click="handleClick(data.func)"
               :style="{ backgroundImage: 'url(' + data.src + ')' }"
+              
             ></button>
           </div>
         </vuescroll>
@@ -44,7 +46,7 @@
             <input
               type="text"
               class="corner berlin-font"
-              placeholder="Write your message here..."
+              placeholder="Type a message"
               v-model="message"
               name="message"
             />
@@ -123,105 +125,103 @@ export default {
     },
     getButtonClass(functionType) {
       let styleItem = "";
-      if (functionType == "next" || functionType == "nextPractice") {
+      if (functionType === "next" || functionType === "nextPractice") {
         styleItem = styleItem + "btn-chat";
       } else {
         styleItem = styleItem + "btn-chat";
       }
       return styleItem;
     },
-    getMessageStyle(type) {
-      if (type == "text") return { "font-size": this.fontSize + "vh" };
-      if (type == "button")
-        return {
-          "font-size": this.fontSize + "vh",
-          "padding-top": "2px",
-          "padding-bottom": "0px",
-          "margin-bottom": "-10px",
-        };
+    getMessageStyle(type){
+      if(type === "text")
+        return {'font-size': this.fontSize+'vh'}
+      if(type === "button")
+        return {'font-size': this.fontSize+'vh', 'padding-top':'2px', 'padding-bottom':'0px', 'margin-bottom':'-10px'}
     },
     handleClick(functionType) {
-      if (functionType == "next") {
+      if (functionType === "next") {
         this.$emit("nextClicked");
-      } else if (functionType == "nextPractice") {
+      } 
+      else if (functionType === "nextPractice") {
         this.$emit("nextPracticeClicked");
-      } else if (functionType == "tryAgain") {
+      } 
+      else if (functionType === "tryAgain") {
         this.$emit("tryAgainClicked");
-      } else if (functionType == "continue") {
+      } 
+      else if (functionType === "continue") {
         this.$emit("continueClicked");
       }
     },
     sendMessage() {
-      var result = true;
-      if (result) {
-        let jsonMessage = '{"highlighted":"", "text":"' + this.message + ' "}';
-
-        this.messages.push({ message: this.message, bot: false, type: "text" });
-        this.$emit("sendMessage", jsonMessage);
-        this.message = "";
-      } else {
-        console.log("Too Short message");
-      }
+      let jsonMessage = '{"highlighted":"", "text":"' + this.message + ' "}';
+      this.messages.push({ message: this.message, bot: false, type: "text" });
+      this.$emit("sendMessage", jsonMessage);
+      this.message = "";
     },
     receiveMessage(messages) {
-      messages.forEach((message) => {
-        let toPush = { message: message, bot: true, type: "text" };
-        if (message.includes("another shot?")) {
-          toPush = {
-            message: message,
-            bot: true,
-            type: "button",
-            src: require("../assets/uibuttons/TryAgainButton.png"),
-            func: "tryAgain",
-          };
-          this.$emit("showTryAgain");
-        } else if (message.includes("Congrats")) {
-          toPush = {
-            message: message,
-            bot: true,
-            type: "button",
-            src: require("../assets/uibuttons/ContinueButton.png"),
-            func: "continue",
-          };
-          this.$emit("addPoints");
-        } else if (message.includes("display")) {
-          toPush = {
-            message: "",
-            bot: true,
-            type: "image",
-            src: this.getImageById(message.split(" ")[1]),
-          };
+      /*
+      * {
+      * "messages":[
+      *   "text": ""
+      *   "ui_effect": ""
+      * ],
+      * "change_phase": "":
+      * }
+      * */
+      messages.forEach(message => {
+        let toPush = { message: message, bot: true, type: "text" }
+        const received = JSON.parse(message)
+        console.log(received);
+        switch (received.messages.ui_effect) {
+          case "tryagain":
+            toPush = { message: message, bot: true, type: "button", src: require("../assets/uibuttons/TryAgainButton.png"), func: "tryAgain" };
+            this.$emit("showTryAgain");
+            break;
+          case "continue":
+            toPush = { message: message, bot: true, type: "button", src: require("../assets/uibuttons/ContinueButton.png"), func: "continue", };
+            this.$emit("addPoints");
+            break;
+          case "next":
+            //display next button
+            break;
+          default:
+            if(message.includes("display")){
+              toPush = { message: "", bot: true, type: "image", src:this.getImageById(message.split("_")[1]) };
+            }
+            break;
         }
-
+        if (received.change_phase !== ""){
+          this.$emit("changePhase");
+        }
         this.messages.push(toPush);
       });
     },
-    getImageById(id) {
-      switch (id) {
-        case "1":
-          return require("../assets/molecules/BakingSoda.png");
-        case "2":
-          return require("../assets/molecules/EggWhite.png");
-        case "3":
-          return require("../assets/molecules/Vinegar.png");
-        case "4":
-          return require("../assets/molecules/Bleach.png");
-        case "5":
-          return require("../assets/molecules/OvenCleaner.png");
-        case "6":
-          return require("../assets/molecules/Soap.png");
-        case "7":
-          return require("../assets/molecules/Cola.png");
-        case "8":
-          return require("../assets/molecules/LemonJuice.png");
-        case "9":
-          return require("../assets/molecules/Milk.png");
-        case "10":
-          return require("../assets/molecules/PureWater.png");
-        case "11":
-          return require("../assets/molecules/SparklingWater.png");
+    getImageById(id){
+      switch (id){
+        case("1"):
+          return require("../assets/molecules/BakingSoda.png")
+        case("2"):
+          return require("../assets/molecules/EggWhite.png")
+        case("3"):
+          return require("../assets/molecules/Vinegar.png")
+        case("4"):
+          return require("../assets/molecules/Bleach.png")
+        case("5"):
+          return require("../assets/molecules/OvenCleaner.png")
+        case("6"):
+          return require("../assets/molecules/Soap.png")
+        case("7"):
+          return require("../assets/molecules/Cola.png")
+        case("8"):
+          return require("../assets/molecules/LemonJuice.png")
+        case("9"):
+          return require("../assets/molecules/Milk.png")
+        case("10"):
+          return require("../assets/molecules/PureWater.png")
+        case("11"):
+          return require("../assets/molecules/SparklingWater.png")
         default:
-          return require("../assets/molecules/PureWater.png");
+          return require("../assets/molecules/PureWater.png")
       }
     },
     printNextButton() {
@@ -234,8 +234,7 @@ export default {
       });
     },
     printNextPracticeButton() {
-      this.messages.push({
-        message: "Click on next button to continue!",
+      this.messages.push({ message: "Click on next button to continue!",
         bot: true,
         type: "button",
         src: require("../assets/uibuttons/NextButton.png"),
@@ -243,8 +242,7 @@ export default {
       });
     },
     printContinueButton() {
-      this.messages.push({
-        message: "Congrats, you won 10 points. Click to continue",
+      this.messages.push({ message: "Congrats, you won 10 points. Click to continue",
         bot: true,
         type: "button",
         src: require("../assets/uibuttons/ContinueButton.png"),
@@ -252,8 +250,7 @@ export default {
       });
     },
     printTryAgainButton() {
-      this.messages.push({
-        message: "Do you want to give it another shot?",
+      this.messages.push({ message: "Do you want to give it another shot?",
         bot: true,
         type: "button",
         src: require("../assets/uibuttons/TryAgainButton.png"),
@@ -263,40 +260,27 @@ export default {
   },
   updated() {
     this.$refs["vs"].scrollTo({ y: "100%" }, 500);
-  },
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-
 .chat {
   margin: auto;
   display: flex;
   flex-direction: column;
-  height: 95%;
-  width: 23%;
-  position: fixed;
+  height: 90%;
+  width: 95%;
+  position: relative;
   z-index: 1;
   top: 2.5%;
-  padding-top: 5px;
+  padding-top: 0.3vw;
+  padding-bottom: 0.3vw;
   overflow-x: hidden;
   right: 1%;
-  border: 4px solid;
-  border-radius: 60px;
-  border-color: #ffa000;
+  border-radius: 40px;
+  border: 4px solid #ffa000;
   background-color: #fff;
   background-image: url("../assets/backgrounds/WhiteBG.png");
 }
@@ -309,14 +293,14 @@ a {
   position: fixed;
   z-index: 1;
   top: 0;
-  padding-top: 5px;
+  padding-top: 0.3vw;
   overflow-x: hidden;
   right: 0;
-  border: 0px none;
+  border: 0 none;
   background: transparent;
 }
 
-.chat-tittle .textbar {
+.chat-title .textbar {
   flex: none;
 }
 
@@ -326,7 +310,7 @@ a {
   width: 100%;
   background-color: transparent;
   display: table;
-  padding: 7px;
+  padding: 0.6vw;
 }
 
 .textbar .text {
@@ -338,34 +322,33 @@ a {
   text-align: left;
   background-repeat: no-repeat;
   display: block;
-  margin-top: 2px;
-  padding-top: 2px;
-  margin-bottom: 2px;
-  padding-bottom: 8px;
+  margin-top: 0.2vw;
+  padding-top: 0.2vw;
+  margin-bottom: 0.2vw;
+  padding-bottom: 0.6vw;
 }
 
 .user-message {
-  padding-left: 2vw;
-  padding-right: 3.6vw;
+  padding-left: 2.5vw;
+  padding-right: 2.25vw;
   background-image: url("../assets/icons/userchaticon.png");
-  background-position-x: 0.5vw;
+  background-position-x: 95%;
   background-position-y: 15%;
-  background-size: 18px 24px;
+  background-size: 1.5vw;
 }
 
 .user-message-box {
   color: #ffa000;
   border: 2px solid #ffa000;
   border-radius: 20px;
-  padding: 4px 8px 4px 8px;
+  padding: 0.3vw 0.6vw 0.3vw 0.6vw;
   width: 100%;
 }
 
 .bot-message {
   padding-left: 2.5vw;
   padding-right: 2.25vw;
-  margin-right: 10px;
-  background-position-x: right;
+  background-position-x: left;
   background-position-y: 15%;
   background-image: url("../assets/icons/botchaticon.png");
   background-size: 2vw;
@@ -373,10 +356,10 @@ a {
 
 .bot-message-box {
   color: #fff;
-  background-color: #000000;
+  background-color: #ffa000;
   border: 2px solid #ffa000;
   border-radius: 20px;
-  padding: 4px 8px 4px 8px;
+  padding: 0.3vw 0.6vw 0.3vw 0.6vw;
   width: 100%;
 }
 
@@ -387,11 +370,10 @@ a {
 }
 
 .form-style {
-  margin-top: 4px;
-  margin-right: 4px;
-  margin-bottom: 4px;
+  margin: 0.3vw;
 }
 
+/*This division is ugly, we will get rid of it*/
 .division {
   border-bottom: solid 5px #ffa000;
   border-radius: 1px;
@@ -401,7 +383,7 @@ a {
 
 .btn-chat {
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 0.8vw;
   top: -8px;
   height: 45px;
   left: 20%;
@@ -418,23 +400,22 @@ a {
 .btn-chat:active {
   opacity: 0.8;
 }
-.img-chat {
-  max-width: 100%;
+.img-chat{
+  max-width:100%;
 }
 
 .corner {
   background-color: transparent !important;
   color: #ffa000 !important;
   border-radius: 10px !important;
-  border: solid 3px !important;
-  border-color: #ffa000 !important;
+  border: 3px solid #ffa000 !important;
   height: 40px;
   width: 90%;
   bottom: 100px !important;
   left: 5%;
   right: 5%;
-  margin: 2px;
-  padding: 2px;
+  margin: 0.1vw;
+  padding: 0.1vw;
   box-sizing: border-box;
 }
 </style>
