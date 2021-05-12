@@ -1,6 +1,7 @@
+<!--Main screen should only contain start button that leads to tutorial-->
 <template>
   <div id="app" :style="{ height: '100%' }">
-    <div v-if="mainStatus === 0">
+    <div v-if="mainStatus === 0 && gamePhase === 'introduction'">
       <MainScreen
         v-on:startIntro="startIntroduction"
         v-on:startPractice="startPractice"
@@ -17,13 +18,14 @@
         v-on:tryAgainClicked="handleTryAgainClick"
         v-on:continueClicked="handleContinueClick"
         v-on:showTryAgain="displayTryAgain"
-        v-on:changePhase="handleChangePhase"
       />
       <GameScreen 
       ref="gameRef"
         :style="{overflow:'visible'}"
-        v-bind:gameType="mainStatus" 
-        v-on:goHome="resetHome" 
+        v-bind:gameType="mainStatus"
+        v-bind:selectable_items="selectable_items"
+        v-bind:gamePhase="gamePhase"
+        v-on:goHome="resetHome"
         v-on:goBack="sendBackClick" 
         v-on:practicePress="handlePracticePress"
         v-on:introClick="sendIntroductoryJSON"
@@ -56,10 +58,18 @@ export default {
     Chat,
   },
   data() {
+    //mainStatus to be deleted
     return {
       message: "",
-      mainStatus: 0, // 0 -> Main Screen, 1 ->
+      mainStatus: 0, // 0 -> Main Screen, 1 -> Picker Tutorial, 2-> Mixer Tutorial, 3-> Picker Practice 4-> Mixer Practice
+      gamePhase: {
+        phase: "introduction",
+        isSelection: false,
+        isMixer: false,
+        isTutorial: false,
+      },
       chatLink: undefined,
+      selectable_items:[],
     };
   },
   methods: {
@@ -134,8 +144,41 @@ export default {
     handleSelectItem(id){
       this.sendItemClick(id);
     },
-    handleChangePhase(){
-     // change phase
+    handleChangePhase(next_phase){
+      let phases = JSON.parse("../resources/phases.json");
+      phases.forEach(phase => {
+        if (phase.name === next_phase){
+          this.gamePhase.phase = phase.name;
+          this.gamePhase.isMixer = phase.isMixer;
+          this.gamePhase.isSelection = phase.isSelection;
+          this.gamePhase.isTutorial = phase.isTutorial;
+          this.fetchItems();
+          return;
+        }
+      })
+    },
+    fetchItems(){
+      let phases = JSON.parse("../resources/phases.json");
+      let substances = JSON.parse("../resources/substances.json");
+      let substance_element;
+      this.selectable_items = [];
+      phases.forEach(phase => {
+        if (phase.name === this.gamePhase){
+          phase.ingredients.forEach(substance => {
+
+            substance_element.item = substances[substance].name;
+            substance_element.id = substances[substance].id;
+            substance_element.selected = false;
+            substance_element.src = require(substances[substance].asset);
+            substance_element.size = substances[substance].size;
+            substance_element.prsize = substances[substance].prsize;
+            substance_element.ph = substances[substance].prsize;
+
+            this.selectable_items.push(substance_element);
+            console.log(substance_element);
+          })
+        }
+      })
     }
   },
   created: function () {
@@ -145,8 +188,12 @@ export default {
     let self = this
     this.connection.onmessage = function (event) {
       let messages = JSON.parse(event.data)
-      console.log(messages)
-      self.$refs.chatRef.receiveMessage(messages)
+      messages.messages.forEach(message => {
+        self.$refs.chatRef.receiveMessage(message)
+      });
+      if (messages.change_phase !== ""){
+        this.handleChangePhase(messages.change_phase);
+      }
     };
 
     this.connection.onopen = function (event) {

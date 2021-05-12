@@ -158,43 +158,29 @@ export default {
       this.$emit("sendMessage", jsonMessage);
       this.message = "";
     },
-    receiveMessage(messages) {
-      /*
-      * {
-      * "messages":[
-      *   "text": ""
-      *   "ui_effect": ""
-      * ],
-      * "change_phase": "":
-      * }
-      * */
-      messages.forEach(message => {
-        let toPush = { message: message, bot: true, type: "text" }
-        const received = JSON.parse(message)
-        console.log(received);
-        switch (received.messages.ui_effect) {
-          case "tryagain":
-            toPush = { message: message, bot: true, type: "button", src: require("../assets/uibuttons/TryAgainButton.png"), func: "tryAgain" };
+    receiveMessage(message_received) {
+      console.log(message_received);
+      let toPush = { message: message_received.text, bot: true, type: "text" }
+      switch (message_received.ui_effect) {
+        case "tryagain":
+          toPush = { message: message_received.text, bot: true, type: "button", src: require("../assets/uibuttons/TryAgainButton.png"), func: "tryAgain" };
             this.$emit("showTryAgain");
             break;
           case "continue":
-            toPush = { message: message, bot: true, type: "button", src: require("../assets/uibuttons/ContinueButton.png"), func: "continue", };
+            toPush = { message: message_received.text, bot: true, type: "button", src: require("../assets/uibuttons/ContinueButton.png"), func: "continue", };
             this.$emit("addPoints");
             break;
           case "next":
-            //display next button
+            toPush = { message: message_received.text, bot: true, type: "button", src: require("../assets/uibuttons/NextButton.png"), func: "next", };
+            this.$emit("nextClicked");
             break;
           default:
-            if(message.includes("display")){
-              toPush = { message: "", bot: true, type: "image", src:this.getImageById(message.split("_")[1]) };
+            if(message_received.ui_effect.includes("display")){
+              toPush = { message: "", bot: true, type: "image", src:this.getImageById(message_received.text.split("_")[1]) };
             }
             break;
         }
-        if (received.change_phase !== ""){
-          this.$emit("changePhase");
-        }
         this.messages.push(toPush);
-      });
     },
     getImageById(id){
       switch (id){

@@ -2,26 +2,44 @@
   "phases": [
     {
       "name": "introduction",
-      "substances": []
+      "isSelection": false,
+      "isMixer": false,
+      "isTutorial": false,
+      "substances": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     },
     {
       "name": "tutorial-selection",
+      "isSelection": true,
+      "isMixer": false,
+      "isTutorial": true,
       "substances": [8, 5, 9]
     },
     {
       "name": "tutorial-mix",
+      "isSelection": false,
+      "isMixer": true,
+      "isTutorial": true,
       "substances": [8, 5, 9]
     },
     {
       "name": "practice-pH",
+      "isSelection": false,
+      "isMixer": true,
+      "isTutorial": false,
       "substances": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     },
     {
       "name": "practice-selection",
+      "isSelection": true,
+      "isMixer": false,
+      "isTutorial": false,
       "substances": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     },
     {
       "name": "practice-mix",
+      "isSelection": false,
+      "isMixer": true,
+      "isTutorial": false,
       "substances": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     }
   ]

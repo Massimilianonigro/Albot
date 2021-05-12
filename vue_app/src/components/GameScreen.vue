@@ -1,16 +1,79 @@
 <template>
   <div id="GameUI">
+    <!--DEPRECATED-->
     <div class="GameUI" v-if="gameStatus === 1">
       <PickerBackground />
       <PickerPhase 
         ref="picker"
-        v-bind:items="items" 
+        v-bind:items="selectable_items"
         v-on:sendItemMessage="selectItem"
         v-on:sendNextInChat="displayNextButton"
         v-on:homePress="homeScreen"
         v-on:nextPress="mixItems" 
       />
     </div>
+    <!--Tutorial Selection phase: !isMixer, isSelection, isTutorial-->
+    <div class="GameUI" v-if="!gamePhase.isMixer && gamePhase.isSelection && gamePhase.isTutorial">
+      <PickerBackground />
+      <PickerPhase
+          ref="picker"
+          v-bind:items="selectable_items"
+          v-on:sendItemMessage="selectItem"
+          v-on:sendNextInChat="displayNextButton"
+          v-on:homePress="homeScreen"
+          v-on:nextPress="mixItems"
+       />
+    </div>
+    <!--Tutorial Mixer phase: isMixer, !isSelection, isTutorial-->
+    <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial">
+      <MixerBackground  />
+      <MixerPhase
+          v-on:homePress="homeScreen"
+          v-on:backPress="prevScreen"
+          v-on:practicePress="practicePress"
+          v-on:selectItem="selectItem"
+          v-bind:items="selectable_items"
+      />
+    </div>
+    <!--pH identifier phase: isMixer, !isSelection, !isTutorial-->
+    <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial">
+      <MixerBackground  />
+      <MixerPhase
+          v-bind:items="selectable_items"
+          v-on:homePress="homeScreen"
+          v-on:backPress="prevScreen"
+          v-on:practicePress="practicePress"
+          v-on:selectItem="selectItem"
+          />
+    </div>
+    <!--Practice Selection phase: !isMixer, isSelection, !isTutorial-->
+    <div class="GameUI" v-if="!gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial">
+      <PickerBackground/>
+      <PickerPracticePhase
+          ref="pracpicker"
+          v-bind:items="selectable_items"
+          v-on:sendNextInPracticeChat="displayNextPracticeButton"
+          v-on:sendItemMessage="selectItem"
+          v-on:nextPress="practiceMix"
+          v-on:homePress="homeScreen"
+      />
+    </div>
+    <!--Practice Mixer phase: isMixer, !isSelection, !isTutorial-->
+    <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial">
+      <PracticeBackground />
+      <PracticePhase
+          ref="game"
+          v-bind:items="selItems"
+          v-on:selectedPractItem="sendItemMessage"
+          v-on:resetPress="sendResetMessage"
+          v-on:homePress="homeScreen"
+          v-on:backPress="prevScreen"
+          v-on:continuePress="continueClick"
+          v-on:tryAgainPress="tryAgainClick"
+          v-on:infoPress="infoClick"
+      />
+    </div>
+    <!--DEPRECATED-->
     <div class="GameUI" v-if="gameStatus === 2">
       <MixerBackground 
         v-bind:items="nonSelItems"/>
@@ -24,6 +87,7 @@
         v-on:selectItem="selectItem"
       />
     </div>
+    <!--DEPRECATED-->
     <div class="GameUI" v-if="gameStatus === 3">
       <PickerBackground/>
       <PickerPracticePhase 
@@ -35,6 +99,7 @@
         v-on:homePress="homeScreen"
       />
     </div>
+    <!--DEPRECATED-->
     <div class="GameUI" v-if="gameStatus === 4">
       <PracticeBackground />
       <PracticePhase 
@@ -80,7 +145,14 @@ export default {
   },
   data() {
     return {
+      gamePhase: {
+        phase: "introduction",
+        isSelection: false,
+        isMixer: false,
+        isTutorial: false,
+      },
       gameStatus: this.gameType,
+      selectable_items: [],
       items: [
         {
           item: "Baking Soda",
@@ -227,7 +299,7 @@ export default {
       this.$emit("sendPracNextInChat");
     },
     sendItemMessage(id){
-      this.$emit("sendItemMessage",id);
+      this.$emit("sendItemMessage", id);
     },
     sendResetMessage(){
       this.$emit("sendResetMessage");
@@ -242,11 +314,11 @@ export default {
       this.$emit("sendInfoMessage");
     },
     nextClicked(){
-      if(this.gameStatus == 1)
+      if(this.gameStatus === 1)
         this.$refs.picker.updatePart()
     },
     nextPracticeClicked(){
-      if(this.gameStatus == 3)
+      if(this.gameStatus === 3)
         this.$refs.pracpicker.nextClick()
     },
     practicePress(){
@@ -263,7 +335,7 @@ export default {
       this.$refs.game.showTryAgainWindow();
     },
     nextScreen() {
-      if(this.gameStatus == 2){ // Reset on Practise picking
+      if(this.gameStatus === 2){ // Reset on Practise picking
         this.items.forEach(element => element.selected = false);
       }
       this.gameStatus += 1;

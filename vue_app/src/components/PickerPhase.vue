@@ -62,7 +62,7 @@ export default {
       let selItems = []
       let nonSelItems = []
       this.items.forEach(element => {
-        if( element.selected == true){
+        if( element.selected === true){
           let tempItem = { 
             item: element.item,
             size: element.size,
@@ -93,32 +93,32 @@ export default {
       }
     },
     changePart(){
-      if (this.part == "acid" && this.selection == 2){
+      if (this.part === "acid" && this.selection === 2){
       this.$emit("sendNextInChat");
       }
-      else if(this.part == "basic"  && this.selection == 4){
+      else if(this.part === "basic"  && this.selection === 4){
       this.$emit("sendNextInChat");
       }
-      else if(this.part == "water"  && this.selection == 5){
+      else if(this.part === "water"  && this.selection === 5){
       this.$emit("sendNextInChat");
       }
     },
     updatePart(){
-      if (this.part == "acid" && this.selection == 2){
+      if (this.part === "acid" && this.selection === 2){
         this.part = "basic";
       }
-      else if(this.part == "basic"  && this.selection == 4){
+      else if(this.part === "basic"  && this.selection === 4){
         this.part = "water";
       }
-      else if(this.part == "water"  && this.selection == 5){
+      else if(this.part === "water"  && this.selection === 5){
         this.mixItems()
       }
     },
     getUnclickable(ph, selected){
-      if(selected && this.part != "acid" && ph < 7) {
+      if(selected && this.part !== "acid" && ph < 7) {
         return true;
       }
-      else if( selected && this.part != "basic" && ph > 7){
+      else if( selected && this.part !== "basic" && ph > 7){
         return true;
       }
       return false;
@@ -127,17 +127,17 @@ export default {
       if (data.selected){
         return false;
       }
-      else if (this.part == "acid" && data.ph != 7){
-        if(this.selection == 2)
+      else if (this.part === "acid" && data.ph !== 7){
+        if(this.selection === 2)
           return true;
         return data.ph > 7;
       }
-      else if(this.part == "basic" && data.ph != 7){
-        if(this.selection == 4)
+      else if(this.part === "basic" && data.ph !== 7){
+        if(this.selection === 4)
           return true;
         return data.ph < 7;
       }
-      else if(this.part == "water" && data.ph == 7){
+      else if(this.part === "water" && data.ph === 7){
         return false;
       }
       return true;
