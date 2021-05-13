@@ -153,7 +153,7 @@ export default {
       }
     },
     sendMessage() {
-      let jsonMessage = '{"type":"", "content":"' + this.message + ' "}';
+      let jsonMessage = '{"type":"text", "content":"' + this.message + ' "}';
       this.messages.push({ message: this.message, bot: false, type: "text" });
       this.$emit("sendMessage", jsonMessage);
       this.message = "";

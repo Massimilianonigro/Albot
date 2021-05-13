@@ -1,7 +1,7 @@
 <!--Main screen should only contain start button that leads to tutorial-->
 <template>
   <div id="app" :style="{ height: '100%' }">
-    <div v-if="mainStatus === 0 && gamePhase === 'introduction'">
+    <div v-if="mainStatus === 0">
       <MainScreen
         v-on:startIntro="startIntroduction"
         v-on:startPractice="startPractice"

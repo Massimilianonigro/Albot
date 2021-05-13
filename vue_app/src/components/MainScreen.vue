@@ -25,33 +25,54 @@
       <button class="settings icon"></button>
       <div class="bot-welcome"></div>
       <transition name="fade">
-        <p class="bubble bubble-1 berlin-font">Hi! I'm Albot.</p>
+        <ul class="chat-welcome" v-bind:style="{display: visibilityIntro}">
+          <li>
+            <p class="bubble berlin-font">Hi! I'm Albot.</p>
+          </li>
+          <li>
+            <p class="bubble berlin-font">What's your name?</p>
+          </li>
+          <li>
+            <form @submit.prevent="submitName" autocomplete="off" class="bubble">
+              <div class="textbar">
+                <div class="text input-group">
+                  <input
+                      type="text"
+                      class="berlin-font"
+                      placeholder="Type your name"
+                      v-model="message"
+                      name="message"
+                      style="border: none transparent; outline: none;"
+                  />
+                </div>
+              </div>
+            </form>
+          </li>
+        </ul>
       </transition>
       <transition name="fade">
-        <p v-if="part2" class="bubble bubble-2 berlin-font">
-          <button
-            v-on:click="clickOnIntro"
-            class="bubble-btn fade-in berlin-font"
-            :style="{ left: '8%' }"
-          >
-            Tutorial
-          </button>
-          We will carry out this experiment together. Please choose a lesson to
-          start:
-          <button
-            v-on:click="clickOnPractice"
-            class="bubble-btn fade-in berlin-font"
-            :style="{ right: '8%' }"
-          >
-            Experiment
-          </button>
-        </p>
-      </transition>
-      <transition name="fade">
-        <p v-if="part3" class="bubble bubble-3 fade-in berlin-font">
-          If this topic is new for you, you can click on Introduction, or if you
-          already know it, you can practice!
-        </p>
+          <ul class="chat-welcome" v-bind:style="{display: visibilityButtons}">
+            <li>
+              <p class="bubble berlin-font"> Welcome Massimiliano! We will carry out this experiment together. Please choose a lesson to
+                start:</p>
+            </li>
+            <li>
+              <button
+                  v-on:click="clickOnIntro"
+                  class="bubble-btn fade-in berlin-font"
+                  :style="{ left: '8%' }"
+              >
+                Tutorial
+              </button>
+              <button
+                  v-on:click="clickOnPractice"
+                  class="bubble-btn fade-in berlin-font"
+                  :style="{ right: '8%' }"
+              >
+                Experiment
+              </button>
+          </li>
+        </ul>
       </transition>
     </div>
   </div>
@@ -75,6 +96,10 @@ export default {
       part3: false,
       report: false,
       settings: false,
+      message: "",
+      user_name: "",
+      visibilityIntro: "block",
+      visibilityButtons: "none",
     };
   },
   methods: {
@@ -103,6 +128,14 @@ export default {
     },
     settingsButton(){
       this.settings = !this.settings
+    },
+    submitName(){
+      this.user_name = this.message;
+      let jsonMessage = '{"type":"name", "content":"' + this.user_name + ' "}';
+      this.$emit("sendMessage", jsonMessage);
+      this.message = "";
+      this.visibilityIntro = "none";
+      this.visibilityButtons = "block";
     }
   },
 };
@@ -234,8 +267,12 @@ a {
   background-image: url("../assets/backgrounds/Bot.png");
 }
 
+.chat-welcome{
+  list-style-type: none;
+}
+
 .bubble {
-  position: absolute;
+  position: static;
   text-align: left;
   color: #fbb13d;
   line-height: 1.4em;
@@ -243,7 +280,7 @@ a {
   right: 22%;
   width: auto;
   max-width: 50%;
-  margin: 40px auto;
+  margin: 1% auto;
   border: 4px solid #fbb13d;
   border-radius: 30px;
   padding: 10px 20px;
@@ -270,20 +307,8 @@ a {
   border-color: #ffffff #ffffff transparent transparent;
 }
 
-.bubble-1 {
-  top: 2%;
-  height: auto;
-}
-.bubble-2 {
-  top: 14%;
-  height: auto;
-}
-.bubble-3 {
-  top: 38%;
-  height: auto;
-}
 .bubble-btn {
-  position: absolute;
+  position: static;
   text-align: center;
   line-height: 1.4em;
   font-size: 2.5vh;
