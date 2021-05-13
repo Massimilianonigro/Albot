@@ -5,6 +5,7 @@
       <MainScreen
         v-on:startIntro="startIntroduction"
         v-on:startPractice="startPractice"
+        v-on:sendMessage="sendMessage"
       />
     </div>
     <div v-else>
@@ -18,6 +19,7 @@
         v-on:tryAgainClicked="handleTryAgainClick"
         v-on:continueClicked="handleContinueClick"
         v-on:showTryAgain="displayTryAgain"
+        v-on:submitName="submitName"
       />
       <GameScreen 
       ref="gameRef"

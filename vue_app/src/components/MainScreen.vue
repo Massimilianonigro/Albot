@@ -53,7 +53,7 @@
       <transition name="fade">
           <ul class="chat-welcome" v-bind:style="{display: visibilityButtons}">
             <li>
-              <p class="bubble berlin-font"> Welcome Massimiliano! We will carry out this experiment together. Please choose a lesson to
+              <p class="bubble berlin-font"> Welcome {{this.user_name}}! We will carry out this experiment together. Please choose a lesson to
                 start:</p>
             </li>
             <li>
@@ -131,7 +131,7 @@ export default {
     },
     submitName(){
       this.user_name = this.message;
-      let jsonMessage = '{"type":"name", "content":"' + this.user_name + ' "}';
+      let jsonMessage = '{"type":"name", "content":"' + this.user_name + '"}';
       this.$emit("sendMessage", jsonMessage);
       this.message = "";
       this.visibilityIntro = "none";
