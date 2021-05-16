@@ -148,5 +148,57 @@
                 }
             }
         ]
+    },
+    "tutorial": {
+        "explanation": true,
+        "positive_responses": [
+            "chatbot_appreciation",
+            "next"
+        ],
+        "negative_responses": [
+            "wrong_answer",
+            "next"
+        ],
+        "questions": [
+            {
+                "mix_strong_acid": {
+                    "base": "Why do you think the color of the solution is changing?",
+                    "values": [
+                        {
+                            "id": 15,
+                            "option": "",
+                            "answer": "color_change_strong_acid_answer",
+                            "explanation": "color_change_strong_acid_explanation"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_strong_base": {
+                    "base": "Oh the colour changed again! But this one seems much different from the previous, why do you think it changes like that?",
+                    "values": [
+                        {
+                            "id": 16,
+                            "option": "",
+                            "answer": "color_change_strong_base_answer",
+                            "explanation": "color_change_strong_base_explanation"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_weak_acid": {
+                    "base": "Look, the colour of the solution changed again, but does it remind you of something? What is different compared to the previous colors?",
+                    "values": [
+                        {
+                            "id": 17,
+                            "option": "",
+                            "answer": "color_change_weak_acid_answer",
+                            "explanation": "color_change_weak_acid_explanation"
+                        }
+                    ]
+                }
+            }
+        ]
     }
 }
