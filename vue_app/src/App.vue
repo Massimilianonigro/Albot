@@ -12,6 +12,7 @@
       <Chat 
         ref="chatRef" 
         :style="{zIndex:'20'}"
+        v-bind:user_name="user_name"
         v-on:sendMessage="sendMessage"
         v-on:addPoints="addPractisePoints"
         v-on:nextClicked="handleNextClick"
@@ -20,6 +21,7 @@
         v-on:continueClicked="handleContinueClick"
         v-on:showTryAgain="displayTryAgain"
         v-on:submitName="submitName"
+        v-on:requestName="requestName"
       />
       <GameScreen 
       ref="gameRef"
@@ -70,6 +72,7 @@ export default {
         isMixer: false,
         isTutorial: false,
       },
+      user_name: "",
       chatLink: undefined,
       selectable_items:[],
     };
@@ -109,6 +112,10 @@ export default {
     },
     handlePracticePress(){
       this.sendItemClick("next");
+    },
+    requestName(){
+      let message = '{"content":, "type":"name_request"}';
+      this.sendMessage(message);
     },
     handleNextPracticeClick(){
       this.$refs.gameRef.nextPracticeClicked();
@@ -181,6 +188,9 @@ export default {
           })
         }
       })
+    },
+    submitName(name) {
+      this.user_name = name;
     }
   },
   created: function () {
@@ -191,6 +201,9 @@ export default {
     this.connection.onmessage = function (event) {
       let messages = JSON.parse(event.data)
       messages.messages.forEach(message => {
+        if (message.ui_effect === "hidden"){
+          this.user_name = message.text;
+        }
         self.$refs.chatRef.receiveMessage(message)
       });
       if (messages.change_phase !== ""){

@@ -25,7 +25,7 @@
       <button class="settings icon"></button>
       <div class="bot-welcome"></div>
       <transition name="fade">
-        <ul class="chat-welcome" v-bind:style="{display: visibilityIntro}">
+        <ul class="chat-welcome" v-bind:style="{display: visibilityIntro}" v-if="this.user_name === ''">
           <li>
             <p class="bubble berlin-font">Hi! I'm Albot.</p>
           </li>
@@ -47,6 +47,13 @@
                 </div>
               </div>
             </form>
+          </li>
+        </ul>
+      </transition>
+      <transition name="fade">
+        <ul class="chat-welcome" v-bind:style="{display: visibilityIntro}" v-if="this.user_name !== ''">
+          <li>
+            <p class="bubble berlin-font">Welcome back, {{this.user_name}}! Click to continue.</p>
           </li>
         </ul>
       </transition>
@@ -81,13 +88,16 @@
 <script>
 import SettingsWindow from "./SettingsWindow.vue";
 import ReportWindow from "./ReportWindow.vue";
+
 export default {
   components: {
     SettingsWindow,
     ReportWindow,
   },
   name: "MainScreen",
-  
+  created() {
+    this.requestName();
+  },
   data() {
     return {
       current: 1,
@@ -100,6 +110,7 @@ export default {
       user_name: "",
       visibilityIntro: "block",
       visibilityButtons: "none",
+      alreadyNamed: false
     };
   },
   methods: {
@@ -117,7 +128,6 @@ export default {
       }
     },
     clickOnIntro() {
-      //TODO: when we click, we send message to backend and wait for the backend to reply
       this.$emit("startIntro");
     },
     clickOnPractice() {
@@ -136,6 +146,10 @@ export default {
       this.message = "";
       this.visibilityIntro = "none";
       this.visibilityButtons = "block";
+      this.$emit("submitName", this.user_name);
+    },
+    requestName(){
+      this.$emit("requestName");
     }
   },
 };
