@@ -21,6 +21,7 @@ class QuestionHandler:
         return random.choice(list(question_category.values())[0]["values"])["id"]
 
     # Returns 0 if the answer is wrong, 1 if the answer is good, 2 if the intent is not meant to answer the question
+    # TODO: Possibly add control on intent entity in case of pH identification
     def verify_answer(self, question_id, intent):
         answer = self._get_answer_by_id(question_id)
         if (self._is_click_answer(answer) and self._is_click_answer(intent)) or (
@@ -133,3 +134,11 @@ class QuestionHandler:
                         if option["id"] == question_id:
                             return question_category
         return question_category
+
+    def get_first_id_by_type(self, question_type):
+        for question_categories in self.question_classification.values():
+            for question_types in question_categories["questions"]:
+                for question_type_key, question_values in question_types.items():
+                    if question_type_key == question_type:
+                        return question_values["values"][0]["id"]
+        return None

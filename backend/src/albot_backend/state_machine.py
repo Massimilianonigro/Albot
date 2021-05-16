@@ -127,13 +127,24 @@ class StateMachine:
     ):
 
         utterance_array = utterance_array + self._get_utterances(
-            state["click_object_reaction"]
+            state["click_object_reaction"]["to_send_back"]
         )
         print(self._get_utterances(state["click_object_reaction"]))
         if self._has_display(state):
             utterance_array = utterance_array + self._create_utterance(
                 text="display_" + str(intent_name[8:])
             )
+        if "new_pending_question" in state["click_object_reaction"]:
+            if state["click_object_reaction"]["new_pending_question"] == "clicked":
+                question_id = self.question_handler.get_first_id_by_type(
+                    "searching_" + str(intent_name[8:])
+                )
+                if question_id != None:
+                    new_pending_question = question_id
+                else:
+                    print("insert new question " + "searching_" + str(intent_name[8:]))
+        if "next_state" in state["click_object_reaction"]:
+            next_state = state["click_object_reaction"]["next_state"]
         response = self._create_message(utterance_array)
         return new_pending_question, next_state, response
 
