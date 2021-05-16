@@ -15,6 +15,7 @@
             v-for="(data, index) in messages"
             v-bind:key="index"
           >
+            <audio id="audio" src="../resources/new_message_received.wav" autoplay></audio>
             <div v-bind:class="getBoxClass(data)">
               <span>
                 {{ data.message }}
@@ -72,6 +73,7 @@ export default {
       fontSize: 2.0,
       message: "",
       messages: [],
+      audioNotification: new Audio(require('../resources/new_message_received.wav')),
       ops: {
         rail: {
           background: "#01a99a",
@@ -246,7 +248,7 @@ export default {
   },
   updated() {
     this.$refs["vs"].scrollTo({ y: "100%" }, 500);
-  }
+  },
 };
 </script>
 

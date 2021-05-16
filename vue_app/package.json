@@ -17,9 +17,11 @@
     "vue-simple-alert": "^1.1.1",
     "vue-socket.io": "^3.0.10",
     "vue-socket.io-extended": "^4.0.5",
+    "vue-use-sound": "^1.1.1",
     "vuescroll": "^4.17.0"
   },
   "devDependencies": {
+    "@voerro/vue-notifications": "^1.0.1",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
