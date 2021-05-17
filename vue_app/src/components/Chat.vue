@@ -15,7 +15,7 @@
             v-for="(data, index) in messages"
             v-bind:key="index"
           >
-            <audio id="audio" src="../resources/new_message_received.wav" autoplay></audio>
+            <audio id="audio" src="../resources/new_message_received.wav" v-if="data.bot" autoplay></audio>
             <div v-bind:class="getBoxClass(data)">
               <span>
                 {{ data.message }}
@@ -73,7 +73,6 @@ export default {
       fontSize: 2.0,
       message: "",
       messages: [],
-      audioNotification: new Audio(require('../resources/new_message_received.wav')),
       ops: {
         rail: {
           background: "#01a99a",
@@ -85,7 +84,7 @@ export default {
           keepShow: false,
         },
         bar: {
-          background: "#ffa000",
+          background: "#ca7900",
           keepShow: false,
           size: "10px",
           minSize: 0.2,
@@ -157,6 +156,7 @@ export default {
     sendMessage() {
       let jsonMessage = '{"type":"text", "content":"' + this.message + ' "}';
       this.messages.push({ message: this.message, bot: false, type: "text" });
+      this.isBot = false;
       this.$emit("sendMessage", jsonMessage);
       this.message = "";
     },
@@ -268,7 +268,7 @@ export default {
   overflow-x: hidden;
   right: 1%;
   border-radius: 40px;
-  border: 4px solid #ffa000;
+  border: 4px solid #ca7900;
   background-color: #fff;
   background-image: url("../assets/backgrounds/WhiteBG.png");
 }
@@ -277,7 +277,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 20%;
+  width: 30%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -317,7 +317,7 @@ export default {
 }
 
 .user-message {
-  padding-left: 2.5vw;
+  padding-left: 6vw;
   padding-right: 2.25vw;
   background-image: url("../assets/icons/userchaticon.png");
   background-position-x: 95%;
@@ -326,16 +326,16 @@ export default {
 }
 
 .user-message-box {
-  color: #ffa000;
-  border: 2px solid #ffa000;
+  color: #BF8005;
+  border: 2px solid #ca7900;
   border-radius: 20px;
   padding: 0.3vw 0.6vw 0.3vw 0.6vw;
-  width: 100%;
+  width: 95%;
 }
 
 .bot-message {
   padding-left: 2.5vw;
-  padding-right: 2.25vw;
+  padding-right: 6vw;
   background-position-x: left;
   background-position-y: 15%;
   background-image: url("../assets/icons/botchaticon.png");
@@ -344,8 +344,8 @@ export default {
 
 .bot-message-box {
   color: #fff;
-  background-color: #ffa000;
-  border: 2px solid #ffa000;
+  background-color: #ca7900;
+  border: 2px solid #ca7900;
   border-radius: 20px;
   padding: 0.3vw 0.6vw 0.3vw 0.6vw;
   width: 100%;
@@ -363,7 +363,7 @@ export default {
 
 /*This division is ugly, we will get rid of it*/
 .division {
-  border-bottom: solid 5px #ffa000;
+  border-bottom: solid 5px #ca7900;
   border-radius: 1px;
   width: 90%;
   margin: 0 auto;
@@ -394,9 +394,9 @@ export default {
 
 .corner {
   background-color: transparent !important;
-  color: #ffa000 !important;
+  color: #ca7900 !important;
   border-radius: 10px !important;
-  border: 3px solid #ffa000 !important;
+  border: 3px solid #ca7900 !important;
   height: 40px;
   width: 90%;
   bottom: 100px !important;

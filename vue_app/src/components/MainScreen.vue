@@ -33,11 +33,7 @@
       <button class="settings icon"></button>
       <div class="bot-welcome"></div>
       <transition name="fade">
-        <ul
-          class="chat-welcome"
-          v-bind:style="{ display: visibilityIntro }"
-          v-if="this.user_name === ''"
-        >
+        <ul class="chat-welcome" v-bind:style="{ display: visibilityIntro }"  v-if="this.user_name === ''">
           <li>
             <p class="bubble berlin-font">Hi! I'm Albot.</p>
           </li>
@@ -67,15 +63,27 @@
         </ul>
       </transition>
       <transition name="fade">
-        <ul
-          class="chat-welcome"
-          v-bind:style="{ display: visibilityIntro }"
-          v-if="this.user_name !== ''"
-        >
+        <ul class="chat-welcome" v-bind:style="{ display: visibilityIntro }" v-if="this.user_name !== ''">
           <li>
             <p class="bubble berlin-font">
               Welcome back, {{ this.user_name }}! Click to continue.
             </p>
+          </li>
+          <li>
+            <button
+                v-on:click="clickOnIntro"
+                class="bubble-btn fade-in berlin-font"
+                :style="{ left: '8%' }"
+            >
+              Tutorial
+            </button>
+            <button
+                v-on:click="clickOnPractice"
+                class="bubble-btn fade-in berlin-font"
+                :style="{ right: '8%' }"
+            >
+              Experiment
+            </button>
           </li>
         </ul>
       </transition>
@@ -119,9 +127,6 @@ export default {
     ReportWindow,
   },
   name: "MainScreen",
-  created() {
-    this.requestName();
-  },
   data() {
     return {
       current: 1,
@@ -315,14 +320,14 @@ a {
 .bubble {
   position: static;
   text-align: left;
-  color: #fbb13d;
+  color: #CA7900;
   line-height: 1.4em;
   font-size: 2.5vh;
   right: 22%;
   width: auto;
   max-width: 50%;
   margin: 1% auto;
-  border: 4px solid #fbb13d;
+  border: 4px solid #CA7900;
   border-radius: 30px;
   padding: 10px 20px;
   background-color: #fff;
@@ -339,7 +344,7 @@ a {
   right: 24px;
   bottom: -40px;
   border: 20px solid;
-  border-color: #fbb13d #fbb13d transparent transparent;
+  border-color: #CA7900 #CA7900 transparent transparent;
 }
 .speech:after {
   right: 28px;
@@ -360,7 +365,7 @@ a {
   border: 8px double #fff;
   border-radius: 30px;
   padding: 10px;
-  background-color: #fbb13d;
+  background-color: #CA7900;
   z-index: 21;
 }
 .fade-enter-active,
