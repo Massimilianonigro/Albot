@@ -38,8 +38,6 @@ class DialogueManager:
         # First the messsage has to be deserialized
         msg = json.loads(msg)
         # Control if the text field is empty
-        print("msg received: ")
-        print(msg)
         if msg["type"] == "text":
             # The message is now forwarded to the Rasa NLU and an intent comes back
             print("text received " + str(msg["content"]))
@@ -53,19 +51,7 @@ class DialogueManager:
             intent = self._create_intent("clicked_" + obj)
         elif msg["type"] == "name":
             self.users[user_id]["name"] = msg["content"]
-            intent = self._create_intent("given_name")
-        elif msg["type"] == "selection_complete":
-            intent = self._create_intent("selection_complete")
-        elif msg["type"] == "name_request":
-            return json.dumps(
-                {
-                    "messages": [
-                        {"text": self.users[user_id]["name"], "ui_effect": "hidden"}
-                    ],
-                    "change_phase": "",
-                }
-            )
-        # Now that i have the intent  calculated i can generate a response and move the child on the state machine
+        # Now that i have the intent calculated i can generate a response and move the child on the state machine
         utterance = self.generate_utterance(intent, user_id)
         return utterance
 

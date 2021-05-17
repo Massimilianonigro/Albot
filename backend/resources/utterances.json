@@ -15,21 +15,15 @@
             "ui_effect": ""
         }
     ],
-    "name_ask": [
-        {
-            "text": "May i ask What is your name? Is it Macareno?",
-            "ui_effect": ""
-        }
-    ],
     "introduction_explanation": [
         {
             "text": "Welcome to Introductory lesson! We will learn about PH level with item available in the kitchen.",
             "ui_effect": ""
         }
     ],
-    "ingredient_selection_explanation": [
+    "acid_selection": [
         {
-            "text": "ingredient_selection_explanation",
+            "text": "The Highlighted item have acidic properties. Select any 2 item of your choice to test them.",
             "ui_effect": ""
         }
     ],
@@ -39,21 +33,15 @@
             "ui_effect": "next"
         }
     ],
-    "mix_strong_acid_explanation": [
+    "base_selection": [
         {
-            "text": "mix_strong_acid_explanation",
+            "text": "The Highlighted item have basic properties. Select any 2 item of your choice to test them.",
             "ui_effect": ""
         }
     ],
-    "placeholder": [
+    "guided_reasoning_explanation": [
         {
-            "text": "placeholder",
-            "ui_effect": ""
-        }
-    ],
-    "mix_strong_base_explanation": [
-        {
-            "text": "mix_strong_base_explanation",
+            "text": "You can now see all selected item on the table. Click on each item and mix it with cabbage solution",
             "ui_effect": ""
         }
     ],
@@ -448,48 +436,6 @@
     "inform_collecting_items_explanation": [
         {
             "text": "In the introduction phase you can collect only 2 acidic items, 2 basic items and a neutral one(water).In the practice part you are free to collect as many items as you want",
-            "ui_effect": ""
-        }
-    ],
-    "mix_strong_acid_question": [
-        {
-            "text": "Why do you think the color of the solution is changing?",
-            "ui_effect": ""
-        }
-    ],
-    "mix_strong_base_question": [
-        {
-            "text": "Oh the colour changed again! But this one seems much different from the previous, why do you think it changes like that?",
-            "ui_effect": ""
-        }
-    ],
-    "mix_weak_acid_question": [
-        {
-            "text": "Look, the colour of the solution changed again, but does it remind you of something? What is different compared to the previous colors?",
-            "ui_effect": ""
-        }
-    ],
-    "explain_practice_start": [
-        {
-            "text": "I have a mission for you. The previous kid, Macareno, made a mess here and changed the order of the ingredients, that were previously in pH order.It is up to you know to identify the pH of the ingredients again.",
-            "ui_effect": ""
-        }
-    ],
-    "collect_substances_explanation": [
-        {
-            "text": "Select the substance from which you want to start the pH identification",
-            "ui_effect": ""
-        }
-    ],
-    "collect_substances_second_explanation": [
-        {
-            "text": "Good! Now do not hesitate, select another substance to examine",
-            "ui_effect": ""
-        }
-    ],
-    "selected_substance": [
-        {
-            "text": "Perfect, now you can experiment as you like, when you find out the pH value, write it here in the chat",
             "ui_effect": ""
         }
     ]

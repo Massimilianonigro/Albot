@@ -9,11 +9,8 @@ Welcome to albot-backend's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   
-   intro
-   albot_backend
-   nlu 
-   
+
+
 
 Indices and tables
 ==================
