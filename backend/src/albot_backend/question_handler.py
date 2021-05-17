@@ -133,3 +133,11 @@ class QuestionHandler:
                         if option["id"] == question_id:
                             return question_category
         return question_category
+
+    def get_first_id_from_question_name(self, question_name):
+        for question_classification_values in self.question_classification.values():
+            for question in question_classification_values["questions"]:
+                for question_name_key, question_value in question.items():
+                    if question_name_key == question_name:
+                        return question_value["id"]
+        return None

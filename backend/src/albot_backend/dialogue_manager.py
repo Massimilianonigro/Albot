@@ -51,6 +51,16 @@ class DialogueManager:
             intent = self._create_intent("clicked_" + obj)
         elif msg["type"] == "name":
             self.users[user_id]["name"] = msg["content"]
+            intent = self._create_intent("given_name")
+        elif msg["type"] == "name_request":
+            return json.dumps(
+                {
+                    "messages": [
+                        {"text": self.users[user_id]["name"], "ui_effect": "hidden"}
+                    ],
+                    "change_phase": "",
+                }
+            )
         # Now that i have the intent calculated i can generate a response and move the child on the state machine
         utterance = self.generate_utterance(intent, user_id)
         return utterance

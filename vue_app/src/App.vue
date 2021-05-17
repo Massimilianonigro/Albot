@@ -9,9 +9,9 @@
       />
     </div>
     <div v-else>
-      <Chat 
-        ref="chatRef" 
-        :style="{zIndex:'20'}"
+      <Chat
+        ref="chatRef"
+        :style="{ zIndex: '20' }"
         v-bind:user_name="user_name"
         v-on:sendMessage="sendMessage"
         v-on:addPoints="addPractisePoints"
@@ -23,14 +23,14 @@
         v-on:submitName="submitName"
         v-on:requestName="requestName"
       />
-      <GameScreen 
-      ref="gameRef"
-        :style="{overflow:'visible'}"
+      <GameScreen
+        ref="gameRef"
+        :style="{ overflow: 'visible' }"
         v-bind:gameType="mainStatus"
         v-bind:selectable_items="selectable_items"
         v-bind:gamePhase="gamePhase"
         v-on:goHome="resetHome"
-        v-on:goBack="sendBackClick" 
+        v-on:goBack="sendBackClick"
         v-on:practicePress="handlePracticePress"
         v-on:introClick="sendIntroductoryJSON"
         v-on:practClick="sendPracticeJSON"
@@ -44,7 +44,6 @@
         v-on:sendInfoMessage="handleInfoClick"
       />
     </div>
-   
   </div>
 </template>
 
@@ -55,6 +54,9 @@ import GameScreen from "./components/GameScreen.vue";
 import Chat from "./components/Chat.vue";
 
 export default {
+  mounted() {
+    this.requestName();
+  },
   name: "App",
   components: {
     MainScreen,
@@ -74,7 +76,7 @@ export default {
       },
       user_name: "",
       chatLink: undefined,
-      selectable_items:[],
+      selectable_items: [],
     };
   },
   methods: {
@@ -90,73 +92,73 @@ export default {
       this.sendPracticeJSON();
       this.mainStatus = 3;
     },
-    sendMessage: function(message) {
-      console.log("Sending:" + message)
+    sendMessage: function (message) {
+      console.log("Sending:" + message);
       this.connection.send(message);
     },
-    displayNextButton(){
+    displayNextButton() {
       this.$refs.chatRef.printNextButton();
     },
-    displayNextPracticeButton(){
+    displayNextPracticeButton() {
       this.$refs.chatRef.printNextPracticeButton();
     },
-    handleNextClick(){
+    handleNextClick() {
       this.$refs.gameRef.nextClicked();
       this.sendItemClick("next");
     },
-    sendBackClick(){
+    sendBackClick() {
       this.sendItemClick("back");
     },
-    sendHomeClick(){
+    sendHomeClick() {
       this.sendItemClick("home");
     },
-    handlePracticePress(){
+    handlePracticePress() {
       this.sendItemClick("next");
     },
-    requestName(){
+    requestName() {
       let message = '{"content":, "type":"name_request"}';
       this.sendMessage(message);
     },
-    handleNextPracticeClick(){
+    handleNextPracticeClick() {
       this.$refs.gameRef.nextPracticeClicked();
       this.sendItemClick("next");
     },
-    handleTryAgainClick(){
+    handleTryAgainClick() {
       this.sendItemClick("tryAgain");
     },
-    handleInfoClick(){
+    handleInfoClick() {
       this.sendItemClick("moreinfo");
     },
-    handleContinueClick(){
+    handleContinueClick() {
       this.sendItemClick("continue");
     },
-    displayTryAgain(){
-      this.$refs.gameRef.displayTryAgain()
+    displayTryAgain() {
+      this.$refs.gameRef.displayTryAgain();
     },
-    addPractisePoints(){
-          console.log("Adding Points")
-      this.$refs.gameRef.addPoints()
+    addPractisePoints() {
+      console.log("Adding Points");
+      this.$refs.gameRef.addPoints();
     },
-    sendIntroductoryJSON(){
-      this.sendItemClick("introduction")
+    sendIntroductoryJSON() {
+      this.sendItemClick("introduction");
     },
-    sendPracticeJSON(){
+    sendPracticeJSON() {
       this.sendItemClick("practice");
     },
-    sendResetClick(){
+    sendResetClick() {
       this.sendItemClick("reset");
     },
-    sendItemClick(id){
-      let message = '{"content":"'+ id +'", "type":"click"}';
+    sendItemClick(id) {
+      let message = '{"content":"' + id + '", "type":"click"}';
       this.sendMessage(message);
     },
-    handleSelectItem(id){
+    handleSelectItem(id) {
       this.sendItemClick(id);
     },
-    handleChangePhase(next_phase){
+    handleChangePhase(next_phase) {
       let phases = JSON.parse("../resources/phases.json");
-      phases.forEach(phase => {
-        if (phase.name === next_phase){
+      phases.forEach((phase) => {
+        if (phase.name === next_phase) {
           this.gamePhase.phase = phase.name;
           this.gamePhase.isMixer = phase.isMixer;
           this.gamePhase.isSelection = phase.isSelection;
@@ -164,17 +166,16 @@ export default {
           this.fetchItems();
           return;
         }
-      })
+      });
     },
-    fetchItems(){
+    fetchItems() {
       let phases = JSON.parse("../resources/phases.json");
       let substances = JSON.parse("../resources/substances.json");
       let substance_element;
       this.selectable_items = [];
-      phases.forEach(phase => {
-        if (phase.name === this.gamePhase){
-          phase.ingredients.forEach(substance => {
-
+      phases.forEach((phase) => {
+        if (phase.name === this.gamePhase) {
+          phase.ingredients.forEach((substance) => {
             substance_element.item = substances[substance].name;
             substance_element.id = substances[substance].id;
             substance_element.selected = false;
@@ -185,28 +186,28 @@ export default {
 
             this.selectable_items.push(substance_element);
             console.log(substance_element);
-          })
+          });
         }
-      })
+      });
     },
     submitName(name) {
       this.user_name = name;
-    }
+    },
   },
   created: function () {
     console.log("Starting connection to Server...");
     this.connection = new WebSocket("ws://localhost:2345");
 
-    let self = this
+    let self = this;
     this.connection.onmessage = function (event) {
-      let messages = JSON.parse(event.data)
-      messages.messages.forEach(message => {
-        if (message.ui_effect === "hidden"){
+      let messages = JSON.parse(event.data);
+      messages.messages.forEach((message) => {
+        if (message.ui_effect === "hidden") {
           this.user_name = message.text;
         }
-        self.$refs.chatRef.receiveMessage(message)
+        self.$refs.chatRef.receiveMessage(message);
       });
-      if (messages.change_phase !== ""){
+      if (messages.change_phase !== "") {
         this.handleChangePhase(messages.change_phase);
       }
     };
@@ -221,13 +222,13 @@ export default {
 
 <style>
 #app {
-  font-family: 'Berlin Sans FB',sans-serif;
+  font-family: "Berlin Sans FB", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #828e99;
 }
-.button-exe{
+.button-exe {
   position: absolute;
   z-index: 100;
   top: 105%;

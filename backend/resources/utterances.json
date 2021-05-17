@@ -331,6 +331,24 @@
             "ui_effect": ""
         }
     ],
+    "explanation_15": [
+        {
+            "text": "mix_strong_acid_explanation",
+            "ui_effect": ""
+        }
+    ],
+    "explanation_16": [
+        {
+            "text": "mix_strong_base_explanation",
+            "ui_effect": ""
+        }
+    ],
+    "explanation_17": [
+        {
+            "text": "mix_weak_acid_explanation",
+            "ui_effect": ""
+        }
+    ],
     "general_ph_property_explanation": [
         {
             "text": "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base.",
@@ -436,6 +454,78 @@
     "inform_collecting_items_explanation": [
         {
             "text": "In the introduction phase you can collect only 2 acidic items, 2 basic items and a neutral one(water).In the practice part you are free to collect as many items as you want",
+            "ui_effect": ""
+        }
+    ],
+    "mix_strong_acid_question": [
+        {
+            "text": "mix_strong_acid_question",
+            "ui_effect": ""
+        }
+    ],
+    "mix_strong_base_question": [
+        {
+            "text": "mix_strong_base_question",
+            "ui_effect": ""
+        }
+    ],
+    "mix_weak_acid_question": [
+        {
+            "text": "mix_strong_acid_question",
+            "ui_effect": ""
+        }
+    ],
+    "mix_strong_acid_explanation": [
+        {
+            "text": "mix_strong_acid_question",
+            "ui_effect": ""
+        }
+    ],
+    "mix_strong_base_explanation": [
+        {
+            "text": "mix_strong_base_explanation",
+            "ui_effect": ""
+        }
+    ],
+    "mix_weak_acid_explanation": [
+        {
+            "text": "mix_strong_acid_explanation",
+            "ui_effect": ""
+        }
+    ],
+    "explain_practice_start": [
+        {
+            "text": "explain_practice_start",
+            "ui_effect": ""
+        }
+    ],
+    "collect_substances_explanation": [
+        {
+            "text": "collect_substances_explanation",
+            "ui_effect": ""
+        }
+    ],
+    "selected_substance": [
+        {
+            "text": "selected_substance",
+            "ui_effect": ""
+        }
+    ],
+    "collect_substances_second_explanation": [
+        {
+            "text": "collect_substances_second_explanation",
+            "ui_effect": ""
+        }
+    ],
+    "name_ask": [
+        {
+            "text": "name_ask",
+            "ui_effect": ""
+        }
+    ],
+    "ingredient_selection_explanation": [
+        {
+            "text": "ingredient_selection_explanation",
             "ui_effect": ""
         }
     ]

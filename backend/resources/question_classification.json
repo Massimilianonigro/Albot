@@ -148,5 +148,57 @@
                 }
             }
         ]
+    },
+    "tutorial": {
+        "explanation": true,
+        "positive_responses": [
+            "chatbot_appreciation",
+            "next"
+        ],
+        "negative_responses": [
+            "wrong_answer",
+            "next"
+        ],
+        "questions": [
+            {
+                "mix_strong_acid_question": {
+                    "base": "mix_strong_acid_question",
+                    "values": [
+                        {
+                            "id": 15,
+                            "option": "",
+                            "answer": "mix_strong_acid_answer",
+                            "explanation": "mix_strong_acid_explanation"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_strong_base_question": {
+                    "base": "mix_strong_base_question",
+                    "values": [
+                        {
+                            "id": 16,
+                            "option": "",
+                            "answer": "mix_strong_base_answer",
+                            "explanation": "mix_strong_base_explanation"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_weak_acid_question": {
+                    "base": "mix_weak_acid_question",
+                    "values": [
+                        {
+                            "id": 17,
+                            "option": "",
+                            "answer": "mix_weak_acid_answer",
+                            "explanation": "mix_weak_acid_explanation"
+                        }
+                    ]
+                }
+            }
+        ]
     }
 }
