@@ -6,4 +6,5 @@ pyvenv.cfg
 /include/
 /src/__pycache__/
 .DS_Store
-
+/src/__pycache__
+/src/albot_backend/__pycache__
