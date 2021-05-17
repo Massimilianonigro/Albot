@@ -1,10 +1,18 @@
 <template>
   <div class="main-bg">
-    <div class="background"> 
-      <SettingsWindow v-on:close="settingsButton()" v-if="settings"/>
-      <ReportWindow v-on:close="reportButton()" v-if="report"/>
-      <button v-on:click="reportButton()" v-if="!start" class="report icon"></button>
-      <button v-on:click="settingsButton()"  v-if="!start" class="settings icon"></button>
+    <div class="background">
+      <SettingsWindow v-on:close="settingsButton()" v-if="settings" />
+      <ReportWindow v-on:close="reportButton()" v-if="report" />
+      <button
+        v-on:click="reportButton()"
+        v-if="!start"
+        class="report icon"
+      ></button>
+      <button
+        v-on:click="settingsButton()"
+        v-if="!start"
+        class="settings icon"
+      ></button>
       <div v-if="!start" class="magic-colors-sign icon"></div>
       <div v-if="!start" class="bot-tittle icon"></div>
 
@@ -25,7 +33,11 @@
       <button class="settings icon"></button>
       <div class="bot-welcome"></div>
       <transition name="fade">
-        <ul class="chat-welcome" v-bind:style="{display: visibilityIntro}" v-if="this.user_name === ''">
+        <ul
+          class="chat-welcome"
+          v-bind:style="{ display: visibilityIntro }"
+          v-if="this.user_name === ''"
+        >
           <li>
             <p class="bubble berlin-font">Hi! I'm Albot.</p>
           </li>
@@ -33,16 +45,20 @@
             <p class="bubble berlin-font">What's your name?</p>
           </li>
           <li>
-            <form @submit.prevent="submitName" autocomplete="off" class="bubble">
+            <form
+              @submit.prevent="submitName"
+              autocomplete="off"
+              class="bubble"
+            >
               <div class="textbar">
                 <div class="text input-group">
                   <input
-                      type="text"
-                      class="berlin-font"
-                      placeholder="Type your name"
-                      v-model="message"
-                      name="message"
-                      style="border: none transparent; outline: none;"
+                    type="text"
+                    class="berlin-font"
+                    placeholder="Type your name"
+                    v-model="message"
+                    name="message"
+                    style="border: none transparent; outline: none"
                   />
                 </div>
               </div>
@@ -51,33 +67,41 @@
         </ul>
       </transition>
       <transition name="fade">
-        <ul class="chat-welcome" v-bind:style="{display: visibilityIntro}" v-if="this.user_name !== ''">
+        <ul
+          class="chat-welcome"
+          v-bind:style="{ display: visibilityIntro }"
+          v-if="this.user_name !== ''"
+        >
           <li>
-            <p class="bubble berlin-font">Welcome back, {{this.user_name}}! Click to continue.</p>
+            <p class="bubble berlin-font">
+              Welcome back, {{ this.user_name }}! Click to continue.
+            </p>
           </li>
         </ul>
       </transition>
       <transition name="fade">
-          <ul class="chat-welcome" v-bind:style="{display: visibilityButtons}">
-            <li>
-              <p class="bubble berlin-font"> Welcome {{this.user_name}}! We will carry out this experiment together. Please choose a lesson to
-                start:</p>
-            </li>
-            <li>
-              <button
-                  v-on:click="clickOnIntro"
-                  class="bubble-btn fade-in berlin-font"
-                  :style="{ left: '8%' }"
-              >
-                Tutorial
-              </button>
-              <button
-                  v-on:click="clickOnPractice"
-                  class="bubble-btn fade-in berlin-font"
-                  :style="{ right: '8%' }"
-              >
-                Experiment
-              </button>
+        <ul class="chat-welcome" v-bind:style="{ display: visibilityButtons }">
+          <li>
+            <p class="bubble berlin-font">
+              Welcome {{ this.user_name }}! We will carry out this experiment
+              together. Please choose a lesson to start:
+            </p>
+          </li>
+          <li>
+            <button
+              v-on:click="clickOnIntro"
+              class="bubble-btn fade-in berlin-font"
+              :style="{ left: '8%' }"
+            >
+              Tutorial
+            </button>
+            <button
+              v-on:click="clickOnPractice"
+              class="bubble-btn fade-in berlin-font"
+              :style="{ right: '8%' }"
+            >
+              Experiment
+            </button>
           </li>
         </ul>
       </transition>
@@ -107,10 +131,13 @@ export default {
       report: false,
       settings: false,
       message: "",
-      user_name: "",
+      user_name:
+        this.$root.$children[0].user_name === undefined
+          ? ""
+          : this.$root.$children[0].user_name,
       visibilityIntro: "block",
       visibilityButtons: "none",
-      alreadyNamed: false
+      alreadyNamed: false,
     };
   },
   methods: {
@@ -133,13 +160,13 @@ export default {
     clickOnPractice() {
       this.$emit("startPractice");
     },
-    reportButton(){
-      this.report = !this.report
+    reportButton() {
+      this.report = !this.report;
     },
-    settingsButton(){
-      this.settings = !this.settings
+    settingsButton() {
+      this.settings = !this.settings;
     },
-    submitName(){
+    submitName() {
       this.user_name = this.message;
       let jsonMessage = '{"type":"name", "content":"' + this.user_name + '"}';
       this.$emit("sendMessage", jsonMessage);
@@ -148,9 +175,9 @@ export default {
       this.visibilityButtons = "block";
       this.$emit("submitName", this.user_name);
     },
-    requestName(){
+    requestName() {
       this.$emit("requestName");
-    }
+    },
   },
 };
 </script>
@@ -259,7 +286,7 @@ a {
 .report:active,
 .start-btn:active,
 .bubble-btn:active {
-	opacity: 0.7;
+  opacity: 0.7;
 }
 .bot-bg {
   position: absolute;
@@ -281,7 +308,7 @@ a {
   background-image: url("../assets/backgrounds/Bot.png");
 }
 
-.chat-welcome{
+.chat-welcome {
   list-style-type: none;
 }
 
@@ -343,5 +370,4 @@ a {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-
 </style>

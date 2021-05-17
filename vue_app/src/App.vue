@@ -6,13 +6,13 @@
         v-on:startIntro="startIntroduction"
         v-on:startPractice="startPractice"
         v-on:sendMessage="sendMessage"
+        v-on:submitName="submitName"
       />
     </div>
     <div v-else>
       <Chat
         ref="chatRef"
         :style="{ zIndex: '20' }"
-        v-bind:user_name="user_name"
         v-on:sendMessage="sendMessage"
         v-on:addPoints="addPractisePoints"
         v-on:nextClicked="handleNextClick"
@@ -29,6 +29,7 @@
         v-bind:gameType="mainStatus"
         v-bind:selectable_items="selectable_items"
         v-bind:gamePhase="gamePhase"
+        v-bind:user_name="user_name"
         v-on:goHome="resetHome"
         v-on:goBack="sendBackClick"
         v-on:practicePress="handlePracticePress"
@@ -54,9 +55,6 @@ import GameScreen from "./components/GameScreen.vue";
 import Chat from "./components/Chat.vue";
 
 export default {
-  mounted() {
-    this.requestName();
-  },
   name: "App",
   components: {
     MainScreen,
@@ -83,6 +81,7 @@ export default {
     resetHome() {
       this.mainStatus = 0;
       this.sendHomeClick();
+      this.requestName();
     },
     startIntroduction() {
       this.sendIntroductoryJSON();
@@ -116,7 +115,7 @@ export default {
       this.sendItemClick("next");
     },
     requestName() {
-      let message = '{"content":, "type":"name_request"}';
+      let message = '{"content":"", "type":"name_request"}';
       this.sendMessage(message);
     },
     handleNextPracticeClick() {
@@ -202,7 +201,9 @@ export default {
     this.connection.onmessage = function (event) {
       let messages = JSON.parse(event.data);
       messages.messages.forEach((message) => {
+        console.log("Examing message with ui_effect: " + message.ui_effect);
         if (message.ui_effect === "hidden") {
+          console.log("entered hidden");
           this.user_name = message.text;
         }
         self.$refs.chatRef.receiveMessage(message);
