@@ -20,7 +20,7 @@
             </div>
             <div 
               v-if="poured[index]"
-              :style="getPhBowl(data.ph, index)"
+              :style="getPhBowl(data, index)"
               class="solution-style"
             >
             </div>
@@ -56,6 +56,11 @@
 <script>
 import SettingsWindow from "./SettingsWindow.vue";
 export default {
+  created() {
+    this.items.forEach(item => {
+      console.log(item);
+    })
+  },
   components: {
     SettingsWindow,
   },
@@ -78,7 +83,7 @@ export default {
   methods:{
     selectItem(index, ph, id){
       this.$emit("selectItem",id)
-      if(this.selected == index){
+      if(this.selected === index){
         this.selected = undefined;
         this.selectedPh = "Select";
       }
@@ -92,13 +97,13 @@ export default {
       this.complete = this.poured.every(v => v === true)
     },
     getHighlight(index){
-      if(this.selected == index)
+      if(this.selected === index)
         return 'highlight';
       return 'nothighlight';
     },
     getItemStyle(data, index){
       let styleItem
-      if (this.selected == index){
+      if (this.selected === index){
         styleItem = {
           backgroundImage: 'url(' + data.src + ')',
           left: ((index * 22) - 6)+ '%',
@@ -115,8 +120,9 @@ export default {
       }
       return styleItem
     },
-    getPhBowl(ph, index){
-      let urlImg = require("../assets/solutions/Solution"+ Math.round(ph) +".png");
+    getPhBowl(data, index){
+      console.log(data);
+      let urlImg = require("../assets/solutions/Solution"+ Math.round(data.ph) +".png");
       let styleItem = {
         left: (index * 22 - 3)+ '%',
         bottom: '-20%',

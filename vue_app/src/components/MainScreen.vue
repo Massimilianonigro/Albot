@@ -1,17 +1,12 @@
 <template>
   <div class="main-bg">
-    <div class="background">
-      <SettingsWindow v-on:close="settingsButton()" v-if="settings" />
+    <div class="blackboard">
+      <div class="background">
       <ReportWindow v-on:close="reportButton()" v-if="report" />
       <button
         v-on:click="reportButton()"
         v-if="!start"
         class="report icon"
-      ></button>
-      <button
-        v-on:click="settingsButton()"
-        v-if="!start"
-        class="settings icon"
       ></button>
       <div v-if="!start" class="magic-colors-sign icon"></div>
       <div v-if="!start" class="bot-tittle icon"></div>
@@ -22,15 +17,13 @@
         v-on:click="clickOnStart"
         v-if="!start"
       ></button>
+        </div>
     </div>
-    <div
-      class="background"
-      :style="{ 'z-index': '20' }"
-      v-if="start"
-      v-on:click="clickPart"
-    >
+      <div class="background"
+           :style="{ 'z-index': '20' }"
+           v-if="start"
+           v-on:click="clickPart">
       <button class="report icon"></button>
-      <button class="settings icon"></button>
       <div class="bot-welcome"></div>
       <transition name="fade">
         <ul class="chat-welcome" v-bind:style="{ display: visibilityIntro }"  v-if="this.user_name === ''">
@@ -44,13 +37,13 @@
             <form
               @submit.prevent="submitName"
               autocomplete="off"
-              class="bubble"
+              class="bubble form-box"
             >
               <div class="textbar">
                 <div class="text input-group">
                   <input
                     type="text"
-                    class="berlin-font"
+                    class="berlin-font textarea"
                     placeholder="Type your name"
                     v-model="message"
                     name="message"
@@ -114,16 +107,14 @@
         </ul>
       </transition>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
-import SettingsWindow from "./SettingsWindow.vue";
 import ReportWindow from "./ReportWindow.vue";
 
 export default {
   components: {
-    SettingsWindow,
     ReportWindow,
   },
   name: "MainScreen",
@@ -227,7 +218,6 @@ a {
   left: 0;
   right: 0;
   margin: auto;
-  z-index: 0;
   width: 100vw;
   height: 75vw;
   max-width: 133.3vh;
@@ -237,21 +227,33 @@ a {
   background-position-y: bottom;
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 200 !important;
+  overflow: visible;
+}
+.blackboard{
+  background-image: url("../assets/backgrounds/blackboard.png");
+  background-position-x: center;
+  background-position-y: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 80%;
+  z-index: 30 !important;
 }
 .magic-colors-sign {
   top: 35%;
-  left: 30%;
-  height: 7%;
-  width: 40%;
-  z-index: 1;
+  left: 20%;
+  height: 30%;
+  width: 60%;
   background-position-x: center;
   background-image: url("../assets/backgrounds/MagicColors.png");
+  background-size: contain;
 }
 .bot-tittle {
-  top: 10%;
-  right: 18%;
-  height: 30%;
-  width: 18%;
+  top: 0;
+  right: 0;
+  height: 40%;
+  width: 30%;
   z-index: 1;
   background-position-x: center;
   background-image: url("../assets/backgrounds/BotTittle.png");
@@ -260,38 +262,19 @@ a {
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
+  background-color: transparent !important;
 }
 .report {
   top: 2%;
   left: 0;
-  height: 8%;
+  height: 10%;
   width: 20%;
-  z-index: 21;
+  z-index: 1000;
   border: none;
   background-position-x: center;
+  background-size: contain;
   background-image: url("../assets/uibuttons/ReportButton.png");
-}
-.settings {
-  top: 11%;
-  left: 0;
-  height: 8%;
-  width: 20%;
-  z-index: 21;
-  border: none;
-  background-position-x: center;
-  background-image: url("../assets/uibuttons/HomeSetting.png");
-}
-.settings:focus,
-.report:focus,
-.start-btn:focus,
-.bubble-btn:focus {
-  outline: none;
-}
-.settings:active,
-.report:active,
-.start-btn:active,
-.bubble-btn:active {
-  opacity: 0.7;
+  background-color: transparent !important;
 }
 .bot-bg {
   position: absolute;
@@ -315,22 +298,29 @@ a {
 
 .chat-welcome {
   list-style-type: none;
+  padding-top: 10%;
+  z-index: 1000;
 }
 
 .bubble {
   position: static;
   text-align: left;
-  color: #CA7900;
+  color: #F9A400;
   line-height: 1.4em;
   font-size: 2.5vh;
   right: 22%;
   width: auto;
   max-width: 50%;
   margin: 1% auto;
-  border: 4px solid #CA7900;
+  border: 4px solid #F9A400;
   border-radius: 30px;
   padding: 10px 20px;
   background-color: #fff;
+}
+
+.textarea {
+  color: #3E4349;
+  width: 100% !important;
 }
 
 .bubble:before,
@@ -344,7 +334,7 @@ a {
   right: 24px;
   bottom: -40px;
   border: 20px solid;
-  border-color: #CA7900 #CA7900 transparent transparent;
+  border-color: #F9A400 #F9A400 transparent transparent;
 }
 .speech:after {
   right: 28px;
@@ -359,20 +349,13 @@ a {
   line-height: 1.4em;
   font-size: 2.5vh;
   top: 70%;
-  width: 30%;
-  margin: 40px auto;
+  width: 20%;
+  margin: 40px 10px;
   color: #fff;
   border: 8px double #fff;
   border-radius: 30px;
   padding: 10px;
-  background-color: #CA7900;
-  z-index: 21;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+  background-color: #F9A400;
+  z-index: 2000 !important;
 }
 </style>

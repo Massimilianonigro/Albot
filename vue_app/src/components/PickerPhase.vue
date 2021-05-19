@@ -10,7 +10,7 @@
           v-bind:class="{
             highlight: data.selected,
             nothighlight: !data.selected,
-            unclickable: getUnclickable(data.ph, data.selected),
+            unclickable: getUnclickable(data.selected),
           }"
           v-bind:style="{
             backgroundImage: 'url(' + data.src + ')',
@@ -25,12 +25,7 @@
         </button>
       </div>
     </div>
-    
-    <button class="setting-btn ui-btn" 
-      v-on:click="settingButton">
-    </button>
-    <SettingsWindow v-on:close="settingButton" v-if="settings"/>
-    
+
     <button class="home-btn ui-btn" 
       v-on:click="homeButton">
     </button>
@@ -38,10 +33,8 @@
 </template>
 
 <script>
-import SettingsWindow from "./SettingsWindow.vue";
 export default {
   components: {
-    SettingsWindow,
   },
   name: "PickerPhase",
   props: {
@@ -52,7 +45,6 @@ export default {
   },
   data() {
     return {
-      part: "acid",
       selection: 0,
       settings: false,
     };
@@ -77,7 +69,6 @@ export default {
         }
       });
       if (selItems.length > 5) {
-        
         this.$alert("Too many items selected. (Max. 5)");
         console.error("Too many items selected");
       }
@@ -85,40 +76,21 @@ export default {
         this.$alert("No items selected");
         console.error("No item selected");
       }
-      else{
+      else {
         selItems.forEach(element => {
           this.$emit("sendItemMessage", element.id)
         });
         this.$emit("nextPress", selItems, nonSelItems);
       }
     },
-    changePart(){
-      if (this.part === "acid" && this.selection === 2){
-      this.$emit("sendNextInChat");
-      }
-      else if(this.part === "basic"  && this.selection === 4){
-      this.$emit("sendNextInChat");
-      }
-      else if(this.part === "water"  && this.selection === 5){
-      this.$emit("sendNextInChat");
+    endSelection(){
+      if (this.selection === 3){
+        this.$emit("selectionComplete");
+        this.mixItems();
       }
     },
-    updatePart(){
-      if (this.part === "acid" && this.selection === 2){
-        this.part = "basic";
-      }
-      else if(this.part === "basic"  && this.selection === 4){
-        this.part = "water";
-      }
-      else if(this.part === "water"  && this.selection === 5){
-        this.mixItems()
-      }
-    },
-    getUnclickable(ph, selected){
-      if(selected && this.part !== "acid" && ph < 7) {
-        return true;
-      }
-      else if( selected && this.part !== "basic" && ph > 7){
+    getUnclickable(selected){
+      if(selected) {
         return true;
       }
       return false;
@@ -127,30 +99,13 @@ export default {
       if (data.selected){
         return false;
       }
-      else if (this.part === "acid" && data.ph !== 7){
-        if(this.selection === 2)
-          return true;
-        return data.ph > 7;
-      }
-      else if(this.part === "basic" && data.ph !== 7){
-        if(this.selection === 4)
-          return true;
-        return data.ph < 7;
-      }
-      else if(this.part === "water" && data.ph === 7){
-        return false;
-      }
-      return true;
     },
     handleClickedItem(data){
-      data.selected = !data.selected
-      if (data.selected) {
+      if (!data.selected){
+        data.selected = !data.selected;
         this.selection += 1;
       }
-      else{
-        this.selection -= 1;
-      }
-      this.changePart();
+      this.endSelection();
     },
     settingButton(){
       this.settings = !this.settings;

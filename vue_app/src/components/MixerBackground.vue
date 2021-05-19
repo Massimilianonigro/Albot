@@ -1,6 +1,21 @@
 <template>
   <div class="image-container">
-	<div class="background item">
+    <div class="pH-scale"
+         v-if="this.isShowScale"
+    >
+      <div class="kitchen-item"
+           v-for="(data, index) in items"
+           v-bind:key="index"
+           v-bind:style="{
+				backgroundImage: 'url(' + data.src + ')',
+				left: data.size.x,
+				bottom: data.size.y,
+				height: data.size.h,
+				width: data.size.w,
+				}">
+      </div>
+    </div>
+    <div class="background item">
 		<div class="shelf item"></div>
 		<div class="ItemShelf">
 			<div class="kitchen-item"
@@ -30,8 +45,13 @@ export default {
     items: {
       type: Array,
       required: true,
-    }
+    },
   },
+  data(){
+    return{
+      isShowScale: false
+    };
+  }
 };
 </script>
 
@@ -57,5 +77,17 @@ export default {
 	background-position-x: center;
 	background-position-y: bottom;
 	background-image: url("../assets/backgrounds/TableTopView.png");
+}
+
+.pH-scale{
+  height: 100%;
+  width:  20%;
+  z-index: 1;
+  padding: 1vw;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../assets/backgrounds/pHScale.png");
 }
 </style>

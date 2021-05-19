@@ -1,17 +1,5 @@
 <template>
   <div id="GameUI">
-    <!--DEPRECATED-->
-    <div class="GameUI" v-if="gameStatus === 1">
-      <PickerBackground />
-      <PickerPhase 
-        ref="picker"
-        v-bind:items="selectable_items"
-        v-on:sendItemMessage="selectItem"
-        v-on:sendNextInChat="displayNextButton"
-        v-on:homePress="homeScreen"
-        v-on:nextPress="mixItems" 
-      />
-    </div>
     <!--Tutorial Selection phase: !isMixer, isSelection, isTutorial-->
     <div class="GameUI" v-if="!gamePhase.isMixer && gamePhase.isSelection && gamePhase.isTutorial">
       <PickerBackground />
@@ -22,17 +10,20 @@
           v-on:sendNextInChat="displayNextButton"
           v-on:homePress="homeScreen"
           v-on:nextPress="mixItems"
-       />
+          v-on:selectionComplete="selectionComplete"
+      />
     </div>
     <!--Tutorial Mixer phase: isMixer, !isSelection, isTutorial-->
     <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial">
-      <MixerBackground  />
+      <MixerBackground
+          v-bind:isShowScale="isShowScale">
+      </MixerBackground>
       <MixerPhase
           v-on:homePress="homeScreen"
           v-on:backPress="prevScreen"
           v-on:practicePress="practicePress"
           v-on:selectItem="selectItem"
-          v-bind:items="selectable_items"
+          v-bind:items="selItems"
       />
     </div>
     <!--pH identifier phase: isMixer, !isSelection, !isTutorial-->
@@ -71,20 +62,6 @@
           v-on:continuePress="continueClick"
           v-on:tryAgainPress="tryAgainClick"
           v-on:infoPress="infoClick"
-      />
-    </div>
-    <!--DEPRECATED-->
-    <div class="GameUI" v-if="gameStatus === 2">
-      <MixerBackground 
-        v-bind:items="nonSelItems"/>
-        
-      <MixerPhase
-        v-bind:items="selItems"
-        v-bind:nsitems="nonSelItems"
-        v-on:homePress="homeScreen"
-        v-on:backPress="prevScreen"
-        v-on:practicePress="practicePress"
-        v-on:selectItem="selectItem"
       />
     </div>
     <!--DEPRECATED-->
@@ -128,6 +105,34 @@ import PracticePhase from "./PracticePhase.vue";
 
 export default {
   name: "GameScreen",
+  created(){
+    //only for testing purposes, to be removed
+    this.gamePhase.phase = "tutorial-selection";
+    this.gamePhase.isSelection = true;
+    this.gamePhase.isMixer = false;
+    this.gamePhase.isTutorial = true;
+
+    var stringified = JSON.stringify(require("../resources/phases.json"));
+    let phases = JSON.parse(stringified);
+    stringified = JSON.stringify(require("../resources/substances.json"));
+    let substances = JSON.parse(stringified);
+    phases.phases.forEach(phase => {
+      if (phase.name === this.gamePhase.phase){
+        phase.substances.forEach(substance => {
+          let substance_element = {};
+          substance_element.item = substances.ingredients[substance - 1].name;
+          substance_element.id = substances.ingredients[substance - 1].id;
+          substance_element.selected = false;
+          substance_element.src = require("../assets/items/" + substances.ingredients[substance - 1].asset);
+          substance_element.size = substances.ingredients[substance - 1].size;
+          substance_element.prsize = substances.ingredients[substance - 1].prsize;
+          substance_element.ph = substances.ingredients[substance - 1].prsize;
+
+            this.selectable_items.push(substance_element);
+          })
+      }
+    });
+  },
   components: {
     PickerBackground,
     MixerBackground,
@@ -266,6 +271,7 @@ export default {
       selItems: [],
       nonSelItems: [],
       selItem: undefined,
+      isShowScale: false
     };
   },
   methods: {
@@ -279,6 +285,12 @@ export default {
         this.nonSelItems.push(element);
       });
       this.gameStatus += 1;
+
+      //only for testing purposes, to be removed
+      this.gamePhase.phase = "tutorial-mix";
+      this.gamePhase.isSelection = false;
+      this.gamePhase.isMixer = true;
+      this.gamePhase.isTutorial = true;
     },
     practiceMix(selectedItems) {
       this.selItems = [];
@@ -348,6 +360,9 @@ export default {
     homeScreen() {
       this.$emit("goHome");
     },
+    selectionComplete(){
+      this.$emit("selectionComplete");
+    }
   },
 };
 </script>

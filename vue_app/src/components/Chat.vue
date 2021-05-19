@@ -321,12 +321,12 @@ export default {
   padding-right: 2.25vw;
   background-image: url("../assets/icons/userchaticon.png");
   background-position-x: 95%;
-  background-position-y: 15%;
-  background-size: 1.5vw;
+  background-position-y: 35%;
+  background-size: 1.7vw;
 }
 
 .user-message-box {
-  color: #BF8005;
+  color: #ca7900;
   border: 2px solid #ca7900;
   border-radius: 20px;
   padding: 0.3vw 0.6vw 0.3vw 0.6vw;
@@ -337,7 +337,7 @@ export default {
   padding-left: 2.5vw;
   padding-right: 6vw;
   background-position-x: left;
-  background-position-y: 15%;
+  background-position-y: 5%;
   background-image: url("../assets/icons/botchaticon.png");
   background-size: 2vw;
 }
@@ -346,6 +346,7 @@ export default {
   color: #fff;
   background-color: #ca7900;
   border: 2px solid #ca7900;
+  opacity: 0.7;
   border-radius: 20px;
   padding: 0.3vw 0.6vw 0.3vw 0.6vw;
   width: 100%;

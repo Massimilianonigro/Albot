@@ -67,21 +67,15 @@
 }
 
 .home-btn {
-	top: 11.5%;
+	top: 3%;
 	left: 4%;
 	background-image: url("../assets/uibuttons/HomeButton.png");
 }
 
 .back-btn {
-	top: 20%;
+	top: 11.5%;
 	left: 4%;
 	background-image: url("../assets/uibuttons/BackButton.png");
-}
-
-.setting-btn {
-	top: 3%;
-	left: 4%;
-	background-image: url("../assets/uibuttons/SettingButton.png");
 }
 
 .next-btn {
@@ -123,7 +117,7 @@
 }
 
 .berlin-font {
-	font-family: 'Berlin Sans FB';
+	font-family: 'Berlin Sans FB', serif;
 	font-weight: normal;
 	font-style: normal;
 }

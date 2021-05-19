@@ -43,6 +43,7 @@
         v-on:sendContinueMessage="handleContinueClick"
         v-on:sendTryAgainMessage="handleTryAgainClick"
         v-on:sendInfoMessage="handleInfoClick"
+        v-on:selectionComplete="selectionComplete"
       />
     </div>
   </div>
@@ -154,6 +155,10 @@ export default {
     handleSelectItem(id) {
       this.sendItemClick(id);
     },
+    selectionComplete() {
+      let message = '{"content":"", "type":"selection_complete"}';
+      this.sendMessage(message);
+    },
     handleChangePhase(next_phase) {
       let phases = JSON.parse("../resources/phases.json");
       phases.forEach((phase) => {
@@ -162,30 +167,30 @@ export default {
           this.gamePhase.isMixer = phase.isMixer;
           this.gamePhase.isSelection = phase.isSelection;
           this.gamePhase.isTutorial = phase.isTutorial;
+          //TODO: check if needed as it is already done in GameScreen upon creation
           this.fetchItems();
-          return;
         }
       });
     },
     fetchItems() {
-      let phases = JSON.parse("../resources/phases.json");
-      let substances = JSON.parse("../resources/substances.json");
-      let substance_element;
-      this.selectable_items = [];
-      phases.forEach((phase) => {
-        if (phase.name === this.gamePhase) {
-          phase.ingredients.forEach((substance) => {
-            substance_element.item = substances[substance].name;
-            substance_element.id = substances[substance].id;
+      var stringified = JSON.stringify(require("./resources/phases.json"));
+      let phases = JSON.parse(stringified);
+      stringified = JSON.stringify(require("./resources/substances.json"));
+      let substances = JSON.parse(stringified);
+      phases.phases.forEach(phase => {
+        if (phase.name === this.gamePhase.phase){
+          phase.substances.forEach(substance => {
+            let substance_element = {};
+            substance_element.item = substances.ingredients[substance - 1].name;
+            substance_element.id = substances.ingredients[substance - 1].id;
             substance_element.selected = false;
-            substance_element.src = require(substances[substance].asset);
-            substance_element.size = substances[substance].size;
-            substance_element.prsize = substances[substance].prsize;
-            substance_element.ph = substances[substance].prsize;
+            substance_element.src = require("./assets/items/" + substances.ingredients[substance - 1].asset);
+            substance_element.size = substances.ingredients[substance - 1].size;
+            substance_element.prsize = substances.ingredients[substance - 1].prsize;
+            substance_element.ph = substances.ingredients[substance - 1].prsize;
 
             this.selectable_items.push(substance_element);
-            console.log(substance_element);
-          });
+          })
         }
       });
     },
