@@ -41,11 +41,6 @@
         v-on:click="backButton">
       </button>
       
-      <button class="setting-btn ui-btn" 
-        v-on:click="settingButton">
-      </button>
-      <SettingsWindow v-on:close="settingButton" v-if="settings"/>
-      
       <button class="home-btn ui-btn" 
         v-on:click="homeButton">
       </button>
@@ -54,7 +49,6 @@
 </template>
 
 <script>
-import SettingsWindow from "./SettingsWindow.vue";
 export default {
   created() {
     let phases = JSON.parse(JSON.stringify(require("../resources/phases.json")));
@@ -66,7 +60,6 @@ export default {
     })
   },
   components: {
-    SettingsWindow,
   },
   name: "MixerPhase",
   props: {
@@ -80,32 +73,29 @@ export default {
       selected: undefined,
       selectedPh: "Select",
       complete: false,
-      poured: [false, false, false, false, false],
-      settings: false,
+      poured: [false, false, false],
       selectionOrder: [],
       nextSelected: 0,
     }
   },
   methods:{
     selectItem(index, ph, id){
-      console.log(this.nextSelected);
-      if(index !== this.nextSelected){
-        return;
-      }
-      this.$emit("selectItem", id)
-      if(this.selected === index){
-        this.selected = undefined;
-        this.selectedPh = "Select";
-      }
-      else{
-        this.selected = index;
-        this.selectedPh = ph+"";
-      }
-      if(!this.poured[index])
-        this.poured[index] = true;
+      if (index === this.nextSelected){
+        this.$emit("selectItem", id)
+        if(this.selected === index){
+          this.selected = undefined;
+          this.selectedPh = "Select";
+        }
+        else{
+          this.selected = index;
+          this.selectedPh = ph+"";
+        }
+        if(!this.poured[index])
+          this.poured[index] = true;
 
-      this.complete = this.poured.every(v => v === true);
-      this.nextSelected += 1;
+        this.complete = this.poured.every(v => v === true);
+        this.nextSelected += 1;
+      }
     },
     getHighlight(index){
       if(this.selected === index)
@@ -155,10 +145,6 @@ export default {
       }
       this.$emit("backPress");
     },
-    settingButton(){
-      console.log(this.settings)
-      this.settings = !this.settings
-    },
     homeButton() {
       this.$emit("homePress");
     },
@@ -173,7 +159,7 @@ export default {
   position: absolute;
   z-index: 50;
   bottom: 28%;
-  left: 0%;
+  left: 0;
   right: 0;
   width: 82%;
   height: 25%;

@@ -7,7 +7,8 @@
       "asset" : "BakingSoda.png",
       "size" : { "x": "68%", "y": "2%", "w": "10%", "h": "24%" },
       "prsize": { "w": "10%", "h": "40%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {  "x": "51%", "y": "53%", "w": "7%", "h": "38%"}
     },
     {
       "id" : 2,
@@ -16,7 +17,8 @@
       "asset" : "EggWhite.png",
       "size": { "x": "84%", "y": "2%", "w": "9%", "h": "30%" },
       "prsize": { "w": "7%", "h": "50%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {  "x": "51%", "y": "53%", "w": "7%", "h": "38%"}
     },
     {
       "id" : 3,
@@ -25,7 +27,8 @@
       "asset" : "Vinegar.png",
       "size": { "x": "53%", "y": "2%", "w": "7%", "h": "34%" },
       "prsize": { "w": "7%", "h": "60%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {  "x": "51%", "y": "53%", "w": "7%", "h": "38%"}
     },
     {
       "id" : 4,
@@ -34,7 +37,8 @@
       "asset" : "Bleach.png",
       "size": { "x": "85%", "y": "36%", "w": "10%", "h": "24%" },
       "prsize": { "w": "10%", "h": "42%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {  "x": "51%", "y": "53%", "w": "7%", "h": "38%"}
     },
     {
       "id" : 5,
@@ -43,7 +47,8 @@
       "asset" : "OvenCleaner.png",
       "size": { "x": "63%", "y": "36%", "w": "8.5%", "h": "26%" },
       "prsize": { "w": "8%", "h": "48%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {  "x": "13%", "y": "6%", "w": "6%", "h": "8%"}
     },
     {
       "id" : 6,
@@ -52,7 +57,9 @@
       "asset" : "Soap.png",
       "size": { "x": "73%", "y": "36%", "w": "10%", "h": "24%" },
       "prsize": {"w": "12%", "h": "48%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {  "x": "51%", "y": "53%", "w": "7%", "h": "38%"}
+
     },
     {
       "id" : 7,
@@ -61,7 +68,8 @@
       "asset" : "Cola.png",
       "size": { "x": "35%", "y": "2%", "w": "8%", "h": "23%" },
       "prsize": {"w": "7%", "h": "32%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {  "x": "51%", "y": "53%", "w": "7%", "h": "38%"}
     },
     {
       "id" : 8,
@@ -70,7 +78,8 @@
       "asset" : "LemonJuice.png",
       "size": { "x": "27%", "y": "2%", "w": "8%", "h": "30%" },
       "prsize": {"w": "7", "h": "45%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {  "x": "13%", "y": "79%", "w": "6%", "h": "9%"}
     },
     {
       "id" : 9,
@@ -79,7 +88,8 @@
       "asset" : "Milk.png",
       "size": { "x": "43.5%", "y": "2%", "w": "8%", "h": "33%" },
       "prsize": {"w": "8%", "h": "55%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {  "x": "13%", "y": "53%", "w": "6%", "h": "8%"}
     },
     {
       "id" : 10,
@@ -88,7 +98,8 @@
       "asset" : "PureWater.png",
       "size": {  "x": "51%", "y": "53%", "w": "7%", "h": "38%"},
       "prsize": { "w": "7%", "h": "56%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {  "x": "51%", "y": "53%", "w": "7%", "h": "38%"}
     },
     {
       "id" : 11,
@@ -97,7 +108,8 @@
       "asset" : "SparklingWater.png",
       "size": {  "x": "30%", "y": "53%", "w": "7%", "h": "38%"},
       "prsize": { "w": "7%", "h": "56%" },
-      "selected": false
+      "selected": false,
+      "scale_placement": {"x": "30%", "y": "53%", "w": "7%", "h": "38%"}
     }
 
   ]

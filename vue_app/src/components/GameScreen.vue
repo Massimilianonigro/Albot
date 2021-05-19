@@ -16,7 +16,9 @@
     <!--Tutorial Mixer phase: isMixer, !isSelection, isTutorial-->
     <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial">
       <MixerBackground
-          v-bind:isShowScale="isShowScale">
+          v-bind:isShowScale="isShowScale"
+          v-bind:items=selectable_items
+      >
       </MixerBackground>
       <MixerPhase
           v-on:homePress="homeScreen"
@@ -127,6 +129,7 @@ export default {
           substance_element.size = substances.ingredients[substance - 1].size;
           substance_element.prsize = substances.ingredients[substance - 1].prsize;
           substance_element.ph = substances.ingredients[substance - 1].ph;
+          substance_element.scale_placement = substances.ingredients[substance - 1].scale_placement;
 
             this.selectable_items.push(substance_element);
           })

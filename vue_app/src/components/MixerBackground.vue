@@ -3,33 +3,23 @@
     <div class="pH-scale"
          v-if="this.isShowScale"
     >
+      <div v-if="this.isShowItems">
       <div class="kitchen-item"
            v-for="(data, index) in items"
            v-bind:key="index"
            v-bind:style="{
 				backgroundImage: 'url(' + data.src + ')',
-				left: data.size.x,
-				bottom: data.size.y,
-				height: data.size.h,
-				width: data.size.w,
+				left: data.scale_placement.x,
+				bottom: data.scale_placement.y,
+				height: data.scale_placement.h,
+				width: data.scale_placement.w,
 				}">
+      </div>
       </div>
     </div>
     <div class="background item">
 		<div class="shelf item"></div>
-		<div class="ItemShelf">
-			<div class="kitchen-item"
-				v-for="(data, index) in items" 
-				v-bind:key="index"
-				v-bind:style="{
-				backgroundImage: 'url(' + data.src + ')',
-				left: data.size.x,
-				bottom: data.size.y,
-				height: data.size.h,
-				width: data.size.w,
-				}">
-			</div>
-		</div>
+		<div class="ItemShelf"></div>
 		<div class="table-item item"></div>
 		<div class="blender item low-opacity"></div>
 		<div class="pan1 item low-opacity"></div>
@@ -40,6 +30,9 @@
 
 <script>
 export default {
+  created() {
+    console.log(this.items);
+  },
   name: 'MixerBackground',
   props: {
     items: {
@@ -49,7 +42,9 @@ export default {
   },
   data(){
     return{
-      isShowScale: true
+      isShowScale: true,
+      isShowItems: true,
+      isShowItem: [false, false, false]
     };
   }
 };
