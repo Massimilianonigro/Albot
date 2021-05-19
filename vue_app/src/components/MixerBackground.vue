@@ -49,7 +49,7 @@ export default {
   },
   data(){
     return{
-      isShowScale: false
+      isShowScale: true
     };
   }
 };

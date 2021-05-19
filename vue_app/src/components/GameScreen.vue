@@ -126,7 +126,7 @@ export default {
           substance_element.src = require("../assets/items/" + substances.ingredients[substance - 1].asset);
           substance_element.size = substances.ingredients[substance - 1].size;
           substance_element.prsize = substances.ingredients[substance - 1].prsize;
-          substance_element.ph = substances.ingredients[substance - 1].prsize;
+          substance_element.ph = substances.ingredients[substance - 1].ph;
 
             this.selectable_items.push(substance_element);
           })
@@ -279,6 +279,7 @@ export default {
       this.selItems = [];
       this.nonSelItems = [];
       selectedItems.forEach((element) => {
+        console.log(element);
         this.selItems.push(element);
       });
       nonSelectedItems.forEach((element) => {

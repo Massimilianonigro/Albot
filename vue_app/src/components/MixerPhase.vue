@@ -57,8 +57,12 @@
 import SettingsWindow from "./SettingsWindow.vue";
 export default {
   created() {
-    this.items.forEach(item => {
-      console.log(item);
+    let phases = JSON.parse(JSON.stringify(require("../resources/phases.json")));
+    phases.phases.forEach(phase => {
+      if (phase === "tutorial-mix"){
+        this.selectionOrder = phase.substances;
+        this.nextSelected = this.selectionOrder[0];
+      }
     })
   },
   components: {
@@ -78,11 +82,17 @@ export default {
       complete: false,
       poured: [false, false, false, false, false],
       settings: false,
+      selectionOrder: [],
+      nextSelected: 0,
     }
   },
   methods:{
     selectItem(index, ph, id){
-      this.$emit("selectItem",id)
+      console.log(this.nextSelected);
+      if(index !== this.nextSelected){
+        return;
+      }
+      this.$emit("selectItem", id)
       if(this.selected === index){
         this.selected = undefined;
         this.selectedPh = "Select";
@@ -94,7 +104,8 @@ export default {
       if(!this.poured[index])
         this.poured[index] = true;
 
-      this.complete = this.poured.every(v => v === true)
+      this.complete = this.poured.every(v => v === true);
+      this.nextSelected += 1;
     },
     getHighlight(index){
       if(this.selected === index)
