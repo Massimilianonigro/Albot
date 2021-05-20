@@ -27,6 +27,7 @@
       >
       </MixerBackground>
       <MixerPhase
+          v-on:switchBlock="switchBlock"
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen"
         v-on:practicePress="practicePress"
@@ -34,7 +35,7 @@
         v-on:selectionComplete="selectionComplete"
         v-on:nextPhasePress="pHIdentificationPhase"
         v-bind:items="selItems"
-       block-phase = "block-phase" />
+      />
     </div>
     <!--pH identifier phase: isMixer, !isSelection, !isTutorial-->
     <div
@@ -128,6 +129,7 @@ import MixerPhase from "./MixerPhase.vue";
 import PickerPracticePhase from "./PickerPracticePhase.vue";
 import PracticePhase from "./PracticePhase.vue";
 import IdentificationPhase from "./IdentificationPhase";
+import {mapState} from "vuex";
 
 export default {
   name: "GameScreen",
@@ -176,10 +178,6 @@ export default {
   props: {
     gameType: {
       type: Number,
-      required: true,
-    },
-    blockPhase: {
-      type: Boolean,
       required: true,
     },
   },
@@ -307,7 +305,11 @@ export default {
       nonSelItems: [],
       selItem: undefined,
       isShowScale: false,
+      //blockPhase: this.$root.$children[0].blockPhase === undefined ? false : this.$root.$children[0].blockPhase,
     };
+  },
+  computed: {
+    ...mapState(["blockPhase"])
   },
   methods: {
     mixItems(selectedItems, nonSelectedItems) {
@@ -339,6 +341,9 @@ export default {
       console.log(selectedItem);
       this.selItem = selectedItem;
       this.gameStatus += 1;
+    },
+    switchBlock(){
+      this.blockPhase = this.$root.$children[0].blockPhase;
     },
     displayNextButton() {
       this.$emit("sendNextInChat");

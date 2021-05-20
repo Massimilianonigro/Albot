@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
 export default {
   created() {
     let phases = JSON.parse(
@@ -61,10 +62,6 @@ export default {
       type: Array,
       required: true,
     },
-    blockPhase: {
-      type: Boolean,
-      required: true,
-    }
   },
   data() {
     return {
@@ -74,11 +71,16 @@ export default {
       poured: [false, false, false],
       selectionOrder: [],
       nextSelected: 0,
+      //blockPhase: this.$root.$children[0].blockPhase === undefined ? false : this.$root.$children[0].blockPhase,
     };
+  },
+  computed: {
+    ...mapState(["blockPhase"])
   },
   methods: {
     selectItem(index, ph, id) {
       this.blockPhase = this.$root.$children[0].blockPhase;
+      this.$emit("switchBlock");
       console.log(this.blockPhase);
       if (index === this.nextSelected && !this.blockPhase) {
         this.$emit("selectItem", id);
@@ -96,6 +98,9 @@ export default {
         this.$emit("selectionComplete");
         this.blockPhase = true;
       }
+    },
+    flipBlockPhase(){
+      return !this.blockPhase;
     },
     getHighlight(index) {
       if (this.selected === index) return "highlight";

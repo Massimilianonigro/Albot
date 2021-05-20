@@ -45,7 +45,7 @@
         v-on:sendInfoMessage="handleInfoClick"
         v-on:selectionComplete="selectionComplete"
         v-on:pHIdentificationPhase="pHIdentificationPhase"
-       block-phase=this.blockPhase />
+        />
     </div>
   </div>
 </template>
@@ -55,6 +55,7 @@
 import MainScreen from "./components/MainScreen.vue";
 import GameScreen from "./components/GameScreen.vue";
 import Chat from "./components/Chat.vue";
+import { mapMutations } from 'vuex';
 
 export default {
   name: "App",
@@ -81,6 +82,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["setBlockPhase"]),
     resetHome() {
       this.mainStatus = 0;
       this.sendHomeClick();
@@ -221,11 +223,10 @@ export default {
       messages.messages.forEach((message) => {
         console.log("Examing message with ui_effect: " + message.ui_effect);
         if (message.ui_effect === "hidden") {
-          console.log("entered hidden");
           this.user_name = message.text;
         } else if (message.ui_effect === "unlock") {
-          console.log("unblocking");
-          this.blockPhase = false;
+          this.setBlockPhase(false);
+          //this.blockPhase = false;
         } else {
           self.$refs.chatRef.receiveMessage(message);
         }

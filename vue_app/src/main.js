@@ -8,12 +8,14 @@ import './assets/items.css'
 import './assets/backgrounds.css'
 import vuescroll from 'vuescroll';
 import VueSimpleAlert from "vue-simple-alert";
+import { store } from './store/index';
 
 
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
+  store,
 }).$mount('#app')
 
 // You can set VueScroll global config here.
