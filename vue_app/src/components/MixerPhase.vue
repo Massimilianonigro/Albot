@@ -71,7 +71,6 @@ export default {
       poured: [false, false, false],
       selectionOrder: [],
       nextSelected: 0,
-      //blockPhase: this.$root.$children[0].blockPhase === undefined ? false : this.$root.$children[0].blockPhase,
     };
   },
   computed: {
@@ -79,7 +78,6 @@ export default {
   },
   methods: {
     selectItem(index, ph, id) {
-      this.blockPhase = this.$root.$children[0].blockPhase;
       this.$emit("switchBlock");
       console.log(this.blockPhase);
       if (index === this.nextSelected && !this.blockPhase) {
