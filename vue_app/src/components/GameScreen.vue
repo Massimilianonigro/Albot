@@ -282,7 +282,7 @@ export default {
       nonSelItems: [],
       selItem: undefined,
       isShowScale: false,
-      blockPhase: false
+      blockPhase: true
     };
   },
   methods: {

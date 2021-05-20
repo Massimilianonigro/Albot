@@ -78,7 +78,7 @@ export default {
       user_name: "",
       chatLink: undefined,
       selectable_items: [],
-      blockPhase: false, //blocks any action from the user
+      blockPhase: true, //blocks any action from the user
     };
   },
   methods: {

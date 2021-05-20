@@ -75,7 +75,7 @@ export default {
       poured: [false, false, false],
       selectionOrder: [],
       nextSelected: 0,
-      blockPhase: false,
+      blockPhase: true,
     }
   },
   methods:{
