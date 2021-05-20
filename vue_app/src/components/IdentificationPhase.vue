@@ -43,8 +43,8 @@
               class="kitchen-item"
               v-on:click="selectItem(data, index)"
               v-bind:class="{
-              highlight: index == pouredIndex,
-              nothighlight: index != pouredIndex,
+              highlight: index === pouredIndex,
+              nothighlight: index !== pouredIndex,
             }"
               v-bind:style="{
               backgroundImage: 'url(' + data.src + ')',

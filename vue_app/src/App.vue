@@ -30,7 +30,6 @@
         v-bind:selectable_items="selectable_items"
         v-bind:gamePhase="gamePhase"
         v-bind:user_name="user_name"
-        v-bind:blockPhase="blockPhase"
         v-on:goHome="resetHome"
         v-on:goBack="sendBackClick"
         v-on:practicePress="handlePracticePress"
@@ -46,7 +45,7 @@
         v-on:sendInfoMessage="handleInfoClick"
         v-on:selectionComplete="selectionComplete"
         v-on:pHIdentificationPhase="pHIdentificationPhase"
-      />
+       block-phase=this.blockPhase />
     </div>
   </div>
 </template>

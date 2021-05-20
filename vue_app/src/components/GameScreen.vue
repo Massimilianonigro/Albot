@@ -34,8 +34,7 @@
         v-on:selectionComplete="selectionComplete"
         v-on:nextPhasePress="pHIdentificationPhase"
         v-bind:items="selItems"
-        v-bind:blockPhase="blockPhase"
-      />
+       block-phase = "block-phase" />
     </div>
     <!--pH identifier phase: isMixer, !isSelection, !isTutorial-->
     <div
@@ -179,6 +178,10 @@ export default {
       type: Number,
       required: true,
     },
+    blockPhase: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
@@ -304,10 +307,6 @@ export default {
       nonSelItems: [],
       selItem: undefined,
       isShowScale: false,
-      blockPhase:
-        this.$root.$children[0].blockPhase === undefined
-          ? false
-          : this.$root.$children[0].blockPhase,
     };
   },
   methods: {

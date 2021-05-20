@@ -77,7 +77,7 @@
       "ph" : 2,
       "asset" : "LemonJuice.png",
       "size": { "x": "27%", "y": "2%", "w": "8%", "h": "30%" },
-      "prsize": {"w": "7", "h": "45%" },
+      "prsize": {"w": "7%", "h": "45%" },
       "selected": false,
       "scale_placement": {  "x": "13%", "y": "79%", "w": "6%", "h": "9%"}
     },

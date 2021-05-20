@@ -61,6 +61,10 @@ export default {
       type: Array,
       required: true,
     },
+    blockPhase: {
+      type: Boolean,
+      required: true,
+    }
   },
   data() {
     return {
@@ -70,10 +74,6 @@ export default {
       poured: [false, false, false],
       selectionOrder: [],
       nextSelected: 0,
-      blockPhase:
-        this.$root.$children[0].blockPhase === undefined
-          ? false
-          : this.$root.$children[0].blockPhase,
     };
   },
   methods: {
