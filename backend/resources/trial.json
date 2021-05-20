@@ -151,6 +151,15 @@
                     }
                 },
                 {
+                    "intent": "clicked_next",
+                    "next_state": {
+                        "__enum__": "State.MIX_STRONG_BASE"
+                    },
+                    "to_send_back": [
+                        "mix_strong_base_explanation"
+                    ]
+                },
+                {
                     "intent": "next_step_information",
                     "to_send_back": [
                         "next_step_water"

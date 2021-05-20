@@ -45,7 +45,7 @@
         v-on:sendInfoMessage="handleInfoClick"
         v-on:selectionComplete="selectionComplete"
         v-on:pHIdentificationPhase="pHIdentificationPhase"
-        />
+      />
     </div>
   </div>
 </template>
@@ -55,7 +55,7 @@
 import MainScreen from "./components/MainScreen.vue";
 import GameScreen from "./components/GameScreen.vue";
 import Chat from "./components/Chat.vue";
-import { mapMutations } from 'vuex';
+import { mapMutations } from "vuex";
 
 export default {
   name: "App",
@@ -225,7 +225,7 @@ export default {
         if (message.ui_effect === "hidden") {
           this.user_name = message.text;
         } else if (message.ui_effect === "unlock") {
-          this.setBlockPhase(false);
+          this.setBlockPhase(this.blockPhase, false);
           //this.blockPhase = false;
         } else {
           self.$refs.chatRef.receiveMessage(message);

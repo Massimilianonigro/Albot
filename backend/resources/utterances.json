@@ -459,37 +459,55 @@
     ],
     "mix_strong_acid_question": [
         {
-            "text": "mix_strong_acid_question",
+            "text": "Oh! Did you see the color change? Why do you think it happened?",
             "ui_effect": ""
         }
     ],
     "mix_strong_base_question": [
         {
-            "text": "mix_strong_base_question",
+            "text": "See now the cabbage indicator changed to a different color. What did you do different this time?",
             "ui_effect": ""
         }
     ],
     "mix_weak_acid_question": [
         {
-            "text": "mix_strong_acid_question",
+            "text": "This color reminds me of something...It's similar to the one made by the lemon juice, why do you think that is?",
+            "ui_effect": ""
+        }
+    ],
+    "mix_strong_acid_question_explanation": [
+        {
+            "text": "The solution where you poured the lemon juice is an indicator made with red cabbage. An indicator changes color depending on some property of the substances which it comes into contact.",
+            "ui_effect": ""
+        }
+    ],
+    "mix_strong_base_question_explanation": [
+        {
+            "text": "Lemon juice and oven cleaner have a lot of differences. To explain the properties of substances scientist introduced the concept of pH....",
+            "ui_effect": ""
+        }
+    ],
+    "mix_weak_acid_question_explanation": [
+        {
+            "text": "See lemon juice and milk are both acids, but lemon juice has a way lower pH value. Hence the colors are similar but have different shades.",
             "ui_effect": ""
         }
     ],
     "mix_strong_acid_explanation": [
         {
-            "text": "mix_strong_acid_explanation",
+            "text": "The cups on the counter are filled with a solution made with red cabbage, try pouring the lemon juice in the cup!",
             "ui_effect": ""
         }
     ],
     "mix_strong_base_explanation": [
         {
-            "text": "mix_strong_base_explanation",
+            "text": "Well! Now try pouring the oven cleaner",
             "ui_effect": ""
         }
     ],
     "mix_weak_acid_explanation": [
         {
-            "text": "mix_strong_acid_explanation",
+            "text": "At last pour the milk in the solution.",
             "ui_effect": ""
         }
     ],
@@ -525,7 +543,7 @@
     ],
     "ingredient_selection_explanation": [
         {
-            "text": "ingredient_selection_explanation",
+            "text": "Select the three items in the shelf, i will bring them on the table for you!",
             "ui_effect": ""
         }
     ],

@@ -168,7 +168,7 @@
                             "id": 15,
                             "option": "",
                             "answer": "mix_strong_acid_answer",
-                            "explanation": "mix_strong_acid_explanation"
+                            "explanation": "mix_strong_acid_question_explanation"
                         }
                     ]
                 }
@@ -181,7 +181,7 @@
                             "id": 16,
                             "option": "",
                             "answer": "mix_strong_base_answer",
-                            "explanation": "mix_strong_base_explanation"
+                            "explanation": "mix_strong_base_question_explanation"
                         }
                     ]
                 }
@@ -194,7 +194,7 @@
                             "id": 17,
                             "option": "",
                             "answer": "mix_weak_acid_answer",
-                            "explanation": "mix_weak_acid_explanation"
+                            "explanation": "mix_weak_acid_question_explanation"
                         }
                     ]
                 }

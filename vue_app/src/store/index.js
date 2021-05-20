@@ -8,7 +8,7 @@ export default new Vuex.Store({
         blockPhase: false
     },
     mutations: {
-        setBlockPhase(state, newValue){
+        setBlockPhase(state, newValue) {
             state.blockPhase = newValue;
         }
     }

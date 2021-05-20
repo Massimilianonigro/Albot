@@ -42,7 +42,9 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import { mapState } from "vuex";
+import { mapMutations } from "vuex";
+
 export default {
   created() {
     let phases = JSON.parse(
@@ -75,13 +77,11 @@ export default {
     };
   },
   computed: {
-    ...mapState(["blockPhase"])
+    ...mapState(["blockPhase"]),
   },
   methods: {
+    ...mapMutations(["setBlockPhase"]),
     selectItem(index, ph, id) {
-      this.blockPhase = this.$root.$children[0].blockPhase;
-      this.$emit("switchBlock");
-      console.log(this.blockPhase);
       if (index === this.nextSelected && !this.blockPhase) {
         this.$emit("selectItem", id);
         if (this.selected === index) {
@@ -96,10 +96,10 @@ export default {
         this.complete = this.poured.every((v) => v === true);
         this.nextSelected += 1;
         this.$emit("selectionComplete");
-        this.blockPhase = true;
+        this.setBlockPhase(this.blockPhase, true);
       }
     },
-    flipBlockPhase(){
+    flipBlockPhase() {
       return !this.blockPhase;
     },
     getHighlight(index) {
