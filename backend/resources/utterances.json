@@ -477,7 +477,7 @@
     ],
     "mix_strong_acid_explanation": [
         {
-            "text": "mix_strong_acid_question",
+            "text": "mix_strong_acid_explanation",
             "ui_effect": ""
         }
     ],
@@ -527,6 +527,12 @@
         {
             "text": "ingredient_selection_explanation",
             "ui_effect": ""
+        }
+    ],
+    "unlock_selection": [
+        {
+            "text": "",
+            "ui_effect": "unlock"
         }
     ]
 }

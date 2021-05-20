@@ -61,6 +61,8 @@ class DialogueManager:
                     "change_phase": "",
                 }
             )
+        elif msg["type"] == "selection_complete":
+            intent = self._create_intent("selection_complete")
         # Now that i have the intent calculated i can generate a response and move the child on the state machine
         utterance = self.generate_utterance(intent, user_id)
         return utterance

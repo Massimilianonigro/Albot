@@ -94,12 +94,6 @@
                 {
                     "intent": "selection_complete",
                     "to_send_back": [
-                        "next"
-                    ]
-                },
-                {
-                    "intent": "clicked_next",
-                    "to_send_back": [
                         "mix_strong_acid_explanation"
                     ],
                     "next_state": {
@@ -153,15 +147,6 @@
                     "intent": "clicked_home",
                     "next_state": {
                         "__enum__": "State.GREETING"
-                    }
-                },
-                {
-                    "intent": "clicked_next",
-                    "to_send_back": [
-                        "mix_strong_base_explanation"
-                    ],
-                    "next_state": {
-                        "__enum__": "State.MIX_STRONG_BASE"
                     }
                 },
                 {
