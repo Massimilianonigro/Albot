@@ -94,7 +94,8 @@
                 {
                     "intent": "selection_complete",
                     "to_send_back": [
-                        "mix_strong_acid_explanation"
+                        "mix_strong_acid_explanation",
+                        "unlock_selection"
                     ],
                     "next_state": {
                         "__enum__": "State.MIX_STRONG_ACID"
