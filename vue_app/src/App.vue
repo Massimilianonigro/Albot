@@ -55,7 +55,7 @@
 import MainScreen from "./components/MainScreen.vue";
 import GameScreen from "./components/GameScreen.vue";
 import Chat from "./components/Chat.vue";
-import { mapMutations } from "vuex";
+import { mapActions } from 'vuex';
 
 export default {
   name: "App",
@@ -63,6 +63,9 @@ export default {
     MainScreen,
     GameScreen,
     Chat,
+  },
+  mounted() {
+    this.setBlockPhase(true);
   },
   data() {
     //mainStatus to be deleted
@@ -82,7 +85,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["setBlockPhase"]),
+    ...mapActions(["setBlockPhase"]),
     resetHome() {
       this.mainStatus = 0;
       this.sendHomeClick();
@@ -225,7 +228,7 @@ export default {
         if (message.ui_effect === "hidden") {
           this.user_name = message.text;
         } else if (message.ui_effect === "unlock") {
-          this.setBlockPhase(this.blockPhase, false);
+          this.setBlockPhase(  false );
           //this.blockPhase = false;
         } else {
           self.$refs.chatRef.receiveMessage(message);

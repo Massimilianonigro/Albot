@@ -73,7 +73,6 @@ export default {
       poured: [false, false, false],
       selectionOrder: [],
       nextSelected: 0,
-      //blockPhase: this.$root.$children[0].blockPhase === undefined ? false : this.$root.$children[0].blockPhase,
     };
   },
   computed: {
@@ -82,6 +81,11 @@ export default {
   methods: {
     ...mapMutations(["setBlockPhase"]),
     selectItem(index, ph, id) {
+<<<<<<< HEAD
+=======
+      this.$emit("switchBlock");
+      console.log(this.blockPhase);
+>>>>>>> 51cd3ac2790657ce1c2637c68b2637c4ca639d89
       if (index === this.nextSelected && !this.blockPhase) {
         this.$emit("selectItem", id);
         if (this.selected === index) {

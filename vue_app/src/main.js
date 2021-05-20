@@ -8,7 +8,11 @@ import './assets/items.css'
 import './assets/backgrounds.css'
 import vuescroll from 'vuescroll';
 import VueSimpleAlert from "vue-simple-alert";
+<<<<<<< HEAD
 import store from './store';
+=======
+import store from './store/';
+>>>>>>> 51cd3ac2790657ce1c2637c68b2637c4ca639d89
 
 
 Vue.config.productionTip = false
