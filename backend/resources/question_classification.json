@@ -153,10 +153,12 @@
         "explanation": true,
         "positive_responses": [
             "chatbot_appreciation",
+            "next",
             "unlock_selection"
         ],
         "negative_responses": [
             "wrong_answer",
+            "next",
             "unlock_selection"
         ],
         "questions": [

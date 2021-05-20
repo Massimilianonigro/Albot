@@ -42,8 +42,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import { mapMutations } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   created() {
@@ -79,13 +78,8 @@ export default {
     ...mapState(["blockPhase"]),
   },
   methods: {
-    ...mapMutations(["setBlockPhase"]),
+    ...mapActions(["setBlockPhase"]),
     selectItem(index, ph, id) {
-<<<<<<< HEAD
-=======
-      this.$emit("switchBlock");
-      console.log(this.blockPhase);
->>>>>>> 51cd3ac2790657ce1c2637c68b2637c4ca639d89
       if (index === this.nextSelected && !this.blockPhase) {
         this.$emit("selectItem", id);
         if (this.selected === index) {
@@ -100,7 +94,7 @@ export default {
         this.complete = this.poured.every((v) => v === true);
         this.nextSelected += 1;
         this.$emit("selectionComplete");
-        this.setBlockPhase(this.blockPhase, true);
+        this.setBlockPhase(true);
       }
     },
     flipBlockPhase() {

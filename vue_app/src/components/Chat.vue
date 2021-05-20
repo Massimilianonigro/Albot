@@ -1,39 +1,43 @@
 <template>
   <div class="chat-bg-container">
     <div class="chat">
-      <div class="chat-title robo-font" :style="{ height: '15px' }"></div >
+      <div class="chat-title robo-font" :style="{ height: '15px' }"></div>
       <!--input type="text" v-model="fontSize" :style="{ height: '25px', width:'19%', marginLeft:'10%' }" class="chat-tittle robo-font corner berlin-font" name="text" /-->
       <div
         class="message-box"
-        :style="{ width: '98%', height: '70%', bottom: '100%'}"
+        :style="{ width: '98%', height: '70%', bottom: '100%' }"
       >
         <vuescroll ref="vs" :style="{ 'text-align': 'left' }" :ops="ops">
           <div
             v-bind:class="getClass(data)"
             class="message"
-            :style="getMessageStyle(data.type)" 
+            :style="getMessageStyle(data.type)"
             v-for="(data, index) in messages"
             v-bind:key="index"
           >
-            <audio id="audio" src="../resources/new_message_received.wav" v-if="data.bot" autoplay></audio>
+            <audio
+              id="audio"
+              src="../resources/new_message_received.wav"
+              v-if="data.bot"
+              autoplay
+            ></audio>
             <div v-bind:class="getBoxClass(data)">
               <span>
                 {{ data.message }}
               </span>
-              <img 
+              <img
                 class="img-chat"
                 alt="chat background"
                 v-if="data.type === 'image'"
                 :src="data.src"
               />
             </div>
-            
+
             <button
               v-if="data.type === 'button'"
               :class="getButtonClass(data.func)"
               v-on:click="handleClick(data.func)"
               :style="{ backgroundImage: 'url(' + data.src + ')' }"
-              
             ></button>
           </div>
         </vuescroll>
@@ -133,23 +137,24 @@ export default {
       }
       return styleItem;
     },
-    getMessageStyle(type){
-      if(type === "text")
-        return {'font-size': this.fontSize+'vh'}
-      if(type === "button")
-        return {'font-size': this.fontSize+'vh', 'padding-top':'2px', 'padding-bottom':'0px', 'margin-bottom':'-10px'}
+    getMessageStyle(type) {
+      if (type === "text") return { "font-size": this.fontSize + "vh" };
+      if (type === "button")
+        return {
+          "font-size": this.fontSize + "vh",
+          "padding-top": "2px",
+          "padding-bottom": "0px",
+          "margin-bottom": "-10px",
+        };
     },
     handleClick(functionType) {
       if (functionType === "next") {
         this.$emit("nextClicked");
-      } 
-      else if (functionType === "nextPractice") {
+      } else if (functionType === "nextPractice") {
         this.$emit("nextPracticeClicked");
-      } 
-      else if (functionType === "tryAgain") {
+      } else if (functionType === "tryAgain") {
         this.$emit("tryAgainClicked");
-      } 
-      else if (functionType === "continue") {
+      } else if (functionType === "continue") {
         this.$emit("continueClicked");
       }
     },
@@ -162,54 +167,76 @@ export default {
     },
     receiveMessage(message_received) {
       console.log(message_received);
-      let toPush = { message: message_received.text, bot: true, type: "text" }
+      let toPush = { message: message_received.text, bot: true, type: "text" };
       switch (message_received.ui_effect) {
         case "tryagain":
-          toPush = { message: message_received.text, bot: true, type: "button", src: require("../assets/uibuttons/TryAgainButton.png"), func: "tryAgain" };
-            this.$emit("showTryAgain");
-            break;
-          case "continue":
-            toPush = { message: message_received.text, bot: true, type: "button", src: require("../assets/uibuttons/ContinueButton.png"), func: "continue", };
-            this.$emit("addPoints");
-            break;
-          case "next":
-            toPush = { message: message_received.text, bot: true, type: "button", src: require("../assets/uibuttons/NextButton.png"), func: "next", };
-            this.$emit("nextClicked");
-            break;
-          default:
-            if(message_received.ui_effect.includes("display")){
-              toPush = { message: "", bot: true, type: "image", src:this.getImageById(message_received.text.split("_")[1]) };
-            }
-            break;
-        }
-        this.messages.push(toPush);
-    },
-    getImageById(id){
-      switch (id){
-        case("1"):
-          return require("../assets/molecules/BakingSoda.png")
-        case("2"):
-          return require("../assets/molecules/EggWhite.png")
-        case("3"):
-          return require("../assets/molecules/Vinegar.png")
-        case("4"):
-          return require("../assets/molecules/Bleach.png")
-        case("5"):
-          return require("../assets/molecules/OvenCleaner.png")
-        case("6"):
-          return require("../assets/molecules/Soap.png")
-        case("7"):
-          return require("../assets/molecules/Cola.png")
-        case("8"):
-          return require("../assets/molecules/LemonJuice.png")
-        case("9"):
-          return require("../assets/molecules/Milk.png")
-        case("10"):
-          return require("../assets/molecules/PureWater.png")
-        case("11"):
-          return require("../assets/molecules/SparklingWater.png")
+          toPush = {
+            message: message_received.text,
+            bot: true,
+            type: "button",
+            src: require("../assets/uibuttons/TryAgainButton.png"),
+            func: "tryAgain",
+          };
+          this.$emit("showTryAgain");
+          break;
+        case "continue":
+          toPush = {
+            message: message_received.text,
+            bot: true,
+            type: "button",
+            src: require("../assets/uibuttons/ContinueButton.png"),
+            func: "continue",
+          };
+          this.$emit("addPoints");
+          break;
+        case "next":
+          toPush = {
+            message: message_received.text,
+            bot: true,
+            type: "button",
+            src: require("../assets/uibuttons/NextButton.png"),
+            func: "next",
+          };
+          break;
         default:
-          return require("../assets/molecules/PureWater.png")
+          if (message_received.ui_effect.includes("display")) {
+            toPush = {
+              message: "",
+              bot: true,
+              type: "image",
+              src: this.getImageById(message_received.text.split("_")[1]),
+            };
+          }
+          break;
+      }
+      this.messages.push(toPush);
+    },
+    getImageById(id) {
+      switch (id) {
+        case "1":
+          return require("../assets/molecules/BakingSoda.png");
+        case "2":
+          return require("../assets/molecules/EggWhite.png");
+        case "3":
+          return require("../assets/molecules/Vinegar.png");
+        case "4":
+          return require("../assets/molecules/Bleach.png");
+        case "5":
+          return require("../assets/molecules/OvenCleaner.png");
+        case "6":
+          return require("../assets/molecules/Soap.png");
+        case "7":
+          return require("../assets/molecules/Cola.png");
+        case "8":
+          return require("../assets/molecules/LemonJuice.png");
+        case "9":
+          return require("../assets/molecules/Milk.png");
+        case "10":
+          return require("../assets/molecules/PureWater.png");
+        case "11":
+          return require("../assets/molecules/SparklingWater.png");
+        default:
+          return require("../assets/molecules/PureWater.png");
       }
     },
     printNextButton() {
@@ -222,7 +249,8 @@ export default {
       });
     },
     printNextPracticeButton() {
-      this.messages.push({ message: "Click on next button to continue!",
+      this.messages.push({
+        message: "Click on next button to continue!",
         bot: true,
         type: "button",
         src: require("../assets/uibuttons/NextButton.png"),
@@ -230,7 +258,8 @@ export default {
       });
     },
     printContinueButton() {
-      this.messages.push({ message: "Congrats, you won 10 points. Click to continue",
+      this.messages.push({
+        message: "Congrats, you won 10 points. Click to continue",
         bot: true,
         type: "button",
         src: require("../assets/uibuttons/ContinueButton.png"),
@@ -238,7 +267,8 @@ export default {
       });
     },
     printTryAgainButton() {
-      this.messages.push({ message: "Do you want to give it another shot?",
+      this.messages.push({
+        message: "Do you want to give it another shot?",
         bot: true,
         type: "button",
         src: require("../assets/uibuttons/TryAgainButton.png"),
@@ -389,8 +419,8 @@ export default {
 .btn-chat:active {
   opacity: 0.8;
 }
-.img-chat{
-  max-width:100%;
+.img-chat {
+  max-width: 100%;
 }
 
 .corner {
