@@ -44,6 +44,7 @@
         v-on:sendTryAgainMessage="handleTryAgainClick"
         v-on:sendInfoMessage="handleInfoClick"
         v-on:selectionComplete="selectionComplete"
+        v-on:pHIdentificationPhase="pHIdentificationPhase"
       />
     </div>
   </div>
@@ -83,6 +84,15 @@ export default {
       this.mainStatus = 0;
       this.sendHomeClick();
       this.requestName();
+    },
+    pHIdentificationPhase(){
+      //only for testing purposes, to be removed
+      this.gamePhase.phase = "practice-pH";
+      this.gamePhase.isSelection = false;
+      this.gamePhase.isMixer = true;
+      this.gamePhase.isTutorial = false;
+
+      this.fetchItems();
     },
     startIntroduction() {
       this.sendIntroductoryJSON();
@@ -187,7 +197,7 @@ export default {
             substance_element.src = require("./assets/items/" + substances.ingredients[substance - 1].asset);
             substance_element.size = substances.ingredients[substance - 1].size;
             substance_element.prsize = substances.ingredients[substance - 1].prsize;
-            substance_element.ph = substances.ingredients[substance - 1].prsize;
+            substance_element.ph = substances.ingredients[substance - 1].ph;
 
             this.selectable_items.push(substance_element);
           })

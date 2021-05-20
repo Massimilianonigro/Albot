@@ -25,14 +25,18 @@
           v-on:backPress="prevScreen"
           v-on:practicePress="practicePress"
           v-on:selectItem="selectItem"
+          v-on:selectionComplete="selectionComplete"
+          v-on:nextPhasePress="pHIdentificationPhase"
           v-bind:items="selItems"
       />
     </div>
     <!--pH identifier phase: isMixer, !isSelection, !isTutorial-->
     <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial">
-      <MixerBackground  />
-      <MixerPhase
-          v-bind:items="selectable_items"
+      <MixerBackground
+          v-bind:items=selectable_items
+      />
+      <IdentificationPhase
+          v-bind:items=selectable_items
           v-on:homePress="homeScreen"
           v-on:backPress="prevScreen"
           v-on:practicePress="practicePress"
@@ -56,7 +60,7 @@
       <PracticeBackground />
       <PracticePhase
           ref="game"
-          v-bind:items="selItems"
+          v-bind:items="selectable_items"
           v-on:selectedPractItem="sendItemMessage"
           v-on:resetPress="sendResetMessage"
           v-on:homePress="homeScreen"
@@ -104,6 +108,7 @@ import PickerPhase from "./PickerPhase.vue";
 import MixerPhase from "./MixerPhase.vue";
 import PickerPracticePhase from "./PickerPracticePhase.vue";
 import PracticePhase from "./PracticePhase.vue";
+import IdentificationPhase from "./IdentificationPhase";
 
 export default {
   name: "GameScreen",
@@ -144,6 +149,7 @@ export default {
     MixerPhase,
     PickerPracticePhase,
     PracticePhase,
+    IdentificationPhase
   },
   props: {
     gameType: {
@@ -363,6 +369,15 @@ export default {
     },
     homeScreen() {
       this.$emit("goHome");
+    },
+    pHIdentificationPhase(){
+      //only for testing purposes, to be removed
+      this.gamePhase.phase = "practice-pH";
+      this.gamePhase.isSelection = false;
+      this.gamePhase.isMixer = true;
+      this.gamePhase.isTutorial = false;
+
+      this.$emit("pHIdentificationPhase");
     },
     selectionComplete(){
       this.$emit("selectionComplete");

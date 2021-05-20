@@ -30,10 +30,9 @@
       <div class="white-block" v-if="complete">
         <div  class="gj-banner" >
           <h2> Good Job! </h2>
-          <h2> Lets try: </h2>
         </div>
-        <button class="practice-btn"
-          v-on:click="practiceButton">
+        <button class="next-phase-btn"
+          v-on:click="nextPhaseButton">
         </button>
       </div>
 
@@ -95,6 +94,7 @@ export default {
 
         this.complete = this.poured.every(v => v === true);
         this.nextSelected += 1;
+        this.$emit("selectionComplete");
       }
     },
     getHighlight(index){
@@ -138,6 +138,9 @@ export default {
     },
     practiceButton(){
       this.$emit("practicePress");
+    },
+    nextPhaseButton(){
+      this.$emit("nextPhasePress");
     },
     backButton(){
       while(this.items.length > 0) {
@@ -260,8 +263,21 @@ a {
 	background-position: center;
 	border: 0px;
 	z-index: 1000;
-	background-size: contain;
 	background-image: url("../assets/uibuttons/PracticeButton.png");
+}
+.next-phase-btn{
+  position: absolute;
+  height: 12%;
+  width: 50%;
+  top: 40%;
+  left: 25%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  background-position: center;
+  border: 0px;
+  z-index: 1000;
+  background-image: url("../assets/uibuttons/NextPhaseButton.png");
 }
 .practice-btn:focus{
   outline: none
@@ -280,14 +296,15 @@ a {
 	background-size: contain;
 	background-color: transparent;
 	background-position: center;
-  border: 0px;
+  border: 0;
   z-index: 999;
-	background-size: contain;
 	background-image: url("../assets/uibuttons/gj.png");
 }
 .gj-banner > h2{
   color: white;
   text-align: center;
+  font-size: xxx-large;
+  padding: 1vw 1vw 4vw 1vw;
 }
 .white-block{
   position: absolute;
