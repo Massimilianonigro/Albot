@@ -75,7 +75,9 @@ export default {
       poured: [false, false, false],
       selectionOrder: [],
       nextSelected: 0,
-      blockPhase: true,
+      blockPhase: this.$root.$children[0].blockPhase === undefined
+          ? true
+          : this.$root.$children[0].blockPhase,
     }
   },
   methods:{
