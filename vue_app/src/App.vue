@@ -30,6 +30,7 @@
         v-bind:selectable_items="selectable_items"
         v-bind:gamePhase="gamePhase"
         v-bind:user_name="user_name"
+        v-bind:blockPhase="blockPhase"
         v-on:goHome="resetHome"
         v-on:goBack="sendBackClick"
         v-on:practicePress="handlePracticePress"
@@ -77,6 +78,7 @@ export default {
       user_name: "",
       chatLink: undefined,
       selectable_items: [],
+      blockPhase: false, //blocks any action from the user
     };
   },
   methods: {
@@ -221,7 +223,12 @@ export default {
           console.log("entered hidden");
           this.user_name = message.text;
         }
-        self.$refs.chatRef.receiveMessage(message);
+        else if (message.ui_effect === "unlock") {
+          this.blockPhase = true;
+        }
+        else {
+          self.$refs.chatRef.receiveMessage(message);
+        }
       });
       if (messages.change_phase !== "") {
         this.handleChangePhase(messages.change_phase);

@@ -76,9 +76,9 @@ export default {
 
 .pH-scale{
   height: 100%;
-  width:  20%;
+  width:  15%;
   z-index: 1;
-  padding: 1vw;
+  padding: 0.7vw;
   background-position-x: center;
   background-position-y: center;
   background-repeat: no-repeat;

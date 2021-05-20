@@ -28,6 +28,7 @@
           v-on:selectionComplete="selectionComplete"
           v-on:nextPhasePress="pHIdentificationPhase"
           v-bind:items="selItems"
+          v-bind:blockPhase="blockPhase"
       />
     </div>
     <!--pH identifier phase: isMixer, !isSelection, !isTutorial-->
@@ -280,7 +281,8 @@ export default {
       selItems: [],
       nonSelItems: [],
       selItem: undefined,
-      isShowScale: false
+      isShowScale: false,
+      blockPhase: false
     };
   },
   methods: {

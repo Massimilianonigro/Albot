@@ -75,11 +75,12 @@ export default {
       poured: [false, false, false],
       selectionOrder: [],
       nextSelected: 0,
+      blockPhase: false,
     }
   },
   methods:{
     selectItem(index, ph, id){
-      if (index === this.nextSelected){
+      if (index === this.nextSelected && !this.blockPhase){
         this.$emit("selectItem", id)
         if(this.selected === index){
           this.selected = undefined;
