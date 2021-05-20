@@ -10,10 +10,6 @@ export default new Vuex.Store({
     mutations: {
         setBlockPhase(state, newValue) {
             state.blockPhase = newValue;
-        },
-        // eslint-disable-next-line no-unused-vars
-        prova(state, val){
-            console.log("Sono in index.js,", val);
         }
     },
     actions:{

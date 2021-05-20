@@ -214,8 +214,9 @@ export default {
     },
   },
   created: function () {
+    var _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://localhost:2345");
+    this.connection = new WebSocket("ws://9cb606a67d5e.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -225,8 +226,7 @@ export default {
         if (message.ui_effect === "hidden") {
           this.user_name = message.text;
         } else if (message.ui_effect === "unlock") {
-          this.setBlockPhase(false);
-          //this.blockPhase = false;
+          _this.setBlockPhase(false);
         } else {
           self.$refs.chatRef.receiveMessage(message);
         }
