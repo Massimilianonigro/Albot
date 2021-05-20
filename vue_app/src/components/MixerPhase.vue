@@ -1,48 +1,42 @@
 <template>
   <div>
     <div class="background">
-      <div class="item-container" >
+      <div class="item-container">
         <div v-for="(data, index) in items" v-bind:key="index">
-          <button 
+          <button
             class="kitchen-item"
             v-on:click="selectItem(index, data.ph, data.id)"
             v-bind:class="getHighlight(index)"
-            v-bind:style="getItemStyle(data,index)"
+            v-bind:style="getItemStyle(data, index)"
           ></button>
-          <div class="solution-bowl"
+          <div
+            class="solution-bowl"
             v-if="!poured[index]"
             v-bind:style="{
-              left: (index * 22 - 3 )+ '%',
+              left: index * 22 - 3 + '%',
               bottom: '-20%',
               height: '35%',
               width: '15%',
-            }">
-            </div>
-            <div 
-              v-if="poured[index]"
-              :style="getPhBowl(data, index)"
-              class="solution-style"
-            >
-            </div>
+            }"
+          ></div>
+          <div
+            v-if="poured[index]"
+            :style="getPhBowl(data, index)"
+            class="solution-style"
+          ></div>
         </div>
       </div>
 
       <div class="white-block" v-if="complete">
-        <div  class="gj-banner" >
-          <h2> Good Job! </h2>
+        <div class="gj-banner">
+          <h2>Good Job!</h2>
         </div>
-        <button class="next-phase-btn"
-          v-on:click="nextPhaseButton">
-        </button>
+        <button class="next-phase-btn" v-on:click="nextPhaseButton"></button>
       </div>
 
-      <button class="back-btn ui-btn" 
-        v-on:click="backButton">
-      </button>
-      
-      <button class="home-btn ui-btn" 
-        v-on:click="homeButton">
-      </button>
+      <button class="back-btn ui-btn" v-on:click="backButton"></button>
+
+      <button class="home-btn ui-btn" v-on:click="homeButton"></button>
     </div>
   </div>
 </template>
@@ -50,24 +44,25 @@
 <script>
 export default {
   created() {
-    let phases = JSON.parse(JSON.stringify(require("../resources/phases.json")));
-    phases.phases.forEach(phase => {
-      if (phase === "tutorial-mix"){
+    let phases = JSON.parse(
+      JSON.stringify(require("../resources/phases.json"))
+    );
+    phases.phases.forEach((phase) => {
+      if (phase === "tutorial-mix") {
         this.selectionOrder = phase.substances;
         this.nextSelected = this.selectionOrder[0];
       }
-    })
+    });
   },
-  components: {
-  },
+  components: {},
   name: "MixerPhase",
   props: {
     items: {
       type: Array,
       required: true,
-    }
+    },
   },
-  data(){
+  data() {
     return {
       selected: undefined,
       selectedPh: "Select",
@@ -75,78 +70,80 @@ export default {
       poured: [false, false, false],
       selectionOrder: [],
       nextSelected: 0,
-      blockPhase: this.$root.$children[0].blockPhase === undefined
-          ? true
+      blockPhase:
+        this.$root.$children[0].blockPhase === undefined
+          ? false
           : this.$root.$children[0].blockPhase,
-    }
+    };
   },
-  methods:{
-    selectItem(index, ph, id){
-      if (index === this.nextSelected && !this.blockPhase){
-        this.$emit("selectItem", id)
-        if(this.selected === index){
+  methods: {
+    selectItem(index, ph, id) {
+      this.blockPhase = this.$root.$children[0].blockPhase;
+      console.log(this.blockPhase);
+      if (index === this.nextSelected && !this.blockPhase) {
+        this.$emit("selectItem", id);
+        if (this.selected === index) {
           this.selected = undefined;
           this.selectedPh = "Select";
-        }
-        else{
+        } else {
           this.selected = index;
-          this.selectedPh = ph+"";
+          this.selectedPh = ph + "";
         }
-        if(!this.poured[index])
-          this.poured[index] = true;
+        if (!this.poured[index]) this.poured[index] = true;
 
-        this.complete = this.poured.every(v => v === true);
+        this.complete = this.poured.every((v) => v === true);
         this.nextSelected += 1;
         this.$emit("selectionComplete");
+        this.blockPhase = true;
       }
     },
-    getHighlight(index){
-      if(this.selected === index)
-        return 'highlight';
-      return 'nothighlight';
+    getHighlight(index) {
+      if (this.selected === index) return "highlight";
+      return "nothighlight";
     },
-    getItemStyle(data, index){
-      let styleItem
-      if (this.selected === index){
+    getItemStyle(data, index) {
+      let styleItem;
+      if (this.selected === index) {
         styleItem = {
-          backgroundImage: 'url(' + data.src + ')',
-          left: ((index * 22) - 6)+ '%',
+          backgroundImage: "url(" + data.src + ")",
+          left: index * 22 - 6 + "%",
           width: data.size.w,
           zIndex: 20,
-        }
-      }
-      else{
+        };
+      } else {
         styleItem = {
-          backgroundImage: 'url(' + data.src + ')',
-          left: (index * 22 )+ '%',
+          backgroundImage: "url(" + data.src + ")",
+          left: index * 22 + "%",
           width: data.size.w,
-        }
-      }
-      return styleItem
-    },
-    getPhBowl(data, index){
-      console.log(data);
-      let urlImg = require("../assets/solutions/Solution"+ Math.round(data.ph) +".png");
-      let styleItem = {
-        left: (index * 22 - 3)+ '%',
-        bottom: '-20%',
-        height: '35%',
-        width: '15%',
-        'background-image': 'url('+ urlImg +')',
+        };
       }
       return styleItem;
     },
-    pourItem(index){
+    getPhBowl(data, index) {
+      console.log(data);
+      let urlImg = require("../assets/solutions/Solution" +
+        Math.round(data.ph) +
+        ".png");
+      let styleItem = {
+        left: index * 22 - 3 + "%",
+        bottom: "-20%",
+        height: "35%",
+        width: "15%",
+        "background-image": "url(" + urlImg + ")",
+      };
+      return styleItem;
+    },
+    pourItem(index) {
       this.poured[index] = true;
     },
-    practiceButton(){
+    practiceButton() {
       this.$emit("practicePress");
     },
-    nextPhaseButton(){
+    nextPhaseButton() {
       this.$emit("nextPhasePress");
     },
-    backButton(){
-      while(this.items.length > 0) {
+    backButton() {
+      while (this.items.length > 0) {
         this.items.pop();
       }
       this.$emit("backPress");
@@ -154,7 +151,7 @@ export default {
     homeButton() {
       this.$emit("homePress");
     },
-  }
+  },
 };
 </script>
 
@@ -171,71 +168,71 @@ export default {
   height: 25%;
 }
 
-.nothighlight{
+.nothighlight {
   top: 0%;
   height: 80%;
 }
-.kitchen-item:hover.nothighlight{
-	opacity: 0.8;
-	border-radius: 0;
+.kitchen-item:hover.nothighlight {
+  opacity: 0.8;
+  border-radius: 0;
   border: 0;
-	border-style: none;
+  border-style: none;
   border-color: transparent;
-	background-color: #ffffff70;
-	border-radius: 5px;
+  background-color: #ffffff70;
+  border-radius: 5px;
 }
 .highlight {
-	color: #ffffff;
-	border-radius: 5px;
-	border: none;
-	background-color: transparent;
-	transform: rotate(115deg);
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+  transform: rotate(115deg);
   top: 34%;
   height: 80%;
 }
-.kitchen-item:hover.highlight{
-	opacity: 0.8;
-	border-radius: 0;
-	border: 0;
-	border-style: none;
-	border-color: transparent;
+.kitchen-item:hover.highlight {
+  opacity: 0.8;
+  border-radius: 0;
+  border: 0;
+  border-style: none;
+  border-color: transparent;
 }
 
-.solution-bowl{
+.solution-bowl {
   position: absolute;
-	z-index: 2;
-	background-position-y: bottom;
-	background-position-x: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-image: url("../assets/solutions/Solutionbowl.png");
+  z-index: 2;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../assets/solutions/Solutionbowl.png");
 }
-.solution-style{
+.solution-style {
   position: absolute;
-	z-index: 2;
-	background-position-y: bottom;
-	background-position-x: center;
-	background-repeat: no-repeat;
-	background-size: contain;
+  z-index: 2;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
-.solution-ph-meter{
+.solution-ph-meter {
   position: absolute;
-	z-index: 2;
+  z-index: 2;
   left: 0%;
   right: 0%;
   bottom: 2%;
   width: 50%;
   height: 12%;
   margin: auto;
-	background-position-y: bottom;
-	background-position-x: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-image: url("../assets/uibuttons/PHIndicator.png");
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../assets/uibuttons/PHIndicator.png");
 }
-.solution-ph-meter-label{
+.solution-ph-meter-label {
   color: white;
-	z-index: 3;
+  z-index: 3;
   margin: 11.5% auto auto auto;
   left: 0%;
   right: 0%;
@@ -254,21 +251,21 @@ ul {
 a {
   color: #42b983;
 }
-.practice-btn{
-	position: absolute;
-	height: 12%;
-	width: 50%;
-	top: 40%;
-	left: 25%;
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-color: transparent;
-	background-position: center;
-	border: 0px;
-	z-index: 1000;
-	background-image: url("../assets/uibuttons/PracticeButton.png");
+.practice-btn {
+  position: absolute;
+  height: 12%;
+  width: 50%;
+  top: 40%;
+  left: 25%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  background-position: center;
+  border: 0px;
+  z-index: 1000;
+  background-image: url("../assets/uibuttons/PracticeButton.png");
 }
-.next-phase-btn{
+.next-phase-btn {
   position: absolute;
   height: 12%;
   width: 50%;
@@ -282,38 +279,38 @@ a {
   z-index: 1000;
   background-image: url("../assets/uibuttons/NextPhaseButton.png");
 }
-.practice-btn:focus{
-  outline: none
+.practice-btn:focus {
+  outline: none;
 }
-.practice-btn:active{
+.practice-btn:active {
   opacity: 0.7;
 }
-.gj-banner{
+.gj-banner {
   position: absolute;
   padding-top: 7%;
-	height: 30%;
-	width: 68%;
-	top: 22%;
-	left: 16%;
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-color: transparent;
-	background-position: center;
+  height: 30%;
+  width: 68%;
+  top: 22%;
+  left: 16%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  background-position: center;
   border: 0;
   z-index: 999;
-	background-image: url("../assets/uibuttons/gj.png");
+  background-image: url("../assets/uibuttons/gj.png");
 }
-.gj-banner > h2{
+.gj-banner > h2 {
   color: white;
   text-align: center;
   font-size: xxx-large;
   padding: 1vw 1vw 4vw 1vw;
 }
-.white-block{
+.white-block {
   position: absolute;
   background-color: #ffffffb0;
   z-index: 105;
   height: 100%;
-  width:  100%;
+  width: 100%;
 }
 </style>

@@ -1,82 +1,101 @@
 <template>
   <div id="GameUI">
     <!--Tutorial Selection phase: !isMixer, isSelection, isTutorial-->
-    <div class="GameUI" v-if="!gamePhase.isMixer && gamePhase.isSelection && gamePhase.isTutorial">
+    <div
+      class="GameUI"
+      v-if="!gamePhase.isMixer && gamePhase.isSelection && gamePhase.isTutorial"
+    >
       <PickerBackground />
       <PickerPhase
-          ref="picker"
-          v-bind:items="selectable_items"
-          v-on:sendItemMessage="selectItem"
-          v-on:sendNextInChat="displayNextButton"
-          v-on:homePress="homeScreen"
-          v-on:nextPress="mixItems"
-          v-on:selectionComplete="selectionComplete"
+        ref="picker"
+        v-bind:items="selectable_items"
+        v-on:sendItemMessage="selectItem"
+        v-on:sendNextInChat="displayNextButton"
+        v-on:homePress="homeScreen"
+        v-on:nextPress="mixItems"
+        v-on:selectionComplete="selectionComplete"
       />
     </div>
     <!--Tutorial Mixer phase: isMixer, !isSelection, isTutorial-->
-    <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial">
+    <div
+      class="GameUI"
+      v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial"
+    >
       <MixerBackground
-          v-bind:isShowScale="isShowScale"
-          v-bind:items=selectable_items
+        v-bind:isShowScale="isShowScale"
+        v-bind:items="selectable_items"
       >
       </MixerBackground>
       <MixerPhase
-          v-on:homePress="homeScreen"
-          v-on:backPress="prevScreen"
-          v-on:practicePress="practicePress"
-          v-on:selectItem="selectItem"
-          v-on:selectionComplete="selectionComplete"
-          v-on:nextPhasePress="pHIdentificationPhase"
-          v-bind:items="selItems"
-          v-bind:blockPhase="blockPhase"
+        v-on:homePress="homeScreen"
+        v-on:backPress="prevScreen"
+        v-on:practicePress="practicePress"
+        v-on:selectItem="selectItem"
+        v-on:selectionComplete="selectionComplete"
+        v-on:nextPhasePress="pHIdentificationPhase"
+        v-bind:items="selItems"
+        v-bind:blockPhase="blockPhase"
       />
     </div>
     <!--pH identifier phase: isMixer, !isSelection, !isTutorial-->
-    <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial">
-      <MixerBackground
-          v-bind:items=selectable_items
-      />
+    <div
+      class="GameUI"
+      v-if="
+        gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial
+      "
+    >
+      <MixerBackground v-bind:items="selectable_items" />
       <IdentificationPhase
-          v-bind:items=selectable_items
-          v-on:homePress="homeScreen"
-          v-on:backPress="prevScreen"
-          v-on:practicePress="practicePress"
-          v-on:selectItem="selectItem"
-          />
+        v-bind:items="selectable_items"
+        v-on:homePress="homeScreen"
+        v-on:backPress="prevScreen"
+        v-on:practicePress="practicePress"
+        v-on:selectItem="selectItem"
+      />
     </div>
     <!--Practice Selection phase: !isMixer, isSelection, !isTutorial-->
-    <div class="GameUI" v-if="!gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial">
-      <PickerBackground/>
+    <div
+      class="GameUI"
+      v-if="
+        !gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial
+      "
+    >
+      <PickerBackground />
       <PickerPracticePhase
-          ref="pracpicker"
-          v-bind:items="selectable_items"
-          v-on:sendNextInPracticeChat="displayNextPracticeButton"
-          v-on:sendItemMessage="selectItem"
-          v-on:nextPress="practiceMix"
-          v-on:homePress="homeScreen"
+        ref="pracpicker"
+        v-bind:items="selectable_items"
+        v-on:sendNextInPracticeChat="displayNextPracticeButton"
+        v-on:sendItemMessage="selectItem"
+        v-on:nextPress="practiceMix"
+        v-on:homePress="homeScreen"
       />
     </div>
     <!--Practice Mixer phase: isMixer, !isSelection, !isTutorial-->
-    <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial">
+    <div
+      class="GameUI"
+      v-if="
+        gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial
+      "
+    >
       <PracticeBackground />
       <PracticePhase
-          ref="game"
-          v-bind:items="selectable_items"
-          v-on:selectedPractItem="sendItemMessage"
-          v-on:resetPress="sendResetMessage"
-          v-on:homePress="homeScreen"
-          v-on:backPress="prevScreen"
-          v-on:continuePress="continueClick"
-          v-on:tryAgainPress="tryAgainClick"
-          v-on:infoPress="infoClick"
+        ref="game"
+        v-bind:items="selectable_items"
+        v-on:selectedPractItem="sendItemMessage"
+        v-on:resetPress="sendResetMessage"
+        v-on:homePress="homeScreen"
+        v-on:backPress="prevScreen"
+        v-on:continuePress="continueClick"
+        v-on:tryAgainPress="tryAgainClick"
+        v-on:infoPress="infoClick"
       />
     </div>
     <!--DEPRECATED-->
     <div class="GameUI" v-if="gameStatus === 3">
-      <PickerBackground/>
-      <PickerPracticePhase 
+      <PickerBackground />
+      <PickerPracticePhase
         ref="pracpicker"
-        v-bind:items="items" 
+        v-bind:items="items"
         v-on:sendNextInPracticeChat="displayNextPracticeButton"
         v-on:sendItemMessage="selectItem"
         v-on:nextPress="practiceMix"
@@ -86,13 +105,13 @@
     <!--DEPRECATED-->
     <div class="GameUI" v-if="gameStatus === 4">
       <PracticeBackground />
-      <PracticePhase 
+      <PracticePhase
         ref="game"
-        v-bind:items="selItems" 
-        v-on:selectedPractItem="sendItemMessage" 
+        v-bind:items="selItems"
+        v-on:selectedPractItem="sendItemMessage"
         v-on:resetPress="sendResetMessage"
         v-on:homePress="homeScreen"
-        v-on:backPress="prevScreen" 
+        v-on:backPress="prevScreen"
         v-on:continuePress="continueClick"
         v-on:tryAgainPress="tryAgainClick"
         v-on:infoPress="infoClick"
@@ -113,7 +132,7 @@ import IdentificationPhase from "./IdentificationPhase";
 
 export default {
   name: "GameScreen",
-  created(){
+  created() {
     //only for testing purposes, to be removed
     this.gamePhase.phase = "tutorial-selection";
     this.gamePhase.isSelection = true;
@@ -124,21 +143,24 @@ export default {
     let phases = JSON.parse(stringified);
     stringified = JSON.stringify(require("../resources/substances.json"));
     let substances = JSON.parse(stringified);
-    phases.phases.forEach(phase => {
-      if (phase.name === this.gamePhase.phase){
-        phase.substances.forEach(substance => {
+    phases.phases.forEach((phase) => {
+      if (phase.name === this.gamePhase.phase) {
+        phase.substances.forEach((substance) => {
           let substance_element = {};
           substance_element.item = substances.ingredients[substance - 1].name;
           substance_element.id = substances.ingredients[substance - 1].id;
           substance_element.selected = false;
-          substance_element.src = require("../assets/items/" + substances.ingredients[substance - 1].asset);
+          substance_element.src = require("../assets/items/" +
+            substances.ingredients[substance - 1].asset);
           substance_element.size = substances.ingredients[substance - 1].size;
-          substance_element.prsize = substances.ingredients[substance - 1].prsize;
+          substance_element.prsize =
+            substances.ingredients[substance - 1].prsize;
           substance_element.ph = substances.ingredients[substance - 1].ph;
-          substance_element.scale_placement = substances.ingredients[substance - 1].scale_placement;
+          substance_element.scale_placement =
+            substances.ingredients[substance - 1].scale_placement;
 
-            this.selectable_items.push(substance_element);
-          })
+          this.selectable_items.push(substance_element);
+        });
       }
     });
   },
@@ -150,13 +172,13 @@ export default {
     MixerPhase,
     PickerPracticePhase,
     PracticePhase,
-    IdentificationPhase
+    IdentificationPhase,
   },
   props: {
     gameType: {
       type: Number,
       required: true,
-      },
+    },
   },
   data() {
     return {
@@ -220,7 +242,7 @@ export default {
           selected: false,
           src: require("../assets/items/Soap.png"),
           size: { x: "73%", y: "36%", w: "10%", h: "24%" },
-          prsize: {w: "12%", h: "48%" },
+          prsize: { w: "12%", h: "48%" },
           ph: 1,
         },
         {
@@ -229,7 +251,7 @@ export default {
           selected: false,
           src: require("../assets/items/Cola.png"),
           size: { x: "35%", y: "2%", w: "8%", h: "23%" },
-          prsize: {w: "7%", h: "32%" },
+          prsize: { w: "7%", h: "32%" },
           ph: 3,
         },
         {
@@ -238,7 +260,7 @@ export default {
           selected: false,
           src: require("../assets/items/LemonJuice.png"),
           size: { x: "27%", y: "2%", w: "8%", h: "30%" },
-          prsize: {w: "7%", h: "45%" },
+          prsize: { w: "7%", h: "45%" },
           ph: 2,
         },
         {
@@ -247,7 +269,7 @@ export default {
           selected: false,
           src: require("../assets/items/Milk.png"),
           size: { x: "43.5%", y: "2%", w: "8%", h: "33%" },
-          prsize: {w: "8%", h: "55%" },
+          prsize: { w: "8%", h: "55%" },
           ph: 6,
         },
         {
@@ -256,7 +278,7 @@ export default {
           selected: false,
           src: require("../assets/items/PureWater.png"),
           size: { x: "51%", y: "53%", w: "7%", h: "38%" },
-          prsize: {w: "7%", h: "56%" },
+          prsize: { w: "7%", h: "56%" },
           ph: 7,
         },
         {
@@ -264,7 +286,7 @@ export default {
           id: 11,
           selected: false,
           src: require("../assets/items/SparklingWater.png"),
-          size: {  x: "30%", y: "53%", w: "7%", h: "38%" },
+          size: { x: "30%", y: "53%", w: "7%", h: "38%" },
           prsize: { w: "7%", h: "56%" },
           ph: 6,
         },
@@ -273,8 +295,8 @@ export default {
           id: 11,
           selected: false,
           src: require("../assets/items/SparklingWater.png"),
-          size: {  x: "40.5%", y: "53%", w: "7%", h: "38%" },
-          prsize: {w: "7%", h: "56%" },
+          size: { x: "40.5%", y: "53%", w: "7%", h: "38%" },
+          prsize: { w: "7%", h: "56%" },
           ph: 6,
         },
       ],
@@ -282,8 +304,9 @@ export default {
       nonSelItems: [],
       selItem: undefined,
       isShowScale: false,
-      blockPhase: this.$root.$children[0].blockPhase === undefined
-          ? true
+      blockPhase:
+        this.$root.$children[0].blockPhase === undefined
+          ? false
           : this.$root.$children[0].blockPhase,
     };
   },
@@ -318,63 +341,62 @@ export default {
       this.selItem = selectedItem;
       this.gameStatus += 1;
     },
-    displayNextButton(){
+    displayNextButton() {
       this.$emit("sendNextInChat");
     },
-    displayNextPracticeButton(){
+    displayNextPracticeButton() {
       this.$emit("sendPracNextInChat");
     },
-    sendItemMessage(id){
+    sendItemMessage(id) {
       this.$emit("sendItemMessage", id);
     },
-    sendResetMessage(){
+    sendResetMessage() {
       this.$emit("sendResetMessage");
     },
-    continueClick(){
+    continueClick() {
       this.$emit("sendContinueMessage");
     },
-    tryAgainClick(){
+    tryAgainClick() {
       this.$emit("sendTryAgainMessage");
     },
-    infoClick(){
+    infoClick() {
       this.$emit("sendInfoMessage");
     },
-    nextClicked(){
-      if(this.gameStatus === 1)
-        this.$refs.picker.updatePart()
+    nextClicked() {
+      if (this.gameStatus === 1) this.$refs.picker.updatePart();
     },
-    nextPracticeClicked(){
-      if(this.gameStatus === 3)
-        this.$refs.pracpicker.nextClick()
+    nextPracticeClicked() {
+      if (this.gameStatus === 3) this.$refs.pracpicker.nextClick();
     },
-    practicePress(){
-      this.nextScreen()
+    practicePress() {
+      this.nextScreen();
       this.$emit("practicePress");
     },
     selectItem(index) {
-      this.$emit("selectItem",index);
+      this.$emit("selectItem", index);
     },
-    addPoints(){
+    addPoints() {
       this.$refs.game.addPoints();
     },
-    displayTryAgain(){
+    displayTryAgain() {
       this.$refs.game.showTryAgainWindow();
     },
     nextScreen() {
-      if(this.gameStatus === 2){ // Reset on Practise picking
-        this.items.forEach(element => element.selected = false);
+      if (this.gameStatus === 2) {
+        // Reset on Practise picking
+        this.items.forEach((element) => (element.selected = false));
       }
       this.gameStatus += 1;
     },
     prevScreen() {
-      this.items.forEach(element => element.selected = false);
+      this.items.forEach((element) => (element.selected = false));
       this.gameStatus -= 1;
       this.$emit("goBack");
     },
     homeScreen() {
       this.$emit("goHome");
     },
-    pHIdentificationPhase(){
+    pHIdentificationPhase() {
       //only for testing purposes, to be removed
       this.gamePhase.phase = "practice-pH";
       this.gamePhase.isSelection = false;
@@ -383,9 +405,9 @@ export default {
 
       this.$emit("pHIdentificationPhase");
     },
-    selectionComplete(){
+    selectionComplete() {
       this.$emit("selectionComplete");
-    }
+    },
   },
 };
 </script>
