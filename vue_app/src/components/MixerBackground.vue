@@ -5,7 +5,7 @@
     >
       <div v-if="this.isShowItems">
       <div class="kitchen-item"
-           v-for="(data, index) in items"
+           v-for="(data, index) in substances"
            v-bind:key="index"
            v-bind:style="{
 				backgroundImage: 'url(' + data.src + ')',
@@ -29,15 +29,13 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
 export default {
-  created() {
-    console.log(this.items);
-  },
   name: 'MixerBackground',
   props: {
     items: {
       type: Array,
-      required: true,
+      required: false,
     },
   },
   data(){
@@ -46,6 +44,9 @@ export default {
       isShowItems: true,
       isShowItem: [false, false, false]
     };
+  },
+  computed:{
+    ...mapState(["substances"])
   }
 };
 </script>

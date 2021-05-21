@@ -3,8 +3,8 @@
     <div class="background">
       <div class="ItemShelf">
         <div style="margin:5px; z-index:1000" >
-          <button 
-            v-for="(data, index) in items" 
+          <button
+            v-for="(data, index) in items"
             v-bind:key="index"
             class="kitchen-item"
             v-on:click="handleClickedItem(data)"

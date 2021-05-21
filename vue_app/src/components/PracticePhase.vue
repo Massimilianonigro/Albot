@@ -38,7 +38,7 @@
       </div>
 
       <div class="item-container">
-        <div v-for="(data, index) in items" v-bind:key="index">
+        <div v-for="(data, index) in substances" v-bind:key="index">
           <button
             class="kitchen-item"
             v-on:click="selectItem(data, index)"
@@ -83,10 +83,9 @@
 </template>
 
 <script>
-import SettingsWindow from "./SettingsWindow.vue";
+import {mapState} from "vuex";
 export default {
   components: {
-    SettingsWindow,
   },
   name: "PracticePhase",
   props: {
@@ -120,6 +119,9 @@ export default {
         {x: "82%", y: "45%"},
       ]
     };
+  },
+  computed: {
+    ...mapState(["substances"])
   },
   methods: {
     getXbyIndex(index) {
@@ -361,19 +363,13 @@ a {
 	border: none;
 	z-index: 1000;
 }
-
-.setting-btn {
+.home-btn {
 	top: 3%;
 	left: 3%;
 }
 
-.home-btn {
-	top: 10%;
-	left: 3%;
-}
-
 .back-btn {
-	top: 17%;
+	top: 10%;
 	left: 3%;
 }
 

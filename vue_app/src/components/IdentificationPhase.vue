@@ -38,21 +38,12 @@
       </div>
 
       <div class="item-container">
-        <div v-for="(data, index) in items" v-bind:key="index">
+        <div v-for="(data, index) in substances" v-bind:key="index">
           <button
               class="kitchen-item"
+              v-bind:class="{highlight: index === pouredIndex, nothighlight: index !== pouredIndex,}"
               v-on:click="selectItem(data, index)"
-              v-bind:class="{
-              highlight: index === pouredIndex,
-              nothighlight: index !== pouredIndex,
-            }"
-              v-bind:style="{
-              backgroundImage: 'url(' + data.src + ')',
-              left: getXbyIndex(index),
-              bottom:  getYbyIndex(index),
-              height: data.prsize.h,
-              width: data.prsize.w,
-            }"
+              v-bind:style= "getItemStyle(data, index)"
           ></button>
         </div>
         <div
@@ -78,19 +69,14 @@
 </template>
 
 <script>
+import {mapState, mapActions} from "vuex";
+
 export default {
   components: {
   },
   name: "IdentificationPhase",
-  props: {
-    items: {
-      type: Array,
-      required: true,
-    },
-  },
   data() {
     return {
-      settings: false,
       score: 0,
       pouredPh: -1,
       pouredIndex: -1,
@@ -114,30 +100,41 @@ export default {
       ]
     };
   },
+  computed: {
+    ...mapState(["substances", "blockPhase"])
+  },
   methods: {
+    ...mapActions(["setBlockPhase"]),
     getXbyIndex(index) {
-      if ( this.pouredIndex == index ){
-        return "40%"
+      if ( this.pouredIndex === index ){
+        return "40%";
       }
-      return this.settingsArray[index].x
+      return this.settingsArray[index].x;
     },
     getYbyIndex(index) {
-      if ( this.pouredIndex == index ){
-        return "10%"
+      if ( this.pouredIndex === index ){
+        return "10%";
       }
-      return this.settingsArray[index].y
+      return this.settingsArray[index].y;
+    },
+    getItemStyle(data, index) {
+      return {
+        backgroundImage: "url(" + data.src + ")",
+        left: this.getXbyIndex(index),
+        bottom: this.getYbyIndex(index),
+        height: data.prsize.h,
+        width: data.prsize.w
+      };
     },
     selectItem(data, index){
-      this.showReset = true;
-      if (this.pouredIndex != index){
-        this.pouredPh = data.ph;
+      if (this.pouredIndex === -1){
         this.pouredIndex = index;
-        console.log("Emitting from Phase");
-        this.$emit("selectedPractItem",data.id);
       }
-      else{
-        this.pouredPh = -1;
-        this.pouredIndex = -1;
+      if (this.pouredIndex === index && !this.blockPhase){
+        this.showReset = true;
+        this.pouredPh = data.ph;
+        this.setBlockPhase(true);
+        this.$emit("selectedElement",data.id);
       }
     },
     addPoints(){
@@ -147,7 +144,7 @@ export default {
     },
     getPhBowl(){
       let urlImg;
-      if (this.pouredPh  == -1){
+      if (this.pouredPh  === -1){
         urlImg = require("../assets/solutions/Solutionbowl.png");
       }
       else{
@@ -323,7 +320,6 @@ a {
   border: 0px;
   border-radius: 40px;
   z-index: 1000;
-  background-size: contain;
   background-image: url("../assets/uibuttons/ResetButton.png");
 }
 
@@ -355,18 +351,13 @@ a {
   z-index: 1000;
 }
 
-.setting-btn {
+.home-btn {
   top: 3%;
   left: 3%;
 }
 
-.home-btn {
-  top: 10%;
-  left: 3%;
-}
-
 .back-btn {
-  top: 17%;
+  top: 10%;
   left: 3%;
 }
 

@@ -27,7 +27,6 @@
         ref="gameRef"
         :style="{ overflow: 'visible' }"
         v-bind:gameType="mainStatus"
-        v-bind:selectable_items="selectable_items"
         v-bind:gamePhase="gamePhase"
         v-bind:user_name="user_name"
         v-on:goHome="resetHome"
@@ -82,7 +81,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["setBlockPhase"]),
+    ...mapActions(["setBlockPhase", "setSubstances"]),
     resetHome() {
       this.mainStatus = 0;
       this.sendHomeClick();
@@ -96,6 +95,7 @@ export default {
       this.gamePhase.isTutorial = false;
 
       this.fetchItems();
+      console.log(this.selectable_items);
     },
     startIntroduction() {
       this.sendIntroductoryJSON();

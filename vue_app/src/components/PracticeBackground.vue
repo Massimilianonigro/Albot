@@ -1,6 +1,9 @@
 
 <template>
   <div class="image-container">
+    <ul class="pH-scale">
+      <li class="pH-button" v-for="pH_button in 15" v-bind:key="pH_button"></li>
+    </ul>
 	<div class="background item">
 		<div class="table-item item"></div>
 	</div>
@@ -34,5 +37,21 @@ export default {
 	border: 0;
 	height: 100%;
 	width: 80%;
+}
+
+.pH-scale{
+  height: 100%;
+  width:  15%;
+  z-index: 1;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../assets/backgrounds/pHScale.png");
+  list-style-type: none;
+}
+.pH-button{
+  width: 70%;
+  height: 6.5%;
 }
 </style>

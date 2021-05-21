@@ -1,14 +1,11 @@
 <template>
   <div id="GameUI">
     <!--Tutorial Selection phase: !isMixer, isSelection, isTutorial-->
-    <div
-      class="GameUI"
-      v-if="!gamePhase.isMixer && gamePhase.isSelection && gamePhase.isTutorial"
-    >
+    <div class="GameUI" v-if="!gamePhase.isMixer && gamePhase.isSelection && gamePhase.isTutorial">
       <PickerBackground />
       <PickerPhase
         ref="picker"
-        v-bind:items="selectable_items"
+        v-bind:items="substances"
         v-on:sendItemMessage="selectItem"
         v-on:sendNextInChat="displayNextButton"
         v-on:homePress="homeScreen"
@@ -17,13 +14,9 @@
       />
     </div>
     <!--Tutorial Mixer phase: isMixer, !isSelection, isTutorial-->
-    <div
-      class="GameUI"
-      v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial"
-    >
+    <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial">
       <MixerBackground
         v-bind:isShowScale="isShowScale"
-        v-bind:items="selectable_items"
       >
       </MixerBackground>
       <MixerPhase
@@ -37,33 +30,25 @@
         v-bind:items="selItems"
       />
     </div>
-    <!--pH identifier phase: isMixer, !isSelection, !isTutorial-->
-    <div
-      class="GameUI"
-      v-if="
-        gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial
-      "
-    >
-      <MixerBackground v-bind:items="selectable_items" />
+    <!--pH identifier phase: isMixer, isSelection, !isTutorial-->
+    <div class="GameUI" v-if="gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial">
+      <PracticeBackground />
       <IdentificationPhase
-        v-bind:items="selectable_items"
-        v-on:homePress="homeScreen"
-        v-on:backPress="prevScreen"
-        v-on:practicePress="practicePress"
-        v-on:selectItem="selectItem"
+          ref="game"
+          v-on:selectedElement="sendItemMessage"
+          v-on:resetPress="sendResetMessage"
+          v-on:homePress="homeScreen"
+          v-on:backPress="prevScreen"
+          v-on:continuePress="continueClick"
+          v-on:tryAgainPress="tryAgainClick"
+          v-on:infoPress="infoClick"
       />
     </div>
     <!--Practice Selection phase: !isMixer, isSelection, !isTutorial-->
-    <div
-      class="GameUI"
-      v-if="
-        !gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial
-      "
-    >
+    <div class="GameUI" v-if="!gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial">
       <PickerBackground />
       <PickerPracticePhase
         ref="pracpicker"
-        v-bind:items="selectable_items"
         v-on:sendNextInPracticeChat="displayNextPracticeButton"
         v-on:sendItemMessage="selectItem"
         v-on:nextPress="practiceMix"
@@ -73,14 +58,10 @@
     <!--Practice Mixer phase: isMixer, !isSelection, !isTutorial-->
     <div
       class="GameUI"
-      v-if="
-        gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial
-      "
-    >
+      v-if="gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial">
       <PracticeBackground />
       <PracticePhase
         ref="game"
-        v-bind:items="selectable_items"
         v-on:selectedPractItem="sendItemMessage"
         v-on:resetPress="sendResetMessage"
         v-on:homePress="homeScreen"
@@ -128,8 +109,8 @@ import PickerPhase from "./PickerPhase.vue";
 import MixerPhase from "./MixerPhase.vue";
 import PickerPracticePhase from "./PickerPracticePhase.vue";
 import PracticePhase from "./PracticePhase.vue";
-import IdentificationPhase from "./IdentificationPhase";
-import {mapState} from "vuex";
+import IdentificationPhase from "./IdentificationPhase.vue";
+import {mapState, mapActions} from "vuex";
 
 export default {
   name: "GameScreen",
@@ -140,30 +121,7 @@ export default {
     this.gamePhase.isMixer = false;
     this.gamePhase.isTutorial = true;
 
-    var stringified = JSON.stringify(require("../resources/phases.json"));
-    let phases = JSON.parse(stringified);
-    stringified = JSON.stringify(require("../resources/substances.json"));
-    let substances = JSON.parse(stringified);
-    phases.phases.forEach((phase) => {
-      if (phase.name === this.gamePhase.phase) {
-        phase.substances.forEach((substance) => {
-          let substance_element = {};
-          substance_element.item = substances.ingredients[substance - 1].name;
-          substance_element.id = substances.ingredients[substance - 1].id;
-          substance_element.selected = false;
-          substance_element.src = require("../assets/items/" +
-            substances.ingredients[substance - 1].asset);
-          substance_element.size = substances.ingredients[substance - 1].size;
-          substance_element.prsize =
-            substances.ingredients[substance - 1].prsize;
-          substance_element.ph = substances.ingredients[substance - 1].ph;
-          substance_element.scale_placement =
-            substances.ingredients[substance - 1].scale_placement;
-
-          this.selectable_items.push(substance_element);
-        });
-      }
-    });
+    this.setSubstances(this.gamePhase.phase);
   },
   components: {
     PickerBackground,
@@ -190,7 +148,6 @@ export default {
         isTutorial: false,
       },
       gameStatus: this.gameType,
-      selectable_items: [],
       items: [
         {
           item: "Baking Soda",
@@ -305,13 +262,13 @@ export default {
       nonSelItems: [],
       selItem: undefined,
       isShowScale: false,
-      //blockPhase: this.$root.$children[0].blockPhase === undefined ? false : this.$root.$children[0].blockPhase,
     };
   },
   computed: {
-    ...mapState(["blockPhase"])
+    ...mapState(["blockPhase", "substances"])
   },
   methods: {
+    ...mapActions(["setSubstances"]),
     mixItems(selectedItems, nonSelectedItems) {
       this.selItems = [];
       this.nonSelItems = [];
@@ -403,11 +360,12 @@ export default {
     pHIdentificationPhase() {
       //only for testing purposes, to be removed
       this.gamePhase.phase = "practice-pH";
-      this.gamePhase.isSelection = false;
+      this.gamePhase.isSelection = true;
       this.gamePhase.isMixer = true;
       this.gamePhase.isTutorial = false;
 
       this.$emit("pHIdentificationPhase");
+      this.setSubstances(this.gamePhase.phase);
     },
     selectionComplete() {
       this.$emit("selectionComplete");

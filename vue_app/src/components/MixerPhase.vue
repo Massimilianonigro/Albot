@@ -2,7 +2,7 @@
   <div>
     <div class="background">
       <div class="item-container">
-        <div v-for="(data, index) in items" v-bind:key="index">
+        <div v-for="(data, index) in substances" v-bind:key="index">
           <button
             class="kitchen-item"
             v-on:click="selectItem(index, data.ph, data.id)"
@@ -61,7 +61,7 @@ export default {
   props: {
     items: {
       type: Array,
-      required: true,
+      required: false,
     },
   },
   data() {
@@ -75,7 +75,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["blockPhase"]),
+    ...mapState(["blockPhase", "substances"]),
   },
   methods: {
     ...mapActions(["setBlockPhase"]),
@@ -96,9 +96,6 @@ export default {
         this.$emit("selectionComplete");
         this.setBlockPhase(true);
       }
-    },
-    flipBlockPhase() {
-      return !this.blockPhase;
     },
     getHighlight(index) {
       if (this.selected === index) return "highlight";
