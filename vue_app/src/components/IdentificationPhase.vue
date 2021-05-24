@@ -1,18 +1,7 @@
 <template>
   <div>
     <div class="background">
-      <div
-          v-if="pouredPh !== -1"
-          class="solution-ph-meter"
-          :class="{
-          acid: pouredPh < 7,
-          basic: pouredPh >= 7,
-        }">
-        <h2 class="solution-ph-meter-label"> {{pouredPh}}</h2>
-      </div>
-      <div class="scoreboard">
-        <h3 class="scoreboard-label"> {{score}} Points</h3>
-      </div>
+      <div class="albot"></div>
 
       <div
           v-if="showCompliment"
@@ -80,10 +69,12 @@ export default {
       score: 0,
       pouredPh: -1,
       pouredIndex: -1,
+      pouring: -1,
       showCompliment: false,
       showTryAgain: false,
       showInfo: false,
       showReset: false,
+      guessed: [false, false, false, false, false, false, false, false, false,false, false],
       settingsArray: [
         {x: "30%", y: "0%"},
         {x: "60%", y: "0%"},
@@ -93,7 +84,7 @@ export default {
         {x: "74%", y: "0%"},
         {x: "22%", y: "42%"},
         {x: "65%", y: "43%"},
-        {x: "00%", y: "0%"},
+        {x: "0%", y: "0%"},
         {x: "90%", y: "0%"},
         {x: "08%", y: "42%"},
         {x: "82%", y: "45%"},
@@ -127,13 +118,15 @@ export default {
       };
     },
     selectItem(data, index){
-      if (this.pouredIndex === -1){
+      if (this.pouring === -1){
+        this.pouring = index;
         this.pouredIndex = index;
       }
-      if (this.pouredIndex === index && !this.blockPhase){
+      if (this.pouring === index && !this.blockPhase){
         this.showReset = true;
         this.pouredPh = data.ph;
-        this.setBlockPhase(true);
+        this.pouring = -1;
+        this.setBlockPhase(true); //TODO: testing flag
         this.$emit("selectedElement",data.id);
       }
     },
@@ -200,6 +193,18 @@ export default {
 </script>
 
 <style scoped>
+.albot {
+  position: absolute;
+  top: 10%;
+  right: 25%;
+  height: 40%;
+  width: 40%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: center;
+  background-image: url("../assets/backgrounds/Bot.png");
+}
 .solution {
   position: absolute;
   bottom: 0;
@@ -278,10 +283,10 @@ export default {
   color: gray;
   z-index: 3;
   margin: 14.5% auto auto auto;
-  top: 0%;
-  left: 0%;
-  right: 0%;
-  bottom: 0%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 15%;
   height: 50%;
   font-size: 4vh;

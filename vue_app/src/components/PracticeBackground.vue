@@ -1,9 +1,8 @@
 
 <template>
   <div class="image-container">
-    <ul class="pH-scale">
-      <li class="pH-button" v-for="pH_button in 15" v-bind:key="pH_button"></li>
-    </ul>
+    <div class="pH-scale">
+    </div>
 	<div class="background item">
 		<div class="table-item item"></div>
 	</div>

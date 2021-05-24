@@ -16,7 +16,7 @@
     <!--Tutorial Mixer phase: isMixer, !isSelection, isTutorial-->
     <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial">
       <MixerBackground
-        v-bind:isShowScale="isShowScale"
+        v-bind:isRerender="isRerender"
       >
       </MixerBackground>
       <MixerPhase
@@ -32,7 +32,7 @@
     </div>
     <!--pH identifier phase: isMixer, isSelection, !isTutorial-->
     <div class="GameUI" v-if="gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial">
-      <PracticeBackground />
+      <IdentificationBackground v-on:PHGuess="sendPHGuess"/>
       <IdentificationPhase
           ref="game"
           v-on:selectedElement="sendItemMessage"
@@ -111,6 +111,7 @@ import PickerPracticePhase from "./PickerPracticePhase.vue";
 import PracticePhase from "./PracticePhase.vue";
 import IdentificationPhase from "./IdentificationPhase.vue";
 import {mapState, mapActions} from "vuex";
+import IdentificationBackground from "./IdentificationBackground";
 
 export default {
   name: "GameScreen",
@@ -124,6 +125,7 @@ export default {
     this.setSubstances(this.gamePhase.phase);
   },
   components: {
+    IdentificationBackground,
     PickerBackground,
     MixerBackground,
     PracticeBackground,
@@ -261,7 +263,7 @@ export default {
       selItems: [],
       nonSelItems: [],
       selItem: undefined,
-      isShowScale: false,
+      isRerender: 0,
     };
   },
   computed: {
@@ -302,6 +304,9 @@ export default {
     switchBlock(){
       this.blockPhase = this.$root.$children[0].blockPhase;
     },
+    sendPHGuess(index) {
+      this.$emit("PHGuess", index);
+    },
     displayNextButton() {
       this.$emit("sendNextInChat");
     },
@@ -335,6 +340,7 @@ export default {
     },
     selectItem(index) {
       this.$emit("selectItem", index);
+      this.isRerender += 1;
     },
     addPoints() {
       this.$refs.game.addPoints();

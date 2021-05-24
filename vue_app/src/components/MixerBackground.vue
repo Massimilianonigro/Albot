@@ -1,20 +1,21 @@
 <template>
   <div class="image-container">
-    <div class="pH-scale"
-         v-if="this.isShowScale"
-    >
-      <div v-if="this.isShowItems">
-      <div class="kitchen-item"
-           v-for="(data, index) in substances"
-           v-bind:key="index"
-           v-bind:style="{
+    <div class="pH-scale" :key = isRerender>
+      <div v-for="(data, index) in substances"
+           v-bind:key="index">
+          <div v-show="showOnPHScale[index]"
+               v-if="showOnPHScale[index]">
+            <div
+                class="kitchen-item"
+                v-bind:style="{
 				backgroundImage: 'url(' + data.src + ')',
 				left: data.scale_placement.x,
 				bottom: data.scale_placement.y,
 				height: data.scale_placement.h,
 				width: data.scale_placement.w,
 				}">
-      </div>
+          </div>
+          </div>
       </div>
     </div>
     <div class="background item">
@@ -37,16 +38,27 @@ export default {
       type: Array,
       required: false,
     },
+    isRerender: {
+      type: Number,
+      required: false,
+    }
   },
   data(){
     return{
-      isShowScale: true,
-      isShowItems: true,
-      isShowItem: [false, false, false]
+      scaleKey: 0
     };
   },
   computed:{
-    ...mapState(["substances"])
+    ...mapState(["substances", "showOnPHScale"])
+  },
+  methods:{
+    getShowElement(index){
+      console.log(this.showOnPHScale[index]);
+      return this.showOnPHScale[index];
+    },
+    forceRerender() {
+      this.scaleKey += 1;
+    }
   }
 };
 </script>
@@ -86,4 +98,5 @@ export default {
   background-size: contain;
   background-image: url("../assets/backgrounds/pHScale.png");
 }
+
 </style>

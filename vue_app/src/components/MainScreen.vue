@@ -9,7 +9,7 @@
         class="report icon"
       ></button>
       <div v-if="!start" class="magic-colors-sign icon"></div>
-      <div v-if="!start" class="bot-tittle icon"></div>
+      <div v-if="!start" class="bot-title icon"></div>
 
       <button
         class="start-btn"
@@ -65,11 +65,9 @@
           <li>
             <button
                 v-on:click="clickOnIntro"
-                class="bubble-btn fade-in berlin-font"
+                class="bubble-tutorial-btn fade-in berlin-font"
                 :style="{ left: '8%' }"
-            >
-              Tutorial
-            </button>
+            >Tutorial</button>
             <button
                 v-on:click="clickOnPractice"
                 class="bubble-btn fade-in berlin-font"
@@ -91,10 +89,9 @@
           <li>
             <button
               v-on:click="clickOnIntro"
-              class="bubble-btn fade-in berlin-font"
+              class="bubble-tutorial-btn berlin-font fade-in"
               :style="{ left: '8%' }"
-            >
-              Tutorial
+            >Tutorial
             </button>
             <button
               v-on:click="clickOnPractice"
@@ -249,7 +246,7 @@ a {
   background-image: url("../assets/backgrounds/MagicColors.png");
   background-size: contain;
 }
-.bot-tittle {
+.bot-title {
   top: 0;
   right: 0;
   height: 40%;
@@ -344,18 +341,38 @@ a {
 }
 
 .bubble-btn {
+  line-height: 5em;
   position: static;
-  text-align: center;
-  line-height: 1.4em;
-  font-size: 2.5vh;
   top: 70%;
   width: 20%;
-  margin: 40px 10px;
-  color: #fff;
-  border: 8px double #fff;
-  border-radius: 30px;
-  padding: 10px;
-  background-color: #F9A400;
+  height: 100%;
   z-index: 2000 !important;
+  color: transparent;
+  background-image: url("../assets/uibuttons/Experiment.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: transparent;
+  border: none;
+  margin: 1vw;
+}
+
+.bubble-tutorial-btn {
+  line-height: 5em;
+  position: static;
+  top: 70%;
+  width: 20%;
+  height: 100%;
+  z-index: 2000 !important;
+  color: transparent;
+  background-image: url("../assets/uibuttons/Tutorial.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: transparent;
+  border: none;
+  margin: 1vw;
 }
 </style>

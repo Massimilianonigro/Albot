@@ -27,6 +27,7 @@
         </div>
       </div>
 
+      <!--div class="white-block" v-if="complete && showNextPhase"-->
       <div class="white-block" v-if="complete">
         <div class="gj-banner">
           <h2>Good Job!</h2>
@@ -75,13 +76,15 @@ export default {
     };
   },
   computed: {
-    ...mapState(["blockPhase", "substances"]),
+    ...mapState(["blockPhase", "substances", "showNextPhase"]),
   },
   methods: {
-    ...mapActions(["setBlockPhase"]),
+    ...mapActions(["setBlockPhase", "setShowOnPHScale"]),
     selectItem(index, ph, id) {
       if (index === this.nextSelected && !this.blockPhase) {
         this.$emit("selectItem", id);
+        this.setShowOnPHScale(3);
+        this.setShowOnPHScale(index);
         if (this.selected === index) {
           this.selected = undefined;
           this.selectedPh = "Select";
@@ -94,7 +97,7 @@ export default {
         this.complete = this.poured.every((v) => v === true);
         this.nextSelected += 1;
         this.$emit("selectionComplete");
-        this.setBlockPhase(true);
+        this.setBlockPhase(true); //TODO: testing flag
       }
     },
     getHighlight(index) {
@@ -261,13 +264,13 @@ a {
   background-size: contain;
   background-color: transparent;
   background-position: center;
-  border: 0px;
+  border: 0;
   z-index: 1000;
   background-image: url("../assets/uibuttons/PracticeButton.png");
 }
 .next-phase-btn {
   position: absolute;
-  height: 12%;
+  height: 10%;
   width: 50%;
   top: 40%;
   left: 25%;
@@ -275,9 +278,26 @@ a {
   background-size: contain;
   background-color: transparent;
   background-position: center;
-  border: 0px;
+  border: 0;
   z-index: 1000;
-  background-image: url("../assets/uibuttons/NextPhaseButton.png");
+  background-image: url("../assets/uibuttons/Tutorial.png");
+}
+.bubble-tutorial-btn {
+  line-height: 5em;
+  position: static;
+  top: 70%;
+  width: 20%;
+  height: 100%;
+  z-index: 2000 !important;
+  color: transparent;
+  background-image: url("../assets/uibuttons/Tutorial.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: transparent;
+  border: none;
+  margin: 1vw;
 }
 .practice-btn:focus {
   outline: none;

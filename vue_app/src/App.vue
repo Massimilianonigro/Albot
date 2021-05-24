@@ -44,6 +44,7 @@
         v-on:sendInfoMessage="handleInfoClick"
         v-on:selectionComplete="selectionComplete"
         v-on:pHIdentificationPhase="pHIdentificationPhase"
+        v-on:PHGuess="sendPHGuess"
       />
     </div>
   </div>
@@ -55,7 +56,7 @@ import MainScreen from "./components/MainScreen.vue";
 import GameScreen from "./components/GameScreen.vue";
 import Chat from "./components/Chat.vue";
 import { mapActions } from "vuex";
-
+//TODO: create removeElement in GameScreen, pass it on to Id Phase, delete it
 export default {
   name: "App",
   components: {
@@ -76,12 +77,10 @@ export default {
       },
       user_name: "",
       chatLink: undefined,
-      selectable_items: [],
-      blockPhase: false, //blocks any action from the user
     };
   },
   methods: {
-    ...mapActions(["setBlockPhase", "setSubstances"]),
+    ...mapActions(["setBlockPhase", "setSubstances", "setShowNextPhase","removeSubstance"]),
     resetHome() {
       this.mainStatus = 0;
       this.sendHomeClick();
@@ -95,7 +94,10 @@ export default {
       this.gamePhase.isTutorial = false;
 
       this.fetchItems();
-      console.log(this.selectable_items);
+    },
+    sendPHGuess(index){
+      let message = '{"content":"' + index + '", "type":"guessed"}';
+      this.sendMessage(message);
     },
     startIntroduction() {
       this.sendIntroductoryJSON();
@@ -204,7 +206,7 @@ export default {
               substances.ingredients[substance - 1].prsize;
             substance_element.ph = substances.ingredients[substance - 1].ph;
 
-            this.selectable_items.push(substance_element);
+            //this.selectable_items.push(substance_element);
           });
         }
       });
@@ -216,19 +218,29 @@ export default {
   created: function () {
     var _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://9cb606a67d5e.ngrok.io");
+    this.connection = new WebSocket("ws://282aa38c960c.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
       let messages = JSON.parse(event.data);
       messages.messages.forEach((message) => {
         console.log("Examing message with ui_effect: " + message.ui_effect);
-        if (message.ui_effect === "hidden") {
-          this.user_name = message.text;
-        } else if (message.ui_effect === "unlock") {
-          _this.setBlockPhase(false);
-        } else {
-          self.$refs.chatRef.receiveMessage(message);
+        switch(message.ui_effect){
+          case "hidden":
+            this.user_name = message.text;
+            return;
+          case "unlock":
+            _this.setBlockPhase(false);
+            return;
+          case "show_next_phase":
+            _this.setShowNextPhase(true);
+            self.$refs.chatRef.receiveMessage(message);
+            return;
+          case "remove_substance":
+            _this.removeSubstance(message.text());
+            return;
+          default:
+            self.$refs.chatRef.receiveMessage(message);
         }
       });
       if (messages.change_phase !== "") {

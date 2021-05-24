@@ -6,9 +6,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         blockPhase: false,
-        substances: []
+        substances: [],
+        showNextPhase: false,
+        showOnPHScale: [false, false, false, false]
     },
     mutations: {
+        setShowOnPHScale(state, element){
+          state.showOnPHScale[element] = true;
+        },
         setBlockPhase(state, newValue) {
             state.blockPhase = newValue;
         },
@@ -38,6 +43,12 @@ export default new Vuex.Store({
                     });
                 }
             });
+        },
+        removeSubstance(state, substance){
+          state.substances.remove(substance);
+        },
+        setShowNextPhase(state, show){
+            state.showNextPhase = show;
         }
     },
     actions:{
@@ -46,6 +57,15 @@ export default new Vuex.Store({
         },
         setSubstances(context, phase){
             context.commit('setSubstances', phase);
+        },
+        setShowNextPhase(context, show){
+            context.commit('setShowNextPhase', show);
+        },
+        removeSubstance(context, substance){
+            context.commit('removeSubstance', substance);
+        },
+        setShowOnPHScale(context, element){
+            context.commit('setShowOnPHScale', element);
         }
     }
 })
