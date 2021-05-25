@@ -3,7 +3,7 @@
     <div class="ItemShelf">
       <div style="margin:5px; z-index:1000" >
         <button
-          v-for="(data, index) in items" 
+          v-for="(data, index) in substances"
           v-bind:key="index"
           class="kitchen-item"
           v-on:click="handleClickedItem(data)"
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   components: {
   },
@@ -40,7 +42,7 @@ export default {
   props: {
     items: {
       type: Array,
-      required: true,
+      required: false,
     }
   },
   data() {
@@ -49,11 +51,14 @@ export default {
       settings: false,
     };
   },
+  computed: {
+    ...mapState(["substances"])
+  },
   methods:{
     mixItems(){
       let selItems = []
       let nonSelItems = []
-      this.items.forEach(element => {
+      this.substances.forEach(element => {
         if( element.selected === true){
           let tempItem = { 
             item: element.item,

@@ -26,8 +26,6 @@
       <GameScreen
         ref="gameRef"
         :style="{ overflow: 'visible' }"
-        v-bind:gameType="mainStatus"
-        v-bind:gamePhase="gamePhase"
         v-bind:user_name="user_name"
         v-on:goHome="resetHome"
         v-on:goBack="sendBackClick"
@@ -69,18 +67,13 @@ export default {
     return {
       message: "",
       mainStatus: 0, // 0 -> Main Screen, 1 -> Picker Tutorial, 2-> Mixer Tutorial, 3-> Picker Practice 4-> Mixer Practice
-      gamePhase: {
-        phase: "introduction",
-        isSelection: false,
-        isMixer: false,
-        isTutorial: false,
-      },
       user_name: "",
       chatLink: undefined,
+      complete: false,
     };
   },
   methods: {
-    ...mapActions(["setBlockPhase", "setSubstances", "setShowNextPhase","removeSubstance"]),
+    ...mapActions(["setBlockPhase", "setSubstances", "setShowNextPhase","setGuessed", "setGamePhase"]),
     resetHome() {
       this.mainStatus = 0;
       this.sendHomeClick();
@@ -88,12 +81,7 @@ export default {
     },
     pHIdentificationPhase() {
       //only for testing purposes, to be removed
-      this.gamePhase.phase = "practice-pH";
-      this.gamePhase.isSelection = false;
-      this.gamePhase.isMixer = true;
-      this.gamePhase.isTutorial = false;
-
-      this.fetchItems();
+      this.setGamePhase("practice-pH");
     },
     sendPHGuess(index){
       let message = '{"content":"' + index + '", "type":"guessed"}';
@@ -106,6 +94,7 @@ export default {
     startPractice() {
       this.sendPracticeJSON();
       this.mainStatus = 3;
+      this.pHIdentificationPhase();
     },
     sendMessage: function (message) {
       console.log("Sending:" + message);
@@ -174,43 +163,6 @@ export default {
       let message = '{"content":"", "type":"selection_complete"}';
       this.sendMessage(message);
     },
-    handleChangePhase(next_phase) {
-      let phases = JSON.parse("../resources/phases.json");
-      phases.forEach((phase) => {
-        if (phase.name === next_phase) {
-          this.gamePhase.phase = phase.name;
-          this.gamePhase.isMixer = phase.isMixer;
-          this.gamePhase.isSelection = phase.isSelection;
-          this.gamePhase.isTutorial = phase.isTutorial;
-          //TODO: check if needed as it is already done in GameScreen upon creation
-          this.fetchItems();
-        }
-      });
-    },
-    fetchItems() {
-      var stringified = JSON.stringify(require("./resources/phases.json"));
-      let phases = JSON.parse(stringified);
-      stringified = JSON.stringify(require("./resources/substances.json"));
-      let substances = JSON.parse(stringified);
-      phases.phases.forEach((phase) => {
-        if (phase.name === this.gamePhase.phase) {
-          phase.substances.forEach((substance) => {
-            let substance_element = {};
-            substance_element.item = substances.ingredients[substance - 1].name;
-            substance_element.id = substances.ingredients[substance - 1].id;
-            substance_element.selected = false;
-            substance_element.src = require("./assets/items/" +
-              substances.ingredients[substance - 1].asset);
-            substance_element.size = substances.ingredients[substance - 1].size;
-            substance_element.prsize =
-              substances.ingredients[substance - 1].prsize;
-            substance_element.ph = substances.ingredients[substance - 1].ph;
-
-            //this.selectable_items.push(substance_element);
-          });
-        }
-      });
-    },
     submitName(name) {
       this.user_name = name;
     },
@@ -218,7 +170,7 @@ export default {
   created: function () {
     var _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://282aa38c960c.ngrok.io");
+    this.connection = new WebSocket("ws://cae59bada1d0.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -236,15 +188,19 @@ export default {
             _this.setShowNextPhase(true);
             self.$refs.chatRef.receiveMessage(message);
             return;
-          case "remove_substance":
-            _this.removeSubstance(message.text());
+          case "guessed_ph":
+            _this.setGuessed(message.text);
+            _this.complete = _this.guessed.every((v) => v === true);
+            if (_this.complete){
+              _this.selectionComplete();
+            }
             return;
           default:
             self.$refs.chatRef.receiveMessage(message);
         }
       });
       if (messages.change_phase !== "") {
-        this.handleChangePhase(messages.change_phase);
+        this.setGamePhase(messages.change_phase);
       }
     };
 

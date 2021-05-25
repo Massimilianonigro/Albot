@@ -27,8 +27,8 @@
         </div>
       </div>
 
-      <!--div class="white-block" v-if="complete && showNextPhase"-->
-      <div class="white-block" v-if="complete">
+      <div class="white-block" v-if="complete && showNextPhase">
+      <!--div class="white-block" v-if="complete"//TODO: testing flag-->
         <div class="gj-banner">
           <h2>Good Job!</h2>
         </div>

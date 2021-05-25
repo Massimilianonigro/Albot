@@ -8,7 +8,14 @@ export default new Vuex.Store({
         blockPhase: false,
         substances: [],
         showNextPhase: false,
-        showOnPHScale: [false, false, false, false]
+        showOnPHScale: [false, false, false],
+        guessed: [false, false, false, false, false, false, false, false, false, false, false],
+        gamePhase: {
+            phase: "introduction",
+            isSelection: false,
+            isMixer: false,
+            isTutorial: false,
+        },
     },
     mutations: {
         setShowOnPHScale(state, element){
@@ -16,6 +23,23 @@ export default new Vuex.Store({
         },
         setBlockPhase(state, newValue) {
             state.blockPhase = newValue;
+        },
+        setGamePhase(state, phase){
+            state.gamePhase.phase = phase;
+            var stringified = JSON.stringify(require("../resources/phases.json"));
+            let phases = JSON.parse(stringified);
+            phases.phases.forEach((p) => {
+                if (p.name === phase){
+                    state.gamePhase.isSelection = p.isSelection;
+                    state.gamePhase.isMixer = p.isMixer;
+                    state.gamePhase.isTutorial = p.isTutorial;
+                }
+            });
+        },
+        setGuessed(state, element){
+            console.log("guessed element " + element);
+            state.guessed[parseInt(element) - 1] = true;
+            console.log("it is now " + state.guessed[parseInt(element) - 1]);
         },
         setSubstances(state, gamePhase) {
             var stringified = JSON.stringify(require("../resources/phases.json"));
@@ -44,9 +68,6 @@ export default new Vuex.Store({
                 }
             });
         },
-        removeSubstance(state, substance){
-          state.substances.remove(substance);
-        },
         setShowNextPhase(state, show){
             state.showNextPhase = show;
         }
@@ -61,11 +82,14 @@ export default new Vuex.Store({
         setShowNextPhase(context, show){
             context.commit('setShowNextPhase', show);
         },
-        removeSubstance(context, substance){
-            context.commit('removeSubstance', substance);
-        },
         setShowOnPHScale(context, element){
             context.commit('setShowOnPHScale', element);
+        },
+        setGuessed(context, element){
+            context.commit('setGuessed', element);
+        },
+        setGamePhase(context, phase){
+            context.commit('setGamePhase', phase);
         }
     }
 })

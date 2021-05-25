@@ -30,10 +30,14 @@
         <div v-for="(data, index) in substances" v-bind:key="index">
           <button
               class="kitchen-item"
-              v-bind:class="{highlight: index === pouredIndex, nothighlight: index !== pouredIndex,}"
+              v-bind:class="{highlight: index === pouredIndex, nothighlight: index !== pouredIndex}"
               v-on:click="selectItem(data, index)"
               v-bind:style= "getItemStyle(data, index)"
           ></button>
+        </div>
+        <div v-for="(data, index) in substances" v-bind:key="index"
+             v-bind:class="{'highlight-guessed': guessed[index]}"
+             v-bind:style= "getCheckStyle(data, index)">
         </div>
         <div
             :style="getPhBowl()"
@@ -74,7 +78,6 @@ export default {
       showTryAgain: false,
       showInfo: false,
       showReset: false,
-      guessed: [false, false, false, false, false, false, false, false, false,false, false],
       settingsArray: [
         {x: "30%", y: "0%"},
         {x: "60%", y: "0%"},
@@ -92,7 +95,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances", "blockPhase"])
+    ...mapState(["substances", "blockPhase", "guessed"])
   },
   methods: {
     ...mapActions(["setBlockPhase"]),
@@ -117,18 +120,24 @@ export default {
         width: data.prsize.w
       };
     },
+    getCheckStyle(data, index){
+      return{
+        left: this.getXbyIndex(index),
+        bottom: this.getYbyIndex(index),
+        height: data.prsize.h,
+        width: data.prsize.w
+      }
+    },
     selectItem(data, index){
-      if (this.pouring === -1){
-        this.pouring = index;
-        this.pouredIndex = index;
-      }
-      if (this.pouring === index && !this.blockPhase){
-        this.showReset = true;
-        this.pouredPh = data.ph;
-        this.pouring = -1;
-        this.setBlockPhase(true); //TODO: testing flag
+      //if blockPhase is false, we are selecting a new element to be guessed
+      if (!this.blockPhase){
         this.$emit("selectedElement",data.id);
+        this.setBlockPhase(true); //TODO: testing flag
+        this.showReset = true;
       }
+      //in any case, whenever an element is clicked, we pour it and change the bowl
+      this.pouredPh = data.ph;
+      this.pouredIndex = index;
     },
     addPoints(){
       this.showCompliment = true;
@@ -193,6 +202,7 @@ export default {
 </script>
 
 <style scoped>
+
 .albot {
   position: absolute;
   top: 10%;
@@ -233,71 +243,12 @@ export default {
   background-size: contain;
 }
 
-.scoreboard{
-  position: absolute;
-  z-index: 2;
-  left: 30%;
-  top: 0%;
-  width: 30%;
-  height: 14%;
-  margin: auto;
-  background-position-y: center;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url("../assets/uibuttons/Scoreboard.png");
-}
-.scoreboard-label{
-  position: absolute;
-  color: #ffffff;
-  z-index: 3;
-  margin: auto auto auto auto;
-  left: 16%;
-  right: 0%;
-  top: 28%;
-  width: 80%;
-  height: 40%;
-  font-weight: 100;
-}
-.solution-ph-meter{
-  position: absolute;
-  z-index: 2;
-  left: 30%;
-  top: 20%;
-  width: 40%;
-  height: 20%;
-  margin: auto;
-  background-position-y: center;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.acid{
-  background-image: url("../assets/uibuttons/PHMeterAcid.png");
-
-}
-.basic{
-  background-image: url("../assets/uibuttons/PHMeterBasic.png");
-}
-.solution-ph-meter-label{
-  color: gray;
-  z-index: 3;
-  margin: 14.5% auto auto auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 15%;
-  height: 50%;
-  font-size: 4vh;
-  font-weight: 100;
-}
 .item-container {
   margin: auto;
   position: absolute;
   z-index: 50;
   bottom: 22%;
-  left: 0%;
+  left: 0;
   right: 0;
   width: 88%;
   height: 30%;
@@ -337,6 +288,26 @@ a {
 }
 
 .highlight {
+  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+  transform: rotate(115deg);
+  z-index: 100;
+}
+
+.highlight-guessed {
+  position: absolute;
+  opacity: 0.8;
+  border-radius: 5px;
+  border: none;
+  background-image: url("../assets/icons/check.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: 70%;
+  background-position-y: 10%;
+}
+
+.spotlight-selected {
   border-radius: 5px;
   border: none;
   background-color: transparent;
