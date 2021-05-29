@@ -196,6 +196,11 @@ a {
   background-image: url("../assets/uibuttons/StartButton.png");
   border: 0;
 }
+
+.start-btn:focus{
+  outline: none;
+}
+
 .main-bg {
   position: absolute;
   top: 0;
@@ -273,6 +278,11 @@ a {
   background-image: url("../assets/uibuttons/ReportButton.png");
   background-color: transparent !important;
 }
+
+.report:focus{
+  outline: none;
+}
+
 .bot-bg {
   position: absolute;
   background-color: #ffffffb0;
@@ -358,6 +368,10 @@ a {
   margin: 1vw;
 }
 
+.bubble-btn:focus{
+  outline: none;
+}
+
 .bubble-tutorial-btn {
   line-height: 5em;
   position: static;
@@ -375,4 +389,9 @@ a {
   border: none;
   margin: 1vw;
 }
+
+.bubble-tutorial-btn:focus{
+  outline: none;
+}
+
 </style>

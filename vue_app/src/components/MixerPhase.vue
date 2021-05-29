@@ -11,7 +11,6 @@
           ></button>
           <div
             class="solution-bowl"
-            v-if="!poured[index]"
             v-bind:style="{
               left: index * 22 - 3 + '%',
               bottom: '-20%',
@@ -19,10 +18,30 @@
               width: '15%',
             }"
           ></div>
+          <!--TODO: change to one div with fill = getColor(pH) that returns neutral purple if !poured, pH color otherwise -->
+          <svg
+              class="solution-liquid"
+              v-if="!poured[index]"
+              v-bind:style="{
+              left: index * 22 - 2 + '%',
+              bottom: '-19%',
+              height: '35%',
+              width: '13%',
+            }"
+          ></svg>
+          <svg
+              class="solution-liquid"
+              v-if="poured[index]"
+              v-bind:style="getLiquidColor(index,data.ph)"
+          ></svg>
           <div
-            v-if="poured[index]"
-            :style="getPhBowl(data, index)"
-            class="solution-style"
+              class="solution-overlay"
+              v-bind:style="{
+              left: index * 22 - 3 + '%',
+              bottom: '-20%',
+              height: '35%',
+              width: '15%',
+            }"
           ></div>
         </div>
       </div>
@@ -99,6 +118,17 @@ export default {
         this.$emit("selectionComplete");
         this.setBlockPhase(true); //TODO: testing flag
       }
+    },
+    getLiquidColor(index, pH){
+      var stringified = JSON.stringify(require("../resources/colors.json"));
+      let colors = JSON.parse(stringified);
+      return ({
+        left: index * 22 - 2 + '%',
+        bottom: '-19%',
+        height: '35%',
+        width: '13%',
+        fill:colors.colors[Math.round(pH)].color
+      })
     },
     getHighlight(index) {
       if (this.selected === index) return "highlight";
@@ -208,7 +238,25 @@ export default {
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("../assets/solutions/Solutionbowl.png");
+  background-image: url("../assets/solutions/bowl.svg");
+}
+.solution-liquid {
+  position: absolute;
+  z-index: 3;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../assets/solutions/liquid.svg");
+}
+.solution-overlay {
+  position: absolute;
+  z-index: 4;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../assets/solutions/overlay.svg");
 }
 .solution-style {
   position: absolute;

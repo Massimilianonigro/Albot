@@ -15,6 +15,10 @@
 				width: data.scale_placement.w,
 				}">
           </div>
+            <div class="item-arrow"
+                 v-bind:style=getArrowStyle(data.scale_placement.y)
+            >
+            </div>
           </div>
       </div>
     </div>
@@ -58,6 +62,14 @@ export default {
     },
     forceRerender() {
       this.scaleKey += 1;
+    },
+    getArrowStyle(y){
+      let y_position_elem = y.substring(0, y.length - 1);
+      let y_position_arrow = parseInt(y_position_elem) + 2;
+
+      return ({
+        bottom: y_position_arrow + "%"
+      })
     }
   }
 };
@@ -76,6 +88,15 @@ export default {
 	position: absolute;
 	background-repeat: no-repeat;
 	background-size: contain;
+}
+.item-arrow{
+  left: 2%;
+  position: absolute;
+  background-image: url("../assets/icons/arrow.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 4%;
+  width: 4%;
 }
 .table-item{
 	bottom: 0;

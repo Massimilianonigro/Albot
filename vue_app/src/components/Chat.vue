@@ -392,6 +392,10 @@ export default {
   margin: 0.3vw;
 }
 
+.input-group:focus{
+  outline: none;
+}
+
 /*This division is ugly, we will get rid of it*/
 .division {
   border-bottom: solid 5px #ca7900;
@@ -413,9 +417,10 @@ export default {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.btn-chat:focus {
+.corner:focus {
   outline: none;
 }
+
 .btn-chat:active {
   opacity: 0.8;
 }

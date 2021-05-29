@@ -35,10 +35,11 @@
               v-bind:style= "getItemStyle(data, index)"
           ></button>
         </div>
-        <div v-for="(data, index) in substances" v-bind:key="index"
-             v-bind:class="{'highlight-guessed': guessed[index]}"
-             v-bind:style= "getCheckStyle(data, index)">
-        </div>
+        <button v-for="(data, index) in substances" v-bind:key="index"
+             v-bind:class="{'highlight-guessed': guessed[index], 'highlight-not-guessed': !guessed[index], highlight: index === pouredIndex, nothighlight: index !== pouredIndex}"
+             v-bind:style= "getCheckStyle(data, index)"
+                v-on:click="selectItem(data, index)">
+        </button>
         <div
             :style="getPhBowl()"
             class="solution-style"
@@ -125,12 +126,12 @@ export default {
         left: this.getXbyIndex(index),
         bottom: this.getYbyIndex(index),
         height: data.prsize.h,
-        width: data.prsize.w
+        width: data.prsize.w,
       }
     },
     selectItem(data, index){
       //if blockPhase is false, we are selecting a new element to be guessed
-      if (!this.blockPhase){
+      if (!this.blockPhase && !this.guessed[index]){
         this.$emit("selectedElement",data.id);
         this.setBlockPhase(true); //TODO: testing flag
         this.showReset = true;
@@ -295,16 +296,30 @@ a {
   z-index: 100;
 }
 
+.highlight-not-guessed {
+  position: absolute;
+  border: none transparent;
+  background-color: transparent;
+}
+
 .highlight-guessed {
   position: absolute;
   opacity: 0.8;
-  border-radius: 5px;
-  border: none;
+  border: none transparent;
   background-image: url("../assets/icons/check.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: 70%;
   background-position-y: 10%;
+  background-color: transparent;
+}
+
+.highlight-guessed:focus{
+  outline: none;
+}
+
+.highlight-not-guessed:focus{
+  outline: none;
 }
 
 .spotlight-selected {

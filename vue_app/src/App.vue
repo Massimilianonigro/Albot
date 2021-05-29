@@ -168,15 +168,15 @@ export default {
     },
   },
   created: function () {
-    var _this = this;
+    let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://cae59bada1d0.ngrok.io");
+    this.connection = new WebSocket("ws://2f16ca3c95ff.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
       let messages = JSON.parse(event.data);
       messages.messages.forEach((message) => {
-        console.log("Examing message with ui_effect: " + message.ui_effect);
+        console.log("Examining message with ui_effect: " + message.ui_effect);
         switch(message.ui_effect){
           case "hidden":
             this.user_name = message.text;
@@ -219,10 +219,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #828e99;
-}
-.button-exe {
-  position: absolute;
-  z-index: 100;
-  top: 105%;
 }
 </style>

@@ -74,8 +74,8 @@ export default {
   background-color: transparent;
 }
 
-.pH-button{
-
+.pH-button:focus{
+  outline: #ffffff solid 4px;
 }
 
 </style>
