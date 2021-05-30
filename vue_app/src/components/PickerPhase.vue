@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <div class="ItemShelf">
+    <div class="ItemShelf" v-bind:style="{left: '-15%'}">
       <div style="margin:5px; z-index:1000" >
         <button
           v-for="(data, index) in substances"

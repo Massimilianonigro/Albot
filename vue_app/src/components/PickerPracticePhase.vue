@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="background">
+    <div class="background"
+         v-bind:style="{margin: 'auto', left: '-10%'}">
       <div class="ItemShelf">
         <div style="margin:5px; z-index:1000" >
           <button
-            v-for="(data, index) in items"
+            v-for="(data, index) in substances"
             v-bind:key="index"
             class="kitchen-item"
             v-on:click="handleClickedItem(data)"
@@ -39,6 +40,8 @@
 
 <script>
 import SettingsWindow from "./SettingsWindow.vue";
+import {mapState} from "vuex";
+
 export default {
   components: {
     SettingsWindow,
@@ -47,7 +50,7 @@ export default {
   props: {
     items: {
       type: Array,
-      required: true,
+      required: false,
     }
   },
   data() {
@@ -57,12 +60,15 @@ export default {
       settings: false,
     };
   },
+  computed: {
+    ...mapState(["substances"])
+  },
   methods:{
     nextClick(){
       this.selItems = []
       
-      this.items.forEach(element => {
-        if( element.selected == true){
+      this.substances.forEach(element => {
+        if( element.selected === true){
           let tempItem = { 
             item: element.item,
             id: element.id,
@@ -91,7 +97,7 @@ export default {
       else{
         this.selection -= 1;
       }
-      if (this.selection == 2){
+      if (this.selection === 2){
         this.$emit("sendNextInPracticeChat");
       }
     },

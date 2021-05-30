@@ -313,7 +313,7 @@ a {
   background-position: center;
   border: 0;
   z-index: 1000;
-  background-image: url("../assets/uibuttons/Tutorial.png");
+  background-image: url("../assets/uibuttons/NextPhaseButton.png");
 }
 .bubble-tutorial-btn {
   line-height: 5em;

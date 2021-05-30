@@ -11,7 +11,7 @@
           <div
             v-bind:class="getClass(data)"
             class="message"
-            :style="getMessageStyle(data.type)"
+            :style="getMessageStyle(data)"
             v-for="(data, index) in messages"
             v-bind:key="index"
           >
@@ -21,8 +21,9 @@
               v-if="data.bot"
               autoplay
             ></audio>
-            <div v-bind:class="getBoxClass(data)">
-              <span>
+            <div v-bind:class="getBoxClass(data)"
+            v-style="getInstructionStyle(data.isInstruction)">
+              <span v-html=" data.message ">
                 {{ data.message }}
               </span>
               <img
@@ -137,9 +138,14 @@ export default {
       }
       return styleItem;
     },
-    getMessageStyle(type) {
-      if (type === "text") return { "font-size": this.fontSize + "vh" };
-      if (type === "button")
+    getInstructionStyle(isInstruction){
+      if (isInstruction){
+        return({"background-color": "#64BEB4"});
+      }
+    },
+    getMessageStyle(data) {
+      if (data.type === "text") return { "font-size": this.fontSize + "vh" };
+      if (data.type === "button")
         return {
           "font-size": this.fontSize + "vh",
           "padding-top": "2px",
@@ -159,7 +165,7 @@ export default {
       }
     },
     sendMessage() {
-      let jsonMessage = '{"type":"text", "content":"' + this.message + ' "}';
+      let jsonMessage = '{"type":"text", "content":"' + encodeURI(this.message) + ' "}';
       this.messages.push({ message: this.message, bot: false, type: "text" });
       this.isBot = false;
       this.$emit("sendMessage", jsonMessage);
@@ -167,7 +173,7 @@ export default {
     },
     receiveMessage(message_received) {
       console.log(message_received);
-      let toPush = { message: message_received.text, bot: true, type: "text" };
+      let toPush = { message: message_received.text, bot: true, type: "text", isInstruction: false};
       switch (message_received.ui_effect) {
         case "tryagain":
           toPush = {
@@ -208,6 +214,9 @@ export default {
             };
           }
           break;
+      }
+      if(message_received.type !== undefined){
+        toPush.isInstruction = true;
       }
       this.messages.push(toPush);
     },

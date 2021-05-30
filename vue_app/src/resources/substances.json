@@ -3,7 +3,7 @@
     {
       "id" : 1,
       "name" : "Baking Soda",
-      "ph" : 8,
+      "ph" : 8.3,
       "asset" : "BakingSoda.png",
       "size" : { "x": "68%", "y": "2%", "w": "10%", "h": "24%" },
       "prsize": { "w": "10%", "h": "40%" }
@@ -44,7 +44,7 @@
     {
       "id" : 6,
       "name" : "Soap",
-      "ph" : 1,
+      "ph" : 10,
       "asset" : "Soap.png",
       "size": { "x": "73%", "y": "36%", "w": "10%", "h": "24%" },
       "prsize": {"w": "12%", "h": "48%" }
@@ -74,7 +74,7 @@
       "asset" : "Milk.png",
       "size": { "x": "43.5%", "y": "2%", "w": "8%", "h": "33%" },
       "prsize": {"w": "8%", "h": "55%" },
-      "scale_placement": {  "x": "20%", "y": "53%", "w": "6%", "h": "8%"}
+      "scale_placement": {  "x": "110%", "y": "52%", "w": "50%", "h": "90%"}
     },
     {
       "id" : 10,
@@ -87,7 +87,7 @@
     {
       "id" : 11,
       "name" : "Sparkling Water",
-      "ph" : 6,
+      "ph" : 4,
       "asset" : "SparklingWater.png",
       "size": {  "x": "30%", "y": "53%", "w": "7%", "h": "38%"},
       "prsize": { "w": "7%", "h": "56%" }

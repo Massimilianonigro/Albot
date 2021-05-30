@@ -39,6 +39,7 @@
           v-on:backPress="prevScreen"
           v-on:continuePress="continueClick"
           v-on:tryAgainPress="tryAgainClick"
+          v-on:nextPhasePress="practicePress"
           v-on:infoPress="infoClick"
       />
     </div>
@@ -49,7 +50,7 @@
         ref="pracpicker"
         v-on:sendNextInPracticeChat="displayNextPracticeButton"
         v-on:sendItemMessage="selectItem"
-        v-on:nextPress="practiceMix"
+        v-on:nextPress="nextScreen"
         v-on:homePress="homeScreen"
       />
     </div>
@@ -170,12 +171,8 @@ export default {
     nextClicked() {
       if (this.gameStatus === 1) this.$refs.picker.updatePart();
     },
-    //never used
-    nextPracticeClicked() {
-      if (this.gameStatus === 3) this.$refs.pracpicker.nextClick();
-    },
     practicePress() {
-      this.nextScreen();
+      //this.nextScreen();
       this.$emit("practicePress");
     },
     selectItem(index) {
@@ -190,8 +187,9 @@ export default {
     },
     nextScreen() {
       //TODO: add emit
-      this.selItems = [];
+      //this.selItems = [];
       this.nonSelItems = [];
+      this.$emit("");
     },
     prevScreen() {
       var stringified = JSON.stringify(require("../resources/phases.json"));

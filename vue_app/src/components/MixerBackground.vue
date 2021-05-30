@@ -15,12 +15,20 @@
 				bottom: data.scale_placement.y,
 				height: data.scale_placement.h,
 				width: data.scale_placement.w,
+				opacity: '1',
+				zIndex: 100
 				}">
             </div>
-            <!--div class="item-arrow"
-                 v-bind:style=getArrowStyle(data.scale_placement.y)
-            >
-            </div-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div :key = isRerender>
+      <div v-for="(data, index) in substances"
+           v-bind:key="index">
+        <div v-show="showOnPHScale[index]"
+             v-if="showOnPHScale[index]">
+          <div class="item-circle" v-bind:style=getArrowStyle(data.scale_placement.y)>
           </div>
         </div>
       </div>
@@ -68,10 +76,14 @@ export default {
     },
     getArrowStyle(y){
       let y_position_elem = y.substring(0, y.length - 1);
-      let y_position_arrow = parseInt(y_position_elem) + 2;
+      let y_pos = parseInt(y_position_elem) - 2;
 
       return ({
-        bottom: y_position_arrow + "%"
+        bottom: y_pos + "%",
+        left: "0",
+        height: "10%",
+        width: "19%",
+        zIndex: "5"
       })
     }
   }
@@ -92,14 +104,11 @@ export default {
 	background-repeat: no-repeat;
 	background-size: contain;
 }
-.item-arrow{
-  left: 2%;
+.item-circle{
   position: absolute;
-  background-image: url("../assets/icons/arrow.png");
+  background-image: url("../assets/icons/circle.png");
   background-repeat: no-repeat;
   background-size: contain;
-  height: 4%;
-  width: 4%;
 }
 .table-item{
 	bottom: 0;

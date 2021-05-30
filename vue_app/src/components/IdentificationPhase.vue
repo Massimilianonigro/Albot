@@ -57,8 +57,7 @@
         ></div>
 
       </div>
-      <div class="white-block" v-if="complete && showNextPhase">
-        <!--div class="white-block" v-if="complete"//TODO: testing flag-->
+      <div class="white-block" v-if="complete">
         <div class="gj-banner">
           <h2>Good Job!</h2>
         </div>
@@ -96,7 +95,7 @@ export default {
       showTryAgain: false,
       showInfo: false,
       showReset: false,
-      complete: false,
+      complete: true,
       settingsArray: [
         {x: "30%", y: "0%"},
         {x: "60%", y: "0%"},
@@ -148,7 +147,7 @@ export default {
       };
     },
     getCheckStyle(data, index){
-      this.complete = this.guessed.every((v) => v === true);
+      //this.complete = this.guessed.every((v) => v === true);
       return{
         left: this.getXbyIndex(index),
         bottom: this.getYbyIndex(index),
@@ -171,19 +170,6 @@ export default {
       this.showCompliment = true;
       this.score += 10;
       setTimeout(() => this.showCompliment = false, 2800);
-    },
-    getPhBowl(){
-      let urlImg;
-      if (this.pouredPh  === -1){
-        urlImg = require("../assets/solutions/Solutionbowl.png");
-      }
-      else{
-        urlImg = require("../assets/solutions/Solution"+ Math.round(this.pouredPh) +".png");
-      }
-      let styleItem = {
-        'background-image': 'url('+ urlImg +')',
-      }
-      return styleItem;
     },
     showTryAgainWindow(){
       this.showTryAgain = true;
@@ -243,62 +229,30 @@ export default {
   background-position-y: center;
   background-image: url("../assets/backgrounds/Bot.png");
 }
-.solution {
+.next-phase-btn {
   position: absolute;
-  bottom: 0;
-  height: 40%;
-  width: 14%;
-  right: 43%;
-  z-index: 2;
-  background-position-y: bottom;
-  background-position-x: center;
+  height: 10%;
+  width: 50%;
+  top: 40%;
+  left: 25%;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("../assets/solutions/Solutionbowl.png");
+  background-color: transparent;
+  background-position: center;
+  border: 0;
+  z-index: 1000;
+  background-image: url("../assets/uibuttons/NextPhaseButton.png");
 }
-.solution-bowl {
-  position: absolute;
-  bottom: 0;
-  height: 40%;
-  width: 14%;
-  right: 43%;
-  z-index: 2;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url("../assets/solutions/bowl.svg");
-}
-.solution-liquid {
-  position: absolute;
-  bottom: 0;
-  height: 20%;
-  width: 12%;
-  right: 44%;
-  z-index: 3;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.solution-overlay {
-  position: absolute;
-  bottom: 0;
-  height: 40%;
-  width: 14%;
-  right: 43%;
-  z-index: 4;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url("../assets/solutions/overlay.svg");
-}
-
 .solution-style{
   pointer-events: none;
 }
-
+.white-block {
+  position: absolute;
+  background-color: #ffffffb0;
+  z-index: 105;
+  height: 100%;
+  width: 100%;
+}
 .item-container {
   margin: auto;
   position: absolute;
