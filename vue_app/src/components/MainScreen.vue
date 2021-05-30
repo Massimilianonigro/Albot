@@ -258,7 +258,7 @@ a {
   width: 30%;
   z-index: 1;
   background-position-x: center;
-  background-image: url("../assets/backgrounds/BotTittle.png");
+  background-image: url("../assets/backgrounds/BotTitle.png");
 }
 .icon {
   position: absolute;

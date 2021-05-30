@@ -1,7 +1,7 @@
 <!--Main screen should only contain start button that leads to tutorial-->
 <template>
   <div id="app" :style="{ height: '100%' }">
-    <div v-if="mainStatus === 0">
+    <div v-if="this.gamePhase.phase === 'introduction' ">
       <MainScreen
         v-on:startIntro="startIntroduction"
         v-on:startPractice="startPractice"
@@ -20,8 +20,6 @@
         v-on:tryAgainClicked="handleTryAgainClick"
         v-on:continueClicked="handleContinueClick"
         v-on:showTryAgain="displayTryAgain"
-        v-on:submitName="submitName"
-        v-on:requestName="requestName"
       />
       <GameScreen
         ref="gameRef"
@@ -53,8 +51,7 @@
 import MainScreen from "./components/MainScreen.vue";
 import GameScreen from "./components/GameScreen.vue";
 import Chat from "./components/Chat.vue";
-import { mapActions } from "vuex";
-//TODO: create removeElement in GameScreen, pass it on to Id Phase, delete it
+import { mapActions, mapState } from "vuex";
 export default {
   name: "App",
   components: {
@@ -63,24 +60,25 @@ export default {
     Chat,
   },
   data() {
-    //mainStatus to be deleted
     return {
       message: "",
-      mainStatus: 0, // 0 -> Main Screen, 1 -> Picker Tutorial, 2-> Mixer Tutorial, 3-> Picker Practice 4-> Mixer Practice
       user_name: "",
       chatLink: undefined,
       complete: false,
     };
   },
+  computed: {
+    ...mapState(["gamePhase"])
+  },
   methods: {
     ...mapActions(["setBlockPhase", "setSubstances", "setShowNextPhase","setGuessed", "setGamePhase"]),
     resetHome() {
-      this.mainStatus = 0;
+      //only for testing purposes, to be performed by backend
+      this.setGamePhase("introduction");
       this.sendHomeClick();
-      this.requestName();
     },
     pHIdentificationPhase() {
-      //only for testing purposes, to be removed
+      //only for testing purposes, to be performed by backend
       this.setGamePhase("practice-pH");
     },
     sendPHGuess(index){
@@ -89,11 +87,11 @@ export default {
     },
     startIntroduction() {
       this.sendIntroductoryJSON();
-      this.mainStatus = 1;
+      //only for testing purposes, to be removed
+      this.setGamePhase("tutorial-selection");
     },
     startPractice() {
       this.sendPracticeJSON();
-      this.mainStatus = 3;
       this.pHIdentificationPhase();
     },
     sendMessage: function (message) {
@@ -118,10 +116,6 @@ export default {
     },
     handlePracticePress() {
       this.sendItemClick("next");
-    },
-    requestName() {
-      let message = '{"content":"", "type":"name_request"}';
-      this.sendMessage(message);
     },
     handleNextPracticeClick() {
       this.$refs.gameRef.nextPracticeClicked();
@@ -170,7 +164,7 @@ export default {
   created: function () {
     let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://2f16ca3c95ff.ngrok.io");
+    this.connection = new WebSocket("ws://636d86d4792a.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {

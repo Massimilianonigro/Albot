@@ -184,7 +184,7 @@ export default {
             message: message_received.text,
             bot: true,
             type: "button",
-            src: require("../assets/uibuttons/ContinueButton.png"),
+            src: require("../assets/uibuttons/NextButton.png"),
             func: "continue",
           };
           this.$emit("addPoints");
@@ -262,7 +262,7 @@ export default {
         message: "Congrats, you won 10 points. Click to continue",
         bot: true,
         type: "button",
-        src: require("../assets/uibuttons/ContinueButton.png"),
+        src: require("../assets/uibuttons/NextButton.png"),
         func: "continue",
       });
     },

@@ -41,11 +41,28 @@
                 v-on:click="selectItem(data, index)">
         </button>
         <div
-            :style="getPhBowl()"
-            class="solution-style"
-        >
-        </div>
+            class="solution-bowl"
+        ></div>
+        <svg
+            class="solution-liquid"
+            v-bind:style="{
+              color: getLiquidColor()
+              }"
+            width="161" height="63" viewBox="0 0 161 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M160.71 22.5799C160.74 22.5299 160.77 22.4799 160.8 22.4299H160.73C160.73 10.1499 124.96 0.199951 80.84 0.199951C36.72 0.199951 0.950073 10.1499 0.950073 22.4299H0.880005C0.910005 22.4799 0.939971 22.5299 0.969971 22.5799C1.02997 25.2099 2.73007 27.7399 5.82007 30.0799C20.5401 49.5099 48.62 62.6499 80.85 62.6499C113.08 62.6499 141.16 49.5099 155.88 30.0799C158.94 27.7399 160.64 25.2199 160.71 22.5799Z" fill="currentColor"/>
 
+          ></svg>
+        <div
+            class="solution-overlay"
+        ></div>
+
+      </div>
+      <div class="white-block" v-if="complete && showNextPhase">
+        <!--div class="white-block" v-if="complete"//TODO: testing flag-->
+        <div class="gj-banner">
+          <h2>Good Job!</h2>
+        </div>
+        <button class="next-phase-btn" v-on:click="nextPhaseButton"></button>
       </div>
       <button class="back-btn ui-btn"
               v-on:click="backButton()">
@@ -79,6 +96,7 @@ export default {
       showTryAgain: false,
       showInfo: false,
       showReset: false,
+      complete: false,
       settingsArray: [
         {x: "30%", y: "0%"},
         {x: "60%", y: "0%"},
@@ -96,10 +114,18 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances", "blockPhase", "guessed"])
+    ...mapState(["substances", "blockPhase", "guessed", "showNextPhase"])
   },
   methods: {
     ...mapActions(["setBlockPhase"]),
+    getLiquidColor(){
+      if(this.pouredIndex !== -1){
+        let stringified = JSON.stringify(require("../resources/colors.json"));
+        let colors = JSON.parse(stringified);
+        return (colors.colors[Math.round(this.pouredPh)].color);
+      }
+      return "#70319D";
+    },
     getXbyIndex(index) {
       if ( this.pouredIndex === index ){
         return "40%";
@@ -122,6 +148,7 @@ export default {
       };
     },
     getCheckStyle(data, index){
+      this.complete = this.guessed.every((v) => v === true);
       return{
         left: this.getXbyIndex(index),
         bottom: this.getYbyIndex(index),
@@ -162,10 +189,10 @@ export default {
       this.showTryAgain = true;
       this.showInfo = true;
     },
+    nextPhaseButton() {
+      this.$emit("nextPhasePress");
+    },
     backButton(){
-      while(this.items.length > 0) {
-        this.items.pop();
-      }
       this.$emit("backPress");
     },
     continueButton(){
@@ -229,9 +256,7 @@ export default {
   background-size: contain;
   background-image: url("../assets/solutions/Solutionbowl.png");
 }
-
-.solution-style{
-  pointer-events: none;
+.solution-bowl {
   position: absolute;
   bottom: 0;
   height: 40%;
@@ -242,6 +267,36 @@ export default {
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: contain;
+  background-image: url("../assets/solutions/bowl.svg");
+}
+.solution-liquid {
+  position: absolute;
+  bottom: 0;
+  height: 20%;
+  width: 12%;
+  right: 44%;
+  z-index: 3;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.solution-overlay {
+  position: absolute;
+  bottom: 0;
+  height: 40%;
+  width: 14%;
+  right: 43%;
+  z-index: 4;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../assets/solutions/overlay.svg");
+}
+
+.solution-style{
+  pointer-events: none;
 }
 
 .item-container {
@@ -435,7 +490,7 @@ a {
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("../assets/uibuttons/ContinueFail.png");
+  background-image: url("../assets/uibuttons/NextButton.png");
   outline: none;
 }
 

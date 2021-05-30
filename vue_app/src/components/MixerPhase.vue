@@ -18,21 +18,18 @@
               width: '15%',
             }"
           ></div>
-          <!--TODO: change to one div with fill = getColor(pH) that returns neutral purple if !poured, pH color otherwise -->
           <svg
               class="solution-liquid"
-              v-if="!poured[index]"
               v-bind:style="{
               left: index * 22 - 2 + '%',
               bottom: '-19%',
-              height: '35%',
+              height: '19%',
               width: '13%',
-            }"
-          ></svg>
-          <svg
-              class="solution-liquid"
-              v-if="poured[index]"
-              v-bind:style="getLiquidColor(index,data.ph)"
+              color: getLiquidColor(index, data.ph),
+              }"
+              width="161" height="63" viewBox="0 0 161 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M160.71 22.5799C160.74 22.5299 160.77 22.4799 160.8 22.4299H160.73C160.73 10.1499 124.96 0.199951 80.84 0.199951C36.72 0.199951 0.950073 10.1499 0.950073 22.4299H0.880005C0.910005 22.4799 0.939971 22.5299 0.969971 22.5799C1.02997 25.2099 2.73007 27.7399 5.82007 30.0799C20.5401 49.5099 48.62 62.6499 80.85 62.6499C113.08 62.6499 141.16 49.5099 155.88 30.0799C158.94 27.7399 160.64 25.2199 160.71 22.5799Z" fill="currentColor"/>
+
           ></svg>
           <div
               class="solution-overlay"
@@ -120,15 +117,12 @@ export default {
       }
     },
     getLiquidColor(index, pH){
-      var stringified = JSON.stringify(require("../resources/colors.json"));
-      let colors = JSON.parse(stringified);
-      return ({
-        left: index * 22 - 2 + '%',
-        bottom: '-19%',
-        height: '35%',
-        width: '13%',
-        fill:colors.colors[Math.round(pH)].color
-      })
+      if (this.poured[index]){
+        var stringified = JSON.stringify(require("../resources/colors.json"));
+        let colors = JSON.parse(stringified);
+        return (colors.colors[Math.round(pH)].color);
+      }
+      return "#70319D";
     },
     getHighlight(index) {
       if (this.selected === index) return "highlight";
@@ -247,7 +241,6 @@ export default {
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("../assets/solutions/liquid.svg");
 }
 .solution-overlay {
   position: absolute;
@@ -258,19 +251,11 @@ export default {
   background-size: contain;
   background-image: url("../assets/solutions/overlay.svg");
 }
-.solution-style {
-  position: absolute;
-  z-index: 2;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
 .solution-ph-meter {
   position: absolute;
   z-index: 2;
-  left: 0%;
-  right: 0%;
+  left: 0;
+  right: 0;
   bottom: 2%;
   width: 50%;
   height: 12%;
@@ -285,9 +270,9 @@ export default {
   color: white;
   z-index: 3;
   margin: 11.5% auto auto auto;
-  left: 0%;
-  right: 0%;
-  bottom: 0%;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 15%;
   height: 50%;
   font-weight: 100;

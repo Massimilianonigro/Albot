@@ -9,6 +9,7 @@
         </button>
       </li>
     </ul>
+    <div class="bin item"></div>
     <div class="background item">
       <div class="table-item item"></div>
     </div>
@@ -33,6 +34,14 @@ export default {
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
+}
+.bin{
+  background-image: url("../assets/backgrounds/bin.png");
+  width: 20%;
+  height: 20%;
+  bottom: 0;
+  left: 15%;
+  display: inline;
 }
 .table-item{
   bottom: 0;

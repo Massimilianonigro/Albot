@@ -456,7 +456,7 @@ a {
 	background-position-x: center;
 	background-repeat: no-repeat;
   background-size: contain;
-	background-image: url("../assets/uibuttons/ContinueFail.png");
+	background-image: url("../assets/uibuttons/NextButton.png");
   outline: none;
 }
 

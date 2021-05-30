@@ -19,7 +19,6 @@
       >
       </MixerBackground>
       <MixerPhase
-          v-on:switchBlock="switchBlock"
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen"
         v-on:practicePress="practicePress"
@@ -88,7 +87,6 @@ import IdentificationBackground from "./IdentificationBackground";
 export default {
   name: "GameScreen",
   created() {
-    this.setGamePhase("tutorial-selection");
     this.setSubstances(this.gamePhase.phase);
   },
   components: {
@@ -190,18 +188,22 @@ export default {
     displayTryAgain() {
       this.$refs.game.showTryAgainWindow();
     },
-    //can be deleted
     nextScreen() {
-      if (this.gameStatus === 2) {
-        // Reset on Practise picking
-        this.items.forEach((element) => (element.selected = false));
-      }
-      this.gameStatus += 1;
+      //TODO: add emit
+      this.selItems = [];
+      this.nonSelItems = [];
     },
-    //check
     prevScreen() {
-      this.items.forEach((element) => (element.selected = false));
-      this.gameStatus -= 1;
+      var stringified = JSON.stringify(require("../resources/phases.json"));
+      let phases = JSON.parse(stringified);
+      phases.phases.forEach(phase => {
+        if (phase.name === this.gamePhase.phase){
+          this.setGamePhase(phase.prev_phase);
+          this.setSubstances(phase.prev_phase);
+        }
+      })
+      this.selItems = [];
+      this.nonSelItems = [];
       this.$emit("goBack");
     },
     homeScreen() {
