@@ -118,7 +118,7 @@ export default {
     },
     getLiquidColor(index, pH){
       if (this.poured[index]){
-        var stringified = JSON.stringify(require("../resources/colors.json"));
+        let stringified = JSON.stringify(require("../resources/colors.json"));
         let colors = JSON.parse(stringified);
         return (colors.colors[Math.round(pH)].color);
       }
@@ -126,7 +126,7 @@ export default {
     },
     getHighlight(index) {
       if (this.selected === index) return "highlight";
-      return "nothighlight";
+      return "notHighlight";
     },
     getItemStyle(data, index) {
       let styleItem;
@@ -146,25 +146,8 @@ export default {
       }
       return styleItem;
     },
-    getPhBowl(data, index) {
-      console.log(data);
-      let urlImg = require("../assets/solutions/Solution" +
-        Math.round(data.ph) +
-        ".png");
-      let styleItem = {
-        left: index * 22 - 3 + "%",
-        bottom: "-20%",
-        height: "35%",
-        width: "15%",
-        "background-image": "url(" + urlImg + ")",
-      };
-      return styleItem;
-    },
     pourItem(index) {
       this.poured[index] = true;
-    },
-    practiceButton() {
-      this.$emit("practicePress");
     },
     nextPhaseButton() {
       this.$emit("nextPhasePress");
@@ -195,16 +178,13 @@ export default {
   height: 25%;
 }
 
-.nothighlight {
-  top: 0%;
+.notHighlight {
+  top: 0;
   height: 80%;
 }
-.kitchen-item:hover.nothighlight {
+.kitchen-item:hover.notHighlight {
   opacity: 0.8;
-  border-radius: 0;
-  border: 0;
-  border-style: none;
-  border-color: transparent;
+  border: 0 none transparent;
   background-color: #ffffff70;
   border-radius: 5px;
 }
@@ -220,9 +200,7 @@ export default {
 .kitchen-item:hover.highlight {
   opacity: 0.8;
   border-radius: 0;
-  border: 0;
-  border-style: none;
-  border-color: transparent;
+  border: 0 none transparent;
 }
 
 .solution-bowl {
@@ -251,32 +229,7 @@ export default {
   background-size: contain;
   background-image: url("../assets/solutions/overlay.svg");
 }
-.solution-ph-meter {
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  right: 0;
-  bottom: 2%;
-  width: 50%;
-  height: 12%;
-  margin: auto;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url("../assets/uibuttons/PHIndicator.png");
-}
-.solution-ph-meter-label {
-  color: white;
-  z-index: 3;
-  margin: 11.5% auto auto auto;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 15%;
-  height: 50%;
-  font-weight: 100;
-}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -286,20 +239,6 @@ ul {
 }
 a {
   color: #42b983;
-}
-.practice-btn {
-  position: absolute;
-  height: 12%;
-  width: 50%;
-  top: 40%;
-  left: 25%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: transparent;
-  background-position: center;
-  border: 0;
-  z-index: 1000;
-  background-image: url("../assets/uibuttons/PracticeButton.png");
 }
 .next-phase-btn {
   position: absolute;
@@ -314,29 +253,6 @@ a {
   border: 0;
   z-index: 1000;
   background-image: url("../assets/uibuttons/NextPhaseButton.png");
-}
-.bubble-tutorial-btn {
-  line-height: 5em;
-  position: static;
-  top: 70%;
-  width: 20%;
-  height: 100%;
-  z-index: 2000 !important;
-  color: transparent;
-  background-image: url("../assets/uibuttons/Tutorial.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position-x: center;
-  background-position-y: center;
-  background-color: transparent;
-  border: none;
-  margin: 1vw;
-}
-.practice-btn:focus {
-  outline: none;
-}
-.practice-btn:active {
-  opacity: 0.7;
 }
 .gj-banner {
   position: absolute;

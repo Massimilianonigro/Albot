@@ -9,8 +9,8 @@
           v-on:click="handleClickedItem(data)"
           v-bind:class="{
             highlight: data.selected,
-            nothighlight: !data.selected,
-            unclickable: getUnclickable(data.selected),
+            notHighlight: !data.selected,
+            unclickable: getNonClickable(data.selected),
           }"
           v-bind:style="{
             backgroundImage: 'url(' + data.src + ')',
@@ -94,7 +94,7 @@ export default {
         this.mixItems();
       }
     },
-    getUnclickable(selected){
+    getNonClickable(selected){
       if(selected) {
         return true;
       }

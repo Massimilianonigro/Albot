@@ -44,7 +44,7 @@
             v-on:click="selectItem(data, index)"
             v-bind:class="{
               highlight: index === pouredIndex,
-              nothighlight: index !== pouredIndex,
+              notHighlight: index !== pouredIndex,
             }"
             v-bind:style="{
               backgroundImage: 'url(' + data.src + ')',
@@ -207,26 +207,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-
-.solution-style{
-  pointer-events: none;
-  position: absolute;
-  bottom: 0;
-  height: 40%;
-  width: 14%;
-  right: 43%;
-  z-index: 2;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 .scoreboard{
   position: absolute;
 	z-index: 2;
   left: 30%;
-  top: 0%;
+  top: 0;
   width: 30%;
   height: 14%;
   margin: auto;
@@ -242,7 +227,7 @@ export default {
 	z-index: 3;
   margin: auto auto auto auto;
   left: 16%;
-  right: 0%;
+  right: 0;
   top: 28%;
   width: 80%;
   height: 40%;
@@ -272,10 +257,10 @@ export default {
   color: gray;
 	z-index: 3;
   margin: 14.5% auto auto auto;
-  top: 0%;
-  left: 0%;
-  right: 0%;
-  bottom: 0%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 15%;
   height: 50%;
   font-size: 4vh;
@@ -286,7 +271,7 @@ export default {
   position: absolute;
   z-index: 50;
   bottom: 22%;
-  left: 0%;
+  left: 0;
   right: 0;
   width: 88%;
   height: 30%;
@@ -311,10 +296,9 @@ a {
 	background-size: contain;
 	background-color: transparent;
 	background-position: center;
-  border: 0px;
+  border: 0;
   border-radius: 40px;
 	z-index: 1000;
-	background-size: contain;
   background-image: url("../assets/uibuttons/ResetButton.png");
 }
 

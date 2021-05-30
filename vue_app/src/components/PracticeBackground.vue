@@ -41,11 +41,6 @@ export default {
 	background-position-y: bottom;
 	background-image: url("../assets/backgrounds/TableTopView.png");
 }
-.ImageContainer{
-	border: 0;
-	height: 100%;
-	width: 80%;
-}
 
 .pH-scale{
   height: 100%;
@@ -57,9 +52,5 @@ export default {
   background-size: contain;
   background-image: url("../assets/backgrounds/pHScale.png");
   list-style-type: none;
-}
-.pH-button{
-  width: 70%;
-  height: 6.5%;
 }
 </style>

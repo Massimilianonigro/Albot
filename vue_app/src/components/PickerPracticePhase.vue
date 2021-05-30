@@ -11,7 +11,7 @@
             v-on:click="handleClickedItem(data)"
             v-bind:class="{
               highlight: data.selected,
-              nothighlight: !data.selected,
+              notHighlight: !data.selected,
             }"
             v-bind:style="{
               backgroundImage: 'url(' + data.src + ')',
@@ -25,11 +25,6 @@
           </button>
         </div>
       </div>
-            
-      <button class="setting-btn ui-btn" 
-        v-on:click="settingButton">
-      </button>
-      <SettingsWindow v-on:close="settingButton" v-if="settings"/>
       
       <button class="home-btn ui-btn" 
         v-on:click="homeButton">
@@ -39,12 +34,10 @@
 </template>
 
 <script>
-import SettingsWindow from "./SettingsWindow.vue";
 import {mapState} from "vuex";
 
 export default {
   components: {
-    SettingsWindow,
   },
   name: "PickerPractisePhase",
   props: {

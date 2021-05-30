@@ -28,7 +28,7 @@
            v-bind:key="index">
         <div v-show="showOnPHScale[index]"
              v-if="showOnPHScale[index]">
-          <div class="item-circle" v-bind:style=getArrowStyle(data.scale_placement.y)>
+          <div class="item-circle" v-bind:style=getCircleStyle(data.scale_placement.y)>
           </div>
         </div>
       </div>
@@ -67,14 +67,7 @@ export default {
     ...mapState(["substances", "showOnPHScale"])
   },
   methods:{
-    getShowElement(index){
-      console.log(this.showOnPHScale[index]);
-      return this.showOnPHScale[index];
-    },
-    forceRerender() {
-      this.scaleKey += 1;
-    },
-    getArrowStyle(y){
+    getCircleStyle(y){
       let y_position_elem = y.substring(0, y.length - 1);
       let y_pos = parseInt(y_position_elem) - 2;
 

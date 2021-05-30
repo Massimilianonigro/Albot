@@ -140,9 +140,6 @@ export default {
       this.selItem = selectedItem;
       //this.gameStatus += 1;
     },
-    switchBlock(){
-      this.blockPhase = this.$root.$children[0].blockPhase;
-    },
     sendPHGuess(index) {
       this.$emit("PHGuess", index);
     },
@@ -192,7 +189,7 @@ export default {
       this.$emit("");
     },
     prevScreen() {
-      var stringified = JSON.stringify(require("../resources/phases.json"));
+      let stringified = JSON.stringify(require("../resources/phases.json"));
       let phases = JSON.parse(stringified);
       phases.phases.forEach(phase => {
         if (phase.name === this.gamePhase.phase){

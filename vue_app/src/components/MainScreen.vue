@@ -168,9 +168,6 @@ export default {
       this.visibilityButtons = "block";
       this.$emit("submitName", this.user_name);
     },
-    requestName() {
-      this.$emit("requestName");
-    },
   },
 };
 </script>
@@ -283,13 +280,6 @@ a {
   outline: none;
 }
 
-.bot-bg {
-  position: absolute;
-  background-color: #ffffffb0;
-  z-index: 5;
-  height: 100%;
-  width: 100%;
-}
 .bot-welcome {
   position: absolute;
   top: 18%;

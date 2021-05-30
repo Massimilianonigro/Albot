@@ -30,16 +30,18 @@
         <div v-for="(data, index) in substances" v-bind:key="index">
           <button
               class="kitchen-item"
-              v-bind:class="{highlight: index === pouredIndex, nothighlight: index !== pouredIndex}"
+              v-bind:class="{highlight: index === pouredIndex, notHighlight: index !== pouredIndex}"
               v-on:click="selectItem(data, index)"
               v-bind:style= "getItemStyle(data, index)"
           ></button>
         </div>
         <button v-for="(data, index) in substances" v-bind:key="index"
-             v-bind:class="{'highlight-guessed': guessed[index], 'highlight-not-guessed': !guessed[index], highlight: index === pouredIndex, nothighlight: index !== pouredIndex}"
+             v-bind:class="{'highlight-guessed': guessed[index], 'highlight-not-guessed': !guessed[index], highlight: index === pouredIndex, notHighlight: index !== pouredIndex}"
              v-bind:style= "getCheckStyle(data, index)"
                 v-on:click="selectItem(data, index)">
         </button>
+        <div class="pouring-solution" v-if="isPouring">
+        </div>
         <div
             class="solution-bowl"
         ></div>
@@ -96,6 +98,7 @@ export default {
       showInfo: false,
       showReset: false,
       complete: true,
+      isPouring: false,
       settingsArray: [
         {x: "30%", y: "0%"},
         {x: "60%", y: "0%"},
@@ -147,7 +150,7 @@ export default {
       };
     },
     getCheckStyle(data, index){
-      //this.complete = this.guessed.every((v) => v === true);
+      this.complete = this.guessed.every((v) => v === true);
       return{
         left: this.getXbyIndex(index),
         bottom: this.getYbyIndex(index),
@@ -162,9 +165,16 @@ export default {
         this.setBlockPhase(true); //TODO: testing flag
         this.showReset = true;
       }
+      if (this.pouredIndex !== -1 ){
+        this.isPouring = true;
+        this.throwLiquid();
+      }
       //in any case, whenever an element is clicked, we pour it and change the bowl
       this.pouredPh = data.ph;
       this.pouredIndex = index;
+    },
+    throwLiquid(){
+      setTimeout(() => {  this.isPouring = false; }, 1000);
     },
     addPoints(){
       this.showCompliment = true;
@@ -243,9 +253,6 @@ export default {
   z-index: 1000;
   background-image: url("../assets/uibuttons/NextPhaseButton.png");
 }
-.solution-style{
-  pointer-events: none;
-}
 .white-block {
   position: absolute;
   background-color: #ffffffb0;
@@ -273,6 +280,19 @@ ul {
 a {
   color: #42b983;
 }
+.pouring-solution{
+  position: absolute;
+  bottom: -21%;
+  height: 40%;
+  width: 14%;
+  left: -15%;
+  z-index: 2;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../assets/solutions/pouring.png");
+}
 .reset-btn{
   position: absolute;
   height: 14%;
@@ -283,7 +303,7 @@ a {
   background-size: contain;
   background-color: transparent;
   background-position: center;
-  border: 0px;
+  border: 0;
   border-radius: 40px;
   z-index: 1000;
   background-image: url("../assets/uibuttons/ResetButton.png");
@@ -329,14 +349,6 @@ a {
 
 .highlight-not-guessed:focus{
   outline: none;
-}
-
-.spotlight-selected {
-  border-radius: 5px;
-  border: none;
-  background-color: transparent;
-  transform: rotate(115deg);
-  z-index: 100;
 }
 
 .ui-btn{
