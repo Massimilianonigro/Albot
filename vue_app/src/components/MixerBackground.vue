@@ -1,8 +1,8 @@
 <template>
   <div class="image-container">
     <div class="scales-container">
-      <div class="pH-scale-universal" :key = isRerender></div>
-      <div class="pH-scale" :key = isRerender>
+      <div class="pH-scale-universal" :key = isRerender v-if="showPHScale[0]"></div>
+      <div class="pH-scale" :key = isRerender v-if="showPHScale[1]">
         <div v-for="(data, index) in substances"
              v-bind:key="index">
           <div v-show="showOnPHScale[index]"
@@ -64,7 +64,7 @@ export default {
     };
   },
   computed:{
-    ...mapState(["substances", "showOnPHScale"])
+    ...mapState(["substances", "showOnPHScale", "showPHScale"])
   },
   methods:{
     getCircleStyle(y){

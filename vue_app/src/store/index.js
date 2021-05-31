@@ -10,6 +10,7 @@ export default new Vuex.Store({
         showNextPhase: false,
         showOnPHScale: [false, false, false],
         guessed: [false, false, false, false, false, false, false, false, false, false, false],
+        showPHScale: [false, false],
         gamePhase: {
             phase: "introduction",
             isSelection: false,
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     mutations: {
         setShowOnPHScale(state, element){
           state.showOnPHScale[element] = true;
+        },
+        setShowPHScale(state, scale){
+          state.showPHScale[scale] = true;
         },
         setBlockPhase(state, newValue) {
             state.blockPhase = newValue;
@@ -90,6 +94,9 @@ export default new Vuex.Store({
         },
         setGamePhase(context, phase){
             context.commit('setGamePhase', phase);
+        },
+        setShowPHScale(context, scale){
+            context.commit('setShowPHScale', scale);
         }
     }
 })

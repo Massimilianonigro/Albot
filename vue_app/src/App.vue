@@ -71,7 +71,7 @@ export default {
     ...mapState(["gamePhase"])
   },
   methods: {
-    ...mapActions(["setBlockPhase", "setSubstances", "setShowNextPhase","setGuessed", "setGamePhase"]),
+    ...mapActions(["setBlockPhase", "setSubstances", "setShowNextPhase","setGuessed", "setGamePhase", "setShowPHScale"]),
     resetHome() {
       //only for testing purposes, to be performed by backend
       this.setGamePhase("introduction");
@@ -161,7 +161,7 @@ export default {
   created: function () {
     let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://d66980559fad.ngrok.io");
+    this.connection = new WebSocket("ws://9a09c8b1ea57.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -185,6 +185,10 @@ export default {
             if (_this.complete){
               _this.selectionComplete();
             }
+            return;
+          case "show_universal":
+            _this.setShowPHScale(0);
+            _this.$refs.gameRef.isRerender += 1;
             return;
           default:
             self.$refs.chatRef.receiveMessage(message);

@@ -138,7 +138,6 @@ export default {
     pourItem(selectedItem) {
       console.log(selectedItem);
       this.selItem = selectedItem;
-      //this.gameStatus += 1;
     },
     sendPHGuess(index) {
       this.$emit("PHGuess", index);
@@ -169,7 +168,6 @@ export default {
       if (this.gameStatus === 1) this.$refs.picker.updatePart();
     },
     practicePress() {
-      //this.nextScreen();
       this.$emit("practicePress");
     },
     selectItem(index) {

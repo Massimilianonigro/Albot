@@ -1,6 +1,6 @@
 <template>
-  <div class="background">
-    <div class="ItemShelf" v-bind:style="{left: '-15%'}">
+  <div class="background" v-bind:style="{left: '-10%'}">
+    <div class="ItemShelf">
       <div style="margin:5px; z-index:1000" >
         <button
           v-for="(data, index) in substances"
@@ -89,7 +89,7 @@ export default {
       }
     },
     endSelection(){
-      if (this.selection === 3){
+      if (this.selection === 4){
         this.$emit("selectionComplete");
         this.mixItems();
       }

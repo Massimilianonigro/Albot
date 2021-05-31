@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="background">
+    <div class="background" >
       <div class="item-container">
         <div v-for="(data, index) in substances" v-bind:key="index">
           <button
@@ -86,7 +86,7 @@ export default {
       selected: undefined,
       selectedPh: "Select",
       complete: false,
-      poured: [false, false, false],
+      poured: [false, false, false, false],
       selectionOrder: [],
       nextSelected: 0,
     };
