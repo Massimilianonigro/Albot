@@ -73,7 +73,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["setBlockPhase", "setSubstances", "setShowNextPhase","setGuessed", "setGamePhase"]),
+    ...mapActions([
+      "setBlockPhase",
+      "setSubstances",
+      "setShowNextPhase",
+      "setGuessed",
+      "setGamePhase",
+    ]),
     resetHome() {
       this.mainStatus = 0;
       this.sendHomeClick();
@@ -83,7 +89,7 @@ export default {
       //only for testing purposes, to be removed
       this.setGamePhase("practice-pH");
     },
-    sendPHGuess(index){
+    sendPHGuess(index) {
       let message = '{"content":"' + index + '", "type":"guessed"}';
       this.sendMessage(message);
     },
@@ -170,14 +176,15 @@ export default {
   created: function () {
     var _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://cae59bada1d0.ngrok.io");
+    this.connection = new WebSocket("ws://http://9a09c8b1ea57.ngrok.io");
 
     let self = this;
+    z;
     this.connection.onmessage = function (event) {
       let messages = JSON.parse(event.data);
       messages.messages.forEach((message) => {
         console.log("Examing message with ui_effect: " + message.ui_effect);
-        switch(message.ui_effect){
+        switch (message.ui_effect) {
           case "hidden":
             this.user_name = message.text;
             return;
@@ -191,7 +198,7 @@ export default {
           case "guessed_ph":
             _this.setGuessed(message.text);
             _this.complete = _this.guessed.every((v) => v === true);
-            if (_this.complete){
+            if (_this.complete) {
               _this.selectionComplete();
             }
             return;
