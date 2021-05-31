@@ -1,7 +1,7 @@
 <!--Main screen should only contain start button that leads to tutorial-->
 <template>
   <div id="app" :style="{ height: '100%' }">
-    <div v-if="mainStatus === 0">
+    <div v-if="this.gamePhase.phase === 'introduction'">
       <MainScreen
         v-on:startIntro="startIntroduction"
         v-on:startPractice="startPractice"
@@ -16,12 +16,10 @@
         v-on:sendMessage="sendMessage"
         v-on:addPoints="addPractisePoints"
         v-on:nextClicked="handleNextClick"
-        v-on:nextPracticeClicked="handleNextPracticeClick"
+        v-on:nextPracticeClicked="selectionComplete"
         v-on:tryAgainClicked="handleTryAgainClick"
         v-on:continueClicked="handleContinueClick"
         v-on:showTryAgain="displayTryAgain"
-        v-on:submitName="submitName"
-        v-on:requestName="requestName"
       />
       <GameScreen
         ref="gameRef"
@@ -29,7 +27,7 @@
         v-bind:user_name="user_name"
         v-on:goHome="resetHome"
         v-on:goBack="sendBackClick"
-        v-on:practicePress="handlePracticePress"
+        v-on:practicePress="selectionComplete"
         v-on:introClick="sendIntroductoryJSON"
         v-on:practClick="sendPracticeJSON"
         v-on:sendNextInChat="displayNextButton"
@@ -53,8 +51,7 @@
 import MainScreen from "./components/MainScreen.vue";
 import GameScreen from "./components/GameScreen.vue";
 import Chat from "./components/Chat.vue";
-import { mapActions } from "vuex";
-//TODO: create removeElement in GameScreen, pass it on to Id Phase, delete it
+import { mapActions, mapState } from "vuex";
 export default {
   name: "App",
   components: {
@@ -63,14 +60,15 @@ export default {
     Chat,
   },
   data() {
-    //mainStatus to be deleted
     return {
       message: "",
-      mainStatus: 0, // 0 -> Main Screen, 1 -> Picker Tutorial, 2-> Mixer Tutorial, 3-> Picker Practice 4-> Mixer Practice
       user_name: "",
       chatLink: undefined,
       complete: false,
     };
+  },
+  computed: {
+    ...mapState(["gamePhase"]),
   },
   methods: {
     ...mapActions([
@@ -79,14 +77,15 @@ export default {
       "setShowNextPhase",
       "setGuessed",
       "setGamePhase",
+      "setShowPHScale",
     ]),
     resetHome() {
-      this.mainStatus = 0;
+      //only for testing purposes, to be performed by backend
+      this.setGamePhase("introduction");
       this.sendHomeClick();
-      this.requestName();
     },
     pHIdentificationPhase() {
-      //only for testing purposes, to be removed
+      //only for testing purposes, to be performed by backend
       this.setGamePhase("practice-pH");
     },
     sendPHGuess(index) {
@@ -94,12 +93,12 @@ export default {
       this.sendMessage(message);
     },
     startIntroduction() {
-      this.sendIntroductoryJSON();
-      this.mainStatus = 1;
+      this.sendItemClick("introduction");
+      //only for testing purposes, to be removed
+      this.setGamePhase("tutorial-selection");
     },
     startPractice() {
       this.sendPracticeJSON();
-      this.mainStatus = 3;
       this.pHIdentificationPhase();
     },
     sendMessage: function (message) {
@@ -123,15 +122,8 @@ export default {
       this.sendItemClick("home");
     },
     handlePracticePress() {
-      this.sendItemClick("next");
-    },
-    requestName() {
-      let message = '{"content":"", "type":"name_request"}';
+      let message = '{"content":"", "type":"selection_complete"}';
       this.sendMessage(message);
-    },
-    handleNextPracticeClick() {
-      this.$refs.gameRef.nextPracticeClicked();
-      this.sendItemClick("next");
     },
     handleTryAgainClick() {
       this.sendItemClick("tryAgain");
@@ -174,9 +166,9 @@ export default {
     },
   },
   created: function () {
-    var _this = this;
+    let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://http://9a09c8b1ea57.ngrok.io");
+    this.connection = new WebSocket("ws://9a09c8b1ea57.ngrok.io");
 
     let self = this;
     z;
@@ -202,12 +194,17 @@ export default {
               _this.selectionComplete();
             }
             return;
+          case "show_universal":
+            _this.setShowPHScale(0);
+            _this.$refs.gameRef.isRerender += 1;
+            return;
           default:
             self.$refs.chatRef.receiveMessage(message);
         }
       });
       if (messages.change_phase !== "") {
-        this.setGamePhase(messages.change_phase);
+        _this.setGamePhase(messages.change_phase);
+        _this.setSubstances(messages.change_phase);
       }
     };
 
@@ -226,10 +223,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #828e99;
-}
-.button-exe {
-  position: absolute;
-  z-index: 100;
-  top: 105%;
 }
 </style>

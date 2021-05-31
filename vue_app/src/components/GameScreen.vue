@@ -19,7 +19,6 @@
       >
       </MixerBackground>
       <MixerPhase
-          v-on:switchBlock="switchBlock"
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen"
         v-on:practicePress="practicePress"
@@ -40,6 +39,7 @@
           v-on:backPress="prevScreen"
           v-on:continuePress="continueClick"
           v-on:tryAgainPress="tryAgainClick"
+          v-on:nextPhasePress="practicePress"
           v-on:infoPress="infoClick"
       />
     </div>
@@ -50,7 +50,7 @@
         ref="pracpicker"
         v-on:sendNextInPracticeChat="displayNextPracticeButton"
         v-on:sendItemMessage="selectItem"
-        v-on:nextPress="practiceMix"
+        v-on:nextPress="nextScreen"
         v-on:homePress="homeScreen"
       />
     </div>
@@ -88,7 +88,6 @@ import IdentificationBackground from "./IdentificationBackground";
 export default {
   name: "GameScreen",
   created() {
-    this.setGamePhase("tutorial-selection");
     this.setSubstances(this.gamePhase.phase);
   },
   components: {
@@ -139,10 +138,6 @@ export default {
     pourItem(selectedItem) {
       console.log(selectedItem);
       this.selItem = selectedItem;
-      //this.gameStatus += 1;
-    },
-    switchBlock(){
-      this.blockPhase = this.$root.$children[0].blockPhase;
     },
     sendPHGuess(index) {
       this.$emit("PHGuess", index);
@@ -172,12 +167,7 @@ export default {
     nextClicked() {
       if (this.gameStatus === 1) this.$refs.picker.updatePart();
     },
-    //never used
-    nextPracticeClicked() {
-      if (this.gameStatus === 3) this.$refs.pracpicker.nextClick();
-    },
     practicePress() {
-      this.nextScreen();
       this.$emit("practicePress");
     },
     selectItem(index) {
@@ -190,18 +180,23 @@ export default {
     displayTryAgain() {
       this.$refs.game.showTryAgainWindow();
     },
-    //can be deleted
     nextScreen() {
-      if (this.gameStatus === 2) {
-        // Reset on Practise picking
-        this.items.forEach((element) => (element.selected = false));
-      }
-      this.gameStatus += 1;
+      //TODO: add emit
+      //this.selItems = [];
+      this.nonSelItems = [];
+      this.$emit("");
     },
-    //check
     prevScreen() {
-      this.items.forEach((element) => (element.selected = false));
-      this.gameStatus -= 1;
+      let stringified = JSON.stringify(require("../resources/phases.json"));
+      let phases = JSON.parse(stringified);
+      phases.phases.forEach(phase => {
+        if (phase.name === this.gamePhase.phase){
+          this.setGamePhase(phase.prev_phase);
+          this.setSubstances(phase.prev_phase);
+        }
+      })
+      this.selItems = [];
+      this.nonSelItems = [];
       this.$emit("goBack");
     },
     homeScreen() {

@@ -9,6 +9,7 @@
         </button>
       </li>
     </ul>
+    <div class="bin item"></div>
     <div class="background item">
       <div class="table-item item"></div>
     </div>
@@ -34,6 +35,14 @@ export default {
   background-repeat: no-repeat;
   background-size: contain;
 }
+.bin{
+  background-image: url("../assets/backgrounds/bin.png");
+  width: 20%;
+  height: 20%;
+  bottom: 0;
+  left: 15%;
+  display: inline;
+}
 .table-item{
   bottom: 0;
   height: 42%;
@@ -43,12 +52,6 @@ export default {
   background-position-y: bottom;
   background-image: url("../assets/backgrounds/TableTopView.png");
 }
-.ImageContainer{
-  border: 0;
-  height: 100%;
-  width: 80%;
-}
-
 .pH-scale{
   height: 100%;
   width:  15%;
@@ -74,8 +77,8 @@ export default {
   background-color: transparent;
 }
 
-.pH-button{
-
+.pH-button:focus{
+  outline: #ffffff solid 4px;
 }
 
 </style>

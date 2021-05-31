@@ -36,7 +36,7 @@
 	background-color: #ffffff70;
 }
 
-.nothighlight {
+.notHighlight {
 	color: #000000;
 	border-color: #ffffff00;
 	background-color: #ffffff00;
@@ -51,6 +51,45 @@
 	z-index: 4;
 	position: absolute;
 	top: 0;
+}
+
+.solution-bowl {
+	position: absolute;
+	bottom: 0;
+	height: 40%;
+	width: 14%;
+	right: 43%;
+	z-index: 2;
+	background-position-y: bottom;
+	background-position-x: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("../assets/solutions/bowl.svg");
+}
+.solution-liquid {
+	position: absolute;
+	bottom: 0;
+	height: 20%;
+	width: 12%;
+	right: 44%;
+	z-index: 3;
+	background-position-y: bottom;
+	background-position-x: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.solution-overlay {
+	position: absolute;
+	bottom: 0;
+	height: 40%;
+	width: 14%;
+	right: 43%;
+	z-index: 4;
+	background-position-y: bottom;
+	background-position-x: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("../assets/solutions/overlay.svg");
 }
 
 	

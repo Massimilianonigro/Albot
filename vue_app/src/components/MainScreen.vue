@@ -168,9 +168,6 @@ export default {
       this.visibilityButtons = "block";
       this.$emit("submitName", this.user_name);
     },
-    requestName() {
-      this.$emit("requestName");
-    },
   },
 };
 </script>
@@ -196,6 +193,11 @@ a {
   background-image: url("../assets/uibuttons/StartButton.png");
   border: 0;
 }
+
+.start-btn:focus{
+  outline: none;
+}
+
 .main-bg {
   position: absolute;
   top: 0;
@@ -253,7 +255,7 @@ a {
   width: 30%;
   z-index: 1;
   background-position-x: center;
-  background-image: url("../assets/backgrounds/BotTittle.png");
+  background-image: url("../assets/backgrounds/BotTitle.png");
 }
 .icon {
   position: absolute;
@@ -273,13 +275,11 @@ a {
   background-image: url("../assets/uibuttons/ReportButton.png");
   background-color: transparent !important;
 }
-.bot-bg {
-  position: absolute;
-  background-color: #ffffffb0;
-  z-index: 5;
-  height: 100%;
-  width: 100%;
+
+.report:focus{
+  outline: none;
 }
+
 .bot-welcome {
   position: absolute;
   top: 18%;
@@ -358,6 +358,10 @@ a {
   margin: 1vw;
 }
 
+.bubble-btn:focus{
+  outline: none;
+}
+
 .bubble-tutorial-btn {
   line-height: 5em;
   position: static;
@@ -375,4 +379,9 @@ a {
   border: none;
   margin: 1vw;
 }
+
+.bubble-tutorial-btn:focus{
+  outline: none;
+}
+
 </style>

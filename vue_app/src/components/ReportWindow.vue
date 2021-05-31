@@ -37,25 +37,22 @@ export default {
   left: 20%;
   right: 20%;
   overflow: visible;
-  border: 4px solid;
   border-radius: 6px;
-  border-color: #ffa000;	
+  border: 4px solid #ffa000;
   background-color: #ffffff;	
   z-index: 1000;
 }
 .close{
   opacity: 1;
-  border-radius: 6px;
   height: 40px;
   width: 40px;
   position: absolute;
   top: -4%;
-  padding: 0px;
+  padding: 0;
   right: -4%;
-  border: 4px solid;
   border-radius: 20px;
   color: #fff;
-  border-color: #e28f00;	
+  border: 4px solid #e28f00;
   background-color: #ffa000;	
   z-index: 2;
 }
@@ -67,6 +64,5 @@ export default {
   background-image: url("../assets/backgrounds/report.png");
   z-index: 1;
 	background-repeat: no-repeat;
-	background-size: contain;
 }
 </style>

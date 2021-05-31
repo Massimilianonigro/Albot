@@ -43,8 +43,8 @@
             class="kitchen-item"
             v-on:click="selectItem(data, index)"
             v-bind:class="{
-              highlight: index == pouredIndex,
-              nothighlight: index != pouredIndex,
+              highlight: index === pouredIndex,
+              notHighlight: index !== pouredIndex,
             }"
             v-bind:style="{
               backgroundImage: 'url(' + data.src + ')',
@@ -55,22 +55,27 @@
             }"
           ></button>
         </div>
-        <div 
-          :style="getPhBowl()"
-          class="solution-style"
-        >
-        </div>
+        <div
+            class="solution-bowl"
+        ></div>
+        <svg
+            class="solution-liquid"
+            v-bind:style="{
+              color: getLiquidColor()
+              }"
+            width="161" height="63" viewBox="0 0 161 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M160.71 22.5799C160.74 22.5299 160.77 22.4799 160.8 22.4299H160.73C160.73 10.1499 124.96 0.199951 80.84 0.199951C36.72 0.199951 0.950073 10.1499 0.950073 22.4299H0.880005C0.910005 22.4799 0.939971 22.5299 0.969971 22.5799C1.02997 25.2099 2.73007 27.7399 5.82007 30.0799C20.5401 49.5099 48.62 62.6499 80.85 62.6499C113.08 62.6499 141.16 49.5099 155.88 30.0799C158.94 27.7399 160.64 25.2199 160.71 22.5799Z" fill="currentColor"/>
+
+          ></svg>
+        <div
+            class="solution-overlay"
+        ></div>
         
       </div>
       <button class="back-btn ui-btn" 
         v-on:click="backButton()">
       </button>
-      
-      <button class="setting-btn ui-btn" 
-        v-on:click="settingButton()">
-      </button>
-      <SettingsWindow v-on:close="settingButton()" v-if="settings"/>
-      
+
       <button class="home-btn ui-btn" 
         v-on:click="homeButton()">
       </button>
@@ -88,12 +93,6 @@ export default {
   components: {
   },
   name: "PracticePhase",
-  props: {
-    items: {
-      type: Array,
-      required: true,
-    },
-  },
   data() {
     return {
       settings: false,
@@ -124,21 +123,29 @@ export default {
     ...mapState(["substances"])
   },
   methods: {
+    getLiquidColor(){
+      if(this.pouredIndex !== -1){
+        let stringified = JSON.stringify(require("../resources/colors.json"));
+        let colors = JSON.parse(stringified);
+        return (colors.colors[Math.round(this.pouredPh)].color);
+      }
+      return "#70319D";
+    },
     getXbyIndex(index) {
-      if ( this.pouredIndex == index ){
+      if ( this.pouredIndex === index ){
         return "40%"
       }
       return this.settingsArray[index].x
     },
     getYbyIndex(index) {
-      if ( this.pouredIndex == index ){
+      if ( this.pouredIndex === index ){
         return "10%"
       }
       return this.settingsArray[index].y
     },
     selectItem(data, index){
       this.showReset = true;
-      if (this.pouredIndex != index){
+      if (this.pouredIndex !== index){
         this.pouredPh = data.ph;
         this.pouredIndex = index;
         console.log("Emitting from Phase");
@@ -154,26 +161,13 @@ export default {
       this.score += 10;
       setTimeout(() => this.showCompliment = false, 2800);
     },
-    getPhBowl(){
-      let urlImg;
-      if (this.pouredPh  == -1){
-        urlImg = require("../assets/solutions/Solutionbowl.png");
-      }
-      else{
-        urlImg = require("../assets/solutions/Solution"+ Math.round(this.pouredPh) +".png");
-      }
-      let styleItem = {
-        'background-image': 'url('+ urlImg +')',
-      }
-      return styleItem;
-    },
     showTryAgainWindow(){
       this.showTryAgain = true;
       this.showInfo = true;
     },
     backButton(){
-      while(this.items.length > 0) {
-        this.items.pop();
+      while(this.substances.length > 0) {
+        this.substances.pop();
       }
       this.$emit("backPress");
     },
@@ -212,39 +206,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.solution {
-  position: absolute;
-  bottom: 0;
-  height: 40%;
-  width: 14%;
-  right: 43%;
-  z-index: 2;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url("../assets/solutions/Solutionbowl.png");
-}
-
-.solution-style{
-  pointer-events: none;
-  position: absolute;
-  bottom: 0;
-  height: 40%;
-  width: 14%;
-  right: 43%;
-  z-index: 2;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
 
 .scoreboard{
   position: absolute;
 	z-index: 2;
   left: 30%;
-  top: 0%;
+  top: 0;
   width: 30%;
   height: 14%;
   margin: auto;
@@ -260,7 +227,7 @@ export default {
 	z-index: 3;
   margin: auto auto auto auto;
   left: 16%;
-  right: 0%;
+  right: 0;
   top: 28%;
   width: 80%;
   height: 40%;
@@ -290,10 +257,10 @@ export default {
   color: gray;
 	z-index: 3;
   margin: 14.5% auto auto auto;
-  top: 0%;
-  left: 0%;
-  right: 0%;
-  bottom: 0%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 15%;
   height: 50%;
   font-size: 4vh;
@@ -304,7 +271,7 @@ export default {
   position: absolute;
   z-index: 50;
   bottom: 22%;
-  left: 0%;
+  left: 0;
   right: 0;
   width: 88%;
   height: 30%;
@@ -329,10 +296,9 @@ a {
 	background-size: contain;
 	background-color: transparent;
 	background-position: center;
-  border: 0px;
+  border: 0;
   border-radius: 40px;
 	z-index: 1000;
-	background-size: contain;
   background-image: url("../assets/uibuttons/ResetButton.png");
 }
 
@@ -456,7 +422,7 @@ a {
 	background-position-x: center;
 	background-repeat: no-repeat;
   background-size: contain;
-	background-image: url("../assets/uibuttons/ContinueFail.png");
+	background-image: url("../assets/uibuttons/NextButton.png");
   outline: none;
 }
 

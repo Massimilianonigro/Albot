@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="background">
+    <div class="background" >
       <div class="item-container">
         <div v-for="(data, index) in substances" v-bind:key="index">
           <button
@@ -11,7 +11,6 @@
           ></button>
           <div
             class="solution-bowl"
-            v-if="!poured[index]"
             v-bind:style="{
               left: index * 22 - 3 + '%',
               bottom: '-20%',
@@ -19,10 +18,27 @@
               width: '15%',
             }"
           ></div>
+          <svg
+              class="solution-liquid"
+              v-bind:style="{
+              left: index * 22 - 2 + '%',
+              bottom: '-19%',
+              height: '19%',
+              width: '13%',
+              color: getLiquidColor(index, data.ph),
+              }"
+              width="161" height="63" viewBox="0 0 161 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M160.71 22.5799C160.74 22.5299 160.77 22.4799 160.8 22.4299H160.73C160.73 10.1499 124.96 0.199951 80.84 0.199951C36.72 0.199951 0.950073 10.1499 0.950073 22.4299H0.880005C0.910005 22.4799 0.939971 22.5299 0.969971 22.5799C1.02997 25.2099 2.73007 27.7399 5.82007 30.0799C20.5401 49.5099 48.62 62.6499 80.85 62.6499C113.08 62.6499 141.16 49.5099 155.88 30.0799C158.94 27.7399 160.64 25.2199 160.71 22.5799Z" fill="currentColor"/>
+
+          ></svg>
           <div
-            v-if="poured[index]"
-            :style="getPhBowl(data, index)"
-            class="solution-style"
+              class="solution-overlay"
+              v-bind:style="{
+              left: index * 22 - 3 + '%',
+              bottom: '-20%',
+              height: '35%',
+              width: '15%',
+            }"
           ></div>
         </div>
       </div>
@@ -70,7 +86,7 @@ export default {
       selected: undefined,
       selectedPh: "Select",
       complete: false,
-      poured: [false, false, false],
+      poured: [false, false, false, false],
       selectionOrder: [],
       nextSelected: 0,
     };
@@ -100,9 +116,17 @@ export default {
         this.setBlockPhase(true); //TODO: testing flag
       }
     },
+    getLiquidColor(index, pH){
+      if (this.poured[index]){
+        let stringified = JSON.stringify(require("../resources/colors.json"));
+        let colors = JSON.parse(stringified);
+        return (colors.colors[Math.round(pH)].color);
+      }
+      return "#70319D";
+    },
     getHighlight(index) {
       if (this.selected === index) return "highlight";
-      return "nothighlight";
+      return "notHighlight";
     },
     getItemStyle(data, index) {
       let styleItem;
@@ -122,25 +146,8 @@ export default {
       }
       return styleItem;
     },
-    getPhBowl(data, index) {
-      console.log(data);
-      let urlImg = require("../assets/solutions/Solution" +
-        Math.round(data.ph) +
-        ".png");
-      let styleItem = {
-        left: index * 22 - 3 + "%",
-        bottom: "-20%",
-        height: "35%",
-        width: "15%",
-        "background-image": "url(" + urlImg + ")",
-      };
-      return styleItem;
-    },
     pourItem(index) {
       this.poured[index] = true;
-    },
-    practiceButton() {
-      this.$emit("practicePress");
     },
     nextPhaseButton() {
       this.$emit("nextPhasePress");
@@ -171,16 +178,13 @@ export default {
   height: 25%;
 }
 
-.nothighlight {
-  top: 0%;
+.notHighlight {
+  top: 0;
   height: 80%;
 }
-.kitchen-item:hover.nothighlight {
+.kitchen-item:hover.notHighlight {
   opacity: 0.8;
-  border-radius: 0;
-  border: 0;
-  border-style: none;
-  border-color: transparent;
+  border: 0 none transparent;
   background-color: #ffffff70;
   border-radius: 5px;
 }
@@ -196,9 +200,7 @@ export default {
 .kitchen-item:hover.highlight {
   opacity: 0.8;
   border-radius: 0;
-  border: 0;
-  border-style: none;
-  border-color: transparent;
+  border: 0 none transparent;
 }
 
 .solution-bowl {
@@ -208,42 +210,26 @@ export default {
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url("../assets/solutions/Solutionbowl.png");
+  background-image: url("../assets/solutions/bowl.svg");
 }
-.solution-style {
+.solution-liquid {
   position: absolute;
-  z-index: 2;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.solution-ph-meter {
-  position: absolute;
-  z-index: 2;
-  left: 0%;
-  right: 0%;
-  bottom: 2%;
-  width: 50%;
-  height: 12%;
-  margin: auto;
-  background-position-y: bottom;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url("../assets/uibuttons/PHIndicator.png");
-}
-.solution-ph-meter-label {
-  color: white;
   z-index: 3;
-  margin: 11.5% auto auto auto;
-  left: 0%;
-  right: 0%;
-  bottom: 0%;
-  width: 15%;
-  height: 50%;
-  font-weight: 100;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
+.solution-overlay {
+  position: absolute;
+  z-index: 4;
+  background-position-y: bottom;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../assets/solutions/overlay.svg");
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -253,20 +239,6 @@ ul {
 }
 a {
   color: #42b983;
-}
-.practice-btn {
-  position: absolute;
-  height: 12%;
-  width: 50%;
-  top: 40%;
-  left: 25%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: transparent;
-  background-position: center;
-  border: 0;
-  z-index: 1000;
-  background-image: url("../assets/uibuttons/PracticeButton.png");
 }
 .next-phase-btn {
   position: absolute;
@@ -280,30 +252,7 @@ a {
   background-position: center;
   border: 0;
   z-index: 1000;
-  background-image: url("../assets/uibuttons/Tutorial.png");
-}
-.bubble-tutorial-btn {
-  line-height: 5em;
-  position: static;
-  top: 70%;
-  width: 20%;
-  height: 100%;
-  z-index: 2000 !important;
-  color: transparent;
-  background-image: url("../assets/uibuttons/Tutorial.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position-x: center;
-  background-position-y: center;
-  background-color: transparent;
-  border: none;
-  margin: 1vw;
-}
-.practice-btn:focus {
-  outline: none;
-}
-.practice-btn:active {
-  opacity: 0.7;
+  background-image: url("../assets/uibuttons/NextPhaseButton.png");
 }
 .gj-banner {
   position: absolute;

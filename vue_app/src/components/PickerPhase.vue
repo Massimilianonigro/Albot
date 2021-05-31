@@ -1,5 +1,5 @@
 <template>
-  <div class="background">
+  <div class="background" v-bind:style="{left: '-10%'}">
     <div class="ItemShelf">
       <div style="margin:5px; z-index:1000" >
         <button
@@ -9,8 +9,8 @@
           v-on:click="handleClickedItem(data)"
           v-bind:class="{
             highlight: data.selected,
-            nothighlight: !data.selected,
-            unclickable: getUnclickable(data.selected),
+            notHighlight: !data.selected,
+            unclickable: getNonClickable(data.selected),
           }"
           v-bind:style="{
             backgroundImage: 'url(' + data.src + ')',
@@ -89,12 +89,12 @@ export default {
       }
     },
     endSelection(){
-      if (this.selection === 3){
+      if (this.selection === 4){
         this.$emit("selectionComplete");
         this.mixItems();
       }
     },
-    getUnclickable(selected){
+    getNonClickable(selected){
       if(selected) {
         return true;
       }

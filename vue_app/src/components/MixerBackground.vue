@@ -1,8 +1,10 @@
 <template>
   <div class="image-container">
-    <div class="pH-scale" :key = isRerender>
-      <div v-for="(data, index) in substances"
-           v-bind:key="index">
+    <div class="scales-container">
+      <div class="pH-scale-universal" :key = isRerender v-if="showPHScale[0]"></div>
+      <div class="pH-scale" :key = isRerender v-if="showPHScale[1]">
+        <div v-for="(data, index) in substances"
+             v-bind:key="index">
           <div v-show="showOnPHScale[index]"
                v-if="showOnPHScale[index]">
             <div
@@ -13,9 +15,22 @@
 				bottom: data.scale_placement.y,
 				height: data.scale_placement.h,
 				width: data.scale_placement.w,
+				opacity: '1',
+				zIndex: 100
 				}">
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div :key = isRerender>
+      <div v-for="(data, index) in substances"
+           v-bind:key="index">
+        <div v-show="showOnPHScale[index]"
+             v-if="showOnPHScale[index]">
+          <div class="item-circle" v-bind:style=getCircleStyle(data.scale_placement.y)>
           </div>
+        </div>
       </div>
     </div>
     <div class="background item">
@@ -49,15 +64,20 @@ export default {
     };
   },
   computed:{
-    ...mapState(["substances", "showOnPHScale"])
+    ...mapState(["substances", "showOnPHScale", "showPHScale"])
   },
   methods:{
-    getShowElement(index){
-      console.log(this.showOnPHScale[index]);
-      return this.showOnPHScale[index];
-    },
-    forceRerender() {
-      this.scaleKey += 1;
+    getCircleStyle(y){
+      let y_position_elem = y.substring(0, y.length - 1);
+      let y_pos = parseInt(y_position_elem) - 2;
+
+      return ({
+        bottom: y_pos + "%",
+        left: "0",
+        height: "10%",
+        width: "19%",
+        zIndex: "5"
+      })
     }
   }
 };
@@ -77,6 +97,12 @@ export default {
 	background-repeat: no-repeat;
 	background-size: contain;
 }
+.item-circle{
+  position: absolute;
+  background-image: url("../assets/icons/circle.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 .table-item{
 	bottom: 0;
 	height: 36%;
@@ -88,15 +114,42 @@ export default {
 }
 
 .pH-scale{
+  display: inline;
   height: 100%;
-  width:  15%;
+  width: 25%;
   z-index: 1;
   padding: 0.7vw;
-  background-position-x: center;
+  margin-left: 1vw;
+  background-position-x: 0;
   background-position-y: center;
   background-repeat: no-repeat;
   background-size: contain;
+  position: relative;
+  float: left;
   background-image: url("../assets/backgrounds/pHScale.png");
+}
+
+.pH-scale-universal{
+  display: inline;
+  height: 100%;
+  width: 25%;
+  z-index: 1;
+  padding: 0.7vw;
+  margin-left: 1vw;
+  background-position-x: 0;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  float: left;
+  background-image: url("../assets/backgrounds/pH-scale-universal.png");
+}
+
+.scales-container{
+  height: 100%;
+  width: 25%;
+  margin: 0;
+  padding: 0;
 }
 
 </style>

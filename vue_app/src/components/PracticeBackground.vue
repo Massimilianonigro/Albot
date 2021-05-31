@@ -3,7 +3,8 @@
   <div class="image-container">
     <div class="pH-scale">
     </div>
-	<div class="background item">
+    <div class="bin item"></div>
+    <div class="background item">
 		<div class="table-item item"></div>
 	</div>
   </div>
@@ -23,6 +24,14 @@ export default {
 	background-repeat: no-repeat;
 	background-size: contain;
 }
+.bin{
+  background-image: url("../assets/backgrounds/bin.png");
+  width: 20%;
+  height: 20%;
+  bottom: 0;
+  left: 15%;
+  display: inline;
+}
 .table-item{
 	bottom: 0;
 	height: 42%;
@@ -31,11 +40,6 @@ export default {
 	background-position-x: center;
 	background-position-y: bottom;
 	background-image: url("../assets/backgrounds/TableTopView.png");
-}
-.ImageContainer{
-	border: 0;
-	height: 100%;
-	width: 80%;
 }
 
 .pH-scale{
@@ -48,9 +52,5 @@ export default {
   background-size: contain;
   background-image: url("../assets/backgrounds/pHScale.png");
   list-style-type: none;
-}
-.pH-button{
-  width: 70%;
-  height: 6.5%;
 }
 </style>
