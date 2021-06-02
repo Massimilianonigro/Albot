@@ -23,6 +23,10 @@ class DialogueManager:
             "is_coro_ended": None,
             "pending_question": None,
             "question_probability": 1,
+            "phase": "",
+            "clicked": [],
+            "guessed": [],
+            "guessing": "",
         }
         # The moment the user is added the chatbot greets him and introduces him to the lesson
         intent = self._create_intent("connected")
@@ -52,6 +56,8 @@ class DialogueManager:
         elif msg["type"] == "name":
             self.users[user_id]["name"] = msg["content"]
             intent = self._create_intent("given_name")
+        elif msg["type"] == "guessed":
+            intent = self._create_intent("guessed_" + str(msg["content"]))
         elif msg["type"] == "name_request":
             return json.dumps(
                 {
@@ -135,18 +141,18 @@ class DialogueManager:
             "question probability is : "
             + str(self.users[user_session_id]["question_probability"])
         )
-        if rand == 0:
-            # Calling the chatbot_question
-            self.users[user_session_id]["is_coro_ended"] = False
-            asyncio.ensure_future(self.branch_chatbot_question(user_session_id))
-            question_probability = self.users[user_session_id]["question_probability"]
-            self.users[user_session_id]["question_probability"] = (
-                question_probability * self.state_machine.get_question_multiplier()
-            )
-        else:
-            # Calling the child question
-            self.users[user_session_id]["is_coro_ended"] = False
-            asyncio.ensure_future(self.branch_child_question(user_session_id))
+        # if rand == 0:
+        # Calling the chatbot_question
+        self.users[user_session_id]["is_coro_ended"] = False
+        asyncio.ensure_future(self.branch_chatbot_question(user_session_id))
+        question_probability = self.users[user_session_id]["question_probability"]
+        self.users[user_session_id]["question_probability"] = (
+            question_probability * self.state_machine.get_question_multiplier()
+        )
+        # else:
+        # Calling the child question
+        # self.users[user_session_id]["is_coro_ended"] = False
+        # asyncio.ensure_future(self.branch_child_question(user_session_id))
 
     async def branch_chatbot_question(self, user_session_id):
         # Decide chatbot question

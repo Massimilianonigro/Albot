@@ -1,3 +1,4 @@
+from os import stat
 from albot_backend.state import State
 import json
 import random as rand
@@ -58,12 +59,29 @@ class StateMachine:
             )
         # Case 3: The child has a question pending, intent could be answering to the question
         if pending_question != None:
-            new_pending_question, response = self._check_question_answer(
+            does_answer_advance_state = self.question_handler.does_answer_advance_state(
+                pending_question
+            )
+            does_answer_reverse_state = self.question_handler.does_answer_reverse_state(
                 pending_question, intent_name
             )
+            t = ()
+            t = self._check_question_answer(pending_question, intent_name)
             # If response is None than the child may be asking a question
-            if response != None:
+            if t != None:
+                new_pending_question, response = t
                 print("entering in case 3 with intent: " + intent_name)
+                next_state = (
+                    self.get_next_state(next_state)
+                    if does_answer_advance_state
+                    else next_state
+                )
+                next_state = (
+                    self.get_previous_state(next_state)
+                    if does_answer_reverse_state
+                    else next_state
+                )
+                print(response)
                 utterance_array = utterance_array + self._get_utterances(response)
                 bot_response = self._create_message(utterance_array)
                 return new_pending_question, next_state, bot_response
@@ -91,7 +109,7 @@ class StateMachine:
             new_pending_question, question = self._get_chatbot_question(
                 utterance["question_type"]
             )
-            utterance_array = utterance_array + self._create_utterance(text=question)
+            utterance_array = utterance_array + [self._create_utterance(text=question)]
         elif "child_answer" in utterance.keys():
             utterance_array = utterance_array + self._get_utterances(
                 [self.question_handler.get_explanation_by_id(new_pending_question)]
@@ -129,11 +147,11 @@ class StateMachine:
         utterance_array = utterance_array + self._get_utterances(
             state["click_object_reaction"]["to_send_back"]
         )
-        print(self._get_utterances(state["click_object_reaction"]))
+        print(self._get_utterances(state["click_object_reaction"]["to_send_back"]))
         if self._has_display(state):
-            utterance_array = utterance_array + self._create_utterance(
-                text="display_" + clicked_object_id
-            )
+            utterance_array = utterance_array + [
+                self._create_utterance(text="display_" + clicked_object_id)
+            ]
         if "new_pending_question" in state["click_object_reaction"]:
             if state["click_object_reaction"]["new_pending_question"] == "clicked":
                 # Function that understands the question id from the question name
@@ -146,6 +164,8 @@ class StateMachine:
                 new_pending_question = state["click_object_reaction"][
                     "new_pending_question"
                 ]
+        if "next_state" in state["click_object_reaction"]:
+            next_state = state["click_object_reaction"]["next_state"]
         response = self._create_message(utterance_array)
         return new_pending_question, next_state, response
 
@@ -153,6 +173,7 @@ class StateMachine:
         is_answer_correct = self.question_handler.verify_answer(
             pending_question, intent
         )
+        print("is_answer_correct is " + str(is_answer_correct))
         if is_answer_correct != 2:
             return self.question_handler.get_response(
                 pending_question, is_answer_correct
@@ -214,6 +235,12 @@ class StateMachine:
             return state_enum
         else:
             return State(state_enum.value + 1)
+
+    def get_previous_state(self, state_enum):
+        if self.is_cycle(state_enum):
+            return state_enum
+        else:
+            return State(state_enum.value - 1)
 
     def _get_utterances(self, utterance_names):
         utterances = []

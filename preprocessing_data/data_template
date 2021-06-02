@@ -1,0 +1,567 @@
+%[mix_strong_acid_answer](50)
+    [&[~[i think]?]] [&The] color changed ~[because] i ~[poured] something in the cabbage
+    [&[~[i think]?]] [&The] color changed ~[because] the ~[solution] that we used is a pH indicator
+    [&[~[i think] it is?]] [&~[because]] i ~[poured] the ~[lemon juice] in and that is acidic
+    I ~[poured] the lemon juice in ~[hence] the color changed ~[because] of some property
+    [&[~[i think] it is?]] [&~[because]] i ~[poured] the juice in the cabbage
+    [&[~[i think] it is?]] [&~[because]] the ~[solution] is more acid 
+    [&[~[i think] it is?]] [&~[because]]both substances are acids 
+
+%[mix_strong_base_answer](50)
+    [&This] time is ~[different] ~[because] i ~[poured] a ~[different] ~[ingredient] in the ~[solution]
+    [&The] color is ~[different] ~[because] the baking soda ~[possesses] ~[different] properties than the ~[lemon juice]
+    [&The] oven cleaner is an alkali and the lemon juice is an acid, ~[hence] the ~[solution] changed to [~[radically]?] ~[different] colors
+    [&I] ~[poured] a ~[different] ~[substance]
+
+~[lemon juice]
+    lemon
+    lemon juice
+    juice
+
+~[i think]
+    i think
+    i believe
+    in my opinion
+    could
+    is possible that
+
+~[radically]
+    wholly
+    thoroughly
+    entirely
+
+~[hence]
+    hence
+    and that is why
+    so
+    thus
+    ergo
+    then
+
+%[mix_weak_acid_answer](50)
+    [&[~[i think] that?]] the colours are ~[similar] ~[because] the milk has ~[similar] properties to the ~[lemon juice]
+    [[&[~[i think] it is?]] [&~[because]]?] milk and ~[lemon juice] are both acids! So the ~[solution] changes to ~[similar] colours
+    [[&[~[i think] it is?]] [&~[because]]?] the ~[solution] ~[measures] a ~[similar] pH between lemon jucie and milk
+
+~[measures]
+    measures
+    assesses
+    evaluates
+    gauges
+    computes
+    determines
+
+%[not_knowing_answer](50)
+    [&Boh]
+    [&I] don't know
+    [&No] idea
+    [&I] don't know why this ~[happened]
+    [&I] cannot [give an?] answer
+    [&I] have no idea how this works
+
+~[happened]
+    happened
+    turned out this way
+    bacame like this
+    occur
+
+%[inform_collecting_items](50)
+    [&How] many ~[ingredients] should i ~[select][\??]
+    [&Can] i ~[select] all the ~[ingredients][\??]
+    [&How] much stuff can i ~[select][\??]
+    [&Can] i ~[select] more ~[ingredients][\??]
+    [&Can] i ~[select] more ~[ingredients][\??]
+%[inform_ph_property](50)
+    [&What] does @[ph_property] mean[\??]
+    [&Can] you ~[explain] the ~[concept] of @[ph_property][\??]
+    [&What] is a @[ph_property][\??]
+    [&What] is @[ph_property][\??]
+    [&What] are the properties of @[ph_property][\??]
+    [&What] ~[characterizes] a @[ph_property][\??]
+    [&How] do we recognize an @[ph_property][\??]
+
+~[characterizes]
+    characterizes
+    defines
+    marks
+    outlines
+
+~[concept]
+    concept
+    theory behind
+    idea of
+
+%[inform_ph](50)
+    [&What] is ph[\??]
+    [&Can] you ~[explain] the ~[concept] of ph[\??]
+    [&How] does ph work[\??]
+    [&Does] any liquid have ph properties[\??]
+    [&How] is ph influencing our life[\??]
+    [&What] is the deal with ph[\??]
+    I want an ~[explanation] on ph
+    ~[tell me] more about ph
+    [&What] is an alkaline[\??]
+
+~[explanation]
+    explanation
+    example
+    illustration
+    breakdown
+    summary
+    description
+
+~[explain]
+    explain
+    break down
+    make a summary of
+    define
+    tell me more about
+
+
+%[acid_acid_compare](50)
+    The two ~[ingredients] are ~[similar]. They are both acids but have ~[different] ph
+    One ~[ingredient] has ph slighltly more acid than the other
+    One ~[ingredient] is more acidic than the other
+    They are two acidics ~[solution]s, one more than the other
+    Not much. They are both acids
+    @[acid] is an acid and @[acid] too, but their phs are ~[different]
+    @[acid] is more acid than @[acid]
+    @[acid] is less acid than @[acid]
+%[basic_acid_compare](50)
+    [&The] [two?] ~[ingredients] have vastly ~[different] ph properties, one is basic the other is acid
+    [&One] of the two is a base the other is an acid
+    [&One] has a ph lower than 7 the other has a ph higher than 7
+    [&One] is more acidic than @[neutral] the other is more basic than @[neutral]
+    [&They] are at opposite sides of the ph spectrum
+    [&One] is a basic ~[solution] the other an acidic one
+    @[base] is a basic ~[solution] @[acid] is an acidic one
+    @[base] has ph higher than 7, while @[acid] has ph lower than 7
+    @[acid] is acidic, while @[base] is basic
+%[basic_basic_compare](50)
+    [&They] are both bases, not much difference
+    [&Their] ph is both above 7 but is slightly ~[different]
+    [&The] [two?] ~[substance]s are bases, one of the two is more basic than the other
+    [&Not] a lot, they are bases hence they are ~[similar]
+    [&They] have ~[different] ph but are both bases
+    @[base] is a base and @[base] too, but their phs are ~[different]
+    @[base] is more basic than @[base]
+    @[base] is less basic than @[base]
+%[neutral_basic_compare](50)
+    [&One] of them has ph 7 the other has an higher ph
+    @[neutral] is a neutral ~[substance], the other is a basis
+    @[neutral] is at the center of the ph spectrum, the other is higher
+    [&One] is a @[base] ~[substance] , with a much higher ph than @[neutral]
+    @[neutral] is neutral @[base] is a base
+    @[base] base other neutral
+    @[base] is basic, @[neutral] is neutral
+    @[base] has a ph higher than 7, @[neutral] has 7
+
+%[neutral_acid_compare](50)
+    @[neutral] has ph 7 and the other has a lower ph
+    @[neutral] is a neutral ~[substance] the other is an acid
+    [&There] is an acidic ~[substance] and a neutral one
+    [&One] of them is an acid the other a neutral ~[substance]
+    [&One] acid other ~[substance]
+    [&One] has ph lower than 7 the other 7
+    @[neutral] is ~[substance] @[acid] is acid
+    @[acid] acid other neutral
+    @[acid] is acidic, @[neutral] is neutral
+    @[acid] has a ph lower than 7, @[neutral] has 7
+
+~[different]
+    different
+    diverse
+    distinct
+    clashing
+
+~[similar]
+    similar
+    comparable
+    analogous
+    akin
+
+~[substance]
+    substance
+    compound
+    solution
+
+%[inform_cabbage_solution](50)
+    [&Why] are we ~[using] a ~[cabbage solution][\??]
+    [&What] is the ~[advantage] with the ~[cabbage solution][\??]
+    [&Why] the ~[cabbage solution][\??]
+    [&Do] you know any other ~[solution] to check the ph ~[value][\??]
+    [&How] is the ~[cabbage solution] helping us[\??]
+    [&Is] there any other ~[solution] i can ~[use] instead of the cabbage one[\??]
+
+~[use]
+    use
+    exploit
+    take advantage of
+    put to use
+    make use 
+
+~[advantage]
+    advantage
+    deal
+    convenience
+    gain
+    
+
+~[using]
+    using
+    exploiting
+    taking advantage of
+    putting to use
+    making use 
+
+%[inform_color_change](50)
+    [&Why] does the ~[cabbage solution] ~[turn] @[color][\??]
+    [&Why] ~[pouring] @[ingredient] does the ~[solution] ~[turn] @[color][\??]
+    [&Why] are we not ~[mixing] the liquids ~[with each other][\??]
+    [&Why] is the cabbage ~[turning] @[color][\??]
+    [&How] come the ~[cabbage solution] is ~[turning] @[color][\??]
+    [&How] is it possible that the ~[solution] is now @[color][\??]
+    [&Why] did it ~[change] color[\??]
+    [&Can] you explain the ~[change] in color[\??]
+    [&Why] it has a different color now[\??]
+    [&What] happened to the ~[solution][\??]
+    [&What] happens if i ~[pour] @[ingredient] in the ~[solution][\??]
+    [&What] if i ~[pour] the @[ingredient] in the ~[cabbage solution][\??]
+
+~[pour]
+    drop
+    pour
+    put
+    add
+    mix
+    insert into
+
+~[pouring]
+    pouring
+    dropping
+    putting
+    adding
+    mixing
+    inserting into
+
+~[poured]
+    poured
+    dropped
+    put
+    added
+    mixed
+    inserted into
+
+~[turning]
+    shifting 
+    becoming
+    turning
+    changing into
+
+~[turn]
+    shift into
+    turn
+    change into
+    become
+
+%[ph_answer](50)
+    [&Ph] is an indicator on how acid or basic a solution is
+    [&It] is a scale that measures how acid or basic a solution is, it ranges from 0 to 14
+    [&It] is something the scientists use to describe acidity of solutions
+
+%[ph_first_answer](50)
+
+%[indicator_answer](50)
+
+%[is_it_acid_answer](50)
+
+%[milk_or_lemon_juice](50)
+
+%[cabbage_answer](50)
+    [&We] use it ~[because] it is a natural ph indicator
+    ~[cabbage solution] has an high degree of anthocyanin substances, when they come in contact with an acid full of hydronium ions it changes color
+    [&Some] substancese in the ~[cabbage solution] change color when they are paired with the ions that characterize acids
+    [&~[because]] it helps us measure ph having substances that change color when in touch with acids or bases
+    [&~[because]] ~[mixing] it with substances can reveal their ph
+    [&It] is an easy-to-do way to measure ph at home
+
+~[because]
+    because
+    cause
+    since
+
+%[inform_ingredient_property](50)
+    [&What] are the ~[ph properties] of @[ingredient][\??]
+    [&What] is the ph of @[ingredient][\??]
+    [&Why] should i ~[select] @[ingredient][\??]
+    [&Is] @[ingredient] an @[ph_property][\??]
+    [&How] does [Cola]("ingredient") scale in the ph indicator[\??]
+    I want to know the ~[ph properties] of @[acid]
+
+~[ph properties]
+    ph properties
+    properties
+    charachteristics
+    
+
+%[inform_ph_cabbage_solution](50)
+    [&What] is the PH ~[value] of the ~[cabbage solution][\??]
+    [&Can] you ~[tell me] the ph ~[value] of the ~[cabbage solution][\??]
+    [&What] is the ph ~[value] of ~[cabbage solution][\??]
+    [&Is] the ~[cabbage solution] an @[ph_property] or  @[ph_property][\??]
+    [&What] is the pH nature of ~[cabbage solution][\??]
+    [&How] does the ~[cabbage solution] scale on the ph measure[\??]
+    [&Is] ~[cabbage solution] an  @[ph_property][\??]
+    [&Is] the ~[cabbage solution] neutral[\??]
+    [&Does] this cabbage also have PH ~[value][\??]
+    [&The] ~[solution] has a ph ~[value][\??]
+    [&Cabbage] have ph[\??]
+
+~[tell me]
+    tell me
+    define
+    disclose
+    specify
+
+%[inform_every_liq_ph](50)
+    [&Does] every liquid have PH ~[value][\??]
+    [&Does] all liquid ~[possess] the PH ~[value][\??]
+    [&Is] ph a property of all elements[\??]
+    [&Is] ph something all liquid have[\??]
+    [&Liquids] have ph in any case[\??]
+    [&Can] we find PH ~[value] for every liquid[\??]
+    [&Is] it possible to know the PH ~[value] of every liquid[\??]
+
+~[value]
+    value
+    level
+    property
+    nature
+
+~[possess]
+    possess
+    retain
+    hold
+    have
+
+~[possesses]
+    possesses
+    has
+    retains
+    holds
+
+%[inform_why_not_item_mixed](50)
+    [&Why] are we not ~[mixing] the ~[ingredients] ~[with each other][\??]
+    [&Why] do we not ~[mix] the ~[ingredients] ~[with each other][\??]
+    [&Can] we ~[mix] the ~[ingredients] ~[with each other] instead[\??]
+    [&Isn't] it funnier to ~[mix] the ~[ingredients] ~[with each other][\??]
+    [&Why] do we have to put the ~[ingredients] in the ~[solution][\??]
+    [&Is] it efficient to ~[mix] the ~[ingredients] ~[with each other] instead of using the ~[solution][\??]
+    [&Can] we measure ph by ~[mixing] the ~[ingredients] ~[with each other][\??]
+
+~[with each other]
+    with each other
+    with one another
+    altogether
+    together
+    into each other
+
+%[inform_other_way_to_measure_ph](50)
+    [&Is] there ~[another] ~[solution] I can use instead of cabbage[\??]
+    [&Can] I use ~[another] ~[solution] that is not cabbage[\??]
+    [&Can] I replace the ~[cabbage solution][\??]
+    [&The] cabbage can be replaced with other [things|~[solution]s][\??]
+    [&Can] other [things|~[solution]s] measure ph instead of the ~[cabbage solution][\??]
+    [&Can] I measure ph in another way[\??]
+    [&Can] we use another [things|~[solution]s] to get the ph of ~[ingredients][\??]
+
+~[another]
+    another
+    any other
+    a different
+
+
+%[inform_cabbage_at_home](50)
+    [&Can] I ~[prepare] the ~[cabbage solution] ~[at home][\??]
+    [&Is] it possible to ~[prepare] the ~[solution] ~[at home][\??]
+    [&How] can I ~[prepare] the ~[cabbage solution] ~[at home][\??]
+    [&What] are the steps to ~[prepare] ~[cabbage solution][\??]
+    [&What] is the procedure to do the ~[cabbage solution][\??]
+    [&How] do I ~[prepare] the ~[cabbage solution][\??]
+
+~[prepare]
+    prepare
+    arrange
+    make
+    assemble
+    ready
+    form
+
+~[at home]
+    at home
+    by myself
+    alone
+
+
+~[cabbage solution]
+    cabbage ~[solution]
+    cabbage juice
+
+~[solution]
+    solution
+    indicator
+    mixture
+
+%[inform_ph_change_on_item_measure](50)
+    [&Does] the PH value ~[change] if we ~[mix] [2?] ~[ingredients] together[\??]
+    [&What] happens to ph if we ~[mix] ~[ingredients][\??]
+    [&If] we ~[mix] [2?] ~[ingredients] their ph changes[\??]
+    [&Does] ~[mixing] [2?] ~[ingredients] ~[change] the ph of the solution[\??]
+    [&Is] the ph ~[changing] when we ~[mix] two ~[ingredients][\??]
+    [&Is] the ph ~[changing] when ~[ingredients] are ~[mixed][\??]
+    ~[mixing] ~[ingredients] together present a ~[change] in the ph[\??]
+
+~[mix]
+    mix
+    blend
+    unite
+    merge
+    put together
+    mix up
+
+~[mixed]
+    mixed
+    blended
+    united
+    merged
+    put together
+    mixed up
+
+~[mixing]
+    mixing
+    blending
+    uniting
+    merging
+    putting together
+    mixing up
+
+~[change]
+    change
+    vary
+    shift
+
+~[changing]
+    changing
+    varying
+    shifting
+
+%[inform_why_only_these_select](50)
+    [&Why] are we ~[selecting] only 3 ~[ingredients][\??]
+    [&Why] can't I ~[select] other ~[ingredients][\??]
+    [&Why] can’t I ~[select] more than three ~[ingredients][\??]
+    [&Is] it possible to ~[select] more than 3 ~[ingredients][\??]
+    [&Why] do I need to ~[select] what you tell me[\??]
+    [&Why] can't I ~[select] more ~[ingredients][\??]
+    [&Is] it possible to ~[select] more ~[ingredients] now[\??]
+
+~[selecting]
+    selecting
+    picking
+    choosing
+    taking
+
+~[select]
+    select
+    pick
+    choose
+    take
+    pick up
+
+~[ingredients]
+    pieces
+    items
+    elements
+    ingredients
+
+~[ingredient]
+    piece
+    item
+    element
+    ingredient
+
+%[inform_why_this_test](50)
+    [&What] kind of ~[experiment] is it[\??]
+    [&What] type of ~[experiment] is it[\??]
+    [&What] is the use of this ~[experiment][\??]
+    [&How] can this ~[experiment] be useful[\??]
+    [&How] is the ~[experiment] useful for me[\??]
+    [&Why] do we do this ~[experiment][\??]
+    [&Why] do we follow this ~[experiment][\??]
+    [&Why] are we doing this
+
+~[experiment]
+    experiment
+    test
+    procedure
+    study
+
+%[next_step_information](50)
+    [&Now] what do I have to do[\??]
+    [&What] should I do next[\??]
+    [&How] do I ~[continue][\??]
+    [&How] can I ~[continue][\??]
+    [&How] to ~[continue][\??]
+    [&What] do I do now[\??]
+    [&Now] what[\??]
+    [&What]’s next[\??]
+    [&What] is the next step[\??]
+    I'm stuck
+
+~[continue]
+    continue
+    proceed
+    go on
+    advance
+    progress
+
+@[ph_property]
+    [&acid]
+    [&alkali]
+
+@[color]
+    [&red]
+    [&blue]
+    [&green]
+    [&yellow]
+    [&purple]
+    [&orange]
+
+@[ingredient]
+    [&Baking soda]
+    [&Egg white]
+    [&Vinegar]
+    [&Bleach]
+    [&Oven cleaner]
+    [&Cola]
+    [&Soap]
+    [Lemon &Juice]
+    [&Milk]
+    [&Pure water]
+    [&Sparkling water]
+
+@[acid]
+    [&Vinegar]
+    [&Lemon juice]
+    [&Soap]
+    [&Cola]
+    [&Milk]
+    [&Sparkling water]
+
+@[base]
+    [&Baking soda]
+    [&Egg white]
+    [&Bleach]
+    [&Oven cleaner]
+
+@[neutral]
+    [&Pure water]

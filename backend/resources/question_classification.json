@@ -153,15 +153,70 @@
         "explanation": true,
         "positive_responses": [
             "chatbot_appreciation",
-            "next",
             "unlock_selection"
         ],
         "negative_responses": [
             "wrong_answer",
-            "next",
             "unlock_selection"
         ],
+        "send_positive_effect": true,
+        "send_negative_effect": true,
+        "advance_state": true,
         "questions": [
+            {
+                "ph_first_question": {
+                    "base": "ph_first_question",
+                    "values": [
+                        {
+                            "id": 29,
+                            "option": "",
+                            "answer": "ph_first_answer",
+                            "explanation": "ph_first_question_explanation"
+                        }
+                    ]
+                }
+            },
+            {
+                "indicator_question": {
+                    "base": "indicator_question",
+                    "values": [
+                        {
+                            "id": 30,
+                            "option": "",
+                            "answer": "indicator_answer",
+                            "explanation": "indicator_question_explanation"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_strong_acid_second_question": {
+                    "base": "mix_strong_acid_second_question",
+                    "values": [
+                        {
+                            "id": 31,
+                            "option": "",
+                            "answer": "is_it_acid_answer",
+                            "effect": "tricky_scale",
+                            "explanation": ""
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_water_question": {
+                    "base": "mix_water_question",
+                    "values": [
+                        {
+                            "id": 32,
+                            "option": "",
+                            "answer": "guessed_7",
+                            "effect": "neutral_explanation",
+                            "explanation": ""
+                        }
+                    ]
+                }
+            },
             {
                 "mix_strong_acid_question": {
                     "base": "mix_strong_acid_question",
@@ -169,7 +224,7 @@
                         {
                             "id": 15,
                             "option": "",
-                            "answer": "mix_strong_acid_answer",
+                            "answer": "guessed_2",
                             "explanation": "mix_strong_acid_question_explanation"
                         }
                     ]
@@ -182,7 +237,8 @@
                         {
                             "id": 16,
                             "option": "",
-                            "answer": "mix_strong_base_answer",
+                            "answer": "guessed_13",
+                            "effect": "alkaline_explanation",
                             "explanation": "mix_strong_base_question_explanation"
                         }
                     ]
@@ -195,8 +251,22 @@
                         {
                             "id": 17,
                             "option": "",
-                            "answer": "mix_weak_acid_answer",
+                            "answer": "guessed_6",
                             "explanation": "mix_weak_acid_question_explanation"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_weak_acid_second_question": {
+                    "base": "mix_weak_acid_second_question",
+                    "values": [
+                        {
+                            "id": 33,
+                            "option": "",
+                            "answer": "milk_or_lemon_juice_answer",
+                            "effect": "milk_or_lemon_juice_explanation",
+                            "explanation": ""
                         }
                     ]
                 }
@@ -204,15 +274,18 @@
         ]
     },
     "identify": {
-        "explanation": true,
+        "explanation": false,
         "positive_responses": [
             "chatbot_appreciation",
-            "next"
+            "unlock_selection"
         ],
         "negative_responses": [
             "wrong_answer",
-            "next"
+            "unlock_selection"
         ],
+        "ongoing": true,
+        "reverse_state": true,
+        "send_positive_effect": true,
         "questions": [
             {
                 "searching_1": {
@@ -222,7 +295,8 @@
                             "id": 18,
                             "option": "",
                             "answer": "guessed_8",
-                            "explanation": ""
+                            "explanation": "",
+                            "effect": "guessed_ph_1"
                         }
                     ]
                 }
@@ -234,8 +308,9 @@
                         {
                             "id": 19,
                             "option": "",
-                            "answer": "guessed_9.2",
-                            "explanation": ""
+                            "answer": "guessed_9",
+                            "explanation": "",
+                            "effect": "guessed_ph_2"
                         }
                     ]
                 }
@@ -248,7 +323,8 @@
                             "id": 20,
                             "option": "",
                             "answer": "guessed_3",
-                            "explanation": ""
+                            "explanation": "",
+                            "effect": "guessed_ph_3"
                         }
                     ]
                 }
@@ -261,7 +337,8 @@
                             "id": 21,
                             "option": "",
                             "answer": "guessed_12",
-                            "explanation": ""
+                            "explanation": "",
+                            "effect": "guessed_ph_4"
                         }
                     ]
                 }
@@ -274,7 +351,8 @@
                             "id": 22,
                             "option": "",
                             "answer": "guessed_13",
-                            "explanation": ""
+                            "explanation": "",
+                            "effect": "guessed_ph_5"
                         }
                     ]
                 }
@@ -287,7 +365,8 @@
                             "id": 23,
                             "option": "",
                             "answer": "guessed_1",
-                            "explanation": ""
+                            "explanation": "",
+                            "effect": "guessed_ph_6"
                         }
                     ]
                 }
@@ -300,7 +379,8 @@
                             "id": 24,
                             "option": "",
                             "answer": "guessed_3",
-                            "explanation": ""
+                            "explanation": "",
+                            "effect": "guessed_ph_7"
                         }
                     ]
                 }
@@ -313,7 +393,8 @@
                             "id": 25,
                             "option": "",
                             "answer": "guessed_2",
-                            "explanation": ""
+                            "explanation": "",
+                            "effect": "guessed_ph_8"
                         }
                     ]
                 }
@@ -326,7 +407,8 @@
                             "id": 26,
                             "option": "",
                             "answer": "guessed_6",
-                            "explanation": ""
+                            "explanation": "",
+                            "effect": "guessed_ph_9"
                         }
                     ]
                 }
@@ -339,7 +421,8 @@
                             "id": 27,
                             "option": "",
                             "answer": "guessed_7",
-                            "explanation": ""
+                            "explanation": "",
+                            "effect": "guessed_ph_10"
                         }
                     ]
                 }
@@ -352,7 +435,8 @@
                             "id": 28,
                             "option": "",
                             "answer": "guessed_6",
-                            "explanation": ""
+                            "explanation": "",
+                            "effect": "guessed_ph_11"
                         }
                     ]
                 }

@@ -1,60 +1,59 @@
 {
     "ingredients": [
         {
-            "id" : 1,
-            "name" : "Baking Soda",
-            "ph" : 8
+            "id": 1,
+            "name": "Baking Soda",
+            "ph": 8
         },
         {
-            "id" : 2,
-            "name" : "Egg White",
-            "ph" : 9.2
+            "id": 2,
+            "name": "Egg White",
+            "ph": 9
         },
         {
-            "id" : 3,
-            "name" : "Vinegar",
-            "ph" : 3
+            "id": 3,
+            "name": "Vinegar",
+            "ph": 3
         },
         {
-            "id" : 4,
+            "id": 4,
             "name": "Bleach",
-            "ph" : 12
+            "ph": 12
         },
         {
-            "id" : 5,
-            "name" : "Oven Cleaner",
-            "ph" : 13
+            "id": 5,
+            "name": "Oven Cleaner",
+            "ph": 13
         },
         {
-            "id" : 6,
-            "name" : "Soap",
-            "ph" : 1
+            "id": 6,
+            "name": "Soap",
+            "ph": 10
         },
         {
-            "id" : 7,
-            "name" : "Cola",
-            "ph" : 3
+            "id": 7,
+            "name": "Cola",
+            "ph": 3
         },
         {
-            "id" : 8,
-            "name" : "Lemon Juice",
-            "ph" : 2
+            "id": 8,
+            "name": "Lemon Juice",
+            "ph": 2
         },
         {
-            "id" : 9,
-            "name" : "Milk",
-            "ph" : 6
+            "id": 9,
+            "name": "Milk",
+            "ph": 6
         },
         {
-            "id" : 10,
-            "name" : "Pure Water",
-            "ph" : 7
+            "id": 10,
+            "name": "Pure Water",
+            "ph": 7
         },
         {
-            "id" : 11,
-            "name" : "Sparkling Water",
-            "ph" : 6
+            "id": 11,
+            "name": "Sparkling Water",
+            "ph": 4
         }
-
     ]
 }

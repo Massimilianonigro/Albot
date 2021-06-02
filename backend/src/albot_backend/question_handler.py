@@ -23,10 +23,12 @@ class QuestionHandler:
     # Returns 0 if the answer is wrong, 1 if the answer is good, 2 if the intent is not meant to answer the question
     def verify_answer(self, question_id, intent):
         answer = self._get_answer_by_id(question_id)
-        if (self._is_click_answer(answer) and self._is_click_answer(intent)) or (
-            self._is_text_answer(answer) and self._is_text_answer(intent)
+        if (
+            (self._is_click_answer(answer) and self._is_click_answer(intent))
+            or (self._is_text_answer(answer) and self._is_text_answer(intent))
+            or (self._is_guessed_answer(answer) and self._is_guessed_answer(intent))
         ):
-            # This means answer and intent are either both text or click
+            # This means answer and intent are either both text or click or click on the pH scale
             if answer == intent:
                 return 1
             elif not self._is_clarification(intent):
@@ -46,6 +48,12 @@ class QuestionHandler:
                     response
                     + self.question_classification[question_type]["positive_responses"]
                 )
+                if (
+                    "send_positive_effect"
+                    in self.question_classification[question_type]
+                ):
+                    effect = [self._get_effect_by_id(question_id)]
+                    response = response + effect if effect != None else response
             else:
                 response = (
                     response
@@ -53,7 +61,15 @@ class QuestionHandler:
                 )
                 if self.question_classification[question_type]["explanation"]:
                     response.append(self.get_explanation_by_id(question_id))
-            if "more_info" not in self.question_classification[question_type].keys():
+                if (
+                    "send_negative_effect"
+                    in self.question_classification[question_type]
+                ):
+                    effect = [self._get_effect_by_id(question_id)]
+                    response = response + effect if effect[0] != None else response
+            if ("ongoing" not in self.question_classification[question_type]) or (
+                ("ongoing" in self.question_classification[question_type]) and positive
+            ):
                 new_pending_question = None
                 print("Setting pending_question in get_response(question handler)")
         return new_pending_question, response
@@ -94,11 +110,19 @@ class QuestionHandler:
         else:
             return False
 
+    def _is_guessed_answer(self, answer):
+        if answer[0:7] == "guessed":
+            return True
+        else:
+            return False
+
     def _is_text_answer(self, answer):
-        return not self._is_click_answer(answer)
+        # TODO: PUt an or with is guessed answer
+        return not (self._is_click_answer(answer))
 
     def _is_clarification(self, intent):
         if intent[0:6] == "inform":
+            print("child is asking question")
             return True
         else:
             return False
@@ -114,6 +138,20 @@ class QuestionHandler:
                         if option["id"] == question_id:
                             answer = option["answer"]
                             return answer
+        return answer
+
+    def _get_effect_by_id(self, question_id):
+        if question_id == None:
+            return None
+        answer = None
+        for question_list_category in self.question_classification.values():
+            for question_list_type in question_list_category["questions"]:
+                for question in question_list_type.values():
+                    for option in question["values"]:
+                        if option["id"] == question_id:
+                            if "effect" in option.keys():
+                                answer = option["effect"]
+                                return answer
         return answer
 
     def get_explanation_by_id(self, question_id):
@@ -139,5 +177,24 @@ class QuestionHandler:
             for question in question_classification_values["questions"]:
                 for question_name_key, question_value in question.items():
                     if question_name_key == question_name:
-                        return question_value["id"]
+                        return question_value["values"][0]["id"]
         return None
+
+    # Returns true if an answer to the question let the state machine advance of one state
+    def does_answer_advance_state(self, question_id):
+        question_category = self.get_category_by_id(question_id)
+        if "advance_state" in self.question_classification[question_category].keys():
+            return True
+        else:
+            return False
+
+    def does_answer_reverse_state(self, question_id, intent):
+        question_category = self.get_category_by_id(question_id)
+        answer = self.verify_answer(question_id, intent)
+        if (
+            "reverse_state" in self.question_classification[question_category].keys()
+            and answer == 1
+        ):
+            return True
+        else:
+            return False

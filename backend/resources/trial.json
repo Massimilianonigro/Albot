@@ -42,11 +42,11 @@
                 {
                     "intent": "clicked_introduction",
                     "to_send_back": [
-                        "introduction_explanation"
+                        "introduction_explanation",
+                        "ph_first_explanation",
+                        "ph_first_question"
                     ],
-                    "next_state": {
-                        "__enum__": "State.INTRODUCTION_START"
-                    }
+                    "new_pending_question": 29
                 }
             ]
         },
@@ -74,6 +74,55 @@
         },
         {
             "state": {
+                "__enum__": "State.INDICATOR_EXPLANATION"
+            },
+            "utterances": [
+                {
+                    "intent": "wait_ended",
+                    "to_send_back": [
+                        "indicator_explanation",
+                        "indicator_question"
+                    ],
+                    "new_pending_question": 30
+                },
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.TUTORIAL_OR_EXPERIMENT"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_acid"
+                    ]
+                }
+            ]
+        },
+        {
+            "state": {
+                "__enum__": "State.WAIT_TO_SELECTION"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.TUTORIAL_OR_EXPERIMENT"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_acid"
+                    ]
+                }
+            ],
+            "waiting": true
+        },
+        {
+            "state": {
                 "__enum__": "State.INGREDIENT_SELECTION"
             },
             "utterances": [
@@ -94,7 +143,7 @@
                 {
                     "intent": "selection_complete",
                     "to_send_back": [
-                        "mix_strong_acid_explanation",
+                        "lemon_juice_pour",
                         "unlock_selection"
                     ],
                     "next_state": {
@@ -132,10 +181,7 @@
                     "to_send_back": [
                         "mix_strong_acid_question"
                     ],
-                    "new_pending_question": 15,
-                    "next_state": {
-                        "__enum__": "State.EXPLAIN_STRONG_ACID"
-                    }
+                    "new_pending_question": 15
                 }
             ]
         },
@@ -151,22 +197,62 @@
                     }
                 },
                 {
-                    "intent": "clicked_next",
-                    "next_state": {
-                        "__enum__": "State.MIX_STRONG_BASE"
-                    },
-                    "to_send_back": [
-                        "mix_strong_base_explanation"
-                    ]
-                },
-                {
                     "intent": "next_step_information",
                     "to_send_back": [
                         "next_step_water"
                     ]
                 }
             ],
+            "child_answer": "tutorial",
+            "waiting": true
+        },
+        {
+            "state": {
+                "__enum__": "State.QUESTION_STRONG_ACID"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    }
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_water"
+                    ]
+                },
+                {
+                    "intent": "wait_ended",
+                    "to_send_back": [
+                        "mix_strong_acid_second_question"
+                    ],
+                    "new_pending_question": 31
+                }
+            ],
             "child_answer": "tutorial"
+        },
+        {
+            "state": {
+                "__enum__": "State.WAIT_TO_POUR_BASE"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.TUTORIAL_OR_EXPERIMENT"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_acid"
+                    ]
+                }
+            ],
+            "waiting": true
         },
         {
             "state": {
@@ -198,10 +284,13 @@
                     "to_send_back": [
                         "mix_strong_base_question"
                     ],
-                    "new_pending_question": 16,
-                    "next_state": {
-                        "__enum__": "State.EXPLAIN_STRONG_BASE"
-                    }
+                    "new_pending_question": 16
+                },
+                {
+                    "intent": "wait_ended",
+                    "to_send_back": [
+                        "mix_strong_base_explanation"
+                    ]
                 }
             ]
         },
@@ -217,12 +306,64 @@
                     }
                 },
                 {
-                    "intent": "clicked_next",
+                    "intent": "next_step_information",
                     "to_send_back": [
-                        "mix_weak_acid_explanation"
-                    ],
+                        "next_step_water"
+                    ]
+                }
+            ],
+            "child_answer": "tutorial",
+            "waiting": true
+        },
+        {
+            "state": {
+                "__enum__": "State.MIX_WATER"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
                     "next_state": {
-                        "__enum__": "State.MIX_WEAK_ACID"
+                        "__enum__": "State.GREETING"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "clicked_back",
+                    "next_state": {
+                        "__enum__": "State.INTRODUCTION_START"
+                    },
+                    "new_pending_question": null
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_guided"
+                    ]
+                },
+                {
+                    "intent": "selection_complete",
+                    "to_send_back": [
+                        "mix_water_question"
+                    ],
+                    "new_pending_question": 32
+                },
+                {
+                    "intent": "wait_ended",
+                    "to_send_back": [
+                        "mix_water_explanation"
+                    ]
+                }
+            ]
+        },
+        {
+            "state": {
+                "__enum__": "State.EXPLAIN_WATER"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
                     }
                 },
                 {
@@ -232,7 +373,8 @@
                     ]
                 }
             ],
-            "child_answer": "tutorial"
+            "child_answer": "tutorial",
+            "waiting": true
         },
         {
             "state": {
@@ -264,46 +406,19 @@
                     "to_send_back": [
                         "mix_weak_acid_question"
                     ],
-                    "new_pending_question": 17,
-                    "next_state": {
-                        "__enum__": "State.EXPLAIN_WEAK_ACID"
-                    }
+                    "new_pending_question": 17
+                },
+                {
+                    "intent": "wait_ended",
+                    "to_send_back": [
+                        "mix_weak_acid_explanation"
+                    ]
                 }
             ]
         },
         {
             "state": {
-                "__enum__": "State.EXPLAIN_WEAK_ACID"
-            },
-            "utterances": [
-                {
-                    "intent": "clicked_home",
-                    "next_state": {
-                        "__enum__": "State.GREETING"
-                    }
-                },
-                {
-                    "intent": "clicked_next",
-                    "to_send_back": [
-                        "explain_practice_start"
-                    ],
-                    "next_state": {
-                        "__enum__": "State.PRACTICE_START"
-                    },
-                    "change_phase": "practice-pH"
-                },
-                {
-                    "intent": "next_step_information",
-                    "to_send_back": [
-                        "next_step_water"
-                    ]
-                }
-            ],
-            "child_answer": "tutorial"
-        },
-        {
-            "state": {
-                "__enum__": "State.PRACTICE_START"
+                "__enum__": "State.QUESTION_WEAK_ACID"
             },
             "utterances": [
                 {
@@ -324,7 +439,7 @@
         },
         {
             "state": {
-                "__enum__": "State.COLLECT_SUBSTANCES"
+                "__enum__": "State.EXPLAIN_WEAK_ACID"
             },
             "utterances": [
                 {
@@ -342,9 +457,98 @@
                 {
                     "intent": "wait_ended",
                     "to_send_back": [
+                        "mix_weak_acid_second_question"
+                    ],
+                    "new_pending_question": 33
+                }
+            ],
+            "child_answer": "tutorial"
+        },
+        {
+            "state": {
+                "__enum__": "State.GO_TO_PRACTICE"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    }
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_water"
+                    ]
+                }
+            ],
+            "child_answer": "tutorial",
+            "waiting": true
+        },
+        {
+            "state": {
+                "__enum__": "State.PRACTICE_START"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    }
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_water"
+                    ]
+                },
+                {
+                    "intent": "wait_ended",
+                    "to_send_back": [
+                        "explain_practice_start"
+                    ]
+                },
+                {
+                    "intent": "clicked_next",
+                    "change_phase": "practice-pH",
+                    "next_state": {
+                        "__enum__": "State.COLLECT_SUBSTANCES"
+                    },
+                    "to_send_back": [
                         "collect_substances_explanation"
                     ],
                     "new_pending_question": null
+                }
+            ],
+            "child_answer": "tutorial"
+        },
+        {
+            "state": {
+                "__enum__": "State.COLLECT_SUBSTANCES"
+            },
+            "utterances": [
+                {
+                    "intent": "clicked_home",
+                    "next_state": {
+                        "__enum__": "State.GREETING"
+                    }
+                },
+                {
+                    "intent": "next_step_information",
+                    "to_send_back": [
+                        "next_step_water"
+                    ]
+                },
+                {
+                    "intent": "selection_complete",
+                    "to_send_back": [
+                        "practice_explanation"
+                    ],
+                    "new_pending_question": null,
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_COLLECTING"
+                    },
+                    "change_phase": "practice-selection"
                 }
             ],
             "child_answer": "tutorial",
@@ -384,17 +588,6 @@
                         "collect_substances_second_explanation"
                     ],
                     "new_pending_question": null
-                },
-                {
-                    "intent": "selection_complete",
-                    "to_send_back": [
-                        "practice_collecting_explanation"
-                    ],
-                    "new_pending_question": null,
-                    "next_state": {
-                        "__enum__": "State.PRACTICE_COLLECTING"
-                    },
-                    "change_phase": "practice-selection"
                 }
             ],
             "child_answer": "identify"
@@ -412,14 +605,14 @@
                     "new_pending_question": null
                 },
                 {
-                    "intent": "clicked_next",
+                    "intent": "selection_complete",
                     "next_state": {
                         "__enum__": "State.PRACTICE_CYCLE"
                     },
                     "to_send_back": [
                         "practice_cycle_explanation"
                     ],
-                    "change-phase": "practice-mix"
+                    "change_phase": "practice-mix"
                 },
                 {
                     "intent": "next_step_information",
@@ -608,9 +801,11 @@
                 }
             ],
             "child_question": true,
-            "click_object_reaction": [
-                "molecular_formula"
-            ],
+            "click_object_reaction": {
+                "to_send_back": [
+                    "molecular_formula"
+                ]
+            },
             "display": true,
             "waiting": true
         },
@@ -656,9 +851,11 @@
                 }
             ],
             "child_question": true,
-            "click_object_reaction": [
-                "molecular_formula"
-            ],
+            "click_object_reaction": {
+                "to_send_back": [
+                    "molecular_formula"
+                ]
+            },
             "display": true
         },
         {
@@ -699,7 +896,11 @@
             ],
             "child_question": true,
             "child_answer": "other",
-            "click_object_reaction": "molecular_formula",
+            "click_object_reaction": {
+                "to_send_back": [
+                    "molecular_formula"
+                ]
+            },
             "display": true,
             "cycle": true,
             "optional": true

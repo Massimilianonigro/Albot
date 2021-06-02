@@ -16,6 +16,7 @@ black = "^21.5b0"
 docker = "^5.0.0"
 docker-compose = "^1.29.1"
 Sphinx = "^4.0.0"
+chatette = "^1.6.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

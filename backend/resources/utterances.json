@@ -17,32 +17,62 @@
     ],
     "introduction_explanation": [
         {
-            "text": "Welcome to Introductory lesson! We will learn about PH level with item available in the kitchen.",
+            "text": "Hello  Chiara, welcome to my kitchen! I hope you're ready to learn. This is the tutorial: here you'll learn how to play and the basics of pH.",
             "ui_effect": ""
         }
     ],
-    "acid_selection": [
+    "ph_first_explanation": [
         {
-            "text": "The Highlighted item have acidic properties. Select any 2 item of your choice to test them.",
+            "text": "pH is a prop of solutions, like density, concentration, ...",
             "ui_effect": ""
+        }
+    ],
+    "ph_first_question": [
+        {
+            "text": "Do you know what pH measures?",
+            "ui_effect": ""
+        }
+    ],
+    "ph_first_question_explanation": [
+        {
+            "text": "pH measures the acidity of the solution on a scale from 0 to 14. You can see it on the left.",
+            "ui_effect": "show_universal"
+        }
+    ],
+    "explanation_29": [
+        {
+            "text": "pH measures the acidity of the solution on a scale from 0 to 14. You can see it on the left.",
+            "ui_effect": "show_universal"
+        }
+    ],
+    "explanation_30": [
+        {
+            "text": "It is red cabbage! When you pour a solution in the bowl, you can use the rightmost scale to identify its pH value.",
+            "ui_effect": "show_cabbage"
+        }
+    ],
+    "indicator_explanation": [
+        {
+            "text": "To measure pH we use an indicator, a substance that changes color according to the acidity of the solution.",
+            "ui_effect": ""
+        }
+    ],
+    "indicator_question": [
+        {
+            "text": "Our indicator is the purple one you see in the bowls on the table. Do you know what it is?",
+            "ui_effect": ""
+        }
+    ],
+    "indicator_question_explanation": [
+        {
+            "text": "It is red cabbage! When you pour a solution in the bowl, you can use the rightmost scale to identify its pH value.",
+            "ui_effect": "show_cabbage"
         }
     ],
     "next": [
         {
             "text": "Click next to proceed",
             "ui_effect": "next"
-        }
-    ],
-    "base_selection": [
-        {
-            "text": "The Highlighted item have basic properties. Select any 2 item of your choice to test them.",
-            "ui_effect": ""
-        }
-    ],
-    "guided_reasoning_explanation": [
-        {
-            "text": "You can now see all selected item on the table. Click on each item and mix it with cabbage solution",
-            "ui_effect": ""
         }
     ],
     "practice_explanation": [
@@ -333,19 +363,25 @@
     ],
     "explanation_15": [
         {
-            "text": "mix_strong_acid_explanation",
+            "text": "The pH for lemon juice is 3",
             "ui_effect": ""
         }
     ],
     "explanation_16": [
         {
-            "text": "mix_strong_base_explanation",
+            "text": "Its pH is 13.",
             "ui_effect": ""
         }
     ],
     "explanation_17": [
         {
-            "text": "mix_weak_acid_explanation",
+            "text": "Milk has a pH value of 6.",
+            "ui_effect": ""
+        }
+    ],
+    "explanation_31": [
+        {
+            "text": "Lemon juice is an acid substance",
             "ui_effect": ""
         }
     ],
@@ -459,25 +495,79 @@
     ],
     "mix_strong_acid_question": [
         {
-            "text": "Oh! Did you see the color change? Why do you think it happened?",
+            "text": "Wow, it turned red! Try to identify the pH value on the rightmost scale and click to select it.",
+            "ui_effect": ""
+        }
+    ],
+    "mix_strong_acid_second_question": [
+        {
+            "text": "Do you think the lemon juice is an acid or not?",
+            "ui_effect": ""
+        }
+    ],
+    "tricky_scale": [
+        {
+            "text": "The pH scale is tricky: the lower the value the higher the acidity.",
             "ui_effect": ""
         }
     ],
     "mix_strong_base_question": [
         {
-            "text": "See now the cabbage indicator changed to a different color. What did you do different this time?",
+            "text": "Wow, it turned green! Try to identify the pH value on the rightmost scale and click to select it.",
+            "ui_effect": ""
+        }
+    ],
+    "mix_water_explanation": [
+        {
+            "text": "Now try to pour the water ...",
+            "ui_effect": ""
+        }
+    ],
+    "explanation_32": [
+        {
+            "text": "Its pH is 7.",
+            "ui_effect": ""
+        }
+    ],
+    "neutral_explanation": [
+        {
+            "text": "Being in the middle, water is neither acid, nor alkaline: we say it is neutral.",
+            "ui_effect": ""
+        }
+    ],
+    "mix_water_question": [
+        {
+            "text": "Hmm, the color hasn't changed. Which is its pH value? Click on the correct value on the rightmost scale.",
             "ui_effect": ""
         }
     ],
     "mix_weak_acid_question": [
         {
-            "text": "This color reminds me of something...It's similar to the one made by the lemon juice, why do you think that is?",
+            "text": "Which is its pH value? Click on the correct value on the rightmost scale.",
+            "ui_effect": ""
+        }
+    ],
+    "mix_weak_acid_second_question": [
+        {
+            "text": "Milk and lemon juice are acids. Which one is more acidic?",
+            "ui_effect": ""
+        }
+    ],
+    "milk_or_lemon_juice_explanation": [
+        {
+            "text": "Milk is closer to 7, it means it's a weaker acid.",
+            "ui_effect": ""
+        }
+    ],
+    "explanation_33": [
+        {
+            "text": "",
             "ui_effect": ""
         }
     ],
     "mix_strong_acid_question_explanation": [
         {
-            "text": "The solution where you poured the lemon juice is an indicator made with red cabbage. An indicator changes color depending on some property of the substances which it comes into contact.",
+            "text": "The pH for lemon juice is 3.",
             "ui_effect": ""
         }
     ],
@@ -495,8 +585,15 @@
     ],
     "mix_strong_acid_explanation": [
         {
-            "text": "The cups on the counter are filled with a solution made with red cabbage, try pouring the lemon juice in the cup!",
+            "text": "The bowls on the counter are filled with a purple solution. What do you think they are filled with?",
             "ui_effect": ""
+        }
+    ],
+    "lemon_juice_pour": [
+        {
+            "text": "Let's start our experiment! Click on the lemon juice to pour it in the bowl.",
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "mix_strong_base_explanation": [
@@ -507,25 +604,31 @@
     ],
     "mix_weak_acid_explanation": [
         {
-            "text": "At last pour the milk in the solution.",
+            "text": "Pour the milk ...",
+            "ui_effect": ""
+        }
+    ],
+    "alkaline_explanation": [
+        {
+            "text": "When pH is between 8 and 14, we say the solution is alkaline.",
             "ui_effect": ""
         }
     ],
     "explain_practice_start": [
         {
-            "text": "explain_practice_start",
-            "ui_effect": ""
+            "text": "Something bad happened! I had all the items ordered by pH and someone messed them all up! If you want to help us click on the big button in the center!",
+            "ui_effect": "show_next_phase"
         }
     ],
     "collect_substances_explanation": [
         {
-            "text": "collect_substances_explanation",
+            "text": "You can the start pH identification by clicking an item of ypur choice.",
             "ui_effect": ""
         }
     ],
     "selected_substance": [
         {
-            "text": "selected_substance",
+            "text": "Well! You have chosen what to identify! Now experiment freely and try to compare the colors to the scale on the left. When you are ready you can click one of the numbers on the scale to specify the pH value of the object you just selected.",
             "ui_effect": ""
         }
     ],
@@ -543,7 +646,7 @@
     ],
     "ingredient_selection_explanation": [
         {
-            "text": "Select the three items in the shelf, i will bring them on the table for you!",
+            "text": "Let's start! Select the three items you see on the shelves, I'll bring them on the table for you!",
             "ui_effect": ""
         }
     ],
@@ -551,6 +654,72 @@
         {
             "text": "",
             "ui_effect": "unlock"
+        }
+    ],
+    "guessed_ph_1": [
+        {
+            "text": "1",
+            "ui_effect": "guessed_ph"
+        }
+    ],
+    "guessed_ph_2": [
+        {
+            "text": "2",
+            "ui_effect": "guessed_ph"
+        }
+    ],
+    "guessed_ph_3": [
+        {
+            "text": "3",
+            "ui_effect": "guessed_ph"
+        }
+    ],
+    "guessed_ph_4": [
+        {
+            "text": "4",
+            "ui_effect": "guessed_ph"
+        }
+    ],
+    "guessed_ph_5": [
+        {
+            "text": "5",
+            "ui_effect": "guessed_ph"
+        }
+    ],
+    "guessed_ph_6": [
+        {
+            "text": "6",
+            "ui_effect": "guessed_ph"
+        }
+    ],
+    "guessed_ph_7": [
+        {
+            "text": "7",
+            "ui_effect": "guessed_ph"
+        }
+    ],
+    "guessed_ph_8": [
+        {
+            "text": "8",
+            "ui_effect": "guessed_ph"
+        }
+    ],
+    "guessed_ph_9": [
+        {
+            "text": "9",
+            "ui_effect": "guessed_ph"
+        }
+    ],
+    "guessed_ph_10": [
+        {
+            "text": "10",
+            "ui_effect": "guessed_ph"
+        }
+    ],
+    "guessed_ph_11": [
+        {
+            "text": "11",
+            "ui_effect": "guessed_ph"
         }
     ]
 }
