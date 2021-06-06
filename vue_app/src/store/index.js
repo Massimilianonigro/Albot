@@ -8,7 +8,7 @@ export default new Vuex.Store({
         blockPhase: false,
         substances: [],
         showNextPhase: false,
-        showOnPHScale: [false, false, false],
+        showOnPHScale: [false, false, false, false],
         guessed: [false, false, false, false, false, false, false, false, false, false, false],
         showPHScale: [false, false],
         gamePhase: {

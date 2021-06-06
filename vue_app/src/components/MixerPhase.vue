@@ -99,7 +99,6 @@ export default {
     selectItem(index, ph, id) {
       if (index === this.nextSelected && !this.blockPhase) {
         this.$emit("selectItem", id);
-        this.setShowOnPHScale(3);
         this.setShowOnPHScale(index);
         if (this.selected === index) {
           this.selected = undefined;

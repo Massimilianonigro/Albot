@@ -171,11 +171,10 @@ export default {
     this.connection = new WebSocket("ws://9a09c8b1ea57.ngrok.io");
 
     let self = this;
-    z;
     this.connection.onmessage = function (event) {
       let messages = JSON.parse(event.data);
       messages.messages.forEach((message) => {
-        console.log("Examing message with ui_effect: " + message.ui_effect);
+        console.log("Examining message with ui_effect: " + message.ui_effect);
         switch (message.ui_effect) {
           case "hidden":
             this.user_name = message.text;
@@ -196,6 +195,10 @@ export default {
             return;
           case "show_universal":
             _this.setShowPHScale(0);
+            _this.$refs.gameRef.isRerender += 1;
+            return;
+          case "show_cabbage":
+            _this.setShowPHScale(1);
             _this.$refs.gameRef.isRerender += 1;
             return;
           default:
