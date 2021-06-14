@@ -60,7 +60,9 @@ class QuestionHandler:
                     + self.question_classification[question_type]["negative_responses"]
                 )
                 if self.question_classification[question_type]["explanation"]:
-                    response.append(self.get_explanation_by_id(question_id))
+                    explanation = self.get_explanation_by_id(question_id)
+                    if explanation != None:
+                        response.append(explanation)
                 if (
                     "send_negative_effect"
                     in self.question_classification[question_type]
@@ -117,8 +119,7 @@ class QuestionHandler:
             return False
 
     def _is_text_answer(self, answer):
-        # TODO: PUt an or with is guessed answer
-        return not (self._is_click_answer(answer))
+        return not (self._is_click_answer(answer) or self._is_guessed_answer(answer))
 
     def _is_clarification(self, intent):
         if intent[0:6] == "inform":

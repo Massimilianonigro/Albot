@@ -1,7 +1,10 @@
 <template>
   <div id="GameUI">
     <!--Tutorial Selection phase: !isMixer, isSelection, isTutorial-->
-    <div class="GameUI" v-if="!gamePhase.isMixer && gamePhase.isSelection && gamePhase.isTutorial">
+    <div
+      class="GameUI"
+      v-if="!gamePhase.isMixer && gamePhase.isSelection && gamePhase.isTutorial"
+    >
       <PickerBackground />
       <PickerPhase
         ref="picker"
@@ -13,11 +16,14 @@
       />
     </div>
     <!--Tutorial Mixer phase: isMixer, !isSelection, isTutorial-->
-    <div class="GameUI" v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial">
+    <div
+      class="GameUI"
+      v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial"
+    >
       <MixerBackground
         v-bind:isRerender="isRerender"
-      >
-      </MixerBackground>
+        v-on:PHGuess="sendPHGuess"
+      />
       <MixerPhase
         v-on:homePress="homeScreen"
         v-on:backPress="prevScreen"
@@ -29,22 +35,30 @@
       />
     </div>
     <!--pH identifier phase: isMixer, isSelection, !isTutorial-->
-    <div class="GameUI" v-if="gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial">
-      <IdentificationBackground v-on:PHGuess="sendPHGuess"/>
+    <div
+      class="GameUI"
+      v-if="gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial"
+    >
+      <IdentificationBackground v-on:PHGuess="sendPHGuess" />
       <IdentificationPhase
-          ref="game"
-          v-on:selectedElement="sendItemMessage"
-          v-on:resetPress="sendResetMessage"
-          v-on:homePress="homeScreen"
-          v-on:backPress="prevScreen"
-          v-on:continuePress="continueClick"
-          v-on:tryAgainPress="tryAgainClick"
-          v-on:nextPhasePress="practicePress"
-          v-on:infoPress="infoClick"
+        ref="game"
+        v-on:selectedElement="sendItemMessage"
+        v-on:resetPress="sendResetMessage"
+        v-on:homePress="homeScreen"
+        v-on:backPress="prevScreen"
+        v-on:continuePress="continueClick"
+        v-on:tryAgainPress="tryAgainClick"
+        v-on:nextPhasePress="practicePress"
+        v-on:infoPress="infoClick"
       />
     </div>
     <!--Practice Selection phase: !isMixer, isSelection, !isTutorial-->
-    <div class="GameUI" v-if="!gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial">
+    <div
+      class="GameUI"
+      v-if="
+        !gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial
+      "
+    >
       <PickerBackground />
       <PickerPracticePhase
         ref="pracpicker"
@@ -57,7 +71,10 @@
     <!--Practice Mixer phase: isMixer, !isSelection, !isTutorial-->
     <div
       class="GameUI"
-      v-if="gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial">
+      v-if="
+        gamePhase.isMixer && !gamePhase.isSelection && !gamePhase.isTutorial
+      "
+    >
       <PracticeBackground />
       <PracticePhase
         ref="game"
@@ -82,7 +99,7 @@ import MixerPhase from "./MixerPhase.vue";
 import PickerPracticePhase from "./PickerPracticePhase.vue";
 import PracticePhase from "./PracticePhase.vue";
 import IdentificationPhase from "./IdentificationPhase.vue";
-import {mapState, mapActions} from "vuex";
+import { mapState, mapActions } from "vuex";
 import IdentificationBackground from "./IdentificationBackground";
 
 export default {
@@ -110,7 +127,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["blockPhase", "substances", "gamePhase"])
+    ...mapState(["blockPhase", "substances", "gamePhase"]),
   },
   methods: {
     ...mapActions(["setSubstances", "setGamePhase"]),
@@ -189,12 +206,12 @@ export default {
     prevScreen() {
       let stringified = JSON.stringify(require("../resources/phases.json"));
       let phases = JSON.parse(stringified);
-      phases.phases.forEach(phase => {
-        if (phase.name === this.gamePhase.phase){
+      phases.phases.forEach((phase) => {
+        if (phase.name === this.gamePhase.phase) {
           this.setGamePhase(phase.prev_phase);
           this.setSubstances(phase.prev_phase);
         }
-      })
+      });
       this.selItems = [];
       this.nonSelItems = [];
       this.$emit("goBack");

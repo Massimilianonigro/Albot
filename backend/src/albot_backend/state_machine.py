@@ -245,5 +245,8 @@ class StateMachine:
     def _get_utterances(self, utterance_names):
         utterances = []
         for name in utterance_names:
-            utterances.append(rand.choice(self.utterances[name]))
+            if name != None:
+                utterance = rand.choice(self.utterances[name])
+                if not (utterance["ui_effect"] == "" and utterance["text"] == ""):
+                    utterances.append(utterance)
         return utterances

@@ -87,6 +87,7 @@ export default {
     pHIdentificationPhase() {
       //only for testing purposes, to be performed by backend
       this.setGamePhase("practice-pH");
+      this.sendMessage('{"content":"next", "type":"click"}');
     },
     sendPHGuess(index) {
       let message = '{"content":"' + index + '", "type":"guessed"}';
@@ -168,7 +169,7 @@ export default {
   created: function () {
     let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://9a09c8b1ea57.ngrok.io");
+    this.connection = new WebSocket("ws://localhost:2345");
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -196,10 +197,12 @@ export default {
           case "show_universal":
             _this.setShowPHScale(0);
             _this.$refs.gameRef.isRerender += 1;
+            self.$refs.chatRef.receiveMessage(message);
             return;
           case "show_cabbage":
             _this.setShowPHScale(1);
             _this.$refs.gameRef.isRerender += 1;
+            self.$refs.chatRef.receiveMessage(message);
             return;
           default:
             self.$refs.chatRef.receiveMessage(message);

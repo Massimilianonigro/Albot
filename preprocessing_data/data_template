@@ -43,13 +43,7 @@
     [[&[~[i think] it is?]] [&~[because]]?] milk and ~[lemon juice] are both acids! So the ~[solution] changes to ~[similar] colours
     [[&[~[i think] it is?]] [&~[because]]?] the ~[solution] ~[measures] a ~[similar] pH between lemon jucie and milk
 
-~[measures]
-    measures
-    assesses
-    evaluates
-    gauges
-    computes
-    determines
+
 
 %[not_knowing_answer](50)
     [&Boh]
@@ -180,10 +174,6 @@
     analogous
     akin
 
-~[substance]
-    substance
-    compound
-    solution
 
 %[inform_cabbage_solution](50)
     [&Why] are we ~[using] a ~[cabbage solution][\??]
@@ -270,12 +260,113 @@
     [&It] is something the scientists use to describe acidity of solutions
 
 %[ph_first_answer](50)
+    [[&PH] ~[measures]?] the ~[acidity] of a ~[substance]
+    [[[&PH] is a scale that|[&It]]?] ~[measures] if a ~[substance] is acid or alkaline
+    [&It] helps us ~[describe] acid and alkalines ~[substance] 
+
+~[describe]
+    describe
+    detail
+    represent
+    set out
+    mark out
+
+~[measures]
+    measures
+    determines
+    evaluates
+    estimates
+    gauges
+    rates
+    assesses
+    meters
+
+~[acidity]
+    acidity
+    acidic properties
+
+~[substance]
+    solution
+    substance
+    acqueous solution
+    compound
+
 
 %[indicator_answer](50)
+    [&[The indicator|it]] is made of [~[entirely]?] ~[red cabbage]
+    [&It] is ~[made by] ~[cooking]  ~[red cabbage]
+    ~[cooked] ~[red cabbage]
+    ~[red cabbage] that has been ~[cooked]
+
+
+~[entirely]
+    entirely
+    completely
+    fully
+    totally
+    wholly
+
+~[cooked]
+    cooked
+    boiled
+    boiled and grinded
+
+~[red cabbage]
+    red cabbage
+    cabbage
+    purple cabbage
+
+~[cooking]
+    cooking 
+    boiling
+    boiling and grinding
+
+~[composed]
+    made of
+    composed of
+    obtained from
+
+~[made by]
+    produced by
+    developed by
+    created by
+    done by
+    caused by
 
 %[is_it_acid_answer](50)
+    [&Yes] [it is?]
+    [&Yes] its pH is lower than 7
+    [&Yes] [~[because]?] [it|~[lemon juice]] [tastes acid|is acid in taste|is acidic in taste]
+    [it|~[lemon juice]] tastes acid ~[hence] it is an acid
+    [i ~[think]|~[i think]] [it|~[lemon juice]] is an acid ~[because] it [tastes acid|is acid in taste|is acidic in taste]
+    
+
+
+~[think]
+    think 
+    would imagine
+    imagine
+    believe
+    suppose
+    assume
+    expect
+    presume
+
+
 
 %[milk_or_lemon_juice](50)
+    [~[surely]?] ~[lemon juice] [is [more acidic|more acid|?]|has lower pH [value?]]
+    [~[surely]?] milk [is [less acidic|less acid]|has an higher pH [value?]]
+    
+
+~[surely]
+    surely
+    for sure
+    of course
+    i ~[think] that
+    ~[i think]
+
+
 
 %[cabbage_answer](50)
     [&We] use it ~[because] it is a natural ph indicator

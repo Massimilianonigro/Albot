@@ -1,0 +1,1489 @@
+<!-- Generated using Chatette v1.6.2 -->
+
+## intent:mix_strong_acid_answer
+- Because i mixed the lemon in and that is acidic
+- Because i poured the juice in and that is acidic
+- Because i poured the lemon juice in and that is acidic
+- Because the mixture is more acid
+- Cause i added the juice in the cabbage
+- Cause i inserted into the lemon juice in and that is acidic
+- Cause the indicator is more acid
+- Could The color changed because the indicator that we used is a pH indicator
+- Could it is Because i added the lemon in and that is acidic
+- Could it is cause i dropped the juice in the cabbage
+- Could it is cause i inserted into the juice in the cabbage
+- Could the color changed because i put something in the cabbage
+- I added the lemon juice in then the color changed since of some property
+- I believe it is Because the indicator is more acid
+- I believe it is because i put the lemon juice in and that is acidic
+- I believe it is cause the indicator is more acid
+- I believe it is since i added the juice in and that is acidic
+- I believe it is since the mixture is more acid
+- I believe the color changed because the mixture that we used is a pH indicator
+- I dropped the lemon juice in and that is why the color changed because of some property
+- I dropped the lemon juice in thus the color changed because of some property
+- I inserted into the lemon juice in thus the color changed since of some property
+- I mixed the lemon juice in and that is why the color changed cause of some property
+- I put the lemon juice in then the color changed because of some property
+- I think it is sinceboth substances are acids
+- In my opinion The color changed because the solution that we used is a pH indicator
+- In my opinion it is cause i dropped the juice in the cabbage
+- Is possible that it is cause the mixture is more acid
+- Is possible that the color changed because i inserted into something in the cabbage
+- Since i inserted into the juice in the cabbage
+- Since the mixture is more acid
+- Since the solution is more acid
+- Sinceboth substances are acids
+- The color changed because the mixture that we used is a pH indicator
+- The color changed since i put something in the cabbage
+- The color changed since the mixture that we used is a pH indicator
+- The color changed since the solution that we used is a pH indicator
+- because i poured the lemon in and that is acidic
+- because i put the lemon in and that is acidic
+- could it is because i added the juice in the cabbage
+- could the color changed cause i added something in the cabbage
+- i believe it is Since i put the juice in the cabbage
+- i believe the color changed because i inserted into something in the cabbage
+- i think The color changed cause i inserted into something in the cabbage
+- i think The color changed since the mixture that we used is a pH indicator
+- i think it is Since i added the juice in and that is acidic
+- i think the color changed since the solution that we used is a pH indicator
+- in my opinion it is becauseboth substances are acids
+- is possible that it is since the solution is more acid
+- since i added the lemon in and that is acidic
+
+## intent:mix_strong_base_answer
+- I added a diverse substance
+- I dropped a diverse substance
+- I mixed a clashing acqueous solution
+- I mixed a clashing compound
+- I mixed a clashing substance
+- I mixed a distinct compound
+- I mixed a distinct solution
+- I mixed a distinct substance
+- I mixed a diverse compound
+- The color is clashing cause the baking soda possesses clashing properties than the lemon juice
+- The color is clashing since the baking soda has different properties than the juice
+- The color is clashing since the baking soda possesses distinct properties than the lemon juice
+- The color is clashing since the baking soda retains diverse properties than the lemon juice
+- The color is different since the baking soda has clashing properties than the lemon juice
+- The color is diverse because the baking soda has diverse properties than the lemon juice
+- The color is diverse since the baking soda has diverse properties than the lemon juice
+- The oven cleaner is an alkali and the lemon juice is an acid, hence the indicator changed to distinct colors
+- The oven cleaner is an alkali and the lemon juice is an acid, so the solution changed to distinct colors
+- This time is clashing because i put a clashing item in the mixture
+- This time is clashing since i added a clashing element in the solution
+- This time is different cause i poured a different item in the indicator
+- This time is distinct because i added a distinct item in the mixture
+- This time is distinct because i put a different element in the solution
+- This time is diverse since i added a diverse ingredient in the indicator
+- i dropped a clashing substance
+- i inserted into a different compound
+- i inserted into a different substance
+- i poured a diverse acqueous solution
+- i poured a diverse solution
+- the color is clashing cause the baking soda has clashing properties than the lemon juice
+- the color is clashing cause the baking soda possesses diverse properties than the lemon
+- the color is clashing since the baking soda possesses distinct properties than the lemon juice
+- the color is different because the baking soda holds distinct properties than the lemon
+- the color is different cause the baking soda possesses clashing properties than the juice
+- the color is different cause the baking soda possesses clashing properties than the lemon
+- the color is different cause the baking soda possesses clashing properties than the lemon juice
+- the color is diverse cause the baking soda holds different properties than the lemon juice
+- the color is diverse since the baking soda has clashing properties than the lemon
+- the color is diverse since the baking soda holds diverse properties than the lemon
+- the oven cleaner is an alkali and the lemon juice is an acid, and that is why the indicator changed to diverse colors
+- the oven cleaner is an alkali and the lemon juice is an acid, and that is why the mixture changed to different colors
+- the oven cleaner is an alkali and the lemon juice is an acid, and that is why the solution changed to different colors
+- the oven cleaner is an alkali and the lemon juice is an acid, then the mixture changed to distinct colors
+- this time is clashing because i poured a diverse element in the mixture
+- this time is clashing cause i added a distinct piece in the indicator
+- this time is clashing since i added a distinct ingredient in the indicator
+- this time is different because i inserted into a clashing piece in the solution
+- this time is different cause i poured a diverse ingredient in the solution
+- this time is distinct because i mixed a distinct ingredient in the solution
+- this time is diverse because i inserted into a diverse ingredient in the solution
+
+## intent:mix_weak_acid_answer
+- Because milk and juice are both acids! So the indicator changes to similar colours
+- Because the solution measures a akin pH between lemon jucie and milk
+- Cause the indicator evaluates a comparable pH between lemon jucie and milk
+- Cause the solution meters a comparable pH between lemon jucie and milk
+- Could it is Cause milk and juice are both acids! So the indicator changes to comparable colours
+- Could it is Cause the mixture gauges a comparable pH between lemon jucie and milk
+- Could it is since the mixture gauges a comparable pH between lemon jucie and milk
+- Could that the colours are akin since the milk has akin properties to the lemon juice
+- Could that the colours are analogous because the milk has comparable properties to the juice
+- I believe it is Cause milk and lemon juice are both acids! So the indicator changes to akin colours
+- I believe that the colours are akin since the milk has akin properties to the lemon juice
+- I think it is since the indicator evaluates a akin pH between lemon jucie and milk
+- I think that the colours are akin since the milk has akin properties to the lemon juice
+- In my opinion it is Cause milk and lemon juice are both acids! So the mixture changes to analogous colours
+- Is possible that that the colours are akin because the milk has akin properties to the lemon juice
+- Since the indicator meters a similar pH between lemon jucie and milk
+- Since the mixture determines a comparable pH between lemon jucie and milk
+- because milk and lemon are both acids! So the indicator changes to similar colours
+- because milk and lemon juice are both acids! So the indicator changes to akin colours
+- because the solution gauges a analogous pH between lemon jucie and milk
+- cause milk and lemon juice are both acids! So the mixture changes to similar colours
+- cause the solution estimates a comparable pH between lemon jucie and milk
+- could it is Since the solution determines a akin pH between lemon jucie and milk
+- could that the colours are akin because the milk has akin properties to the lemon
+- i believe that the colours are akin cause the milk has analogous properties to the lemon juice
+- i think it is Cause milk and lemon are both acids! So the indicator changes to akin colours
+- i think it is cause milk and lemon are both acids! So the indicator changes to comparable colours
+- in my opinion it is Since milk and lemon are both acids! So the solution changes to analogous colours
+- in my opinion it is because milk and lemon are both acids! So the indicator changes to comparable colours
+- in my opinion that the colours are akin because the milk has analogous properties to the lemon
+- in my opinion that the colours are analogous since the milk has akin properties to the lemon
+- is possible that it is Since the solution meters a comparable pH between lemon jucie and milk
+- is possible that that the colours are similar because the milk has akin properties to the lemon juice
+- milk and juice are both acids! So the mixture changes to analogous colours
+- milk and lemon are both acids! So the solution changes to akin colours
+- since milk and lemon juice are both acids! So the mixture changes to similar colours
+- since the solution measures a analogous pH between lemon jucie and milk
+- since the solution rates a comparable pH between lemon jucie and milk
+- the colours are akin because the milk has similar properties to the juice
+- the colours are analogous cause the milk has comparable properties to the lemon
+- the colours are analogous cause the milk has similar properties to the lemon juice
+- the colours are analogous since the milk has analogous properties to the lemon juice
+- the colours are comparable cause the milk has analogous properties to the lemon juice
+- the colours are similar cause the milk has similar properties to the juice
+- the colours are similar since the milk has similar properties to the juice
+- the indicator determines a similar pH between lemon jucie and milk
+- the indicator gauges a similar pH between lemon jucie and milk
+- the mixture gauges a akin pH between lemon jucie and milk
+- the solution assesses a comparable pH between lemon jucie and milk
+- the solution measures a comparable pH between lemon jucie and milk
+
+## intent:not_knowing_answer
+- I don't know why this occur
+- i don't know why this occur
+- I don't know
+- i don't know
+- I don't know why this turned out this way
+- i cannot give an answer
+- No idea
+- I don't know why this happened
+- Boh
+- i don't know why this bacame like this
+- no idea
+- I cannot answer
+- i have no idea how this works
+- I cannot give an answer
+- i cannot answer
+- I don't know why this bacame like this
+- I have no idea how this works
+- i don't know why this happened
+- boh
+- i don't know why this turned out this way
+
+## intent:inform_collecting_items
+- Can i choose more ingredients?
+- Can i choose more pieces?
+- Can i pick all the ingredients
+- Can i pick more items
+- Can i pick more pieces
+- Can i pick up more ingredients?
+- Can i pick up more items?
+- Can i select all the ingredients?
+- Can i select all the pieces?
+- Can i select more ingredients
+- Can i select more ingredients?
+- Can i select more items
+- Can i take more elements
+- Can i take more elements?
+- Can i take more pieces
+- How many elements should i pick up?
+- How many elements should i select?
+- How many pieces should i choose
+- How many pieces should i pick up
+- How many pieces should i pick?
+- How many pieces should i take?
+- How much stuff can i choose
+- How much stuff can i choose?
+- How much stuff can i select
+- How much stuff can i select?
+- can i choose all the items
+- can i choose more ingredients
+- can i choose more ingredients?
+- can i pick more elements?
+- can i pick more ingredients
+- can i pick more ingredients?
+- can i pick more items?
+- can i pick more pieces
+- can i pick up more elements?
+- can i pick up more items
+- can i select more elements?
+- can i select more ingredients?
+- can i select more items
+- can i select more pieces?
+- can i take more elements
+- can i take more elements?
+- how many ingredients should i choose
+- how many items should i take
+- how many pieces should i choose?
+- how much stuff can i choose
+- how much stuff can i choose?
+- how much stuff can i pick
+- how much stuff can i pick?
+- how much stuff can i select?
+- how much stuff can i take
+
+## intent:inform_ph_property
+- Can you define the theory behind of [alkali](ph_property)
+- Can you explain the concept of [Acid](ph_property)?
+- Can you tell me more about the idea of of [acid](ph_property)
+- How do we recognize an [Acid](ph_property)
+- How do we recognize an [Alkali](ph_property)
+- How do we recognize an [Alkali](ph_property)?
+- How do we recognize an [alkali](ph_property)?
+- What are the properties of [Acid](ph_property)
+- What are the properties of [acid](ph_property)
+- What are the properties of [alkali](ph_property)
+- What are the properties of [alkali](ph_property)?
+- What characterizes a [Acid](ph_property)?
+- What defines a [Alkali](ph_property)
+- What does [acid](ph_property) mean
+- What is [Acid](ph_property)
+- What is [Alkali](ph_property)?
+- What is a [Acid](ph_property)
+- What is a [Acid](ph_property)?
+- What is a [alkali](ph_property)
+- What is a [alkali](ph_property)?
+- What is [acid](ph_property)
+- What is [acid](ph_property)?
+- What marks a [Alkali](ph_property)?
+- What marks a [alkali](ph_property)?
+- can you explain the idea of of [alkali](ph_property)?
+- can you make a summary of the theory behind of [Acid](ph_property)?
+- can you tell me more about the idea of of [Alkali](ph_property)?
+- can you tell me more about the theory behind of [acid](ph_property)?
+- how do we recognize an [Acid](ph_property)
+- how do we recognize an [Acid](ph_property)?
+- how do we recognize an [Alkali](ph_property)
+- how do we recognize an [Alkali](ph_property)?
+- how do we recognize an [alkali](ph_property)
+- what are the properties of [Acid](ph_property)
+- what are the properties of [alkali](ph_property)
+- what characterizes a [Acid](ph_property)
+- what characterizes a [Acid](ph_property)?
+- what characterizes a [Alkali](ph_property)?
+- what does [Acid](ph_property) mean
+- what does [acid](ph_property) mean?
+- what does [alkali](ph_property) mean
+- what is [Acid](ph_property)
+- what is [Alkali](ph_property)?
+- what is a [Acid](ph_property)?
+- what is a [acid](ph_property)
+- what is a [acid](ph_property)?
+- what is a [alkali](ph_property)?
+- what is [alkali](ph_property)?
+- what marks a [Acid](ph_property)?
+- what marks a [Alkali](ph_property)?
+
+## intent:inform_ph
+- Can you make a summary of the theory behind of ph?
+- Can you tell me more about the theory behind of ph
+- Can you define the theory behind of ph?
+- I want an explanation on ph
+- what is ph?
+- What is ph
+- how is ph influencing our life?
+- Can you tell me more about the concept of ph
+- does any liquid have ph properties?
+- Can you define the theory behind of ph
+- I want an description on ph
+- specify more about ph
+- Can you make a summary of the theory behind of ph
+- can you break down the idea of of ph
+- can you explain the concept of ph
+- can you break down the concept of ph
+- Can you explain the concept of ph
+- define more about ph
+- Can you break down the theory behind of ph
+- What is an alkaline?
+- what is the deal with ph
+- Does any liquid have ph properties?
+- I want an summary on ph
+- can you explain the idea of of ph
+- disclose more about ph
+- What is an alkaline
+- Can you make a summary of the idea of of ph
+- can you define the concept of ph
+- Can you tell me more about the theory behind of ph?
+- how is ph influencing our life
+- Can you define the concept of ph
+- can you tell me more about the concept of ph?
+- Can you break down the concept of ph?
+- Can you make a summary of the concept of ph
+- can you explain the idea of of ph?
+- Can you explain the idea of of ph?
+- can you make a summary of the idea of of ph
+- how does ph work
+- Can you explain the theory behind of ph?
+- can you make a summary of the idea of of ph?
+- can you tell me more about the idea of of ph?
+- Can you make a summary of the idea of of ph?
+- can you break down the concept of ph?
+- Can you define the idea of of ph
+- can you define the idea of of ph
+- I want an example on ph
+- What is the deal with ph
+- can you explain the theory behind of ph
+- can you break down the theory behind of ph?
+- can you break down the idea of of ph?
+
+## intent:acid_acid_compare
+- [Cola](acid) is an acid and [lemon juice](acid) too, but their phs are diverse
+- [Cola](acid) is less acid than [Milk](acid)
+- [Cola](acid) is less acid than [Soap](acid)
+- [Lemon juice](acid) is an acid and [milk](acid) too, but their phs are different
+- [Lemon juice](acid) is more acid than [Milk](acid)
+- [Milk](acid) is an acid and [cola](acid) too, but their phs are distinct
+- [Milk](acid) is less acid than [Lemon juice](acid)
+- Not much. They are both acids
+- One element has ph slighltly more acid than the other
+- One element is more acidic than the other
+- One ingredient has ph slighltly more acid than the other
+- One item has ph slighltly more acid than the other
+- One item is more acidic than the other
+- One piece has ph slighltly more acid than the other
+- One piece is more acidic than the other
+- [Soap](acid) is an acid and [soap](acid) too, but their phs are different
+- [Sparkling water](acid) is an acid and [milk](acid) too, but their phs are different
+- The two elements are comparable. They are both acids but have clashing ph
+- The two elements are comparable. They are both acids but have different ph
+- The two elements are similar. They are both acids but have distinct ph
+- The two ingredients are akin. They are both acids but have different ph
+- The two ingredients are analogous. They are both acids but have diverse ph
+- The two ingredients are comparable. They are both acids but have clashing ph
+- The two ingredients are similar. They are both acids but have different ph
+- The two items are akin. They are both acids but have distinct ph
+- The two items are analogous. They are both acids but have distinct ph
+- The two items are analogous. They are both acids but have diverse ph
+- The two items are comparable. They are both acids but have distinct ph
+- The two items are similar. They are both acids but have distinct ph
+- The two pieces are analogous. They are both acids but have clashing ph
+- They are two acidics indicators, one more than the other
+- They are two acidics mixtures, one more than the other
+- They are two acidics solutions, one more than the other
+- [Vinegar](acid) is less acid than [milk](acid)
+- [cola](acid) is an acid and [Sparkling water](acid) too, but their phs are clashing
+- [cola](acid) is an acid and [Sparkling water](acid) too, but their phs are different
+- [cola](acid) is less acid than [milk](acid)
+- [cola](acid) is more acid than [Vinegar](acid)
+- [cola](acid) is more acid than [lemon juice](acid)
+- [lemon juice](acid) is more acid than [Soap](acid)
+- [milk](acid) is an acid and [Vinegar](acid) too, but their phs are different
+- [milk](acid) is less acid than [vinegar](acid)
+- [milk](acid) is more acid than [Milk](acid)
+- [milk](acid) is more acid than [milk](acid)
+- [milk](acid) is more acid than [sparkling water](acid)
+- [soap](acid) is an acid and [Milk](acid) too, but their phs are clashing
+- [soap](acid) is an acid and [Sparkling water](acid) too, but their phs are distinct
+- [sparkling water](acid) is an acid and [soap](acid) too, but their phs are clashing
+- [vinegar](acid) is less acid than [Sparkling water](acid)
+- [vinegar](acid) is more acid than [Lemon juice](acid)
+
+## intent:basic_acid_compare
+- [Baking soda](base) has ph higher than 7, while [Cola](acid) has ph lower than 7
+- [Bleach](base) is a basic solution [soap](acid) is an acidic one
+- [Egg white](base) has ph higher than 7, while [Lemon juice](acid) has ph lower than 7
+- [Egg white](base) has ph higher than 7, while [milk](acid) has ph lower than 7
+- [Egg white](base) has ph higher than 7, while [sparkling water](acid) has ph lower than 7
+- [Egg white](base) is a basic indicator [milk](acid) is an acidic one
+- [Lemon juice](acid) is acidic, while [Oven cleaner](base) is basic
+- One has a ph lower than 7 the other has a ph higher than 7
+- One is more acidic than [Pure water](neutral) the other is more basic than [Pure water](neutral)
+- One is more acidic than [Pure water](neutral) the other is more basic than [pure water](neutral)
+- One is more acidic than [pure water](neutral) the other is more basic than [Pure water](neutral)
+- One of the two is a base the other is an acid
+- [Sparkling water](acid) is acidic, while [egg white](base) is basic
+- The elements have vastly distinct ph properties, one is basic the other is acid
+- The ingredients have vastly diverse ph properties, one is basic the other is acid
+- The pieces have vastly clashing ph properties, one is basic the other is acid
+- The two items have vastly distinct ph properties, one is basic the other is acid
+- The two pieces have vastly different ph properties, one is basic the other is acid
+- They are at opposite sides of the ph spectrum
+- [baking soda](base) has ph higher than 7, while [soap](acid) has ph lower than 7
+- [baking soda](base) has ph higher than 7, while [vinegar](acid) has ph lower than 7
+- [baking soda](base) is a basic mixture [sparkling water](acid) is an acidic one
+- [bleach](base) has ph higher than 7, while [Vinegar](acid) has ph lower than 7
+- [bleach](base) is a basic mixture [Cola](acid) is an acidic one
+- [egg white](base) has ph higher than 7, while [Cola](acid) has ph lower than 7
+- [egg white](base) has ph higher than 7, while [Soap](acid) has ph lower than 7
+- [egg white](base) is a basic mixture [cola](acid) is an acidic one
+- [egg white](base) is a basic mixture [sparkling water](acid) is an acidic one
+- [lemon juice](acid) is acidic, while [Baking soda](base) is basic
+- [lemon juice](acid) is acidic, while [baking soda](base) is basic
+- [lemon juice](acid) is acidic, while [oven cleaner](base) is basic
+- one has a ph lower than 7 the other has a ph higher than 7
+- one is a basic indicator the other an acidic one
+- one is a basic mixture the other an acidic one
+- one is more acidic than [Pure water](neutral) the other is more basic than [Pure water](neutral)
+- one is more acidic than [Pure water](neutral) the other is more basic than [pure water](neutral)
+- one is more acidic than [pure water](neutral) the other is more basic than [Pure water](neutral)
+- one of the two is a base the other is an acid
+- [oven cleaner](base) has ph higher than 7, while [lemon juice](acid) has ph lower than 7
+- [oven cleaner](base) is a basic indicator [Cola](acid) is an acidic one
+- [soap](acid) is acidic, while [Baking soda](base) is basic
+- [soap](acid) is acidic, while [Bleach](base) is basic
+- [soap](acid) is acidic, while [egg white](base) is basic
+- [soap](acid) is acidic, while [oven cleaner](base) is basic
+- [sparkling water](acid) is acidic, while [Baking soda](base) is basic
+- the elements have vastly different ph properties, one is basic the other is acid
+- the ingredients have vastly clashing ph properties, one is basic the other is acid
+- the ingredients have vastly diverse ph properties, one is basic the other is acid
+- they are at opposite sides of the ph spectrum
+- [vinegar](acid) is acidic, while [oven cleaner](base) is basic
+
+## intent:basic_basic_compare
+- [Baking soda](base) is a base and [baking soda](base) too, but their phs are different
+- [Bleach](base) is a base and [egg white](base) too, but their phs are clashing
+- [Bleach](base) is less basic than [baking soda](base)
+- [Bleach](base) is more basic than [Baking soda](base)
+- [Egg white](base) is a base and [Oven cleaner](base) too, but their phs are clashing
+- [Egg white](base) is less basic than [Egg white](base)
+- [Egg white](base) is less basic than [bleach](base)
+- [Egg white](base) is more basic than [egg white](base)
+- Not a lot, they are bases hence they are analogous
+- Not a lot, they are bases hence they are comparable
+- Not a lot, they are bases hence they are similar
+- [Oven cleaner](base) is a base and [Oven cleaner](base) too, but their phs are different
+- [Oven cleaner](base) is less basic than [bleach](base)
+- [Oven cleaner](base) is more basic than [Bleach](base)
+- The two compounds are bases, one of the two is more basic than the other
+- The two substances are bases, one of the two is more basic than the other
+- Their ph is both above 7 but is slightly clashing
+- Their ph is both above 7 but is slightly different
+- Their ph is both above 7 but is slightly diverse
+- They are both bases, not much difference
+- They have clashing ph but are both bases
+- They have different ph but are both bases
+- They have distinct ph but are both bases
+- [baking soda](base) is less basic than [oven cleaner](base)
+- [baking soda](base) is more basic than [Bleach](base)
+- [baking soda](base) is more basic than [baking soda](base)
+- [baking soda](base) is more basic than [oven cleaner](base)
+- [bleach](base) is less basic than [baking soda](base)
+- [egg white](base) is a base and [Bleach](base) too, but their phs are diverse
+- [egg white](base) is a base and [baking soda](base) too, but their phs are different
+- [egg white](base) is a base and [bleach](base) too, but their phs are different
+- [egg white](base) is less basic than [Baking soda](base)
+- [egg white](base) is more basic than [bleach](base)
+- [egg white](base) is more basic than [egg white](base)
+- not a lot, they are bases hence they are akin
+- not a lot, they are bases hence they are analogous
+- not a lot, they are bases hence they are similar
+- [oven cleaner](base) is less basic than [Bleach](base)
+- [oven cleaner](base) is more basic than [Bleach](base)
+- [oven cleaner](base) is more basic than [Egg white](base)
+- the substances are bases, one of the two is more basic than the other
+- the two compounds are bases, one of the two is more basic than the other
+- their ph is both above 7 but is slightly clashing
+- their ph is both above 7 but is slightly different
+- their ph is both above 7 but is slightly distinct
+- their ph is both above 7 but is slightly diverse
+- they are both bases, not much difference
+- they have clashing ph but are both bases
+- they have distinct ph but are both bases
+- they have diverse ph but are both bases
+
+## intent:neutral_basic_compare
+- [Pure water](neutral) is neutral [Oven cleaner](base) is a base
+- [Baking soda](base) is basic, [Pure water](neutral) is neutral
+- one is a [baking soda](base) compound , with a much higher ph than [pure water](neutral)
+- One is a [oven cleaner](base) acqueous solution , with a much higher ph than [pure water](neutral)
+- [Baking soda](base) is basic, [pure water](neutral) is neutral
+- One is a [egg white](base) acqueous solution , with a much higher ph than [Pure water](neutral)
+- [bleach](base) base other neutral
+- [pure water](neutral) is neutral [Bleach](base) is a base
+- one is a [egg white](base) substance , with a much higher ph than [Pure water](neutral)
+- One is a [egg white](base) compound , with a much higher ph than [pure water](neutral)
+- [pure water](neutral) is neutral [oven cleaner](base) is a base
+- [bleach](base) has a ph higher than 7, [Pure water](neutral) has 7
+- [Bleach](base) base other neutral
+- One is a [Oven cleaner](base) solution , with a much higher ph than [Pure water](neutral)
+- One is a [Baking soda](base) solution , with a much higher ph than [pure water](neutral)
+- [Bleach](base) has a ph higher than 7, [Pure water](neutral) has 7
+- one is a [baking soda](base) substance , with a much higher ph than [Pure water](neutral)
+- One is a [Egg white](base) compound , with a much higher ph than [Pure water](neutral)
+- One of them has ph 7 the other has an higher ph
+- one is a [Bleach](base) substance , with a much higher ph than [Pure water](neutral)
+- [bleach](base) has a ph higher than 7, [pure water](neutral) has 7
+- one is a [bleach](base) compound , with a much higher ph than [pure water](neutral)
+- [egg white](base) has a ph higher than 7, [pure water](neutral) has 7
+- one is a [Baking soda](base) solution , with a much higher ph than [Pure water](neutral)
+- one is a [Egg white](base) compound , with a much higher ph than [pure water](neutral)
+- one is a [Bleach](base) solution , with a much higher ph than [pure water](neutral)
+- One is a [Bleach](base) solution , with a much higher ph than [pure water](neutral)
+- [pure water](neutral) is a neutral substance, the other is a basis
+- [pure water](neutral) is a neutral solution, the other is a basis
+- One is a [oven cleaner](base) compound , with a much higher ph than [Pure water](neutral)
+- One is a [baking soda](base) acqueous solution , with a much higher ph than [pure water](neutral)
+- one is a [Oven cleaner](base) solution , with a much higher ph than [Pure water](neutral)
+- [bleach](base) is basic, [Pure water](neutral) is neutral
+- one is a [egg white](base) acqueous solution , with a much higher ph than [pure water](neutral)
+- One is a [oven cleaner](base) acqueous solution , with a much higher ph than [Pure water](neutral)
+- [Baking soda](base) has a ph higher than 7, [Pure water](neutral) has 7
+- One is a [egg white](base) compound , with a much higher ph than [Pure water](neutral)
+- One is a [bleach](base) solution , with a much higher ph than [Pure water](neutral)
+- One is a [Baking soda](base) substance , with a much higher ph than [pure water](neutral)
+- [Pure water](neutral) is at the center of the ph spectrum, the other is higher
+- One is a [Baking soda](base) compound , with a much higher ph than [Pure water](neutral)
+- one is a [Baking soda](base) compound , with a much higher ph than [Pure water](neutral)
+- [Bleach](base) is basic, [pure water](neutral) is neutral
+- One is a [Bleach](base) acqueous solution , with a much higher ph than [Pure water](neutral)
+- [egg white](base) base other neutral
+- one is a [Bleach](base) compound , with a much higher ph than [pure water](neutral)
+- one is a [bleach](base) compound , with a much higher ph than [Pure water](neutral)
+- one is a [Oven cleaner](base) compound , with a much higher ph than [Pure water](neutral)
+- One is a [Oven cleaner](base) acqueous solution , with a much higher ph than [Pure water](neutral)
+- one is a [Bleach](base) compound , with a much higher ph than [Pure water](neutral)
+
+## intent:neutral_acid_compare
+- [Pure water](neutral) is acqueous solution [soap](acid) is acid
+- [Pure water](neutral) is a neutral substance the other is an acid
+- [pure water](neutral) is substance [cola](acid) is acid
+- [Pure water](neutral) is acqueous solution [milk](acid) is acid
+- [Lemon juice](acid) is acidic, [Pure water](neutral) is neutral
+- [Pure water](neutral) is substance [soap](acid) is acid
+- [vinegar](acid) is acidic, [pure water](neutral) is neutral
+- [Pure water](neutral) is substance [Sparkling water](acid) is acid
+- [pure water](neutral) is compound [vinegar](acid) is acid
+- [Pure water](neutral) is compound [lemon juice](acid) is acid
+- [pure water](neutral) is compound [Milk](acid) is acid
+- [Milk](acid) is acidic, [pure water](neutral) is neutral
+- [lemon juice](acid) has a ph lower than 7, [pure water](neutral) has 7
+- [Cola](acid) has a ph lower than 7, [pure water](neutral) has 7
+- [Soap](acid) is acidic, [Pure water](neutral) is neutral
+- [lemon juice](acid) acid other neutral
+- [pure water](neutral) is a neutral acqueous solution the other is an acid
+- [Lemon juice](acid) acid other neutral
+- [pure water](neutral) is a neutral compound the other is an acid
+- [Cola](acid) is acidic, [Pure water](neutral) is neutral
+- [Pure water](neutral) has ph 7 and the other has a lower ph
+- [pure water](neutral) is acqueous solution [Milk](acid) is acid
+- [pure water](neutral) is acqueous solution [Sparkling water](acid) is acid
+- One of them is an acid the other a neutral compound
+- [pure water](neutral) is solution [Milk](acid) is acid
+- [pure water](neutral) is acqueous solution [Lemon juice](acid) is acid
+- one of them is an acid the other a neutral compound
+- [pure water](neutral) is acqueous solution [sparkling water](acid) is acid
+- there is an acidic compound and a neutral one
+- One acid other acqueous solution
+- [Pure water](neutral) is substance [sparkling water](acid) is acid
+- [pure water](neutral) is substance [Milk](acid) is acid
+- [Pure water](neutral) is compound [milk](acid) is acid
+- [Soap](acid) has a ph lower than 7, [pure water](neutral) has 7
+- [Pure water](neutral) is substance [vinegar](acid) is acid
+- [pure water](neutral) is substance [lemon juice](acid) is acid
+- [Soap](acid) has a ph lower than 7, [Pure water](neutral) has 7
+- [Pure water](neutral) is solution [Vinegar](acid) is acid
+- [Pure water](neutral) is acqueous solution [lemon juice](acid) is acid
+- [pure water](neutral) is solution [milk](acid) is acid
+- There is an acidic solution and a neutral one
+- [pure water](neutral) is solution [Sparkling water](acid) is acid
+- [Lemon juice](acid) has a ph lower than 7, [pure water](neutral) has 7
+- [pure water](neutral) is a neutral substance the other is an acid
+- there is an acidic acqueous solution and a neutral one
+- [sparkling water](acid) acid other neutral
+- [pure water](neutral) is solution [sparkling water](acid) is acid
+- [pure water](neutral) is compound [Cola](acid) is acid
+- [Vinegar](acid) has a ph lower than 7, [Pure water](neutral) has 7
+- [Pure water](neutral) is a neutral acqueous solution the other is an acid
+
+## intent:inform_cabbage_solution
+- Do you know any other indicator to check the ph property?
+- Do you know any other indicator to check the ph value?
+- Do you know any other mixture to check the ph value
+- Do you know any other mixture to check the ph value?
+- How is the cabbage indicator helping us
+- How is the cabbage indicator helping us?
+- How is the cabbage juice helping us
+- How is the cabbage juice helping us?
+- How is the cabbage mixture helping us
+- How is the cabbage solution helping us?
+- Is there any other indicator i can make use instead of the cabbage one
+- Is there any other mixture i can take advantage of instead of the cabbage one?
+- Is there any other solution i can exploit instead of the cabbage one
+- Is there any other solution i can make use instead of the cabbage one?
+- Is there any other solution i can put to use instead of the cabbage one?
+- Is there any other solution i can use instead of the cabbage one?
+- What is the deal with the cabbage indicator
+- Why are we putting to use a cabbage juice?
+- Why are we using a cabbage indicator?
+- Why are we using a cabbage juice
+- Why are we using a cabbage juice?
+- Why are we using a cabbage mixture
+- Why the cabbage juice
+- Why the cabbage juice?
+- Why the cabbage mixture
+- Why the cabbage solution
+- do you know any other mixture to check the ph nature
+- do you know any other mixture to check the ph value
+- do you know any other solution to check the ph level
+- do you know any other solution to check the ph value
+- do you know any other solution to check the ph value?
+- how is the cabbage juice helping us
+- how is the cabbage juice helping us?
+- how is the cabbage solution helping us
+- is there any other indicator i can exploit instead of the cabbage one
+- is there any other mixture i can make use instead of the cabbage one
+- is there any other solution i can exploit instead of the cabbage one?
+- is there any other solution i can make use instead of the cabbage one?
+- is there any other solution i can use instead of the cabbage one
+- what is the deal with the cabbage juice
+- what is the deal with the cabbage juice?
+- what is the gain with the cabbage juice?
+- why are we exploiting a cabbage mixture
+- why are we making use a cabbage juice
+- why are we taking advantage of a cabbage indicator?
+- why are we using a cabbage indicator?
+- why are we using a cabbage juice?
+- why the cabbage juice?
+- why the cabbage mixture
+- why the cabbage mixture?
+
+## intent:inform_color_change
+- Can you explain the change in color
+- Can you explain the change in color?
+- How is it possible that the indicator is now [Red](color)?
+- How is it possible that the mixture is now [red](color)?
+- How is it possible that the solution is now [green](color)?
+- What happened to the solution?
+- What happens if i add [Vinegar](ingredient) in the mixture?
+- What happens if i pour [Egg white](ingredient) in the mixture
+- What happens if i pour [cola](ingredient) in the indicator
+- What if i drop the [Cola](ingredient) in the cabbage juice
+- What if i drop the [Egg white](ingredient) in the cabbage mixture?
+- What if i put the [pure water](ingredient) in the cabbage solution?
+- Why are we not mixing the liquids altogether
+- Why are we not mixing the liquids together?
+- Why are we not putting together the liquids together
+- Why are we not putting together the liquids with one another
+- Why are we not uniting the liquids with each other?
+- Why did it change color
+- Why did it change color?
+- Why did it vary color
+- Why did it vary color?
+- Why does the cabbage indicator shift into [Red](color)
+- Why does the cabbage mixture shift into [Green](color)?
+- Why dropping [pure water](ingredient) does the indicator turn [orange](color)
+- Why is the cabbage shifting [orange](color)
+- Why it has a different color now?
+- Why putting [milk](ingredient) does the mixture shift into [Orange](color)
+- can you explain the change in color?
+- how come the cabbage juice is turning [purple](color)
+- what happened to the mixture
+- what happened to the solution
+- what happened to the solution?
+- what happens if i add [Sparkling water](ingredient) in the indicator?
+- what happens if i pour [Soap](ingredient) in the mixture
+- what happens if i put [baking soda](ingredient) in the mixture?
+- what happens if i put [egg white](ingredient) in the mixture
+- what if i pour the [baking soda](ingredient) in the cabbage juice?
+- why adding [Egg white](ingredient) does the solution turn [orange](color)
+- why are we not mixing the liquids with one another?
+- why are we not uniting the liquids with each other
+- why did it change color
+- why does the cabbage indicator turn [Blue](color)?
+- why does the cabbage solution shift into [orange](color)?
+- why inserting into [vinegar](ingredient) does the solution change into [blue](color)
+- why is the cabbage shifting [Yellow](color)?
+- why it has a different color now
+- why it has a different color now?
+- why mixing [Lemon &Juice](ingredient) does the solution turn [Green](color)
+- why pouring [Pure water](ingredient) does the mixture shift into [green](color)
+- why pouring [milk](ingredient) does the solution change into [Red](color)
+
+## intent:ph_answer
+- Ph is an indicator on how acid or basic a solution is
+- It is a scale that measures how acid or basic a solution is, it ranges from 0 to 14
+- it is a scale that measures how acid or basic a solution is, it ranges from 0 to 14
+- it is something the scientists use to describe acidity of solutions
+- ph is an indicator on how acid or basic a solution is
+- It is something the scientists use to describe acidity of solutions
+
+## intent:ph_first_answer
+- It determines if a substance is acid or alkaline
+- It gauges if a acqueous solution is acid or alkaline
+- It helps us detail acid and alkalines acqueous solution
+- It helps us detail acid and alkalines compound
+- It helps us detail acid and alkalines solution
+- It helps us mark out acid and alkalines substance
+- It helps us represent acid and alkalines acqueous solution
+- It helps us represent acid and alkalines compound
+- It helps us set out acid and alkalines acqueous solution
+- PH determines the acidic properties of a solution
+- PH estimates the acidity of a compound
+- PH evaluates the acidic properties of a acqueous solution
+- PH gauges the acidity of a acqueous solution
+- PH gauges the acidity of a solution
+- PH is a scale that assesses if a acqueous solution is acid or alkaline
+- PH is a scale that determines if a acqueous solution is acid or alkaline
+- PH measures the acidic properties of a substance
+- PH meters the acidity of a substance
+- assesses if a compound is acid or alkaline
+- assesses if a substance is acid or alkaline
+- determines if a acqueous solution is acid or alkaline
+- estimates if a acqueous solution is acid or alkaline
+- evaluates if a solution is acid or alkaline
+- gauges if a compound is acid or alkaline
+- it determines if a compound is acid or alkaline
+- it determines if a solution is acid or alkaline
+- it gauges if a solution is acid or alkaline
+- it helps us describe acid and alkalines compound
+- it helps us describe acid and alkalines solution
+- it helps us detail acid and alkalines acqueous solution
+- it helps us detail acid and alkalines substance
+- it helps us mark out acid and alkalines acqueous solution
+- it helps us mark out acid and alkalines compound
+- it helps us represent acid and alkalines solution
+- it helps us set out acid and alkalines compound
+- it helps us set out acid and alkalines substance
+- it measures if a substance is acid or alkaline
+- measures if a substance is acid or alkaline
+- pH assesses the acidity of a acqueous solution
+- pH estimates the acidity of a substance
+- pH evaluates the acidic properties of a substance
+- pH gauges the acidic properties of a acqueous solution
+- pH is a scale that estimates if a compound is acid or alkaline
+- pH is a scale that estimates if a substance is acid or alkaline
+- pH is a scale that evaluates if a substance is acid or alkaline
+- rates if a compound is acid or alkaline
+- the acidic properties of a compound
+- the acidic properties of a solution
+- the acidity of a compound
+- the acidity of a solution
+
+## intent:indicator_answer
+- It is caused by boiling and grinding purple cabbage
+- it is produced by cooking cabbage
+- The indicator is made of fully red cabbage
+- it is developed by boiling and grinding purple cabbage
+- It is made of completely purple cabbage
+- It is made of fully red cabbage
+- It is developed by boiling purple cabbage
+- it is caused by cooking cabbage
+- it is created by boiling cabbage
+- It is caused by cooking red cabbage
+- It is made of fully purple cabbage
+- the indicator is made of entirely cabbage
+- it is made of completely cabbage
+- It is caused by cooking purple cabbage
+- It is done by boiling and grinding cabbage
+- it is created by cooking cabbage
+- It is created by boiling and grinding red cabbage
+- It is made of totally red cabbage
+- it is done by boiling red cabbage
+- It is done by cooking purple cabbage
+- The indicator is made of wholly red cabbage
+- The indicator is made of purple cabbage
+- The indicator is made of totally cabbage
+- It is made of fully cabbage
+- The indicator is made of wholly cabbage
+- it is done by boiling and grinding red cabbage
+- it is caused by boiling cabbage
+- it is done by boiling cabbage
+- it is developed by cooking purple cabbage
+- it is developed by boiling and grinding red cabbage
+- It is produced by boiling and grinding red cabbage
+- it is made of wholly cabbage
+- the indicator is made of red cabbage
+- It is caused by boiling red cabbage
+- the indicator is made of entirely purple cabbage
+- it is developed by cooking cabbage
+- red cabbage that has been boiled
+- it is made of red cabbage
+- The indicator is made of fully cabbage
+- the indicator is made of fully red cabbage
+- it is developed by cooking red cabbage
+- boiled purple cabbage
+- the indicator is made of wholly red cabbage
+- It is created by boiling purple cabbage
+- the indicator is made of fully purple cabbage
+- It is developed by cooking red cabbage
+- it is made of fully red cabbage
+- The indicator is made of completely purple cabbage
+- it is caused by boiling and grinding red cabbage
+- boiled and grinded cabbage
+
+## intent:is_it_acid_answer
+- Yes
+- Yes cause it is acid in taste
+- Yes it is
+- Yes it is acidic in taste
+- Yes its pH is lower than 7
+- Yes juice tastes acid
+- Yes lemon is acid in taste
+- Yes since it tastes acid
+- Yes since juice tastes acid
+- Yes since lemon is acid in taste
+- Yes since lemon is acidic in taste
+- could it is an acid cause it is acidic in taste
+- could lemon is an acid since it is acid in taste
+- i believe it is an acid because it is acidic in taste
+- i believe it is an acid since it is acid in taste
+- i imagine it is an acid because it tastes acid
+- i presume it is an acid since it is acidic in taste
+- i suppose it is an acid because it is acid in taste
+- i suppose it is an acid because it tastes acid
+- i suppose lemon is an acid cause it is acidic in taste
+- i think juice is an acid since it is acidic in taste
+- i think juice is an acid since it tastes acid
+- i think lemon is an acid since it tastes acid
+- i think lemon juice is an acid cause it is acidic in taste
+- in my opinion it is an acid because it is acid in taste
+- it tastes acid and that is why it is an acid
+- it tastes acid hence it is an acid
+- it tastes acid so it is an acid
+- it tastes acid then it is an acid
+- it tastes acid thus it is an acid
+- juice tastes acid and that is why it is an acid
+- juice tastes acid ergo it is an acid
+- lemon juice tastes acid and that is why it is an acid
+- lemon juice tastes acid so it is an acid
+- lemon juice tastes acid thus it is an acid
+- lemon tastes acid ergo it is an acid
+- lemon tastes acid hence it is an acid
+- lemon tastes acid thus it is an acid
+- yes
+- yes because lemon is acidic in taste
+- yes cause it tastes acid
+- yes cause juice is acid in taste
+- yes cause lemon juice is acidic in taste
+- yes it is
+- yes its pH is lower than 7
+- yes juice tastes acid
+- yes lemon is acid in taste
+- yes lemon juice is acidic in taste
+- yes lemon juice tastes acid
+- yes since it is acid in taste
+
+## intent:milk_or_lemon_juice
+- for sure juice has lower pH value
+- for sure juice is
+- for sure juice is 
+- for sure lemon juice is
+- for sure milk has an higher pH value
+- for sure milk is less acid
+- for sure milk is less acidic
+- i assume that milk is less acidic
+- i believe lemon has lower pH value
+- i believe lemon juice is 
+- i believe milk has an higher pH
+- i believe milk is less acidic
+- i believe that lemon has lower pH value
+- i believe that milk is less acid
+- i expect that milk has an higher pH
+- i imagine that milk is less acid
+- i presume that lemon has lower pH value
+- i presume that lemon juice has lower pH
+- i presume that milk has an higher pH
+- i suppose that milk has an higher pH
+- i think juice has lower pH value
+- i think that lemon is more acid
+- i think that milk has an higher pH
+- in my opinion milk is less acidic
+- is possible that milk has an higher pH value
+- juice has lower pH
+- juice has lower pH value
+- juice is
+- juice is more acid
+- lemon has lower pH
+- lemon is
+- lemon juice has lower pH
+- lemon juice is
+- lemon juice is 
+- lemon juice is more acidic
+- milk has an higher pH
+- milk has an higher pH value
+- milk is less acid
+- milk is less acidic
+- of course juice has lower pH
+- of course lemon has lower pH value
+- of course lemon juice is more acidic
+- of course milk has an higher pH
+- of course milk is less acid
+- of course milk is less acidic
+- surely juice has lower pH
+- surely juice is
+- surely milk has an higher pH
+- surely milk has an higher pH value
+- surely milk is less acid
+
+## intent:cabbage_answer
+- Cause mixing up it with substances can reveal their ph
+- Because uniting it with substances can reveal their ph
+- because mixing up it with substances can reveal their ph
+- some substancese in the cabbage mixture change color when they are paired with the ions that characterize acids
+- Since putting together it with substances can reveal their ph
+- since putting together it with substances can reveal their ph
+- we use it since it is a natural ph indicator
+- because uniting it with substances can reveal their ph
+- Cause mixing it with substances can reveal their ph
+- because merging it with substances can reveal their ph
+- cabbage mixture has an high degree of anthocyanin substances, when they come in contact with an acid full of hydronium ions it changes color
+- cabbage indicator has an high degree of anthocyanin substances, when they come in contact with an acid full of hydronium ions it changes color
+- Since merging it with substances can reveal their ph
+- Because blending it with substances can reveal their ph
+- cause uniting it with substances can reveal their ph
+- because putting together it with substances can reveal their ph
+- Since mixing it with substances can reveal their ph
+- Some substancese in the cabbage solution change color when they are paired with the ions that characterize acids
+- Because it helps us measure ph having substances that change color when in touch with acids or bases
+- Since blending it with substances can reveal their ph
+- cabbage juice has an high degree of anthocyanin substances, when they come in contact with an acid full of hydronium ions it changes color
+- Some substancese in the cabbage juice change color when they are paired with the ions that characterize acids
+- some substancese in the cabbage juice change color when they are paired with the ions that characterize acids
+- Since uniting it with substances can reveal their ph
+- cause merging it with substances can reveal their ph
+- cabbage solution has an high degree of anthocyanin substances, when they come in contact with an acid full of hydronium ions it changes color
+- Since mixing up it with substances can reveal their ph
+- cause blending it with substances can reveal their ph
+- cause mixing it with substances can reveal their ph
+- We use it cause it is a natural ph indicator
+- We use it because it is a natural ph indicator
+- since it helps us measure ph having substances that change color when in touch with acids or bases
+- we use it cause it is a natural ph indicator
+- because blending it with substances can reveal their ph
+- cause putting together it with substances can reveal their ph
+- some substancese in the cabbage indicator change color when they are paired with the ions that characterize acids
+- Cause putting together it with substances can reveal their ph
+- We use it since it is a natural ph indicator
+- because it helps us measure ph having substances that change color when in touch with acids or bases
+- it is an easy-to-do way to measure ph at home
+- Because putting together it with substances can reveal their ph
+- Some substancese in the cabbage mixture change color when they are paired with the ions that characterize acids
+- we use it because it is a natural ph indicator
+- since mixing up it with substances can reveal their ph
+- some substancese in the cabbage solution change color when they are paired with the ions that characterize acids
+- since uniting it with substances can reveal their ph
+- Since it helps us measure ph having substances that change color when in touch with acids or bases
+- Cause merging it with substances can reveal their ph
+- Because mixing up it with substances can reveal their ph
+- Some substancese in the cabbage indicator change color when they are paired with the ions that characterize acids
+
+## intent:inform_ingredient_property
+- How does Cola("ingredient") scale in the ph indicator
+- How does Cola("ingredient") scale in the ph indicator?
+- I want to know the charachteristics of [Milk](acid)
+- I want to know the charachteristics of [cola](acid)
+- I want to know the charachteristics of [lemon juice](acid)
+- I want to know the ph properties of [Soap](acid)
+- I want to know the ph properties of [Vinegar](acid)
+- I want to know the ph properties of [lemon juice](acid)
+- I want to know the ph properties of [milk](acid)
+- I want to know the ph properties of [soap](acid)
+- I want to know the ph properties of [sparkling water](acid)
+- I want to know the properties of [milk](acid)
+- Is [Egg white](ingredient) an [acid](ph_property)?
+- Is [Lemon &Juice](ingredient) an [Acid](ph_property)
+- Is [Lemon &Juice](ingredient) an [Alkali](ph_property)?
+- Is [Lemon &Juice](ingredient) an [acid](ph_property)?
+- Is [Sparkling water](ingredient) an [acid](ph_property)?
+- Is [oven cleaner](ingredient) an [acid](ph_property)?
+- What are the charachteristics of [Lemon &Juice](ingredient)?
+- What are the ph properties of [Bleach](ingredient)?
+- What are the ph properties of [sparkling water](ingredient)
+- What are the properties of [Pure water](ingredient)?
+- What are the properties of [milk](ingredient)?
+- What is the ph of [Egg white](ingredient)
+- What is the ph of [cola](ingredient)
+- What is the ph of [milk](ingredient)?
+- What is the ph of [pure water](ingredient)?
+- What is the ph of [soap](ingredient)
+- Why should i choose [Cola](ingredient)?
+- Why should i pick up [Cola](ingredient)?
+- Why should i pick up [cola](ingredient)?
+- Why should i pick up [pure water](ingredient)
+- how does Cola("ingredient") scale in the ph indicator
+- how does Cola("ingredient") scale in the ph indicator?
+- is [Cola](ingredient) an [Alkali](ph_property)
+- is [Lemon &Juice](ingredient) an [alkali](ph_property)
+- is [Vinegar](ingredient) an [Acid](ph_property)?
+- is [bleach](ingredient) an [alkali](ph_property)?
+- is [sparkling water](ingredient) an [Acid](ph_property)?
+- is [vinegar](ingredient) an [Acid](ph_property)?
+- what are the ph properties of [milk](ingredient)?
+- what are the properties of [Baking soda](ingredient)
+- what are the properties of [Soap](ingredient)?
+- what is the ph of [Cola](ingredient)?
+- what is the ph of [milk](ingredient)?
+- why should i pick up [Baking soda](ingredient)?
+- why should i pick up [Sparkling water](ingredient)
+- why should i pick up [bleach](ingredient)
+- why should i pick up [vinegar](ingredient)
+- why should i take [milk](ingredient)
+
+## intent:inform_ph_cabbage_solution
+- Cabbage have ph
+- Cabbage have ph?
+- Can you define the ph nature of the cabbage juice?
+- Can you define the ph nature of the cabbage mixture
+- Can you disclose the ph nature of the cabbage juice?
+- Can you specify the ph property of the cabbage indicator
+- Does this cabbage also have PH value?
+- How does the cabbage juice scale on the ph measure
+- How does the cabbage solution scale on the ph measure?
+- Is cabbage indicator an [Alkali](ph_property)
+- Is cabbage juice an [alkali](ph_property)
+- Is cabbage mixture an [Alkali](ph_property)
+- Is cabbage solution an [Acid](ph_property)?
+- Is the cabbage juice neutral
+- Is the cabbage juice neutral?
+- The indicator has a ph level
+- The indicator has a ph value
+- The mixture has a ph property
+- The mixture has a ph value?
+- The solution has a ph value
+- What is the PH level of the cabbage juice
+- What is the PH property of the cabbage juice
+- What is the pH nature of cabbage juice
+- What is the pH nature of cabbage juice?
+- What is the ph level of cabbage juice
+- What is the ph value of cabbage mixture?
+- cabbage have ph?
+- can you tell me the ph level of the cabbage mixture
+- does this cabbage also have PH property?
+- how does the cabbage juice scale on the ph measure?
+- how does the cabbage mixture scale on the ph measure
+- how does the cabbage solution scale on the ph measure
+- is cabbage indicator an [Acid](ph_property)?
+- is cabbage juice an [Alkali](ph_property)
+- is cabbage juice an [alkali](ph_property)
+- is cabbage juice an [alkali](ph_property)?
+- is cabbage mixture an [Alkali](ph_property)
+- is the cabbage juice an [Acid](ph_property) or [Alkali](ph_property)
+- is the cabbage juice an [acid](ph_property) or [acid](ph_property)
+- is the cabbage juice neutral
+- is the cabbage solution an [Alkali](ph_property) or [alkali](ph_property)
+- is the cabbage solution neutral?
+- the indicator has a ph level?
+- the mixture has a ph nature?
+- the mixture has a ph property
+- what is the PH nature of the cabbage mixture
+- what is the pH nature of cabbage juice?
+- what is the ph level of cabbage juice
+- what is the ph nature of cabbage juice
+- what is the ph nature of cabbage juice?
+
+## intent:inform_every_liq_ph
+- can we find PH property for every liquid
+- Does every liquid have PH value
+- Does all liquid possess the PH property
+- Is it possible to know the PH value of every liquid
+- Is ph something all liquid have?
+- is it possible to know the PH property of every liquid?
+- Does all liquid hold the PH level?
+- Can we find PH property for every liquid?
+- is it possible to know the PH value of every liquid
+- does all liquid retain the PH nature?
+- Does all liquid retain the PH value
+- does every liquid have PH level?
+- does all liquid possess the PH level
+- does every liquid have PH nature
+- does all liquid possess the PH level?
+- does every liquid have PH nature?
+- does all liquid retain the PH property?
+- can we find PH value for every liquid?
+- Is ph something all liquid have
+- can we find PH nature for every liquid?
+- Does all liquid have the PH level?
+- can we find PH value for every liquid
+- Does every liquid have PH level
+- Does every liquid have PH nature?
+- is it possible to know the PH value of every liquid?
+- Does all liquid have the PH value
+- Can we find PH value for every liquid?
+- Does every liquid have PH property?
+- Does all liquid hold the PH property
+- Does all liquid retain the PH property
+- does every liquid have PH property?
+- Is it possible to know the PH property of every liquid?
+- Does all liquid hold the PH value
+- does all liquid retain the PH level
+- does all liquid possess the PH nature
+- Does all liquid possess the PH value
+- Is ph a property of all elements?
+- is it possible to know the PH level of every liquid?
+- is ph a property of all elements?
+- does every liquid have PH property
+- Does all liquid retain the PH level
+- is it possible to know the PH nature of every liquid
+- does all liquid hold the PH level?
+- Does all liquid possess the PH level
+- Does all liquid have the PH nature?
+- does every liquid have PH level
+- Does all liquid have the PH nature
+- does all liquid possess the PH value
+- does all liquid retain the PH nature
+- Does all liquid possess the PH nature
+
+## intent:inform_why_not_item_mixed
+- Can we measure ph by blending the items altogether?
+- Can we measure ph by mixing the items with one another
+- Can we measure ph by mixing up the pieces with each other
+- Can we measure ph by putting together the pieces together
+- Can we mix up the pieces altogether instead?
+- Can we unite the ingredients with each other instead?
+- Can we unite the pieces into each other instead
+- Is it efficient to blend the items into each other instead of using the solution
+- Is it efficient to blend the pieces together instead of using the solution
+- Is it efficient to merge the pieces with one another instead of using the solution
+- Is it efficient to mix the pieces altogether instead of using the solution
+- Is it efficient to put together the items into each other instead of using the solution?
+- Is it efficient to put together the items with one another instead of using the mixture?
+- Isn't it funnier to mix up the items with each other?
+- Isn't it funnier to put together the elements into each other
+- Isn't it funnier to put together the pieces into each other?
+- Isn't it funnier to unite the items with each other?
+- Why are we not blending the elements with one another?
+- Why are we not mixing the pieces into each other?
+- Why are we not mixing the pieces together
+- Why are we not uniting the pieces altogether?
+- Why do we have to put the elements in the mixture?
+- Why do we have to put the items in the mixture
+- Why do we have to put the pieces in the mixture
+- Why do we not blend the ingredients with each other
+- Why do we not merge the elements together
+- Why do we not mix the items together
+- can we measure ph by blending the pieces together?
+- can we measure ph by merging the ingredients into each other?
+- can we measure ph by mixing the pieces altogether
+- can we measure ph by uniting the pieces into each other?
+- can we mix up the pieces into each other instead
+- is it efficient to merge the items together instead of using the solution
+- is it efficient to mix up the items altogether instead of using the indicator?
+- is it efficient to mix up the items with each other instead of using the solution
+- is it efficient to unite the items together instead of using the indicator?
+- isn't it funnier to mix the pieces together
+- isn't it funnier to unite the pieces with one another?
+- why are we not blending the elements with one another?
+- why are we not mixing the ingredients with one another?
+- why are we not mixing the pieces together?
+- why are we not putting together the items together
+- why are we not putting together the items with each other
+- why are we not uniting the elements together?
+- why do we have to put the ingredients in the mixture?
+- why do we not merge the elements altogether
+- why do we not mix up the items with each other?
+- why do we not put together the items into each other?
+- why do we not unite the elements into each other?
+- why do we not unite the elements together?
+
+## intent:inform_other_way_to_measure_ph
+- Can other things measure ph instead of the cabbage solution
+- Is there another indicator I can use instead of cabbage
+- is there a different mixture I can use instead of cabbage?
+- Can other things measure ph instead of the cabbage juice
+- Can we use another things to get the ph of elements?
+- can other solutions measure ph instead of the cabbage juice
+- is there any other mixture I can use instead of cabbage?
+- Can I replace the cabbage indicator?
+- Can I use any other indicator that is not cabbage
+- Is there a different solution I can use instead of cabbage
+- can I replace the cabbage juice
+- Is there a different mixture I can use instead of cabbage
+- can other mixtures measure ph instead of the cabbage solution
+- Can other mixtures measure ph instead of the cabbage juice?
+- Is there a different mixture I can use instead of cabbage?
+- can we use another things to get the ph of items?
+- can we use another solutions to get the ph of pieces?
+- is there any other indicator I can use instead of cabbage?
+- Can we use another things to get the ph of pieces?
+- can I use a different indicator that is not cabbage?
+- can we use another indicators to get the ph of pieces
+- can we use another mixtures to get the ph of ingredients?
+- Can I use a different solution that is not cabbage?
+- Can I use a different mixture that is not cabbage
+- Can other indicators measure ph instead of the cabbage mixture
+- Can I replace the cabbage solution?
+- Can other things measure ph instead of the cabbage juice?
+- The cabbage can be replaced with other mixtures
+- is there any other solution I can use instead of cabbage
+- can I measure ph in another way
+- can other solutions measure ph instead of the cabbage juice?
+- can we use another solutions to get the ph of elements
+- can other indicators measure ph instead of the cabbage indicator?
+- can other solutions measure ph instead of the cabbage solution?
+- Can other things measure ph instead of the cabbage indicator?
+- can we use another solutions to get the ph of items
+- Can we use another indicators to get the ph of ingredients?
+- Can I use another mixture that is not cabbage?
+- Can I use any other solution that is not cabbage?
+- Can I replace the cabbage mixture
+- is there another solution I can use instead of cabbage
+- the cabbage can be replaced with other solutions
+- Can I replace the cabbage juice?
+- is there another mixture I can use instead of cabbage
+- Is there a different indicator I can use instead of cabbage?
+- is there another mixture I can use instead of cabbage?
+- can we use another things to get the ph of ingredients?
+- can I use any other solution that is not cabbage
+- Can we use another mixtures to get the ph of ingredients?
+- is there a different mixture I can use instead of cabbage
+
+## intent:inform_cabbage_at_home
+- Can I assemble the cabbage juice alone?
+- Can I assemble the cabbage solution at home?
+- Can I make the cabbage solution at home
+- Can I prepare the cabbage juice by myself
+- Can I ready the cabbage juice at home?
+- How can I arrange the cabbage juice by myself
+- How can I ready the cabbage solution at home?
+- How do I assemble the cabbage juice?
+- How do I assemble the cabbage mixture?
+- How do I prepare the cabbage juice
+- How do I prepare the cabbage juice?
+- How do I prepare the cabbage mixture?
+- How do I ready the cabbage mixture
+- Is it possible to arrange the indicator alone
+- Is it possible to arrange the solution alone
+- Is it possible to form the mixture by myself
+- Is it possible to ready the indicator at home?
+- What are the steps to assemble cabbage juice
+- What are the steps to assemble cabbage mixture?
+- What are the steps to form cabbage solution
+- What are the steps to make cabbage solution?
+- What are the steps to ready cabbage mixture?
+- What is the procedure to do the cabbage indicator?
+- What is the procedure to do the cabbage juice
+- What is the procedure to do the cabbage juice?
+- What is the procedure to do the cabbage mixture
+- can I form the cabbage solution by myself
+- can I make the cabbage solution alone?
+- can I ready the cabbage solution alone?
+- how can I form the cabbage indicator by myself?
+- how can I make the cabbage indicator alone?
+- how can I make the cabbage juice by myself?
+- how can I prepare the cabbage juice alone?
+- how can I prepare the cabbage juice by myself?
+- how can I ready the cabbage mixture alone?
+- how do I prepare the cabbage juice
+- how do I prepare the cabbage mixture
+- how do I prepare the cabbage solution
+- how do I ready the cabbage juice
+- is it possible to arrange the indicator alone
+- is it possible to arrange the mixture by myself
+- is it possible to assemble the mixture alone
+- is it possible to form the solution alone?
+- is it possible to ready the mixture at home?
+- what are the steps to form cabbage solution?
+- what are the steps to make cabbage juice
+- what are the steps to prepare cabbage mixture
+- what is the procedure to do the cabbage juice
+- what is the procedure to do the cabbage juice?
+- what is the procedure to do the cabbage solution?
+
+## intent:inform_ph_change_on_item_measure
+- Does blending items change the ph of the solution
+- Does blending items change the ph of the solution?
+- Does merging 2 pieces change the ph of the solution?
+- Does merging elements vary the ph of the solution
+- Does mixing items change the ph of the solution?
+- Does the PH value change if we put together items together?
+- Does the PH value shift if we merge ingredients together
+- Does the PH value shift if we put together 2 ingredients together
+- Does the PH value shift if we put together 2 items together
+- Does uniting elements change the ph of the solution?
+- If we merge items their ph changes
+- If we mix 2 ingredients their ph changes
+- If we mix 2 items their ph changes?
+- If we put together ingredients their ph changes
+- Is the ph changing when items are put together?
+- Is the ph changing when pieces are united
+- Is the ph shifting when elements are mixed
+- Is the ph shifting when items are mixed up
+- Is the ph shifting when we unite two ingredients?
+- Is the ph varying when we mix two items?
+- Is the ph varying when we put together two items
+- What happens to ph if we put together items
+- What happens to ph if we unite ingredients?
+- blending elements together present a change in the ph
+- does merging 2 items change the ph of the solution
+- does mixing 2 items vary the ph of the solution
+- does the PH value change if we mix pieces together?
+- does the PH value vary if we mix pieces together?
+- does the PH value vary if we mix up 2 ingredients together
+- does the PH value vary if we mix up 2 pieces together
+- does the PH value vary if we mix up elements together?
+- if we merge 2 elements their ph changes
+- if we merge 2 elements their ph changes?
+- if we mix 2 ingredients their ph changes?
+- if we put together 2 ingredients their ph changes?
+- is the ph changing when we blend two ingredients
+- is the ph shifting when elements are merged?
+- is the ph shifting when we merge two elements
+- is the ph shifting when we unite two ingredients
+- is the ph varying when items are united?
+- is the ph varying when we merge two pieces?
+- is the ph varying when we mix up two items
+- mixing elements together present a shift in the ph?
+- mixing up ingredients together present a vary in the ph
+- mixing up pieces together present a shift in the ph?
+- putting together items together present a vary in the ph
+- what happens to ph if we blend elements?
+- what happens to ph if we merge ingredients?
+- what happens to ph if we mix pieces
+- what happens to ph if we put together elements
+
+## intent:inform_why_only_these_select
+- Is it possible to choose more pieces now
+- Is it possible to choose more than 3 pieces
+- Is it possible to select more elements now?
+- Is it possible to select more than 3 items?
+- Is it possible to select more than 3 pieces
+- Is it possible to take more than 3 elements
+- Is it possible to take more than 3 pieces?
+- Why are we selecting only 3 items
+- Why are we taking only 3 elements
+- Why are we taking only 3 ingredients
+- Why are we taking only 3 ingredients?
+- Why can't I choose more elements
+- Why can't I choose other elements
+- Why can't I pick more ingredients?
+- Why can't I pick more items
+- Why can't I pick other ingredients?
+- Why can't I take more ingredients
+- Why can’t I choose more than three pieces
+- Why can’t I pick more than three ingredients?
+- Why can’t I pick up more than three pieces?
+- Why can’t I select more than three pieces
+- Why do I need to select what you tell me?
+- Why do I need to take what you tell me
+- is it possible to choose more items now?
+- is it possible to pick more than 3 ingredients
+- is it possible to pick up more ingredients now
+- is it possible to pick up more pieces now?
+- is it possible to select more elements now
+- is it possible to take more elements now?
+- is it possible to take more ingredients now?
+- is it possible to take more items now
+- is it possible to take more items now?
+- is it possible to take more than 3 pieces
+- why are we choosing only 3 elements
+- why are we picking only 3 elements?
+- why are we picking only 3 ingredients
+- why are we picking only 3 items
+- why are we picking only 3 items?
+- why are we picking only 3 pieces?
+- why are we selecting only 3 ingredients?
+- why are we selecting only 3 items?
+- why are we taking only 3 pieces?
+- why can't I take more pieces?
+- why can't I take other items
+- why can’t I pick more than three elements?
+- why can’t I pick up more than three elements
+- why can’t I select more than three pieces?
+- why can’t I take more than three items
+- why do I need to choose what you tell me?
+- why do I need to take what you tell me
+
+## intent:inform_why_this_test
+- what is the use of this study?
+- Why do we follow this study?
+- what type of procedure is it
+- Why do we do this test
+- how can this procedure be useful?
+- How is the experiment useful for me
+- Why do we follow this procedure
+- How is the test useful for me
+- What type of procedure is it?
+- What type of procedure is it
+- What type of experiment is it
+- Why do we follow this test
+- What kind of test is it
+- what kind of study is it
+- why do we do this experiment?
+- What is the use of this study
+- how is the procedure useful for me?
+- why do we do this study?
+- How can this test be useful?
+- What kind of procedure is it
+- How is the study useful for me
+- What is the use of this procedure
+- what type of study is it?
+- What kind of experiment is it
+- what kind of procedure is it
+- what is the use of this procedure?
+- What kind of procedure is it?
+- why do we do this procedure
+- why do we do this test
+- How can this test be useful
+- How is the experiment useful for me?
+- why do we follow this experiment?
+- what kind of study is it?
+- What is the use of this test
+- why do we follow this test?
+- Why do we do this experiment
+- What is the use of this study?
+- why do we follow this test
+- how is the study useful for me?
+- why do we follow this procedure?
+- What kind of study is it
+- what kind of test is it
+- What is the use of this procedure?
+- What type of test is it
+- how can this study be useful
+- how is the study useful for me
+- what kind of test is it?
+- Why do we do this procedure
+- how is the test useful for me
+- How can this experiment be useful
+
+## intent:next_step_information
+- Now what do I have to do
+- What is the next step?
+- How to proceed?
+- how to continue?
+- How do I continue?
+- How to progress?
+- how can I go on
+- now what?
+- how do I go on?
+- What do I do now
+- How can I advance?
+- How can I go on?
+- how to progress?
+- What should I do next
+- how to progress
+- Now what do I have to do?
+- how do I advance
+- How can I progress
+- how can I go on?
+- What is the next step
+- how can I proceed?
+- what’s next?
+- how to go on
+- How can I proceed
+- how can I progress
+- how can I proceed
+- How can I continue
+- how to go on?
+- How can I continue?
+- now what do I have to do
+- how can I progress?
+- How can I go on
+- How to proceed
+- how do I go on
+- how to advance
+- what should I do next
+- how can I advance?
+- how do I advance?
+- how to proceed?
+- how to advance?
+- Now what?
+- How do I continue
+- How to go on?
+- How do I proceed?
+- How to continue?
+- How do I progress?
+- How do I go on?
+- how do I progress?
+- How to continue
+- What’s next
+
+

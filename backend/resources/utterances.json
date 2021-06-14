@@ -17,7 +17,7 @@
     ],
     "introduction_explanation": [
         {
-            "text": "Hello  Chiara, welcome to my kitchen! I hope you're ready to learn. This is the tutorial: here you'll learn how to play and the basics of pH.",
+            "text": "Hello  Massi, welcome to my kitchen! I hope you're ready to learn. This is the tutorial: here you'll learn how to play and the basics of pH.",
             "ui_effect": ""
         }
     ],
@@ -171,7 +171,7 @@
     ],
     "wrong_answer": [
         {
-            "text": "You tried well!",
+            "text": "Ok i'll explain",
             "ui_effect": ""
         }
     ],
@@ -226,6 +226,54 @@
     "next_step_acid": [
         {
             "text": "After having selected two of the acid items of your choice just press next",
+            "ui_effect": ""
+        }
+    ],
+    "next_step_ingredient_selection": [
+        {
+            "text": "Select all the ingredients on the shelves to continue",
+            "ui_effect": ""
+        }
+    ],
+    "next_step_indicator_explanation": [
+        {
+            "text": "To carry on with the experiment tell me what you think about the indicator in the bowl",
+            "ui_effect": ""
+        }
+    ],
+    "next_step_mix_strong_acid": [
+        {
+            "text": "Pour the lemon juice in the solution to go on",
+            "ui_effect": ""
+        }
+    ],
+    "next_step_mix_strong_base": [
+        {
+            "text": "Pour the oven cleaner in the solution to go on",
+            "ui_effect": ""
+        }
+    ],
+    "next_step_mix_water": [
+        {
+            "text": "Pour the water in the solution to go on",
+            "ui_effect": ""
+        }
+    ],
+    "next_step_mix_weak_acid": [
+        {
+            "text": "Pour the milk in the solution to go on",
+            "ui_effect": ""
+        }
+    ],
+    "next_step_explain_weak_acid": [
+        {
+            "text": "Tell me what you think about who is more acid between milk and lemon juice to continue",
+            "ui_effect": ""
+        }
+    ],
+    "next_step_question_strong_acid": [
+        {
+            "text": "Click on the rightmost scale to identify the pH value of lemon juice",
             "ui_effect": ""
         }
     ],
@@ -646,7 +694,7 @@
     ],
     "ingredient_selection_explanation": [
         {
-            "text": "Let's start! Select the three items you see on the shelves, I'll bring them on the table for you!",
+            "text": "Let's start! Select the four items you see on the shelves, I'll bring them on the table for you!",
             "ui_effect": ""
         }
     ],
