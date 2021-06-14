@@ -11,6 +11,7 @@ export default new Vuex.Store({
         showOnPHScale: [false, false, false, false],
         guessed: [false, false, false, false, false, false, false, false, false, false, false],
         showPHScale: [false, false],
+        canSelectSubstances: true, //TODO: debug
         gamePhase: {
             phase: "introduction",
             isSelection: false,
@@ -19,6 +20,9 @@ export default new Vuex.Store({
         },
     },
     mutations: {
+        setCanSelectSubstances(state, value){
+            state.canSelectSubstances = value;
+        },
         setShowOnPHScale(state, element){
           state.showOnPHScale[element] = true;
         },
@@ -66,7 +70,8 @@ export default new Vuex.Store({
                         substance_element.ph = substances.ingredients[substance - 1].ph;
                         substance_element.scale_placement =
                             substances.ingredients[substance - 1].scale_placement;
-
+                        substance_element.circle_y_placement =
+                            substances.ingredients[substance - 1].circle_y_placement;
                         state.substances.push(substance_element);
                     });
                 }
@@ -97,6 +102,9 @@ export default new Vuex.Store({
         },
         setShowPHScale(context, scale){
             context.commit('setShowPHScale', scale);
+        },
+        setCanSelectSubstances(context, value){
+            context.commit('setCanSelectSubstances', value);
         }
     }
 })

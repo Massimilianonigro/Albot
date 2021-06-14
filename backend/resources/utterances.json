@@ -30,7 +30,8 @@
     "ph_first_question": [
         {
             "text": "Do you know what pH measures?",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "ph_first_question_explanation": [
@@ -60,7 +61,8 @@
     "indicator_question": [
         {
             "text": "Our indicator is the purple one you see in the bowls on the table. Do you know what it is?",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "indicator_question_explanation": [
@@ -544,13 +546,15 @@
     "mix_strong_acid_question": [
         {
             "text": "Wow, it turned red! Try to identify the pH value on the rightmost scale and click to select it.",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "mix_strong_acid_second_question": [
         {
             "text": "Do you think the lemon juice is an acid or not?",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type":  "instruction"
         }
     ],
     "tricky_scale": [
@@ -562,13 +566,15 @@
     "mix_strong_base_question": [
         {
             "text": "Wow, it turned green! Try to identify the pH value on the rightmost scale and click to select it.",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "mix_water_explanation": [
         {
             "text": "Now try to pour the water ...",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "explanation_32": [
@@ -586,19 +592,22 @@
     "mix_water_question": [
         {
             "text": "Hmm, the color hasn't changed. Which is its pH value? Click on the correct value on the rightmost scale.",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "mix_weak_acid_question": [
         {
             "text": "Which is its pH value? Click on the correct value on the rightmost scale.",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "mix_weak_acid_second_question": [
         {
             "text": "Milk and lemon juice are acids. Which one is more acidic?",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "milk_or_lemon_juice_explanation": [
@@ -615,7 +624,7 @@
     ],
     "mix_strong_acid_question_explanation": [
         {
-            "text": "The pH for lemon juice is 3.",
+            "text": "The pH for lemon juice is 2.",
             "ui_effect": ""
         }
     ],
@@ -640,20 +649,22 @@
     "lemon_juice_pour": [
         {
             "text": "Let's start our experiment! Click on the lemon juice to pour it in the bowl.",
-            "ui_effect": "",
+            "ui_effect": "unlock",
             "type": "instruction"
         }
     ],
     "mix_strong_base_explanation": [
         {
             "text": "Well! Now try pouring the oven cleaner",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "mix_weak_acid_explanation": [
         {
             "text": "Pour the milk ...",
-            "ui_effect": ""
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "alkaline_explanation": [
@@ -695,7 +706,8 @@
     "ingredient_selection_explanation": [
         {
             "text": "Let's start! Select the four items you see on the shelves, I'll bring them on the table for you!",
-            "ui_effect": ""
+            "ui_effect": "select_from_shelves",
+            "type": "instruction"
         }
     ],
     "unlock_selection": [

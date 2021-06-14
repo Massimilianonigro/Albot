@@ -52,7 +52,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances"])
+    ...mapState(["substances", "canSelectSubstances"])
   },
   methods:{
     mixItems(){
@@ -95,10 +95,7 @@ export default {
       }
     },
     getNonClickable(selected){
-      if(selected) {
-        return true;
-      }
-      return false;
+      return selected || !this.canSelectSubstances;
     },
     getDisabled(data){
       if (data.selected){

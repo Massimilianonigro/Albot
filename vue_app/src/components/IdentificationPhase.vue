@@ -163,7 +163,7 @@ export default {
       //if blockPhase is false, we are selecting a new element to be guessed
       if (!this.blockPhase && !this.guessed[index]){
         this.$emit("selectedElement",data.id);
-        this.setBlockPhase(true); //TODO: testing flag
+        //this.setBlockPhase(true); //TODO: testing flag
         this.showReset = true;
       }
       if (this.pouredIndex !== -1 ){

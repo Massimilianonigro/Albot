@@ -6,8 +6,7 @@
         :key="isRerender"
         v-if="showPHScale[0]"
       ></div>
-      <div class="pH-scale" :key="isRerender" v-if="showPHScale[1]">
-        <ul class="nav">
+      <ul class="pH-scale nav" :key="isRerender" v-if="showPHScale[1]">
           <li
             class="buttons"
             v-for="pH_button in 15"
@@ -16,8 +15,6 @@
           >
             <button class="button-ph"></button>
           </li>
-        </ul>
-        <!--
         <div v-for="(data, index) in substances" v-bind:key="index">
           <div v-show="showOnPHScale[index]" v-if="showOnPHScale[index]">
             <div
@@ -33,20 +30,19 @@
               }"
             ></div>
           </div>
-        </div>-->
-      </div>
+        </div>
+      </ul>
     </div>
-    <!--
     <div :key="isRerender">
       <div v-for="(data, index) in substances" v-bind:key="index">
         <div v-show="showOnPHScale[index]" v-if="showOnPHScale[index]">
           <div
             class="item-circle"
-            v-bind:style="getCircleStyle(data.scale_placement.y)"
+            v-bind:style="getCircleStyle(data)"
           ></div>
         </div>
       </div>
-    </div>-->
+    </div>
     <div class="background item">
       <div class="shelf item"></div>
       <div class="ItemShelf"></div>
@@ -84,12 +80,10 @@ export default {
     sendPHGuess(index) {
       this.$emit("PHGuess", index - 1);
     },
-    getCircleStyle(y) {
-      let y_position_elem = y.substring(0, y.length - 1);
-      let y_pos = parseInt(y_position_elem) - 2;
-
+    getCircleStyle(data) {
+      console.log(data.circle_y_placement);
       return {
-        bottom: y_pos + "%",
+        bottom: data.circle_y_placement,
         left: "0",
         height: "10%",
         width: "19%",
@@ -136,7 +130,6 @@ export default {
   height: 100%;
   width: 25%;
   z-index: 1;
-  padding: 0.7vw;
   margin-left: 1vw;
   background-position-x: 0;
   background-position-y: center;
@@ -171,27 +164,33 @@ export default {
 }
 
 .nav {
-  padding: 1.5vw 0;
   margin: 0;
-
-  /* add the following */
   height: 100%;
-  width: 100%;
+  width: 50%;
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
+  cursor: pointer;
+  /*list-style-type: none;*/
+}
+
+.nav:hover{
+  cursor: pointer;
+
 }
 
 .buttons {
-  display: block;
-  padding: 0px 20px;
-  width: 100%;
+  width: 46%;
+  height: 100%;
+  border-style: none;
+  border-color: transparent;
+  color: transparent;
   background-color: transparent;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  text-align: center;
-
-  /* remove your width and float and add the following */
+  display: flex;
   flex-grow: 1;
+}
+.buttons:focus{
+  outline: #ffffff solid 4px;
 }
 
 /*optional*/

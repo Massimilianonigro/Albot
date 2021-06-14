@@ -21,8 +21,7 @@
               v-if="data.bot"
               autoplay
             ></audio>
-            <div v-bind:class="getBoxClass(data)"
-            v-style="getInstructionStyle(data.isInstruction)">
+            <div v-bind:class="getBoxClass(data)">
               <span v-html=" data.message ">
                 {{ data.message }}
               </span>
@@ -121,13 +120,13 @@ export default {
       return styleItem;
     },
     getBoxClass(data) {
-      let styleItem = "";
       if (data.bot) {
-        styleItem = styleItem + "bot-message-box";
-      } else {
-        styleItem = styleItem + "user-message-box";
+        if (data.isInstruction){
+          return ("bot-message-box-instruction");
+        }
+        return ("bot-message-box");
       }
-      return styleItem;
+      return ("user-message-box");
     },
     getButtonClass(functionType) {
       let styleItem = "";
@@ -385,6 +384,16 @@ export default {
   color: #fff;
   background-color: #ca7900;
   border: 2px solid #ca7900;
+  opacity: 0.7;
+  border-radius: 20px;
+  padding: 0.3vw 0.6vw 0.3vw 0.6vw;
+  width: 100%;
+}
+
+.bot-message-box-instruction {
+  color: #fff;
+  background-color: #01a99a;
+  border: 2px solid #01796F;
   opacity: 0.7;
   border-radius: 20px;
   padding: 0.3vw 0.6vw 0.3vw 0.6vw;

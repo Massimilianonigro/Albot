@@ -78,6 +78,7 @@ export default {
       "setGuessed",
       "setGamePhase",
       "setShowPHScale",
+      "setCanSelectSubstances"
     ]),
     resetHome() {
       //only for testing purposes, to be performed by backend
@@ -169,7 +170,7 @@ export default {
   created: function () {
     let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://localhost:2345");
+    this.connection = new WebSocket("ws://f81cf97d8c21.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -203,6 +204,9 @@ export default {
             _this.setShowPHScale(1);
             _this.$refs.gameRef.isRerender += 1;
             self.$refs.chatRef.receiveMessage(message);
+            return;
+          case "select_from_shelves":
+            _this.setCanSelectSubstances(true);
             return;
           default:
             self.$refs.chatRef.receiveMessage(message);
