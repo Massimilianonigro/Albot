@@ -11,7 +11,7 @@ export default new Vuex.Store({
         showOnPHScale: [false, false, false, false],
         guessed: [false, false, false, false, false, false, false, false, false, false, false],
         showPHScale: [false, false],
-        canSelectSubstances: true, //TODO: debug
+        canSelectSubstances: false,
         gamePhase: {
             phase: "introduction",
             isSelection: false,

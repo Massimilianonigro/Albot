@@ -217,7 +217,9 @@ export default {
       if(message_received.type !== undefined){
         toPush.isInstruction = true;
       }
-      this.messages.push(toPush);
+      if (message_received.text !== ""){
+        this.messages.push(toPush);
+      }
     },
     getImageById(id) {
       switch (id) {

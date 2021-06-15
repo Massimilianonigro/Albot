@@ -65,6 +65,7 @@ export default {
       user_name: "",
       chatLink: undefined,
       complete: false,
+      to_show_index: 0
     };
   },
   computed: {
@@ -170,7 +171,7 @@ export default {
   created: function () {
     let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://f81cf97d8c21.ngrok.io");
+    this.connection = new WebSocket("ws://e2cd2a45b092.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -183,6 +184,7 @@ export default {
             return;
           case "unlock":
             _this.setBlockPhase(false);
+            self.$refs.chatRef.receiveMessage(message);
             return;
           case "show_next_phase":
             _this.setShowNextPhase(true);
@@ -205,8 +207,16 @@ export default {
             _this.$refs.gameRef.isRerender += 1;
             self.$refs.chatRef.receiveMessage(message);
             return;
+          case "show_element":
+            console.log("is show element");
+            _this.setShowOnPHScale(_this.to_show_index);
+            _this.to_show_index++;
+            _this.$refs.gameRef.isRerender += 1;
+            self.$refs.chatRef.receiveMessage(message);
+            return;
           case "select_from_shelves":
             _this.setCanSelectSubstances(true);
+            self.$refs.chatRef.receiveMessage(message);
             return;
           default:
             self.$refs.chatRef.receiveMessage(message);
