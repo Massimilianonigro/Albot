@@ -9,7 +9,8 @@
         v-on:submitName="submitName"
       />
     </div>
-    <div v-else>
+    <div v-if="(this.gamePhase.phase !== 'introduction')">
+      <div v-bind:style="displayChat()">
       <Chat
         ref="chatRef"
         :style="{ zIndex: '20' }"
@@ -21,6 +22,7 @@
         v-on:continueClicked="handleContinueClick"
         v-on:showTryAgain="displayTryAgain"
       />
+      </div>
       <GameScreen
         ref="gameRef"
         :style="{ overflow: 'visible' }"
@@ -42,6 +44,12 @@
         v-on:pHIdentificationPhase="pHIdentificationPhase"
         v-on:PHGuess="sendPHGuess"
       />
+      <div class="chatlessInstructions" v-if="isChatless">
+        <h2 class="instruction">
+          {{this.currentInstruction}}
+        </h2>
+        <button class="next-phase-button" v-on:click="nextStateTripetto"></button>
+      </div>
     </div>
   </div>
 </template>
@@ -52,6 +60,7 @@ import MainScreen from "./components/MainScreen.vue";
 import GameScreen from "./components/GameScreen.vue";
 import Chat from "./components/Chat.vue";
 import { mapActions, mapState } from "vuex";
+
 export default {
   name: "App",
   components: {
@@ -65,7 +74,11 @@ export default {
       user_name: "",
       chatLink: undefined,
       complete: false,
-      to_show_index: 0
+      to_show_index: 0,
+      isChatless: true,
+      currentInstruction: "Colors in your kitchen, press \"Next\" to play.",
+      currentInstructionId: 0,
+      instructions: "",
     };
   },
   computed: {
@@ -79,8 +92,26 @@ export default {
       "setGuessed",
       "setGamePhase",
       "setShowPHScale",
-      "setCanSelectSubstances"
+      "setCanSelectSubstances",
+        "setShowOnPHScale"
     ]),
+    displayChat(){
+      if (this.isChatless){
+        return {"display": "none"};
+      }
+      return {"display": "block"};
+    },
+    nextStateTripetto(){
+      this.currentInstructionId++;
+      this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
+      console.log("moving to instruction " + this.currentInstructionId);
+
+      if (this.instructions.instructions[this.currentInstructionId].effect !== ""){
+        console.log("sending click tripetto");
+        let message = '{"content":"", "type":"click_tripetto"}';
+        this.sendMessage(message);
+      }
+    },
     resetHome() {
       //only for testing purposes, to be performed by backend
       this.setGamePhase("introduction");
@@ -169,9 +200,11 @@ export default {
     },
   },
   created: function () {
+    var stringified = JSON.stringify(require("./resources/instructions.json"));
+    this.instructions = JSON.parse(stringified);
     let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://e2cd2a45b092.ngrok.io");
+    this.connection = new WebSocket("ws://9d91c87fbef8.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -208,7 +241,6 @@ export default {
             self.$refs.chatRef.receiveMessage(message);
             return;
           case "show_element":
-            console.log("is show element");
             _this.setShowOnPHScale(_this.to_show_index);
             _this.to_show_index++;
             _this.$refs.gameRef.isRerender += 1;
@@ -244,4 +276,43 @@ export default {
   text-align: center;
   color: #828e99;
 }
+
+.sc-hHEiqL {
+  height: 95vh !important;
+  width: 40% !important;
+  left: 60% !important;
+}
+
+.chatlessInstructions {
+  bottom: 5%;
+  height: 10%;
+  width: 95%;
+  border-radius: 15px;
+  border: 4px solid #ca7900;
+  background-color: #fff;
+  display: block;
+  position: absolute;
+}
+
+.next-phase-button {
+  position: absolute;
+  height: 80%;
+  width: 20%;
+  top: 10%;
+  left: 83%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  background-position: center;
+  border: 0;
+  z-index: 1000;
+  background-image: url("./assets/uibuttons/NextPhaseButton.png");
+}
+
+.instruction{
+  font-size: x-large;
+  text-align: center !important;
+  margin-left: 1%;
+}
+
 </style>

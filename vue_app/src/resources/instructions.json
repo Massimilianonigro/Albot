@@ -1,0 +1,81 @@
+{
+  "instructions": [
+    {
+      "instruction": "Colors in your kitchen, press \"Next\" to play.",
+      "effect": "allow selection of elements"
+    },
+    {
+      "instruction": "Select milk, oven cleaner, water and lemon juice from the cupboard and press \"Next\".",
+      "effect": "unlock click of lemon juice"
+    },
+    {
+      "instruction": "Click to pour the lemon juice inside the red cabbage solution, then press \"Next\".",
+      "effect": ""
+    },
+    {
+      "instruction": "Red cabbage solution changes its color according to the pH value of the solution.",
+      "effect": "unlock selection on scale buttons"
+    },
+    {
+      "instruction": "Click on the pH scale on the left to identify the pH value of the lemon juice then press \"Next\".",
+      "effect": ""
+    },
+    {
+      "instruction": "The pH value of lemon juice is 2. Thus, it is called an acid.",
+      "effect": "unlock click of oven cleaner"
+    },
+    {
+      "instruction": "Click to pour the oven cleaner inside the red cabbage solution, then press \"Next\".",
+      "effect": "unlock selection on scale buttons"
+    },
+    {
+      "instruction":"Click on the pH scale on the left to identify the pH value of the oven cleaner then press \"Next\".",
+      "effect": ""
+    },
+    {
+      "instruction": "The pH value of oven cleaner is 13. Thus, it is called an alkali.",
+      "effect": "unlock click of water"
+    },
+    {
+      "instruction": "Click to pour the water inside the red cabbage solution, then press \"Next\".",
+      "effect": "unlock selection on scale buttons"
+    },
+    {
+      "instruction": "Click on the pH scale on the left to identify the pH value of the water then press \"Next\".",
+      "effect": ""
+    },
+    {
+      "instruction": "The pH value of water is 7. Thus, it is neutral.",
+      "effect": "unlock click of milk"
+    },
+    {
+      "instruction": "Click to pour the milk inside the red cabbage solution, then press \"Next\".",
+      "effect": "unlock selection on scale buttons"
+    },
+    {
+      "instruction": "Click on the pH scale on the left to identify the pH value of the milk then press \"Next\".",
+      "effect": ""
+    },
+    {
+      "instruction": "The pH value of milk is 6. Thus, it is acid.",
+      "effect": ""
+    },
+    {
+      "instruction": "The pH of lemon juice is lower than the pH of milk, therefore lemon juice is the stronger acid",
+      "effect": ""
+    },
+    {
+      "instruction": "",
+      "effect": ""
+    },
+    {
+      "instruction": "",
+      "effect": ""
+    },
+    {
+      "instruction": "",
+      "effect": ""
+    }
+
+  ]
+}

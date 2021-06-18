@@ -237,11 +237,15 @@ export default {
 .GameUI {
   height: 100%;
   width: 80%;
-  position: fixed;
-  z-index: 1;
+  position: absolute;
+  z-index: -1 !important;
   top: 0;
   bottom: 0;
   overflow-x: hidden;
   left: 0;
+}
+
+#GameUI {
+  z-index: -1 !important;
 }
 </style>

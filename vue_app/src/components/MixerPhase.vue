@@ -8,6 +8,7 @@
             v-on:click="selectItem(index, data.ph, data.id)"
             v-bind:class="getHighlight(index)"
             v-bind:style="getItemStyle(data, index)"
+            v-bind:disabled="blockPhase"
           ></button>
           <div
             class="solution-bowl"

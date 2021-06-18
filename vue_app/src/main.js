@@ -10,13 +10,12 @@ import vuescroll from 'vuescroll';
 import VueSimpleAlert from "vue-simple-alert";
 import store from './store';
 
-
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
   store,
-}).$mount('#app')
+}).$mount('#app');
 
 // You can set VueScroll global config here.
 Vue.use(vuescroll)
