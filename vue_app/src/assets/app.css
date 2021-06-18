@@ -15,7 +15,9 @@
 	width: 100%;
 	background-color: #ffffff;
 	background-size: contain;
+	background-repeat: repeat !important;
 	background-image: url('../assets/backgrounds/WhiteBG.png');
+	z-index: -1;
 }
 
 .background {
@@ -68,7 +70,7 @@
 
 .home-btn {
 	top: 3%;
-	left: 4%;
+	right: -40%;
 	background-image: url("../assets/uibuttons/HomeButton.png");
 }
 

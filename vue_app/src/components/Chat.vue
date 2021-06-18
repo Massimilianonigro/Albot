@@ -69,9 +69,6 @@ import { mapState } from "vuex";
 
 
 export default {
-  created() {
-    window.addEventListener('keypress', this.nextStateTripetto);
-  },
   components: {
     vuescroll,
   },
@@ -118,14 +115,6 @@ export default {
     ...mapState(["gamePhase"]),
   },
   methods: {
-    nextStateTripetto(e) {
-      console.log(e.code);
-      if (this.gamePhase.phase !== "introduction" && e.code === "Backquote") {
-        console.log("next phase tripetto from Chat");
-        let message = '{"content":"", "type":"click_tripetto"}';
-        this.$emit("sendMessage", message);
-      }
-    },
     getClass(data) {
       let styleItem = "";
       if (data.bot) {

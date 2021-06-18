@@ -6,15 +6,21 @@
 		<div class="pan1 item low-opacity"></div>
 		<div class="pan2 item low-opacity"></div>
 		<div class="blender item low-opacity"></div>
-		<div class="table-item item" v-bind:style="{left: '0'}"></div>
-	</div>
+		<div class="table-item item" v-if="!isChatless"></div>
+    <div class="table-item-chatless item" v-if="isChatless"></div>
+  </div>
   </div>
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: 'PickerBackground',
   props: {},
+  computed: {
+    ...mapState(["isChatless"]),
+  },
 };
 </script>
 
@@ -29,6 +35,17 @@ export default {
 	z-index: 1;
 	background-position-x: center;
 	background-position-y: bottom;
-	background-image: url("../assets/backgrounds/Table-a.png");
+  left: 0;
+  background-image: url('../assets/backgrounds/Table-a.png');
+}
+.table-item-chatless{
+  bottom: 0;
+  height: 38%;
+  width:  100%;
+  z-index: 1;
+  background-position-x: center;
+  background-position-y: bottom;
+  left: 0;
+  background-image: url('../assets/backgrounds/Table-a-Chatless.png');
 }
 </style>

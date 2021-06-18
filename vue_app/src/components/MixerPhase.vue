@@ -52,8 +52,6 @@
         <button class="next-phase-btn" v-on:click="nextPhaseButton"></button>
       </div>
 
-      <button class="back-btn ui-btn" v-on:click="backButton"></button>
-
       <button class="home-btn ui-btn" v-on:click="homeButton"></button>
     </div>
   </div>
@@ -114,6 +112,11 @@ export default {
         this.nextSelected += 1;
         this.$emit("selectionComplete");
         this.setBlockPhase(true); //TODO: testing flag
+
+        setTimeout(() => {
+          this.selected = undefined;
+          this.selectedPh = "Select";
+        }, 1500);
       }
     },
     getLiquidColor(index, pH){

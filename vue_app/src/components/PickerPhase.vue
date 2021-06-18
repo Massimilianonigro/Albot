@@ -1,6 +1,6 @@
 <template>
   <div class="background" v-bind:style="{left: '-10%'}">
-    <div class="ItemShelf">
+    <div class="ItemShelf" v-bind:style="getItemShelfWidth()">
       <div style="margin:5px; z-index:1000" >
         <button
           v-for="(data, index) in substances"
@@ -52,9 +52,15 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances", "canSelectSubstances"])
+    ...mapState(["substances", "canSelectSubstances", "isChatless"])
   },
   methods:{
+    getItemShelfWidth(){
+      if (this.isChatless){
+        return({"left": "15%"});
+      }
+      return({"left": "0"});
+    },
     mixItems(){
       let selItems = []
       let nonSelItems = []

@@ -51,6 +51,9 @@
       <div class="pan1 item low-opacity"></div>
       <div class="pan2 item low-opacity"></div>
     </div>
+    <div class="thumbUp" v-if="thumbRotation" ></div>
+    <div class="thumbDown" v-if="!thumbRotation" ></div>
+
   </div>
 </template>
 
@@ -74,19 +77,24 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances", "showOnPHScale", "showPHScale"]),
+    ...mapState(["substances", "showOnPHScale", "showPHScale", "thumbRotation"]),
   },
   methods: {
     sendPHGuess(index) {
       this.$emit("PHGuess", index - 1);
     },
+    getThumbRotation(){
+      const rotation = "rotate(" + this.thumbRotation + ")";
+      return ({
+        "transform": rotation
+      });
+    },
     getCircleStyle(data) {
-      console.log(data.circle_y_placement);
       return {
         bottom: data.circle_y_placement,
-        left: "0",
-        height: "10%",
-        width: "19%",
+        left: "2.5%",
+        height: "7%",
+        width: "20%",
         zIndex: "5",
       };
     },
@@ -130,7 +138,7 @@ export default {
   height: 100%;
   width: 25%;
   z-index: 1;
-  margin-left: 1vw;
+  left:20%;
   background-position-x: 0;
   background-position-y: center;
   background-repeat: no-repeat;
@@ -200,5 +208,47 @@ export default {
 
 .button-ph {
   display: none;
+}
+
+.thumbUp{
+  width: 20%;
+  position: absolute;
+  height: 30%;
+  top: 10%;
+  right: 30%;
+  border-style: none;
+  border-color: transparent;
+  color: transparent;
+  background-color: transparent;
+  background-image: url("../assets/uibuttons/Thumb.png");
+  background-position-x: center;
+  background-position-y: center;
+  background-size: contain;
+  transform: rotate(0deg);
+}
+
+.thumbDown{
+  width: 20%;
+  position: absolute;
+  height: 30%;
+  top: 10%;
+  right: 30%;
+  border-style: none;
+  border-color: transparent;
+  color: transparent;
+  background-color: transparent;
+  background-image: url("../assets/uibuttons/Thumb.png");
+  background-position-x: center;
+  background-position-y: center;
+  background-size: contain;
+  transform: rotate(180deg);
+}
+
+.white-block {
+  position: absolute;
+  background-color: #ffffffb0;
+  z-index: 105;
+  height: 100%;
+  width: 100%;
 }
 </style>

@@ -2,6 +2,9 @@
   <div>
     <div class="background">
       <div class="albot"></div>
+      <div class="element-selected" v-if="pouredSrc !== ''"
+           v-bind:style="{ backgroundImage: 'url(' + this.pouredSrc + ')'}"
+           key="pouredSrc"></div>
 
       <div
           v-if="showCompliment"
@@ -114,6 +117,7 @@ export default {
       score: 0,
       pouredPh: -1,
       pouredIndex: -1,
+      pouredSrc: "",
       pouring: -1,
       pourColor: "#70319D",
       showCompliment: false,
@@ -183,10 +187,12 @@ export default {
     },
     selectItem(data, index){
       //if blockPhase is false, we are selecting a new element to be guessed
-      if (!this.blockPhase && !this.guessed[index]){
+      //      if (!this.blockPhase && !this.guessed[index]){
+      if (this.pouredSrc === "" && !this.guessed[index]){
         this.$emit("selectedElement",data.id);
         //this.setBlockPhase(true); //TODO: testing flag
         this.showReset = true;
+        this.pouredSrc = data.src;
       }
       //if we are not pouring for the first time, it means we have to throw away the content of the bowl
       if (this.pouredIndex !== -1 ){
@@ -194,6 +200,7 @@ export default {
         this.throwLiquid();
 
         this.pouredIndex = -1; // sets the previously poured substance back on the table
+        this.pouredSrc = "";
         setTimeout(() => {
           this.pouredPh = data.ph;
           this.pouredIndex = index;
@@ -489,6 +496,20 @@ a {
   background-size: contain;
   background-image: url("../assets/uibuttons/NextButton.png");
   outline: none;
+}
+
+.element-selected {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  height: 30%;
+  width: 15%;
+  display: block;
+  background-color: transparent;
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .continue-btn:active,

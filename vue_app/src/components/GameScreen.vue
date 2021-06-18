@@ -3,6 +3,7 @@
     <!--Tutorial Selection phase: !isMixer, isSelection, isTutorial-->
     <div
       class="GameUI"
+      v-bind:style="getGameUIWidth()"
       v-if="!gamePhase.isMixer && gamePhase.isSelection && gamePhase.isTutorial"
     >
       <PickerBackground />
@@ -18,6 +19,7 @@
     <!--Tutorial Mixer phase: isMixer, !isSelection, isTutorial-->
     <div
       class="GameUI"
+      v-bind:style="getGameUIWidth()"
       v-if="gamePhase.isMixer && !gamePhase.isSelection && gamePhase.isTutorial"
     >
       <MixerBackground
@@ -42,6 +44,7 @@
       <IdentificationBackground v-on:PHGuess="sendPHGuess" />
       <IdentificationPhase
         ref="game"
+        v-bind:isRerender="isRerender"
         v-on:selectedElement="sendItemMessage"
         v-on:resetPress="sendResetMessage"
         v-on:homePress="homeScreen"
@@ -127,10 +130,16 @@ export default {
     };
   },
   computed: {
-    ...mapState(["blockPhase", "substances", "gamePhase"]),
+    ...mapState(["blockPhase", "substances", "gamePhase", "thumbRotation", "isChatless"]),
   },
   methods: {
     ...mapActions(["setSubstances", "setGamePhase"]),
+    getGameUIWidth(){
+      if (this.isChatless){
+        return({"width": "100%"});
+      }
+      return({"width": "80%"});
+    },
     mixItems(selectedItems, nonSelectedItems) {
       this.selItems = [];
       this.nonSelItems = [];
@@ -144,6 +153,12 @@ export default {
 
       //only for testing purposes, to be removed
       this.setGamePhase("tutorial-mix");
+    },
+    getThumbRotation(){
+      const rotation = "rotate(" + this.thumbRotation + ")";
+      return ({
+        "transform": rotation
+      });
     },
     practiceMix(selectedItems) {
       this.selItems = [];
@@ -166,6 +181,7 @@ export default {
       this.$emit("sendPracNextInChat");
     },
     sendItemMessage(id) {
+      this.isRerender++;
       this.$emit("sendItemMessage", id);
     },
     sendResetMessage() {

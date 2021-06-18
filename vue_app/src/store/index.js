@@ -6,9 +6,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         blockPhase: true,
+        isChatless: true,
         substances: [],
         showNextPhase: false,
         showOnPHScale: [false, false, false, false],
+        thumbRotation: true,
         guessed: [false, false, false, false, false, false, false, false, false, false, false],
         showPHScale: [false, false],
         canSelectSubstances: false,
@@ -22,6 +24,9 @@ export default new Vuex.Store({
     mutations: {
         setCanSelectSubstances(state, value){
             state.canSelectSubstances = value;
+        },
+        setThumbRotation(state, outcome){
+            state.thumbRotation = outcome;
         },
         setShowOnPHScale(state, element){
           state.showOnPHScale[element] = true;
@@ -105,6 +110,9 @@ export default new Vuex.Store({
         },
         setCanSelectSubstances(context, value){
             context.commit('setCanSelectSubstances', value);
+        },
+        setThumbRotation(context, outcome){
+            context.commit('setThumbRotation', outcome);
         }
     }
 })

@@ -75,14 +75,13 @@ export default {
       chatLink: undefined,
       complete: false,
       to_show_index: 0,
-      isChatless: true,
       currentInstruction: "Colors in your kitchen, press \"Next\" to play.",
       currentInstructionId: 0,
       instructions: "",
     };
   },
   computed: {
-    ...mapState(["gamePhase"]),
+    ...mapState(["gamePhase", "isChatless"]),
   },
   methods: {
     ...mapActions([
@@ -93,7 +92,8 @@ export default {
       "setGamePhase",
       "setShowPHScale",
       "setCanSelectSubstances",
-        "setShowOnPHScale"
+        "setShowOnPHScale",
+        "setThumbRotation"
     ]),
     displayChat(){
       if (this.isChatless){
@@ -102,15 +102,15 @@ export default {
       return {"display": "block"};
     },
     nextStateTripetto(){
-      this.currentInstructionId++;
-      this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
-      console.log("moving to instruction " + this.currentInstructionId);
-
       if (this.instructions.instructions[this.currentInstructionId].effect !== ""){
         console.log("sending click tripetto");
         let message = '{"content":"", "type":"click_tripetto"}';
         this.sendMessage(message);
       }
+
+      this.currentInstructionId++;
+      this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
+      console.log("moving to instruction " + this.currentInstructionId + "with effect" + this.instructions.instructions[this.currentInstructionId].effect);
     },
     resetHome() {
       //only for testing purposes, to be performed by backend
@@ -250,6 +250,14 @@ export default {
             _this.setCanSelectSubstances(true);
             self.$refs.chatRef.receiveMessage(message);
             return;
+          case "correct":
+            _this.setThumbRotation(true);
+            self.$refs.chatRef.receiveMessage(message);
+            return;
+          case "wrong":
+            _this.setThumbRotation(false);
+            self.$refs.chatRef.receiveMessage(message);
+            return;
           default:
             self.$refs.chatRef.receiveMessage(message);
         }
@@ -284,9 +292,10 @@ export default {
 }
 
 .chatlessInstructions {
-  bottom: 5%;
-  height: 10%;
-  width: 95%;
+  bottom: 1%;
+  height: 15%;
+  width: 70%;
+  left: 15%;
   border-radius: 15px;
   border: 4px solid #ca7900;
   background-color: #fff;
@@ -299,7 +308,7 @@ export default {
   height: 80%;
   width: 20%;
   top: 10%;
-  left: 83%;
+  left: 78%;
   background-repeat: no-repeat;
   background-size: contain;
   background-color: transparent;
@@ -307,12 +316,14 @@ export default {
   border: 0;
   z-index: 1000;
   background-image: url("./assets/uibuttons/NextPhaseButton.png");
+  outline: none;
 }
 
 .instruction{
   font-size: x-large;
   text-align: center !important;
   margin-left: 1%;
+  width: 75%;
 }
 
 </style>
