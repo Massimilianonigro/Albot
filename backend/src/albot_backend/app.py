@@ -55,7 +55,6 @@ class Handler:
     # Check how to behave with the other send/recv
     async def send_message(self, user_id, message):
         websocket = self.connected[user_id]
-        print(message)
         if message != None:
             await websocket.send(message)
 

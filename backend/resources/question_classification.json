@@ -149,15 +149,19 @@
             }
         ]
     },
-    "tutorial": {
+    "tutorial_not_unlock": {
         "explanation": true,
         "positive_responses": [
             "chatbot_appreciation",
-            "unlock_selection"
+            "positive_ui",
+            "unlock_next",
+            "lock_scale"
         ],
         "negative_responses": [
             "wrong_answer",
-            "unlock_selection"
+            "negative_ui",
+            "unlock_next",
+            "lock_scale"
         ],
         "send_positive_effect": true,
         "send_negative_effect": true,
@@ -171,7 +175,128 @@
                             "id": 29,
                             "option": "",
                             "answer": "ph_first_answer",
-                            "explanation": "ph_first_question_explanation"
+                            "explanation": "ph_first_question_explanation",
+                            "effect": "show_ph_scale"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_strong_acid_question": {
+                    "base": "mix_strong_acid_question",
+                    "values": [
+                        {
+                            "id": 15,
+                            "option": "",
+                            "answer": "guessed_2",
+                            "explanation": "mix_strong_acid_question_explanation",
+                            "effect": "show_lemon_juice"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_strong_base_question": {
+                    "base": "mix_strong_base_question",
+                    "values": [
+                        {
+                            "id": 16,
+                            "option": "",
+                            "answer": "guessed_13",
+                            "effect": "alkaline_explanation",
+                            "explanation": "mix_strong_base_question_explanation"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_weak_acid_question": {
+                    "base": "mix_weak_acid_question",
+                    "values": [
+                        {
+                            "id": 17,
+                            "option": "",
+                            "answer": "guessed_6",
+                            "explanation": "mix_weak_acid_question_explanation",
+                            "effect": "show_milk"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_water_question": {
+                    "base": "mix_water_question",
+                    "values": [
+                        {
+                            "id": 32,
+                            "option": "",
+                            "answer": "guessed_7",
+                            "effect": "neutral_explanation",
+                            "explanation": ""
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "tutorial": {
+        "explanation": true,
+        "positive_responses": [
+            "chatbot_appreciation",
+            "unlock_selection",
+            "unlock_next",
+            "positive_ui",
+            "lock_scale"
+        ],
+        "negative_responses": [
+            "wrong_answer",
+            "unlock_selection",
+            "unlock_next",
+            "negative_ui",
+            "lock_scale"
+        ],
+        "send_positive_effect": true,
+        "send_negative_effect": true,
+        "advance_state": true,
+        "questions": [
+            {
+                "mix_strong_base_question": {
+                    "base": "mix_strong_base_question",
+                    "values": [
+                        {
+                            "id": 34,
+                            "option": "",
+                            "answer": "guessed_13",
+                            "effect": "alkaline_explanation",
+                            "explanation": "mix_strong_base_question_explanation"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_weak_acid_question": {
+                    "base": "mix_weak_acid_question",
+                    "values": [
+                        {
+                            "id": 35,
+                            "option": "",
+                            "answer": "guessed_6",
+                            "explanation": "mix_weak_acid_question_explanation",
+                            "effect": "show_milk"
+                        }
+                    ]
+                }
+            },
+            {
+                "mix_water_question": {
+                    "base": "mix_water_question",
+                    "values": [
+                        {
+                            "id": 36,
+                            "option": "",
+                            "answer": "guessed_7",
+                            "effect": "neutral_explanation",
+                            "explanation": ""
                         }
                     ]
                 }
@@ -199,60 +324,6 @@
                             "answer": "is_it_acid_answer",
                             "effect": "tricky_scale",
                             "explanation": ""
-                        }
-                    ]
-                }
-            },
-            {
-                "mix_water_question": {
-                    "base": "mix_water_question",
-                    "values": [
-                        {
-                            "id": 32,
-                            "option": "",
-                            "answer": "guessed_7",
-                            "effect": "neutral_explanation",
-                            "explanation": ""
-                        }
-                    ]
-                }
-            },
-            {
-                "mix_strong_acid_question": {
-                    "base": "mix_strong_acid_question",
-                    "values": [
-                        {
-                            "id": 15,
-                            "option": "",
-                            "answer": "guessed_2",
-                            "explanation": "mix_strong_acid_question_explanation"
-                        }
-                    ]
-                }
-            },
-            {
-                "mix_strong_base_question": {
-                    "base": "mix_strong_base_question",
-                    "values": [
-                        {
-                            "id": 16,
-                            "option": "",
-                            "answer": "guessed_13",
-                            "effect": "alkaline_explanation",
-                            "explanation": "mix_strong_base_question_explanation"
-                        }
-                    ]
-                }
-            },
-            {
-                "mix_weak_acid_question": {
-                    "base": "mix_weak_acid_question",
-                    "values": [
-                        {
-                            "id": 17,
-                            "option": "",
-                            "answer": "guessed_6",
-                            "explanation": "mix_weak_acid_question_explanation"
                         }
                     ]
                 }

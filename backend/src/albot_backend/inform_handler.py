@@ -45,7 +45,6 @@ class InformHandler:
 
     # Searches for the object with one key, the explanation one. And the explanation
     def _get_general_explanation(self, intent_dict):
-        print(intent_dict)
         for explanation in intent_dict:
             if len(explanation.keys()) == 1:
                 if "explanation" in explanation.keys():

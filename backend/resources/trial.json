@@ -47,6 +47,18 @@
                         "ph_first_question"
                     ],
                     "new_pending_question": 29
+                },
+                {
+                    "intent": "click_tripetto",
+                    "to_send_back": [
+                        "select_from_shelves",
+                        "lock_next"
+                    ],
+                    "change_phase": "tutorial-selection",
+                    "next_state": {
+                        "__enum__": "State.INDICATOR_EXPLANATION"
+                    },
+                    "new_pending_question": null
                 }
             ]
         },
@@ -86,7 +98,7 @@
                     "new_pending_question": null
                 },
                 {
-                    "intent": "selection_complete",
+                    "intent": "selection_complete_2",
                     "to_send_back": [
                         "indicator_explanation",
                         "indicator_question"
@@ -111,6 +123,13 @@
             },
             "utterances": [
                 {
+                    "intent": "selection_complete",
+                    "to_send_back": [
+                        "unlock_next"
+                    ],
+                    "change_phase": "tutorial-mix"
+                },
+                {
                     "intent": "clicked_home",
                     "next_state": {
                         "__enum__": "State.TUTORIAL_OR_EXPERIMENT"
@@ -122,6 +141,17 @@
                     "to_send_back": [
                         "next_step_indicator_explanation"
                     ]
+                },
+                {
+                    "intent": "click_tripetto",
+                    "to_send_back": [
+                        "show_cabbage",
+                        "unlock_selection",
+                        "lock_next"
+                    ],
+                    "next_state": {
+                        "__enum__": "State.MIX_STRONG_ACID"
+                    }
                 }
             ]
         },
@@ -165,9 +195,25 @@
                     ]
                 },
                 {
+                    "intent": "click_tripetto",
+                    "to_send_back": [
+                        "unlock_scale",
+                        "lock_next"
+                    ],
+                    "new_pending_question": 15
+                },
+                {
                     "intent": "selection_complete",
                     "to_send_back": [
-                        "mix_strong_acid_question"
+                        "unlock_next"
+                    ]
+                },
+                {
+                    "intent": "selection_complete_2",
+                    "to_send_back": [
+                        "mix_strong_acid_question",
+                        "unlock_next",
+                        "unlock_scale"
                     ],
                     "new_pending_question": 15
                 }
@@ -206,6 +252,17 @@
                     ]
                 },
                 {
+                    "intent": "click_tripetto",
+                    "to_send_back": [
+                        "unlock_selection",
+                        "lock_next"
+                    ],
+                    "next_state": {
+                        "__enum__": "State.MIX_STRONG_BASE"
+                    },
+                    "new_pending_question": null
+                },
+                {
                     "intent": "wait_ended",
                     "to_send_back": [
                         "mix_strong_acid_second_question"
@@ -236,6 +293,14 @@
             },
             "utterances": [
                 {
+                    "intent": "click_tripetto",
+                    "to_send_back": [
+                        "unlock_scale",
+                        "lock_next"
+                    ],
+                    "new_pending_question": 16
+                },
+                {
                     "intent": "clicked_home",
                     "next_state": {
                         "__enum__": "State.GREETING"
@@ -258,14 +323,23 @@
                 {
                     "intent": "selection_complete",
                     "to_send_back": [
-                        "mix_strong_base_question"
+                        "mix_strong_base_question",
+                        "unlock_next"
+                    ]
+                },
+                {
+                    "intent": "selection_complete_2",
+                    "to_send_back": [
+                        "mix_strong_base_question",
+                        "unlock_scale"
                     ],
-                    "new_pending_question": 16
+                    "new_pending_question": 34
                 },
                 {
                     "intent": "wait_ended",
                     "to_send_back": [
-                        "mix_strong_base_explanation"
+                        "mix_strong_base_explanation",
+                        "unlock_selection"
                     ]
                 }
             ]
@@ -291,6 +365,19 @@
             },
             "utterances": [
                 {
+                    "intent": "click_tripetto",
+                    "to_send_back": [
+                        "lock_next",
+                        "unlock_selection"
+                    ]
+                },
+                {
+                    "intent": "click_tripetto_2",
+                    "to_send_back": [
+                        "unlock_scale"
+                    ]
+                },
+                {
                     "intent": "clicked_home",
                     "next_state": {
                         "__enum__": "State.GREETING"
@@ -313,9 +400,17 @@
                 {
                     "intent": "selection_complete",
                     "to_send_back": [
-                        "mix_water_question"
+                        "unlock_next"
                     ],
                     "new_pending_question": 32
+                },
+                {
+                    "intent": "selection_complete_2",
+                    "to_send_back": [
+                        "mix_water_question",
+                        "unlock_scale"
+                    ],
+                    "new_pending_question": 36
                 },
                 {
                     "intent": "wait_ended",
@@ -346,6 +441,14 @@
             },
             "utterances": [
                 {
+                    "intent": "click_tripetto",
+                    "to_send_back": [
+                        "lock_next",
+                        "unlock_selection",
+                        "unlock_scale"
+                    ]
+                },
+                {
                     "intent": "clicked_home",
                     "next_state": {
                         "__enum__": "State.GREETING"
@@ -368,9 +471,18 @@
                 {
                     "intent": "selection_complete",
                     "to_send_back": [
-                        "mix_weak_acid_question"
+                        "unlock_next"
                     ],
                     "new_pending_question": 17
+                },
+                {
+                    "intent": "selection_complete_2",
+                    "to_send_back": [
+                        "mix_weak_acid_question",
+                        "unlock_next",
+                        "unlock_scale"
+                    ],
+                    "new_pending_question": 35
                 },
                 {
                     "intent": "wait_ended",
@@ -411,6 +523,13 @@
                     "to_send_back": [
                         "next_step_explain_weak_acid"
                     ]
+                },
+                {
+                    "intent": "click_tripetto",
+                    "to_send_back": [
+                        "show_next_phase"
+                    ],
+                    "new_pending_question": null
                 },
                 {
                     "intent": "wait_ended",
@@ -501,6 +620,17 @@
                         "__enum__": "State.PRACTICE_COLLECTING"
                     },
                     "change_phase": "practice-selection"
+                },
+                {
+                    "intent": "selection_complete_2",
+                    "to_send_back": [
+                        "practice_explanation"
+                    ],
+                    "new_pending_question": null,
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_COLLECTING"
+                    },
+                    "change_phase": "practice-selection"
                 }
             ],
             "child_answer": "tutorial",
@@ -567,15 +697,19 @@
                     "change_phase": "practice-mix"
                 },
                 {
+                    "intent": "selection_complete_2",
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_CYCLE"
+                    },
+                    "to_send_back": [
+                        "practice_cycle_explanation"
+                    ],
+                    "change_phase": "practice-mix"
+                },
+                {
                     "intent": "next_step_information",
                     "to_send_back": [
                         "next_step_practice_collecting"
-                    ]
-                },
-                {
-                    "intent": "selection_complete",
-                    "to_send_back": [
-                        "next"
                     ]
                 }
             ]

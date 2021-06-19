@@ -17,38 +17,104 @@
     ],
     "introduction_explanation": [
         {
-            "text": "Hello  Massi, welcome to my kitchen! I hope you're ready to learn. This is the tutorial: here you'll learn how to play and the basics of pH.",
+            "text": "Hello Chiara, welcome to my kitchen! I hope you're ready to learn. This is the tutorial: here you'll learn how to play and the basics of pH.",
             "ui_effect": ""
         }
     ],
     "ph_first_explanation": [
         {
-            "text": "pH is a prop of solutions, like density, concentration, ...",
+            "text": "pH is a prop of solutions, like density, concentration or flammability",
             "ui_effect": ""
+        }
+    ],
+    "show_lemon_juice": [
+        {
+            "text": "",
+            "ui_effect": "show_element"
+        }
+    ],
+    "show_milk": [
+        {
+            "text": "",
+            "ui_effect": "show_element"
         }
     ],
     "ph_first_question": [
         {
-            "text": "Do you know what pH measures?",
+            "text": "Can you tell me what pH measures?",
             "ui_effect": "",
             "type": "instruction"
         }
     ],
     "ph_first_question_explanation": [
         {
-            "text": "pH measures the acidity of the solution on a scale from 0 to 14. You can see it on the left.",
-            "ui_effect": "show_universal"
+            "text": "pH measures the acidity of the solution on a scale from 0 to 14.",
+            "ui_effect": ""
+        }
+    ],
+    "show_ph_scale": [
+        {
+            "text": "You can see the pH scale on the left.",
+            "ui_effect": ""
+        }
+    ],
+    "show_universal": [
+        {
+            "text": "",
+            "ui_effect": ""
+        }
+    ],
+    "positive_ui": [
+        {
+            "text": "",
+            "ui_effect": "correct"
+        }
+    ],
+    "unlock_scale": [
+        {
+            "text": "",
+            "ui_effect": "unlock_scale"
+        }
+    ],
+    "lock_scale": [
+        {
+            "text": "",
+            "ui_effect": "lock_scale"
+        }
+    ],
+    "unlock_next": [
+        {
+            "text": "",
+            "ui_effect": "unlock_next"
+        }
+    ],
+    "lock_next": [
+        {
+            "text": "",
+            "ui_effect": "lock_next"
+        }
+    ],
+    "negative_ui": [
+        {
+            "text": "",
+            "ui_effect": "wrong"
         }
     ],
     "explanation_29": [
         {
-            "text": "pH measures the acidity of the solution on a scale from 0 to 14. You can see it on the left.",
-            "ui_effect": "show_universal"
+            "text": "pH measures the acidity of the solution on a scale from 0 to 14.",
+            "ui_effect": ""
         }
     ],
     "explanation_30": [
         {
             "text": "It is red cabbage! When you pour a solution in the bowl, you can use the rightmost scale to identify its pH value.",
+            "ui_effect": "show_cabbage"
+        }
+    ],
+    "show_cabbage": [
+        {
+            "text": "",
             "ui_effect": "show_cabbage"
         }
     ],
@@ -185,7 +251,7 @@
     ],
     "chatbot_appreciation": [
         {
-            "text": "Good job! That was not an easy task but you mamaged to solve it anyway",
+            "text": "Good job! That was not an easy task but you managed to solve it anyway",
             "ui_effect": ""
         }
     ],
@@ -413,7 +479,7 @@
     ],
     "explanation_15": [
         {
-            "text": "The pH for lemon juice is 3",
+            "text": "The pH for lemon juice is 2",
             "ui_effect": ""
         }
     ],
@@ -423,7 +489,19 @@
             "ui_effect": ""
         }
     ],
+    "explanation_34": [
+        {
+            "text": "Its pH is 13.",
+            "ui_effect": ""
+        }
+    ],
     "explanation_17": [
+        {
+            "text": "Milk has a pH value of 6.",
+            "ui_effect": ""
+        }
+    ],
+    "explanation_35": [
         {
             "text": "Milk has a pH value of 6.",
             "ui_effect": ""
@@ -554,7 +632,7 @@
         {
             "text": "Do you think the lemon juice is an acid or not?",
             "ui_effect": "",
-            "type":  "instruction"
+            "type": "instruction"
         }
     ],
     "tricky_scale": [
@@ -572,7 +650,7 @@
     ],
     "mix_water_explanation": [
         {
-            "text": "Now try to pour the water ...",
+            "text": "Now try to pour the water",
             "ui_effect": "",
             "type": "instruction"
         }
@@ -583,10 +661,16 @@
             "ui_effect": ""
         }
     ],
+    "explanation_36": [
+        {
+            "text": "Its pH is 7.",
+            "ui_effect": ""
+        }
+    ],
     "neutral_explanation": [
         {
             "text": "Being in the middle, water is neither acid, nor alkaline: we say it is neutral.",
-            "ui_effect": ""
+            "ui_effect": "show_element"
         }
     ],
     "mix_water_question": [
@@ -612,7 +696,7 @@
     ],
     "milk_or_lemon_juice_explanation": [
         {
-            "text": "Milk is closer to 7, it means it's a weaker acid.",
+            "text": "Milk is closer to 7, it means it's a weaker acid. Lemon juice is closer to 0 it means it is a stronger acid",
             "ui_effect": ""
         }
     ],
@@ -630,7 +714,7 @@
     ],
     "mix_strong_base_question_explanation": [
         {
-            "text": "Lemon juice and oven cleaner have a lot of differences. To explain the properties of substances scientist introduced the concept of pH....",
+            "text": "Lemon juice and oven cleaner have a lot of differences. To explain the properties of substances scientist introduced the concept of pH",
             "ui_effect": ""
         }
     ],
@@ -662,7 +746,7 @@
     ],
     "mix_weak_acid_explanation": [
         {
-            "text": "Pour the milk ...",
+            "text": "Pour the milk",
             "ui_effect": "",
             "type": "instruction"
         }
@@ -670,12 +754,18 @@
     "alkaline_explanation": [
         {
             "text": "When pH is between 8 and 14, we say the solution is alkaline.",
-            "ui_effect": ""
+            "ui_effect": "show_element"
         }
     ],
     "explain_practice_start": [
         {
             "text": "Something bad happened! I had all the items ordered by pH and someone messed them all up! If you want to help us click on the big button in the center!",
+            "ui_effect": "show_next_phase"
+        }
+    ],
+    "show_next_phase": [
+        {
+            "text": "",
             "ui_effect": "show_next_phase"
         }
     ],
@@ -708,6 +798,12 @@
             "text": "Let's start! Select the four items you see on the shelves, I'll bring them on the table for you!",
             "ui_effect": "select_from_shelves",
             "type": "instruction"
+        }
+    ],
+    "select_from_shelves": [
+        {
+            "text": "",
+            "ui_effect": "select_from_shelves"
         }
     ],
     "unlock_selection": [

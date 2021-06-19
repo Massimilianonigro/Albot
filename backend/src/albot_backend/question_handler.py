@@ -17,7 +17,6 @@ class QuestionHandler:
         question_category = random.choice(
             self.question_classification[category]["questions"]
         )
-        print(question_category)
         return random.choice(list(question_category.values())[0]["values"])["id"]
 
     # Returns 0 if the answer is wrong, 1 if the answer is good, 2 if the intent is not meant to answer the question
@@ -123,7 +122,6 @@ class QuestionHandler:
 
     def _is_clarification(self, intent):
         if intent[0:6] == "inform":
-            print("child is asking question")
             return True
         else:
             return False

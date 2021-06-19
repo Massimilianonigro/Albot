@@ -69,6 +69,12 @@ class DialogueManager:
             )
         elif msg["type"] == "selection_complete":
             intent = self._create_intent("selection_complete")
+        elif msg["type"] == "selection_complete_2":
+            intent = self._create_intent("selection_complete_2")
+        elif msg["type"] == "click_tripetto":
+            intent = self._create_intent("click_tripetto")
+        elif msg["type"] == "click_tripetto_2":
+            intent = self._create_intent("click_tripetto_2")
         # Now that i have the intent calculated i can generate a response and move the child on the state machine
         utterance = self.generate_utterance(intent, user_id)
         return utterance
@@ -77,7 +83,6 @@ class DialogueManager:
         user = self.users[user_session_id]
         current_state = user["current_state"]
         pending_question = user["pending_question"]
-        print("pending question is: " + str(pending_question))
         if user["is_coro_ended"] is None or user["is_coro_ended"] == True:
             # User either does not have a timer or the timer has finished, that means we are no longer in
             # the branch/waiting state so we can behave normally
@@ -136,10 +141,6 @@ class DialogueManager:
     def decide_branch(self, user_session_id):
         rand = random.randint(
             0, 1 * self.users[user_session_id]["question_probability"]
-        )
-        print(
-            "question probability is : "
-            + str(self.users[user_session_id]["question_probability"])
         )
         # if rand == 0:
         # Calling the chatbot_question
@@ -204,5 +205,4 @@ class DialogueManager:
         data_dict = {"text": text}
         data_json = json.dumps(data_dict)
         response = requests.post("http://localhost:5005/model/parse", data=data_json)
-        print(response.content)
         return json.loads(response.content)

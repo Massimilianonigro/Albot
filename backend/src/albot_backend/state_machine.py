@@ -31,7 +31,11 @@ class StateMachine:
             "In state_machine input_function: "
             + str(current_state)
             + ", intent recognized is: "
-            + str(intent["intent"]["name"])
+            + str(
+                intent["intent"]["name"]
+                + "pending question is: "
+                + str(pending_question)
+            )
         )
         state = self._get_state(current_state)
         if state != None:
@@ -53,7 +57,6 @@ class StateMachine:
             )
         # Case 2: The intent is a click not present in the state's utterances and the state has reaction to a click
         if self._has_click_reaction(state) and self._is_intent_click(intent_name):
-            print("entering in case 2 with intent: " + intent_name)
             return self._click_reaction(
                 state, intent_name, new_pending_question, next_state, utterance_array
             )
@@ -70,7 +73,6 @@ class StateMachine:
             # If response is None than the child may be asking a question
             if t != None:
                 new_pending_question, response = t
-                print("entering in case 3 with intent: " + intent_name)
                 next_state = (
                     self.get_next_state(next_state)
                     if does_answer_advance_state
@@ -81,7 +83,6 @@ class StateMachine:
                     if does_answer_reverse_state
                     else next_state
                 )
-                print(response)
                 utterance_array = utterance_array + self._get_utterances(response)
                 bot_response = self._create_message(utterance_array)
                 return new_pending_question, next_state, bot_response
@@ -114,12 +115,10 @@ class StateMachine:
             utterance_array = utterance_array + self._get_utterances(
                 [self.question_handler.get_explanation_by_id(new_pending_question)]
             )
-            print("utterance_array after moreinfo click is " + str(utterance_array))
         if "next_state" in utterance.keys():
             next_state = utterance["next_state"]
         if "new_pending_question" in utterance.keys():
             new_pending_question = utterance["new_pending_question"]
-            print("Setting pending question in response_to_intent(state machine)")
         if "to_send_back" in utterance.keys():
             utterance_array = utterance_array + self._get_utterances(
                 utterance["to_send_back"]
@@ -127,7 +126,6 @@ class StateMachine:
         if "change_phase" in utterance.keys():
             change_phase = utterance["change_phase"]
         response = self._create_message(utterance_array, change_phase)
-        print("Next state will be: " + str(next_state))
         return new_pending_question, next_state, response
 
     def _is_intent_click(self, intent):
@@ -147,7 +145,6 @@ class StateMachine:
         utterance_array = utterance_array + self._get_utterances(
             state["click_object_reaction"]["to_send_back"]
         )
-        print(self._get_utterances(state["click_object_reaction"]["to_send_back"]))
         if self._has_display(state):
             utterance_array = utterance_array + [
                 self._create_utterance(text="display_" + clicked_object_id)
@@ -173,7 +170,6 @@ class StateMachine:
         is_answer_correct = self.question_handler.verify_answer(
             pending_question, intent
         )
-        print("is_answer_correct is " + str(is_answer_correct))
         if is_answer_correct != 2:
             return self.question_handler.get_response(
                 pending_question, is_answer_correct
