@@ -44,11 +44,11 @@
         v-on:pHIdentificationPhase="pHIdentificationPhase"
         v-on:PHGuess="sendPHGuess"
       />
-      <div class="chatlessInstructions" v-if="isChatless">
+      <div class="chatlessInstructions" v-if="isChatless && !showNextPhase">
         <h2 class="instruction">
           {{this.currentInstruction}}
         </h2>
-        <button class="next-phase-button" v-on:click="nextStateTripetto"></button>
+        <button class="next-phase-button" v-on:click="nextStateTripetto" v-bind:disabled="!isNextActive"></button>
       </div>
     </div>
   </div>
@@ -78,10 +78,11 @@ export default {
       currentInstruction: "Colors in your kitchen, press \"Next\" to play.",
       currentInstructionId: 0,
       instructions: "",
+      isNextActive: true,
     };
   },
   computed: {
-    ...mapState(["gamePhase", "isChatless"]),
+    ...mapState(["gamePhase", "isChatless", "showNextPhase"]),
   },
   methods: {
     ...mapActions([
@@ -93,7 +94,9 @@ export default {
       "setShowPHScale",
       "setCanSelectSubstances",
         "setShowOnPHScale",
-        "setThumbRotation"
+        "setThumbRotation",
+        "setIsThumbVisible",
+        "setIsScaleClickable"
     ]),
     displayChat(){
       if (this.isChatless){
@@ -107,7 +110,11 @@ export default {
         let message = '{"content":"", "type":"click_tripetto"}';
         this.sendMessage(message);
       }
-
+      if(this.instructions.instructions[this.currentInstructionId].effect_2 !== ""){
+        console.log("sending click tripetto 2");
+        let message = '{"content":"", "type":"click_tripetto_2"}';
+        this.sendMessage(message);
+      }
       this.currentInstructionId++;
       this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
       console.log("moving to instruction " + this.currentInstructionId + "with effect" + this.instructions.instructions[this.currentInstructionId].effect);
@@ -156,7 +163,12 @@ export default {
       this.sendItemClick("home");
     },
     handlePracticePress() {
-      let message = '{"content":"", "type":"selection_complete"}';
+      let message;
+      if (this.isChatless){
+        message = '{"content":"", "type":"selection_complete"}';
+      } else {
+        message = '{"content":"", "type":"selection_complete_2"}';
+      }
       this.sendMessage(message);
     },
     handleTryAgainClick() {
@@ -192,7 +204,12 @@ export default {
       this.sendItemClick(id);
     },
     selectionComplete() {
-      let message = '{"content":"", "type":"selection_complete"}';
+      let message;
+      if (this.isChatless){
+        message = '{"content":"", "type":"selection_complete"}';
+      } else {
+        message = '{"content":"", "type":"selection_complete_2"}';
+      }
       this.sendMessage(message);
     },
     submitName(name) {
@@ -252,10 +269,30 @@ export default {
             return;
           case "correct":
             _this.setThumbRotation(true);
+            _this.setIsThumbVisible(true);
             self.$refs.chatRef.receiveMessage(message);
             return;
           case "wrong":
             _this.setThumbRotation(false);
+            _this.setIsThumbVisible(true);
+            self.$refs.chatRef.receiveMessage(message);
+            return;
+          case "unlock_next":
+            _this.isNextActive = true;
+            self.$refs.chatRef.receiveMessage(message);
+            return;
+          case "lock_next":
+            _this.isNextActive = false;
+            self.$refs.chatRef.receiveMessage(message);
+            return;
+          case "unlock_scale":
+            console.log("----------------------Unlocking scale");
+            _this.setIsScaleClickable(true);
+            self.$refs.chatRef.receiveMessage(message);
+            return;
+          case "lock_scale":
+            console.log("----------------------Locking scale");
+            _this.setIsScaleClickable(false);
             self.$refs.chatRef.receiveMessage(message);
             return;
           default:
@@ -317,6 +354,10 @@ export default {
   z-index: 1000;
   background-image: url("./assets/uibuttons/NextPhaseButton.png");
   outline: none;
+}
+
+.next-phase-button:disabled{
+  opacity: 0.3;
 }
 
 .instruction{

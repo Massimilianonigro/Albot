@@ -13,7 +13,7 @@
             v-bind:key="pH_button"
             v-on:click="sendPHGuess(pH_button)"
           >
-            <button class="button-ph"></button>
+            <!--button class="button-ph" ></button-->
           </li>
         <div v-for="(data, index) in substances" v-bind:key="index">
           <div v-show="showOnPHScale[index]" v-if="showOnPHScale[index]">
@@ -51,8 +51,8 @@
       <div class="pan1 item low-opacity"></div>
       <div class="pan2 item low-opacity"></div>
     </div>
-    <div class="thumbUp" v-if="thumbRotation" ></div>
-    <div class="thumbDown" v-if="!thumbRotation" ></div>
+    <div class="thumbUp" v-if="thumbRotation && isThumbVisible" ></div>
+    <div class="thumbDown" v-if="!thumbRotation && isThumbVisible" ></div>
 
   </div>
 </template>
@@ -77,11 +77,13 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances", "showOnPHScale", "showPHScale", "thumbRotation"]),
+    ...mapState(["substances", "showOnPHScale", "showPHScale", "thumbRotation", "isThumbVisible", "isScaleClickable"]),
   },
   methods: {
     sendPHGuess(index) {
-      this.$emit("PHGuess", index - 1);
+      if (this.isScaleClickable){
+        this.$emit("PHGuess", index - 1);
+      }
     },
     getThumbRotation(){
       const rotation = "rotate(" + this.thumbRotation + ")";
@@ -182,10 +184,10 @@ export default {
   /*list-style-type: none;*/
 }
 
-.nav:hover{
+/*.nav:hover{
   cursor: pointer;
 
-}
+}*/
 
 .buttons {
   width: 46%;
@@ -216,6 +218,8 @@ export default {
   height: 30%;
   top: 10%;
   right: 30%;
+  z-index: 100;
+  opacity: 1;
   border-style: none;
   border-color: transparent;
   color: transparent;
@@ -224,6 +228,7 @@ export default {
   background-position-x: center;
   background-position-y: center;
   background-size: contain;
+  background-repeat: no-repeat;
   transform: rotate(0deg);
 }
 
@@ -233,6 +238,8 @@ export default {
   height: 30%;
   top: 10%;
   right: 30%;
+  z-index: 100;
+  opacity: 1;
   border-style: none;
   border-color: transparent;
   color: transparent;
@@ -241,6 +248,7 @@ export default {
   background-position-x: center;
   background-position-y: center;
   background-size: contain;
+  background-repeat: no-repeat;
   transform: rotate(180deg);
 }
 

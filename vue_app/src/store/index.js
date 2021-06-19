@@ -6,11 +6,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         blockPhase: true,
-        isChatless: true,
+        isChatless: false,
         substances: [],
         showNextPhase: false,
         showOnPHScale: [false, false, false, false],
         thumbRotation: true,
+        isThumbVisible: false,
+        isScaleClickable: false,
         guessed: [false, false, false, false, false, false, false, false, false, false, false],
         showPHScale: [false, false],
         canSelectSubstances: false,
@@ -27,6 +29,12 @@ export default new Vuex.Store({
         },
         setThumbRotation(state, outcome){
             state.thumbRotation = outcome;
+        },
+        setIsThumbVisible(state, visibility){
+            state.isThumbVisible = visibility;
+        },
+        setIsScaleClickable(state, clickable){
+            state.isScaleClickable = clickable;
         },
         setShowOnPHScale(state, element){
           state.showOnPHScale[element] = true;
@@ -93,6 +101,9 @@ export default new Vuex.Store({
         setSubstances(context, phase){
             context.commit('setSubstances', phase);
         },
+        setIsScaleClickable(context, clickable){
+            context.commit('setIsScaleClickable', clickable);
+        },
         setShowNextPhase(context, show){
             context.commit('setShowNextPhase', show);
         },
@@ -113,6 +124,9 @@ export default new Vuex.Store({
         },
         setThumbRotation(context, outcome){
             context.commit('setThumbRotation', outcome);
+        },
+        setIsThumbVisible(context, visibility){
+            context.commit('setIsThumbVisible', visibility);
         }
     }
 })

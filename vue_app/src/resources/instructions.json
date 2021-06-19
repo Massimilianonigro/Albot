@@ -2,80 +2,88 @@
   "instructions": [
     {
       "instruction": "Colors in your kitchen, press \"Next\" to play.",
-      "effect": "allow selection of elements"
+      "effect": "allow selection of elements",
+      "effect_2": ""
     },
     {
       "instruction": "Select milk, oven cleaner, water and lemon juice from the cupboard and press \"Next\".",
-      "effect": "unlock click of lemon juice"
+      "effect": "unlock click of lemon juice",
+      "effect_2": ""
     },
     {
       "instruction": "Click to pour the lemon juice inside the red cabbage solution, then press \"Next\".",
-      "effect": ""
+      "effect": "",
+      "effect_2": ""
     },
     {
       "instruction": "Red cabbage solution changes its color according to the pH value of the solution.",
-      "effect": "unlock selection on scale buttons"
+      "effect": "unlock selection on scale buttons",
+      "effect_2": ""
     },
     {
       "instruction": "Click on the pH scale on the left to identify the pH value of the lemon juice then press \"Next\".",
-      "effect": ""
+      "effect": "",
+      "effect_2": ""
     },
     {
       "instruction": "The pH value of lemon juice is 2. Thus, it is called an acid.",
-      "effect": "unlock click of oven cleaner"
+      "effect": "unlock click of oven cleaner",
+      "effect_2": ""
     },
     {
       "instruction": "Click to pour the oven cleaner inside the red cabbage solution, then press \"Next\".",
-      "effect": "unlock selection on scale buttons"
+      "effect": "unlock selection on scale buttons",
+      "effect_2": ""
     },
     {
       "instruction":"Click on the pH scale on the left to identify the pH value of the oven cleaner then press \"Next\".",
-      "effect": ""
+      "effect": "",
+      "effect_2": ""
     },
     {
       "instruction": "The pH value of oven cleaner is 13. Thus, it is called an alkali.",
-      "effect": "unlock click of water"
+      "effect": "unlock click of water",
+      "effect_2": ""
     },
     {
       "instruction": "Click to pour the water inside the red cabbage solution, then press \"Next\".",
-      "effect": "unlock selection on scale buttons"
+      "effect": "",
+      "effect_2": "click_tripetto_2"
     },
     {
       "instruction": "Click on the pH scale on the left to identify the pH value of the water then press \"Next\".",
-      "effect": ""
+      "effect": "",
+      "effect_2": ""
     },
     {
       "instruction": "The pH value of water is 7. Thus, it is neutral.",
-      "effect": "unlock click of milk"
+      "effect": "unlock click of milk",
+      "effect_2": ""
     },
     {
       "instruction": "Click to pour the milk inside the red cabbage solution, then press \"Next\".",
-      "effect": "unlock selection on scale buttons"
+      "effect": "unlock selection on scale buttons",
+      "effect_2": ""
     },
     {
       "instruction": "Click on the pH scale on the left to identify the pH value of the milk then press \"Next\".",
-      "effect": ""
+      "effect": "",
+      "effect_2": ""
     },
     {
       "instruction": "The pH value of milk is 6. Thus, it is acid.",
-      "effect": ""
+      "effect": "",
+      "effect_2": ""
     },
     {
       "instruction": "The pH of lemon juice is lower than the pH of milk, therefore lemon juice is the stronger acid",
-      "effect": ""
+      "effect": "show next phase should be activated",
+      "effect_2": ""
     },
     {
       "instruction": "",
-      "effect": ""
-    },
-    {
-      "instruction": "",
-      "effect": ""
-    },
-    {
-      "instruction": "",
-      "effect": ""
+      "effect": "",
+      "effect_2": ""
     }
-
   ]
 }
