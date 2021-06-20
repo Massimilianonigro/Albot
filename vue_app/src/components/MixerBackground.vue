@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import {mapActions, mapState} from "vuex";
 export default {
   name: "MixerBackground",
   props: {
@@ -77,18 +77,30 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances", "showOnPHScale", "showPHScale", "thumbRotation", "isThumbVisible", "isScaleClickable", "isChatless", "showNextPhase"]),
+    ...mapState(["substances",
+      "showOnPHScale",
+      "showPHScale",
+      "thumbRotation",
+      "isThumbVisible",
+      "isScaleClickable",
+      "isChatless",
+      "showNextPhase"]),
   },
   methods: {
+    ...mapActions(["setIsThumbVisible"]),
     sendPHGuess(index) {
       if (this.isScaleClickable){
         this.$emit("PHGuess", index - 1);
+        setTimeout(() => {
+          this.setIsThumbVisible(false);
+        }, 5000);
       }
     },
     getBackgroundPosition(){
       if (!this.isChatless){
         return { margin: "auto auto auto 20%"};
       }
+      return { margin: "auto auto auto 25%"};
     },
     getThumbRotation(){
       const rotation = "rotate(" + this.thumbRotation + ")";

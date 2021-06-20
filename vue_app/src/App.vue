@@ -44,7 +44,7 @@
         v-on:pHIdentificationPhase="pHIdentificationPhase"
         v-on:PHGuess="sendPHGuess"
       />
-      <div class="chatlessInstructions" v-if="isChatless && !showNextPhase">
+      <div class="chatlessInstructions" v-if="isChatless">
         <h2 class="instruction">
           {{this.currentInstruction}}
         </h2>
@@ -96,7 +96,8 @@ export default {
         "setShowOnPHScale",
         "setThumbRotation",
         "setIsThumbVisible",
-        "setIsScaleClickable"
+        "setIsScaleClickable",
+        "setGuessingIndex"
     ]),
     displayChat(){
       if (this.isChatless){
@@ -221,7 +222,7 @@ export default {
     this.instructions = JSON.parse(stringified);
     let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://d9683681f4b1.ngrok.io");
+    this.connection = new WebSocket("ws://da0cbd317cd1.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -242,6 +243,7 @@ export default {
             return;
           case "guessed_ph":
             _this.setGuessed(message.text);
+            _this.setGuessingIndex(-2);
             _this.complete = _this.guessed.every((v) => v === true);
             if (_this.complete) {
               _this.selectionComplete();

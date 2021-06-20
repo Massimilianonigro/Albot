@@ -84,6 +84,11 @@
       "instruction": "Press \"Next\" to free play.",
       "effect": "",
       "effect_2": ""
+    },
+    {
+      "instruction": "Identify the pH of all the substances on the table. Select them and then press on the scale.",
+      "effect": "",
+      "effect_2": ""
     }
   ]
 }

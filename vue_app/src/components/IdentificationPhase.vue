@@ -2,7 +2,7 @@
   <div>
     <div class="background" v-bind:style="getBackgroundPosition()">
       <div class="albot"></div>
-      <div class="element-selected" v-if="pouredSrc !== ''"
+      <div class="element-selected" v-if="pouredSrc !== '' && showPoured"
            v-bind:style="{ backgroundImage: 'url(' + this.pouredSrc + ')'}"
            key="pouredSrc"></div>
 
@@ -109,11 +109,18 @@ export default {
   data() {
     return {
       score: 0,
+
       pouredPh: -1,
       pouredIndex: -1,
+      isFirstPour: true,
+
       pouredSrc: "",
+      showPoured: false,
+
       pouring: -1,
       pourColor: "#70319D",
+
+
       showCompliment: false,
       showTryAgain: false,
       showInfo: false,
@@ -136,22 +143,26 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances", "blockPhase", "guessed", "showNextPhase", "isChatless"])
+    ...mapState(["substances", "blockPhase", "guessed", "showNextPhase", "isChatless", "guessingIndex"])
   },
   methods: {
-    ...mapActions(["setBlockPhase"]),
+    ...mapActions(["setBlockPhase", "setGuessingIndex"]),
     getLiquidColor(){
-      if(this.pouredIndex !== -1){
+      if(this.guessingIndex !== -1){
+        console.log("Setting custom liquid color");
         let stringified = JSON.stringify(require("../resources/colors.json"));
         let colors = JSON.parse(stringified);
         return (colors.colors[Math.round(this.pouredPh)].color);
       }
-      return "#70319D";
+      if (this.guessingIndex === -1){
+        return "#70319D";
+      }
     },
     getBackgroundPosition(){
       if (!this.isChatless){
         return { margin: "auto auto auto 20%"};
       }
+      return { margin: "auto auto auto 25%"};
     },
     getPouringStyle(){
       if (this.isChatless){
@@ -196,32 +207,51 @@ export default {
       }
     },
     selectItem(data, index){
-      //if blockPhase is false, we are selecting a new element to be guessed
-      //      if (!this.blockPhase && !this.guessed[index]){
-      if (this.pouredSrc === "" && !this.guessed[index]){
-        this.$emit("selectedElement",data.id);
-        //this.setBlockPhase(true); //TODO: testing flag
-        this.pouredSrc = data.src;
-      }
+
       //if we are not pouring for the first time, it means we have to throw away the content of the bowl
-      if (this.pouredIndex !== -1 ){
-        this.isPouring = true;
+      if (!this.isFirstPour){
+
         this.throwLiquid();
 
-        this.pouredIndex = -1; // sets the previously poured substance back on the table
-        this.pouredSrc = "";
+        //pour and change color of bowl
+        setTimeout(() => {
+          this.pouredPh = 7;
+        }, 1000);
+
         setTimeout(() => {
           this.pouredPh = data.ph;
           this.pouredIndex = index;
-        }, 1500); //500 ms longer than throw liquid in order to show that the bowl contains the cabbage solution before pouring again
-        return;
+        }, 1500);
+
+        setTimeout(() => {
+          this.pouredIndex = -1;
+        }, 3000);
       }
-      //in any case, whenever an element is clicked, we pour it and change the bowl
-        this.pouredPh = data.ph;
-        this.pouredIndex = index;
+        //if we are selecting a new element to be guessed
+        if ((this.guessingIndex === -1 || this.guessingIndex === -2 )&& !this.guessed[index]){
+          this.setGuessingIndex(index);
+
+          //show the element on screen
+          this.pouredSrc = data.src;
+          this.showPoured = true;
+
+          //pour and change color of solution
+          if (this.isFirstPour){
+            this.pouredPh = data.ph;
+            this.pouredIndex = index;
+
+            setTimeout(() => {
+              this.pouredIndex = -1;
+            }, 500);
+          }
+
+          this.$emit("selectedElement",data.id);
+          this.isFirstPour = false;
+        }
     },
     throwLiquid(){
-      setTimeout(() => {  this.isPouring = false; }, 1000);
+      this.isPouring = true;
+      setTimeout(() => {this.isPouring = false; }, 1000);
       this.pourColor = this.getLiquidColor(this.pouredPh);
     },
     addPoints(){

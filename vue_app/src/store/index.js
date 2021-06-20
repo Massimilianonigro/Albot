@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         blockPhase: true,
-        isChatless: false,
+        isChatless: true,
         substances: [],
         showNextPhase: false,
         showOnPHScale: [false, false, false, false],
@@ -14,6 +14,8 @@ export default new Vuex.Store({
         isThumbVisible: false,
         isScaleClickable: false,
         guessed: [false, false, false, false, false, false, false, false, false, false, false],
+        guessingIndex: -1,
+        isFirstPour: true,
         showPHScale: [false, false],
         canSelectSubstances: false,
         gamePhase: {
@@ -44,6 +46,9 @@ export default new Vuex.Store({
         },
         setBlockPhase(state, newValue) {
             state.blockPhase = newValue;
+        },
+        setGuessingIndex(state, reset){
+            state.guessingIndex = reset;
         },
         setGamePhase(state, phase){
             state.gamePhase.phase = phase;
@@ -127,6 +132,9 @@ export default new Vuex.Store({
         },
         setIsThumbVisible(context, visibility){
             context.commit('setIsThumbVisible', visibility);
+        },
+        setGuessingIndex(context, reset){
+            context.commit('setGuessingIndex', reset);
         }
     }
 })

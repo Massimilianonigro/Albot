@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="background" v-bind:style="getBackgroundPosition()">
+    <div class="background fake-class" v-bind:style="getBackgroundPosition()">
       <div class="item-container">
         <div v-for="(data, index) in substances" v-bind:key="index">
           <button
@@ -90,7 +90,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["blockPhase", "substances", "showNextPhase"]),
+    ...mapState(["blockPhase", "substances", "showNextPhase", "isChatless"]),
   },
   methods: {
     ...mapActions(["setBlockPhase", "setShowOnPHScale"]),
@@ -149,9 +149,13 @@ export default {
       return styleItem;
     },
     getBackgroundPosition(){
+      console.log("fetching bg position");
       if (!this.isChatless){
+        console.log("setting margin to 20%, is not chatless")
         return { margin: "auto auto auto 20%"};
       }
+      console.log("setting margin to 25%, is chatless")
+      return { margin: "auto auto auto 25%"};
     },
     pourItem(index) {
       this.poured[index] = true;
@@ -289,4 +293,6 @@ a {
   height: 100%;
   width: 100%;
 }
+
+.fake-class{}
 </style>
