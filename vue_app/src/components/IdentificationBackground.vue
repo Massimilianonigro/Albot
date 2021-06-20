@@ -9,21 +9,36 @@
         </button>
       </li>
     </ul>
-    <div class="bin item"></div>
-    <div class="background item">
+    <div class="bin item" v-bind:style="getBinPosition()"></div>
+    <div class="background item" v-bind:style="getBackgroundPosition()">
       <div class="table-item item"></div>
     </div>
   </div>
 </template>
 
 <script>
+import {mapState} from "vuex";
 export default {
   name: 'IdentificationBackground',
   props: {},
+  computed: {
+    ...mapState(["isChatless"])
+  },
   methods: {
     sendPHGuess(index){
       this.$emit("PHGuess", index - 1);
-    }
+    },
+    getBinPosition(){
+      if (this.isChatless){
+        return {left: "87%"};
+      }
+      return { left: "12%"};
+    },
+    getBackgroundPosition(){
+      if (!this.isChatless){
+        return { margin: "auto auto auto 20%"};
+      }
+    },
   }
 };
 </script>
@@ -40,7 +55,6 @@ export default {
   width: 20%;
   height: 20%;
   bottom: 0;
-  left: 15%;
   display: inline;
 }
 .table-item{

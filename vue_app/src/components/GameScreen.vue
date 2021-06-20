@@ -39,6 +39,7 @@
     <!--pH identifier phase: isMixer, isSelection, !isTutorial-->
     <div
       class="GameUI"
+      v-bind:style="getGameUIWidth()"
       v-if="gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial"
     >
       <IdentificationBackground v-on:PHGuess="sendPHGuess" />
@@ -58,9 +59,8 @@
     <!--Practice Selection phase: !isMixer, isSelection, !isTutorial-->
     <div
       class="GameUI"
-      v-if="
-        !gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial
-      "
+      v-bind:style="getGameUIWidth()"
+      v-if="!gamePhase.isMixer && gamePhase.isSelection && !gamePhase.isTutorial"
     >
       <PickerBackground />
       <PickerPracticePhase
@@ -138,7 +138,7 @@ export default {
       if (this.isChatless){
         return({"width": "100%"});
       }
-      return({"width": "80%"});
+      return({"width": "100%"});
     },
     mixItems(selectedItems, nonSelectedItems) {
       this.selItems = [];

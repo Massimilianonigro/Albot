@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <button class="home-btn ui-btn" 
+    <button class="restart-btn ui-btn"
       v-on:click="homeButton">
     </button>
   </div>

@@ -68,10 +68,10 @@
 	opacity: 0.7;
 }
 
-.home-btn {
-	top: 3%;
-	right: -40%;
-	background-image: url("../assets/uibuttons/HomeButton.png");
+.restart-btn {
+	top: 0;
+	right: -75%;
+	background-image: url("../assets/uibuttons/restart.png");
 }
 
 .back-btn {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="background">
+    <div class="background" v-bind:style="getBackgroundPosition()">
       <div class="albot"></div>
       <div class="element-selected" v-if="pouredSrc !== ''"
            v-bind:style="{ backgroundImage: 'url(' + this.pouredSrc + ')'}"
@@ -44,9 +44,7 @@
                 v-on:click="selectItem(data, index)">
         </button>
           <svg class="pouring-solution" v-if="isPouring"
-               v-bind:style="{
-              color: pourColor
-              }"
+               v-bind:style="getPouringStyle()"
                width="188" height="170" viewBox="0 0 188 170" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path opacity="0.3" d="M56.1398 69.58C55.7959 69.1601 55.4882 68.7118 55.2199 68.24C53.4499 65.42 51.7 64.98 50.6 65.7C46.03 68.7 41.5999 67.3 45.4699 72.57C70.6499 106.84 111.94 128.88 134.52 124.26C138.86 123.37 141.52 122.52 143.63 119.86C144.91 118.26 149.57 117.44 146.79 115.67C146.71 115.67 138.34 116.03 136.28 115.94C106.52 114.75 74.2598 89.09 56.1398 69.58Z" fill="#A4BEC4"/>
             <path opacity="0.3" d="M43.4601 83.39C43.1386 82.982 42.8697 82.5351 42.66 82.06C42.3234 81.394 41.8144 80.8306 41.1859 80.4285C40.5574 80.0263 39.8327 79.8002 39.087 79.7736C38.3414 79.7471 37.6021 79.9211 36.9466 80.2775C36.2911 80.6339 35.7433 81.1597 35.3602 81.7999C28.1602 92.7999 22.1302 96.95 25.8102 101.96C49.6902 134.45 95.6801 154.96 139.95 122.46C147.35 117.01 166.77 95.26 172.56 88.88C173.16 88.129 173.47 87.1872 173.432 86.2267C173.394 85.2662 173.012 84.3514 172.356 83.6496C171.699 82.9479 170.811 82.5061 169.855 82.4052C168.899 82.3042 167.939 82.5508 167.15 83.0999L166.84 83.32C122.58 115.85 76.3501 122.36 43.4601 83.39Z" fill="#A4BEC4"/>
@@ -97,10 +95,6 @@
       <button class="home-btn ui-btn"
               v-on:click="homeButton()">
       </button>
-
-      <button class="reset-btn" v-if="showReset"
-              v-on:click="resetButton()">
-      </button>
     </div>
   </div>
 </template>
@@ -123,7 +117,6 @@ export default {
       showCompliment: false,
       showTryAgain: false,
       showInfo: false,
-      showReset: false,
       complete: true,
       isPouring: false,
       settingsArray: [
@@ -143,7 +136,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances", "blockPhase", "guessed", "showNextPhase"])
+    ...mapState(["substances", "blockPhase", "guessed", "showNextPhase", "isChatless"])
   },
   methods: {
     ...mapActions(["setBlockPhase"]),
@@ -154,6 +147,23 @@ export default {
         return (colors.colors[Math.round(this.pouredPh)].color);
       }
       return "#70319D";
+    },
+    getBackgroundPosition(){
+      if (!this.isChatless){
+        return { margin: "auto auto auto 20%"};
+      }
+    },
+    getPouringStyle(){
+      if (this.isChatless){
+        return {
+          color: this.pourColor,
+          left: "150% !important"
+        };
+      }
+      return {
+        color: this.pourColor,
+        left: "-15% !important"
+      };
     },
     getXbyIndex(index) {
       if ( this.pouredIndex === index ){
@@ -191,7 +201,6 @@ export default {
       if (this.pouredSrc === "" && !this.guessed[index]){
         this.$emit("selectedElement",data.id);
         //this.setBlockPhase(true); //TODO: testing flag
-        this.showReset = true;
         this.pouredSrc = data.src;
       }
       //if we are not pouring for the first time, it means we have to throw away the content of the bowl
@@ -253,12 +262,6 @@ export default {
     homeButton() {
       this.$emit("homePress");
     },
-    resetButton(){
-      this.showReset = false;
-      this.pouredPh = -1;
-      this.pouredIndex = -1;
-      this.$emit("resetPress");
-    }
   },
 };
 
@@ -324,27 +327,11 @@ a {
   bottom: -21%;
   height: 40%;
   width: 14%;
-  left: -15%;
   z-index: 2;
   background-position-y: bottom;
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: contain;
-}
-.reset-btn{
-  position: absolute;
-  height: 14%;
-  width: 30%;
-  bottom: 9%;
-  left: 35%;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: transparent;
-  background-position: center;
-  border: 0;
-  border-radius: 40px;
-  z-index: 1000;
-  background-image: url("../assets/uibuttons/ResetButton.png");
 }
 
 .reset-btn:active{

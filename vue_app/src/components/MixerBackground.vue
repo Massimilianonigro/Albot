@@ -6,6 +6,7 @@
         :key="isRerender"
         v-if="showPHScale[0]"
       ></div>
+      <div class="white-block" v-if="showNextPhase"></div>
       <ul class="pH-scale nav" :key="isRerender" v-if="showPHScale[1]">
           <li
             class="buttons"
@@ -13,7 +14,7 @@
             v-bind:key="pH_button"
             v-on:click="sendPHGuess(pH_button)"
           >
-            <!--button class="button-ph" ></button-->
+
           </li>
         <div v-for="(data, index) in substances" v-bind:key="index">
           <div v-show="showOnPHScale[index]" v-if="showOnPHScale[index]">
@@ -43,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div class="background item">
+    <div class="background item" v-bind:style="getBackgroundPosition()">
       <div class="shelf item"></div>
       <div class="ItemShelf"></div>
       <div class="table-item item"></div>
@@ -51,10 +52,9 @@
       <div class="pan1 item low-opacity"></div>
       <div class="pan2 item low-opacity"></div>
     </div>
-    <div class="thumbUp" v-if="thumbRotation && isThumbVisible" ></div>
-    <div class="thumbDown" v-if="!thumbRotation && isThumbVisible" ></div>
-
-  </div>
+    <div class="thumbUp" v-if="thumbRotation && isThumbVisible && isChatless" ></div>
+    <div class="thumbDown" v-if="!thumbRotation && isThumbVisible && isChatless" ></div>
+    </div>
 </template>
 
 <script>
@@ -77,12 +77,17 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances", "showOnPHScale", "showPHScale", "thumbRotation", "isThumbVisible", "isScaleClickable"]),
+    ...mapState(["substances", "showOnPHScale", "showPHScale", "thumbRotation", "isThumbVisible", "isScaleClickable", "isChatless", "showNextPhase"]),
   },
   methods: {
     sendPHGuess(index) {
       if (this.isScaleClickable){
         this.$emit("PHGuess", index - 1);
+      }
+    },
+    getBackgroundPosition(){
+      if (!this.isChatless){
+        return { margin: "auto auto auto 20%"};
       }
     },
     getThumbRotation(){
@@ -254,6 +259,7 @@ export default {
 
 .white-block {
   position: absolute;
+  display: block;
   background-color: #ffffffb0;
   z-index: 105;
   height: 100%;

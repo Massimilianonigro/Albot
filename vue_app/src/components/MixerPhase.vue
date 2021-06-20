@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="background" >
+    <div class="background" v-bind:style="getBackgroundPosition()">
       <div class="item-container">
         <div v-for="(data, index) in substances" v-bind:key="index">
           <button
@@ -45,14 +45,13 @@
       </div>
 
       <div class="white-block" v-if="complete && showNextPhase">
-      <!--div class="white-block" v-if="complete"//TODO: testing flag-->
         <div class="gj-banner">
           <h2>Good Job!</h2>
         </div>
         <button class="next-phase-btn" v-on:click="nextPhaseButton"></button>
       </div>
 
-      <button class="home-btn ui-btn" v-on:click="homeButton"></button>
+      <button class="restart-btn ui-btn" v-on:click="homeButton" v-bind:style="{left: '130%'}"></button>
     </div>
   </div>
 </template>
@@ -148,6 +147,11 @@ export default {
         };
       }
       return styleItem;
+    },
+    getBackgroundPosition(){
+      if (!this.isChatless){
+        return { margin: "auto auto auto 20%"};
+      }
     },
     pourItem(index) {
       this.poured[index] = true;
