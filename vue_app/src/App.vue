@@ -222,7 +222,7 @@ export default {
     this.instructions = JSON.parse(stringified);
     let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://da0cbd317cd1.ngrok.io");
+    this.connection = new WebSocket("ws://localhost:2345");
 
     let self = this;
     this.connection.onmessage = function (event) {

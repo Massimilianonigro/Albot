@@ -26,43 +26,43 @@ export default new Vuex.Store({
         },
     },
     mutations: {
-        setCanSelectSubstances(state, value){
+        setCanSelectSubstances(state, value) {
             state.canSelectSubstances = value;
         },
-        setThumbRotation(state, outcome){
+        setThumbRotation(state, outcome) {
             state.thumbRotation = outcome;
         },
-        setIsThumbVisible(state, visibility){
+        setIsThumbVisible(state, visibility) {
             state.isThumbVisible = visibility;
         },
-        setIsScaleClickable(state, clickable){
+        setIsScaleClickable(state, clickable) {
             state.isScaleClickable = clickable;
         },
-        setShowOnPHScale(state, element){
-          state.showOnPHScale[element] = true;
+        setShowOnPHScale(state, element) {
+            state.showOnPHScale[element] = true;
         },
-        setShowPHScale(state, scale){
-          state.showPHScale[scale] = true;
+        setShowPHScale(state, scale) {
+            state.showPHScale[scale] = true;
         },
         setBlockPhase(state, newValue) {
             state.blockPhase = newValue;
         },
-        setGuessingIndex(state, reset){
+        setGuessingIndex(state, reset) {
             state.guessingIndex = reset;
         },
-        setGamePhase(state, phase){
+        setGamePhase(state, phase) {
             state.gamePhase.phase = phase;
             var stringified = JSON.stringify(require("../resources/phases.json"));
             let phases = JSON.parse(stringified);
             phases.phases.forEach((p) => {
-                if (p.name === phase){
+                if (p.name === phase) {
                     state.gamePhase.isSelection = p.isSelection;
                     state.gamePhase.isMixer = p.isMixer;
                     state.gamePhase.isTutorial = p.isTutorial;
                 }
             });
         },
-        setGuessed(state, element){
+        setGuessed(state, element) {
             console.log("guessed element " + element);
             state.guessed[parseInt(element) - 1] = true;
             console.log("it is now " + state.guessed[parseInt(element) - 1]);
@@ -95,45 +95,45 @@ export default new Vuex.Store({
                 }
             });
         },
-        setShowNextPhase(state, show){
+        setShowNextPhase(state, show) {
             state.showNextPhase = show;
         }
     },
-    actions:{
-        setBlockPhase(context, newValue){
+    actions: {
+        setBlockPhase(context, newValue) {
             context.commit('setBlockPhase', newValue);
         },
-        setSubstances(context, phase){
+        setSubstances(context, phase) {
             context.commit('setSubstances', phase);
         },
-        setIsScaleClickable(context, clickable){
+        setIsScaleClickable(context, clickable) {
             context.commit('setIsScaleClickable', clickable);
         },
-        setShowNextPhase(context, show){
+        setShowNextPhase(context, show) {
             context.commit('setShowNextPhase', show);
         },
-        setShowOnPHScale(context, element){
+        setShowOnPHScale(context, element) {
             context.commit('setShowOnPHScale', element);
         },
-        setGuessed(context, element){
+        setGuessed(context, element) {
             context.commit('setGuessed', element);
         },
-        setGamePhase(context, phase){
+        setGamePhase(context, phase) {
             context.commit('setGamePhase', phase);
         },
-        setShowPHScale(context, scale){
+        setShowPHScale(context, scale) {
             context.commit('setShowPHScale', scale);
         },
-        setCanSelectSubstances(context, value){
+        setCanSelectSubstances(context, value) {
             context.commit('setCanSelectSubstances', value);
         },
-        setThumbRotation(context, outcome){
+        setThumbRotation(context, outcome) {
             context.commit('setThumbRotation', outcome);
         },
-        setIsThumbVisible(context, visibility){
+        setIsThumbVisible(context, visibility) {
             context.commit('setIsThumbVisible', visibility);
         },
-        setGuessingIndex(context, reset){
+        setGuessingIndex(context, reset) {
             context.commit('setGuessingIndex', reset);
         }
     }
