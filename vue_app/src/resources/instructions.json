@@ -6,13 +6,13 @@
       "effect_2": ""
     },
     {
-      "instruction": "Select milk, oven cleaner, water and lemon juice from the cupboard and press \"Next\".",
+      "instruction": "Select milk, bath cleaner, water and lemon juice from the cupboard.",
       "effect": "unlock click of lemon juice",
       "effect_2": ""
     },
     {
-      "instruction": "Click to pour the lemon juice inside the red cabbage solution, then press \"Next\".",
-      "effect": "",
+      "instruction": "Click to pour the lemon juice inside the red cabbage solution.",
+      "effect": "unlock next",
       "effect_2": ""
     },
     {
@@ -21,37 +21,37 @@
       "effect_2": ""
     },
     {
-      "instruction": "Click on the pH scale on the left to identify the pH value of the lemon juice then press \"Next\".",
+      "instruction": "Click on the pH scale on the left to identify the pH value of the lemon juice.",
       "effect": "",
       "effect_2": ""
     },
     {
       "instruction": "The pH value of lemon juice is 2. Thus, it is called an acid.",
-      "effect": "unlock click of oven cleaner",
+      "effect": "unlock click of bath cleaner",
       "effect_2": ""
     },
     {
-      "instruction": "Click to pour the oven cleaner inside the red cabbage solution, then press \"Next\".",
+      "instruction": "Click to pour the bath cleaner inside the red cabbage solution.",
       "effect": "unlock selection on scale buttons",
       "effect_2": ""
     },
     {
-      "instruction":"Click on the pH scale on the left to identify the pH value of the oven cleaner then press \"Next\".",
+      "instruction":"Click on the pH scale on the left to identify the pH value of the bath cleaner.",
       "effect": "",
       "effect_2": ""
     },
     {
-      "instruction": "The pH value of oven cleaner is 13. Thus, it is called an alkali.",
+      "instruction": "The pH value of bath cleaner is 13. Thus, it is called an alkali.",
       "effect": "unlock click of water",
       "effect_2": ""
     },
     {
-      "instruction": "Click to pour the water inside the red cabbage solution, then press \"Next\".",
+      "instruction": "Click to pour the water inside the red cabbage solution.",
       "effect": "",
       "effect_2": "click_tripetto_2"
     },
     {
-      "instruction": "Click on the pH scale on the left to identify the pH value of the water then press \"Next\".",
+      "instruction": "Click on the pH scale on the left to identify the pH value of the water.",
       "effect": "",
       "effect_2": ""
     },
@@ -61,12 +61,12 @@
       "effect_2": ""
     },
     {
-      "instruction": "Click to pour the milk inside the red cabbage solution, then press \"Next\".",
+      "instruction": "Click to pour the milk inside the red cabbage solution.",
       "effect": "unlock selection on scale buttons",
       "effect_2": ""
     },
     {
-      "instruction": "Click on the pH scale on the left to identify the pH value of the milk then press \"Next\".",
+      "instruction": "Click on the pH scale on the left to identify the pH value of the milk.",
       "effect": "",
       "effect_2": ""
     },

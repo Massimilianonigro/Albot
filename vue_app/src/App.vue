@@ -44,12 +44,14 @@
         v-on:pHIdentificationPhase="pHIdentificationPhase"
         v-on:PHGuess="sendPHGuess"
       />
-      <div class="chatlessInstructions" v-if="isChatless">
+      <div class="chatlessInstructions" v-if="isChatless && !showFinalScreen">
         <h2 class="instruction"  v-bind:style=getInstructionsWidth()>
           {{this.currentInstruction}}
         </h2>
         <button class="next-phase-button" v-on:click="nextStateTripetto" v-bind:disabled="!isNextActive" v-if="!showNextPhase"></button>
       </div>
+      <div class="thumbUp" v-if="thumbRotation && isThumbVisible && isChatless" v-bind:style="getThumbStyle()"></div>
+      <div class="thumbDown" v-if="!thumbRotation && isThumbVisible && isChatless" v-bind:style="getThumbStyle()"></div>
     </div>
   </div>
 </template>
@@ -82,7 +84,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["gamePhase", "isChatless", "showNextPhase", "showFinalScreen"]),
+    ...mapState(["gamePhase", "isChatless", "showNextPhase", "showFinalScreen", "thumbRotation", "isThumbVisible"]),
   },
   methods: {
     ...mapActions([
@@ -100,6 +102,15 @@ export default {
         "setGuessingIndex",
         "setShowFinalScreen"
     ]),
+    getThumbStyle(){
+      if (this.gamePhase.phase === "practice-pH"){
+        return {  width: "60%",
+        left: "22%"};
+      }
+      return{ width: "49%",
+        right: "30%"
+      };
+    },
     displayChat(){
       if (this.isChatless || this.showFinalScreen){
         return {"display": "none"};
@@ -139,6 +150,12 @@ export default {
     sendPHGuess(index) {
       let message = '{"content":"' + index + '", "type":"guessed"}';
       this.sendMessage(message);
+      if (this.gamePhase.phase === "tutorial-mix" && this.isChatless){
+        this.nextStateTripetto();
+      }
+      if (this.isChatless){
+        this.currentInstruction = "";
+      }
     },
     startIntroduction() {
       this.sendItemClick("introduction");
@@ -206,6 +223,9 @@ export default {
     sendItemClick(id) {
       let message = '{"content":"' + id + '", "type":"click"}';
       this.sendMessage(message);
+      if (this.gamePhase.phase === "tutorial-mix" && this.isChatless){
+        this.nextStateTripetto();
+      }
     },
     handleSelectItem(id) {
       this.sendItemClick(id);
@@ -214,6 +234,9 @@ export default {
       let message;
       if (this.isChatless){
         message = '{"content":"", "type":"selection_complete"}';
+        if (this.gamePhase.phase === "tutorial-selection"){
+        this.nextStateTripetto();
+        }
       } else {
         message = '{"content":"", "type":"selection_complete_2"}';
       }
@@ -253,6 +276,8 @@ export default {
             _this.complete++;
             if (_this.complete === 3) {
               _this.setShowFinalScreen(true);
+              let endMessage = '{"type":"end_conversation", "content":""}';
+              _this.sendMessage(endMessage);
               _this.selectionComplete();
             }
             return;
@@ -279,11 +304,17 @@ export default {
           case "correct":
             _this.setThumbRotation(true);
             _this.setIsThumbVisible(true);
+            if (_this.currentInstruction === ""){
+              _this.currentInstruction = _this.instructions.instructions[_this.currentInstructionId].instruction;
+            }
             self.$refs.chatRef.receiveMessage(message);
             return;
           case "wrong":
             _this.setThumbRotation(false);
             _this.setIsThumbVisible(true);
+            if (_this.currentInstruction === ""){
+              _this.currentInstruction = _this.instructions.instructions[_this.currentInstructionId].instruction;
+            }
             self.$refs.chatRef.receiveMessage(message);
             return;
           case "unlock_next":
@@ -329,12 +360,6 @@ export default {
   color: #828e99;
 }
 
-.sc-hHEiqL {
-  height: 95vh !important;
-  width: 40% !important;
-  left: 60% !important;
-}
-
 .chatlessInstructions {
   bottom: 1%;
   height: 15%;
@@ -371,6 +396,42 @@ export default {
   font-size: x-large;
   text-align: center !important;
   margin-left: 1%;
+}
+
+.thumbUp{
+  position: absolute;
+  height: 12%;
+  bottom: 3%;
+  z-index: 100;
+  opacity: 1;
+  border-style: none;
+  border-color: transparent;
+  color: transparent;
+  background-color: white;
+  background-image: url("./assets/uibuttons/Thumb.png");
+  background-position-x: center;
+  background-position-y: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(0deg);
+}
+
+.thumbDown{
+  position: absolute;
+  height: 12%;
+  bottom: 3%;
+  z-index: 100;
+  opacity: 1;
+  border-style: none;
+  border-color: transparent;
+  color: transparent;
+  background-color: white;
+  background-image: url("./assets/uibuttons/Thumb.png");
+  background-position-x: center;
+  background-position-y: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(180deg);
 }
 
 </style>

@@ -167,6 +167,9 @@ export default {
       this.visibilityIntro = "none";
       this.visibilityButtons = "block";
       this.$emit("submitName", this.user_name);
+
+      let codeMessage = '{"type":"user_code", "content":"Macareno"}';
+      this.$emit("sendMessage", codeMessage);
     },
   },
 };

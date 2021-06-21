@@ -56,7 +56,7 @@ export default new Vuex.Store({
         },
         setGamePhase(state, phase){
             state.gamePhase.phase = phase;
-            var stringified = JSON.stringify(require("../resources/phases.json"));
+            const stringified = JSON.stringify(require("../resources/phases.json"));
             let phases = JSON.parse(stringified);
             phases.phases.forEach((p) => {
                 if (p.name === phase){
@@ -72,7 +72,7 @@ export default new Vuex.Store({
             console.log("it is now " + state.guessed[parseInt(element) - 1]);
         },
         setSubstances(state, gamePhase) {
-            var stringified = JSON.stringify(require("../resources/phases.json"));
+            let stringified = JSON.stringify(require("../resources/phases.json"));
             let phases = JSON.parse(stringified);
             stringified = JSON.stringify(require("../resources/substances.json"));
             let substances = JSON.parse(stringified);
