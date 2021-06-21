@@ -45,13 +45,13 @@
       </div>
 
       <div class="white-block" v-if="complete && showNextPhase">
-        <div class="gj-banner">
-          <h2>Good Job!</h2>
-        </div>
+          <h2 class="bubble berlin-font">Tutorial is over, time to play with Albot!</h2>
+          <div class="albot"></div>
+
         <button class="next-phase-btn" v-on:click="nextPhaseButton"></button>
       </div>
 
-      <button class="restart-btn ui-btn" v-on:click="homeButton" v-bind:style="{left: '130%'}"></button>
+      <!--button class="restart-btn ui-btn" v-on:click="homeButton()" v-bind:style="{left: '130%'}"></button-->
     </div>
   </div>
 </template>
@@ -255,8 +255,8 @@ a {
   position: absolute;
   height: 10%;
   width: 50%;
-  top: 40%;
-  left: 25%;
+  top: 50%;
+  left: 30%;
   background-repeat: no-repeat;
   background-size: contain;
   background-color: transparent;
@@ -293,6 +293,34 @@ a {
   height: 100%;
   width: 100%;
 }
+.albot {
+  position: absolute;
+  top: 10%;
+  right: 25%;
+  height: 40%;
+  width: 40%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: center;
+  background-image: url("../assets/backgrounds/Bot.png");
+}
 
+.bubble {
+  position: relative;
+  text-align: left;
+  color: #F9A400;
+  line-height: 1.4em;
+  font-size: 2.5vh;
+  right: 35%;
+  top: 20%;
+  width: auto;
+  max-width: 50%;
+  margin: 1% auto;
+  border: 4px solid #F9A400;
+  border-radius: 30px;
+  padding: 10px 20px;
+  background-color: #fff;
+}
 .fake-class{}
 </style>

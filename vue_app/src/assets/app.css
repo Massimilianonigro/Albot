@@ -71,6 +71,7 @@
 .restart-btn {
 	top: 0;
 	right: -75%;
+	z-index: 10000;
 	background-image: url("../assets/uibuttons/restart.png");
 }
 

@@ -2,6 +2,8 @@
   <div>
     <div class="background" v-bind:style="getBackgroundPosition()">
       <div class="albot"></div>
+      <h2 v-if="pouredSrc !== '' && showPoured" v-bind:style="{left: '10%'}">
+        This is the substance you are trying to identify: </h2>
       <div class="element-selected" v-if="pouredSrc !== '' && showPoured"
            v-bind:style="{ backgroundImage: 'url(' + this.pouredSrc + ')'}"
            key="pouredSrc"></div>
@@ -82,28 +84,18 @@
         ></div>
 
       </div>
-      <div class="white-block" v-if="complete">
-        <div class="gj-banner">
-          <h2>Good Job!</h2>
-        </div>
-        <button class="next-phase-btn" v-on:click="nextPhaseButton"></button>
-      </div>
-      <button class="back-btn ui-btn"
-              v-on:click="backButton()">
-      </button>
-
-      <button class="home-btn ui-btn"
-              v-on:click="homeButton()">
-      </button>
     </div>
+    <FinalScreen v-if="showFinalScreen" v-bind:style="{zIndex: 100000}"/>
   </div>
 </template>
 
 <script>
 import {mapState, mapActions} from "vuex";
+import FinalScreen from "./FinalScreen";
 
 export default {
   components: {
+    FinalScreen
   },
   name: "IdentificationPhase",
   data() {
@@ -124,7 +116,7 @@ export default {
       showCompliment: false,
       showTryAgain: false,
       showInfo: false,
-      complete: true,
+      complete: 0,
       isPouring: false,
       settingsArray: [
         {x: "30%", y: "0%"},
@@ -143,7 +135,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["substances", "blockPhase", "guessed", "showNextPhase", "isChatless", "guessingIndex"])
+    ...mapState(["substances", "blockPhase", "guessed", "showNextPhase", "isChatless", "guessingIndex", "showFinalScreen"])
   },
   methods: {
     ...mapActions(["setBlockPhase", "setGuessingIndex"]),
@@ -198,7 +190,7 @@ export default {
       };
     },
     getCheckStyle(data, index){
-      this.complete = this.guessed.every((v) => v === true);
+      (this.complete)++;
       return{
         left: this.getXbyIndex(index),
         bottom: this.getYbyIndex(index),
@@ -517,9 +509,9 @@ a {
 
 .element-selected {
   position: absolute;
-  top: 10%;
+  top: 15%;
   right: 15%;
-  height: 30%;
+  height: 25%;
   width: 15%;
   display: block;
   background-color: transparent;

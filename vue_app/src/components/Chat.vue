@@ -400,7 +400,7 @@ export default {
 .bot-message-box-instruction {
   color: #fff;
   background-color: #01a99a;
-  border: 2px solid #01796F;
+  border: 2px solid #01a99a;
   opacity: 0.7;
   border-radius: 20px;
   padding: 0.3vw 0.6vw 0.3vw 0.6vw;

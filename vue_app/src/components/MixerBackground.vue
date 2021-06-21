@@ -1,11 +1,6 @@
 <template>
   <div class="image-container">
     <div class="scales-container">
-      <div
-        class="pH-scale-universal"
-        :key="isRerender"
-        v-if="showPHScale[0]"
-      ></div>
       <div class="white-block" v-if="showNextPhase"></div>
       <ul class="pH-scale nav" :key="isRerender" v-if="showPHScale[1]">
           <li
@@ -234,7 +229,7 @@ export default {
   position: absolute;
   height: 30%;
   top: 10%;
-  right: 30%;
+  right: 0;
   z-index: 100;
   opacity: 1;
   border-style: none;
@@ -254,7 +249,7 @@ export default {
   position: absolute;
   height: 30%;
   top: 10%;
-  right: 30%;
+  right: 0;
   z-index: 100;
   opacity: 1;
   border-style: none;

@@ -9,7 +9,7 @@
         v-on:submitName="submitName"
       />
     </div>
-    <div v-if="(this.gamePhase.phase !== 'introduction')">
+    <div v-if="this.gamePhase.phase !== 'introduction'">
       <div v-bind:style="displayChat()">
       <Chat
         ref="chatRef"
@@ -45,10 +45,10 @@
         v-on:PHGuess="sendPHGuess"
       />
       <div class="chatlessInstructions" v-if="isChatless">
-        <h2 class="instruction">
+        <h2 class="instruction"  v-bind:style=getInstructionsWidth()>
           {{this.currentInstruction}}
         </h2>
-        <button class="next-phase-button" v-on:click="nextStateTripetto" v-bind:disabled="!isNextActive"></button>
+        <button class="next-phase-button" v-on:click="nextStateTripetto" v-bind:disabled="!isNextActive" v-if="!showNextPhase"></button>
       </div>
     </div>
   </div>
@@ -73,7 +73,7 @@ export default {
       message: "",
       user_name: "",
       chatLink: undefined,
-      complete: false,
+      complete: 0,
       to_show_index: 0,
       currentInstruction: "Colors in your kitchen, press \"Next\" to play.",
       currentInstructionId: 0,
@@ -82,7 +82,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["gamePhase", "isChatless", "showNextPhase"]),
+    ...mapState(["gamePhase", "isChatless", "showNextPhase", "showFinalScreen"]),
   },
   methods: {
     ...mapActions([
@@ -97,28 +97,32 @@ export default {
         "setThumbRotation",
         "setIsThumbVisible",
         "setIsScaleClickable",
-        "setGuessingIndex"
+        "setGuessingIndex",
+        "setShowFinalScreen"
     ]),
     displayChat(){
-      if (this.isChatless){
+      if (this.isChatless || this.showFinalScreen){
         return {"display": "none"};
       }
       return {"display": "block"};
     },
+    getInstructionsWidth(){
+      if (this.showNextPhase){
+        return {width: "95%"};
+      }
+      return { width: "75%"};
+    },
     nextStateTripetto(){
       if (this.instructions.instructions[this.currentInstructionId].effect !== ""){
-        console.log("sending click tripetto");
         let message = '{"content":"", "type":"click_tripetto"}';
         this.sendMessage(message);
       }
       if(this.instructions.instructions[this.currentInstructionId].effect_2 !== ""){
-        console.log("sending click tripetto 2");
         let message = '{"content":"", "type":"click_tripetto_2"}';
         this.sendMessage(message);
       }
       this.currentInstructionId++;
       this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
-      console.log("moving to instruction " + this.currentInstructionId + "with effect" + this.instructions.instructions[this.currentInstructionId].effect);
     },
     resetHome() {
       //only for testing purposes, to be performed by backend
@@ -129,6 +133,8 @@ export default {
       //only for testing purposes, to be performed by backend
       this.setGamePhase("practice-pH");
       this.sendMessage('{"content":"next", "type":"click"}');
+      this.currentInstructionId = 17;
+      this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
     },
     sendPHGuess(index) {
       let message = '{"content":"' + index + '", "type":"guessed"}';
@@ -222,7 +228,7 @@ export default {
     this.instructions = JSON.parse(stringified);
     let _this = this;
     console.log("Starting connection to Server...");
-    this.connection = new WebSocket("ws://da0cbd317cd1.ngrok.io");
+    this.connection = new WebSocket("ws://16bc602d9483.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -244,8 +250,9 @@ export default {
           case "guessed_ph":
             _this.setGuessed(message.text);
             _this.setGuessingIndex(-2);
-            _this.complete = _this.guessed.every((v) => v === true);
-            if (_this.complete) {
+            _this.complete++;
+            if (_this.complete === 3) {
+              _this.setShowFinalScreen(true);
               _this.selectionComplete();
             }
             return;
@@ -288,12 +295,10 @@ export default {
             self.$refs.chatRef.receiveMessage(message);
             return;
           case "unlock_scale":
-            console.log("----------------------Unlocking scale");
             _this.setIsScaleClickable(true);
             self.$refs.chatRef.receiveMessage(message);
             return;
           case "lock_scale":
-            console.log("----------------------Locking scale");
             _this.setIsScaleClickable(false);
             self.$refs.chatRef.receiveMessage(message);
             return;
@@ -333,8 +338,8 @@ export default {
 .chatlessInstructions {
   bottom: 1%;
   height: 15%;
-  width: 70%;
-  left: 15%;
+  width: 65%;
+  left: 20%;
   border-radius: 15px;
   border: 4px solid #ca7900;
   background-color: #fff;
@@ -366,7 +371,6 @@ export default {
   font-size: x-large;
   text-align: center !important;
   margin-left: 1%;
-  width: 75%;
 }
 
 </style>

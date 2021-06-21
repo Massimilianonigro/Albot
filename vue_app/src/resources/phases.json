@@ -29,7 +29,7 @@
       "isMixer": true,
       "isTutorial": false,
       "prev_phase": "tutorial-selection",
-      "substances": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+      "substances": [1, 2, 3]
     },
     {
       "name": "practice-selection",

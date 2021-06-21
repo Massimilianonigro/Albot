@@ -19,16 +19,22 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapState, mapActions} from "vuex";
 export default {
   name: 'IdentificationBackground',
   props: {},
   computed: {
-    ...mapState(["isChatless", "isThumbVisible", "thumbRotation"])
+    ...mapState(["isChatless", "isThumbVisible", "thumbRotation", "isScaleClickable"])
   },
   methods: {
+    ...mapActions(["setIsThumbVisible"]),
     sendPHGuess(index){
-      this.$emit("PHGuess", index - 1);
+      if (this.isScaleClickable){
+        this.$emit("PHGuess", index - 1);
+        setTimeout(() => {
+          this.setIsThumbVisible(false);
+        }, 5000);
+      }
     },
     getBinPosition(){
       if (this.isChatless){
@@ -98,13 +104,12 @@ export default {
   outline: #ffffff solid 4px;
 }
 
-
 .thumbUp{
   width: 20%;
   position: absolute;
   height: 30%;
   top: 10%;
-  right: 30%;
+  right: 0;
   z-index: 100;
   opacity: 1;
   border-style: none;
@@ -124,7 +129,7 @@ export default {
   position: absolute;
   height: 30%;
   top: 10%;
-  right: 30%;
+  right: 0;
   z-index: 100;
   opacity: 1;
   border-style: none;
