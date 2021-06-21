@@ -23,12 +23,9 @@ export default {
   },
   methods: {
     getShelfPosition(){
-      console.log("entering if");
       if (!this.isChatless){
-        console.log("chat");
         return{ left: "-15%"};
       }
-      console.log("chatless");
       return{ left: "0"};
     }
   }

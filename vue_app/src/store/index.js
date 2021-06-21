@@ -6,13 +6,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         blockPhase: true,
-        isChatless: true,
+        isChatless: false,
         substances: [],
         showNextPhase: false,
         showOnPHScale: [false, false, false, false],
         thumbRotation: true,
         isThumbVisible: false,
         isScaleClickable: false,
+        showFinalScreen: false,
         guessed: [false, false, false, false, false, false, false, false, false, false, false],
         guessingIndex: -1,
         isFirstPour: true,
@@ -29,7 +30,11 @@ export default new Vuex.Store({
         setCanSelectSubstances(state, value) {
             state.canSelectSubstances = value;
         },
-        setThumbRotation(state, outcome) {
+
+        setShowFinalScreen(state, show){
+          state.showFinalScreen = show;
+        },
+        setThumbRotation(state, outcome){
             state.thumbRotation = outcome;
         },
         setIsThumbVisible(state, visibility) {
@@ -52,7 +57,7 @@ export default new Vuex.Store({
         },
         setGamePhase(state, phase) {
             state.gamePhase.phase = phase;
-            var stringified = JSON.stringify(require("../resources/phases.json"));
+            const stringified = JSON.stringify(require("../resources/phases.json"));
             let phases = JSON.parse(stringified);
             phases.phases.forEach((p) => {
                 if (p.name === phase) {
@@ -68,7 +73,7 @@ export default new Vuex.Store({
             console.log("it is now " + state.guessed[parseInt(element) - 1]);
         },
         setSubstances(state, gamePhase) {
-            var stringified = JSON.stringify(require("../resources/phases.json"));
+            let stringified = JSON.stringify(require("../resources/phases.json"));
             let phases = JSON.parse(stringified);
             stringified = JSON.stringify(require("../resources/substances.json"));
             let substances = JSON.parse(stringified);
@@ -135,6 +140,9 @@ export default new Vuex.Store({
         },
         setGuessingIndex(context, reset) {
             context.commit('setGuessingIndex', reset);
+        },
+        setShowFinalScreen(context, show){
+            context.commit('setShowFinalScreen', show);
         }
     }
 })

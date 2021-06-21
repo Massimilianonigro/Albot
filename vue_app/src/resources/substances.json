@@ -39,7 +39,7 @@
       "asset" : "OvenCleaner.png",
       "size": { "x": "63%", "y": "36%", "w": "8.5%", "h": "26%" },
       "prsize": { "w": "8%", "h": "48%" },
-      "scale_placement": {  "x": "80%", "y": "5%", "w": "30%", "h": "30%"},
+      "scale_placement": {  "x": "80%", "y": "5%", "w": "30%", "h": "15%"},
       "circle_y_placement": "6.5%"
     },
     {
@@ -66,7 +66,7 @@
       "asset" : "LemonJuice.png",
       "size": { "x": "27%", "y": "2%", "w": "8%", "h": "30%" },
       "prsize": {"w": "7%", "h": "45%" },
-      "scale_placement": {  "x": "80%", "y": "79%", "w": "30%", "h": "30%"},
+      "scale_placement": {  "x": "80%", "y": "79%", "w": "30%", "h": "15%"},
       "circle_y_placement": "79.8%"
     },
     {
@@ -76,7 +76,7 @@
       "asset" : "Milk.png",
       "size": { "x": "43.5%", "y": "2%", "w": "8%", "h": "33%" },
       "prsize": {"w": "8%", "h": "55%" },
-      "scale_placement": {  "x": "80%", "y": "52%", "w": "30%", "h": "30%"},
+      "scale_placement": {  "x": "80%", "y": "55%", "w": "30%", "h": "15%"},
       "circle_y_placement": "53.2%"
     },
     {
@@ -86,7 +86,7 @@
       "asset" : "PureWater.png",
       "size": {  "x": "51%", "y": "53%", "w": "7%", "h": "38%"},
       "prsize": { "w": "7%", "h": "56%" },
-      "scale_placement": {  "x": "80%", "y": "35%", "w": "25%", "h": "25%"},
+      "scale_placement": {  "x": "85%", "y": "35%", "w": "22%", "h": "20%"},
       "circle_y_placement": "46.5%"
     },
     {

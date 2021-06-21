@@ -1,11 +1,6 @@
 <template>
   <div class="image-container">
     <div class="scales-container">
-      <div
-        class="pH-scale-universal"
-        :key="isRerender"
-        v-if="showPHScale[0]"
-      ></div>
       <div class="white-block" v-if="showNextPhase"></div>
       <ul class="pH-scale nav" :key="isRerender" v-if="showPHScale[1]">
           <li
@@ -52,8 +47,6 @@
       <div class="pan1 item low-opacity"></div>
       <div class="pan2 item low-opacity"></div>
     </div>
-    <div class="thumbUp" v-if="thumbRotation && isThumbVisible && isChatless" ></div>
-    <div class="thumbDown" v-if="!thumbRotation && isThumbVisible && isChatless" ></div>
     </div>
 </template>
 
@@ -93,7 +86,7 @@ export default {
         this.$emit("PHGuess", index - 1);
         setTimeout(() => {
           this.setIsThumbVisible(false);
-        }, 5000);
+        }, 2000);
       }
     },
     getBackgroundPosition(){
@@ -227,46 +220,6 @@ export default {
 
 .button-ph {
   display: none;
-}
-
-.thumbUp{
-  width: 20%;
-  position: absolute;
-  height: 30%;
-  top: 10%;
-  right: 30%;
-  z-index: 100;
-  opacity: 1;
-  border-style: none;
-  border-color: transparent;
-  color: transparent;
-  background-color: transparent;
-  background-image: url("../assets/uibuttons/Thumb.png");
-  background-position-x: center;
-  background-position-y: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform: rotate(0deg);
-}
-
-.thumbDown{
-  width: 20%;
-  position: absolute;
-  height: 30%;
-  top: 10%;
-  right: 30%;
-  z-index: 100;
-  opacity: 1;
-  border-style: none;
-  border-color: transparent;
-  color: transparent;
-  background-color: transparent;
-  background-image: url("../assets/uibuttons/Thumb.png");
-  background-position-x: center;
-  background-position-y: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform: rotate(180deg);
 }
 
 .white-block {

@@ -13,22 +13,26 @@
     <div class="background item" v-bind:style="getBackgroundPosition()">
       <div class="table-item item"></div>
     </div>
-    <div class="thumbUp" v-if="thumbRotation && isThumbVisible && isChatless" ></div>
-    <div class="thumbDown" v-if="!thumbRotation && isThumbVisible && isChatless" ></div>
   </div>
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapState, mapActions} from "vuex";
 export default {
   name: 'IdentificationBackground',
   props: {},
   computed: {
-    ...mapState(["isChatless", "isThumbVisible", "thumbRotation"])
+    ...mapState(["isChatless", "isThumbVisible", "thumbRotation", "isScaleClickable"])
   },
   methods: {
+    ...mapActions(["setIsThumbVisible"]),
     sendPHGuess(index){
-      this.$emit("PHGuess", index - 1);
+      if (this.isScaleClickable){
+        this.$emit("PHGuess", index - 1);
+        setTimeout(() => {
+          this.setIsThumbVisible(false);
+        }, 5000);
+      }
     },
     getBinPosition(){
       if (this.isChatless){
@@ -96,47 +100,6 @@ export default {
 
 .pH-button:focus{
   outline: #ffffff solid 4px;
-}
-
-
-.thumbUp{
-  width: 20%;
-  position: absolute;
-  height: 30%;
-  top: 10%;
-  right: 30%;
-  z-index: 100;
-  opacity: 1;
-  border-style: none;
-  border-color: transparent;
-  color: transparent;
-  background-color: transparent;
-  background-image: url("../assets/uibuttons/Thumb.png");
-  background-position-x: center;
-  background-position-y: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform: rotate(0deg);
-}
-
-.thumbDown{
-  width: 20%;
-  position: absolute;
-  height: 30%;
-  top: 10%;
-  right: 30%;
-  z-index: 100;
-  opacity: 1;
-  border-style: none;
-  border-color: transparent;
-  color: transparent;
-  background-color: transparent;
-  background-image: url("../assets/uibuttons/Thumb.png");
-  background-position-x: center;
-  background-position-y: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform: rotate(180deg);
 }
 
 </style>

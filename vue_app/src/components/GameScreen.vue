@@ -45,7 +45,6 @@
       <IdentificationBackground v-on:PHGuess="sendPHGuess" />
       <IdentificationPhase
         ref="game"
-        v-bind:isRerender="isRerender"
         v-on:selectedElement="sendItemMessage"
         v-on:resetPress="sendResetMessage"
         v-on:homePress="homeScreen"
@@ -181,7 +180,9 @@ export default {
       this.$emit("sendPracNextInChat");
     },
     sendItemMessage(id) {
-      this.isRerender++;
+      if (this.gamePhase.phase !== "practice-pH"){
+        this.isRerender++;
+      }
       this.$emit("sendItemMessage", id);
     },
     sendResetMessage() {
@@ -205,7 +206,9 @@ export default {
     },
     selectItem(index) {
       this.$emit("selectItem", index);
-      this.isRerender += 1;
+      if (this.gamePhase.phase !== "practice-pH"){
+        this.isRerender++;
+      }
     },
     addPoints() {
       this.$refs.game.addPoints();
