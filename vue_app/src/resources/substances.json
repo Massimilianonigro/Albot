@@ -166,26 +166,13 @@
       "circle_y_placement": "53.2%"
     },
     {
-      "id": 10,
-      "name": "Pure Water",
-      "ph": 7,
-      "asset": "PureWater.png",
-      "size": {
-        "x": "47%",
-        "y": "53%",
-        "w": "7%",
-        "h": "38%"
-      },
-      "prsize": {
-        "w": "7%",
-        "h": "56%"
-      },
-      "scale_placement": {
-        "x": "85%",
-        "y": "35%",
-        "w": "22%",
-        "h": "20%"
-      },
+      "id" : 10,
+      "name" : "Pure Water",
+      "ph" : 7,
+      "asset" : "PureWater.png",
+      "size": {  "x": "47%", "y": "53%", "w": "7%", "h": "38%"},
+      "prsize": { "w": "7%", "h": "56%" },
+      "scale_placement": {  "x": "85%", "y": "35%", "w": "22%", "h": "20%"},
       "circle_y_placement": "46.5%"
     },
     {

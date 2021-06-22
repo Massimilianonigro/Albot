@@ -36,9 +36,14 @@ export default {
     },
     getBinPosition(){
       if (this.isChatless){
-        return {left: "87%"};
+        return {left: "87%",
+          height: "17%"
+        };
+
       }
-      return { left: "12%"};
+      return { left: "12%",
+        height: "20%"
+      };
     },
     getBackgroundPosition(){
       if (!this.isChatless){
@@ -60,7 +65,6 @@ export default {
 .bin{
   background-image: url("../assets/backgrounds/bin.png");
   width: 20%;
-  height: 20%;
   bottom: 0;
   display: inline;
 }
