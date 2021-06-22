@@ -34,7 +34,7 @@
         v-on:practClick="sendPracticeJSON"
         v-on:sendNextInChat="displayNextButton"
         v-on:sendPracNextInChat="displayNextPracticeButton"
-        v-on:sendItemMessage="sendItemClick"
+        v-on:sendItemMessage="sendItemClickIdentification"
         v-on:sendResetMessage="sendResetClick"
         v-on:selectItem="handleSelectItem"
         v-on:sendContinueMessage="handleContinueClick"
@@ -244,6 +244,13 @@ export default {
     sendResetClick() {
       this.sendItemClick("reset");
     },
+    sendItemClickIdentification(id){
+      if (this.currentInstructionId <= 17){
+        this.currentInstructionId++;
+        this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
+      }
+      this.sendItemClick(id);
+    },
     sendItemClick(id) {
       let message = '{"content":"' + id + '", "type":"click"}';
       this.sendMessage(message);
@@ -275,7 +282,12 @@ export default {
     this.instructions = JSON.parse(stringified);
     let _this = this;
     console.log("Starting connection to Server...");
+<<<<<<< HEAD
     this.connection = new WebSocket("ws://http://d0ff3c75db25.ngrok.io");
+=======
+
+    this.connection = new WebSocket("ws://d0ff3c75db25.ngrok.io");
+>>>>>>> refs/remotes/origin/main
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -300,9 +312,14 @@ export default {
             _this.complete++;
             if (_this.complete === 3) {
               _this.setShowFinalScreen(true);
+              _this.setIsThumbVisible(false);
               let endMessage = '{"type":"end_conversation", "content":""}';
               _this.sendMessage(endMessage);
               _this.selectionComplete();
+            }
+            if (_this.currentInstructionId > 17){
+              _this.currentInstructionId--;
+              _this.currentInstruction = _this.instructions.instructions[_this.currentInstructionId].instruction;
             }
             return;
           case "show_universal":
@@ -438,12 +455,11 @@ export default {
   border-color: transparent;
   color: transparent;
   background-color: white;
-  background-image: url("./assets/uibuttons/Thumb.png");
+  background-image: url("./assets/uibuttons/Bot-OK.png");
   background-position-x: center;
   background-position-y: center;
   background-size: contain;
   background-repeat: no-repeat;
-  transform: rotate(0deg);
 }
 
 .thumbDown {
@@ -456,11 +472,10 @@ export default {
   border-color: transparent;
   color: transparent;
   background-color: white;
-  background-image: url("./assets/uibuttons/Thumb.png");
+  background-image: url("./assets/uibuttons/Bot-KO.png");
   background-position-x: center;
   background-position-y: center;
   background-size: contain;
   background-repeat: no-repeat;
-  transform: rotate(180deg);
 }
 </style>

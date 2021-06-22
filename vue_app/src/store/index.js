@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         blockPhase: true,
-        isChatless: false,
+        isChatless: true,
         substances: [],
         showNextPhase: false,
         showOnPHScale: [false, false, false, false],
