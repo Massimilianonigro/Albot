@@ -160,12 +160,14 @@ export default {
       if (this.isChatless){
         return {
           color: this.pourColor,
-          left: "150% !important"
+          left: "142% !important",
+          bottom: "-28%"
         };
       }
       return {
         color: this.pourColor,
-        left: "-15% !important"
+        left: "-15% !important",
+        bottom: "-21%"
       };
     },
     getXbyIndex(index) {
@@ -346,7 +348,6 @@ a {
 }
 .pouring-solution{
   position: absolute;
-  bottom: -21%;
   height: 40%;
   width: 14%;
   z-index: 2;

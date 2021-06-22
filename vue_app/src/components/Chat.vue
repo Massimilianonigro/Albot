@@ -18,7 +18,7 @@
             <audio
               id="audio"
               src="../resources/new_message_received.wav"
-              v-if="data.bot"
+              v-if="data.bot && !isChatless"
               autoplay
             ></audio>
             <div v-bind:class="getBoxClass(data)">
@@ -112,7 +112,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["gamePhase"]),
+    ...mapState(["gamePhase", "isChatless"]),
   },
   methods: {
     getClass(data) {

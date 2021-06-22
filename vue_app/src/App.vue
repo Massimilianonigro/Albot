@@ -45,26 +45,14 @@
         v-on:PHGuess="sendPHGuess"
       />
       <div class="chatlessInstructions" v-if="isChatless && !showFinalScreen">
-        <h2 class="instruction" v-bind:style="getInstructionsWidth()">
-          {{ this.currentInstruction }}
+        <h2 class="instruction"  v-bind:style=getInstructionsWidth()>
+          <audio id="audio" src="./resources/new_message_received.wav" autoplay></audio>
+          {{this.currentInstruction}}
         </h2>
-        <button
-          class="next-phase-button"
-          v-on:click="nextStateTripetto"
-          v-bind:disabled="!isNextActive"
-          v-if="!showNextPhase"
-        ></button>
+        <button class="next-phase-button" v-on:click="nextStateTripetto" v-bind:disabled="!isNextActive" v-if="!showNextPhase"></button>
       </div>
-      <div
-        class="thumbUp"
-        v-if="thumbRotation && isThumbVisible && isChatless"
-        v-bind:style="getThumbStyle()"
-      ></div>
-      <div
-        class="thumbDown"
-        v-if="!thumbRotation && isThumbVisible && isChatless"
-        v-bind:style="getThumbStyle()"
-      ></div>
+      <div class="thumbUp" v-if="thumbRotation && isThumbVisible && isChatless" v-bind:style="getThumbStyle()"></div>
+      <div class="thumbDown" v-if="!thumbRotation && isThumbVisible && isChatless" v-bind:style="getThumbStyle()"></div>
     </div>
   </div>
 </template>
@@ -90,7 +78,7 @@ export default {
       chatLink: undefined,
       complete: 0,
       to_show_index: 0,
-      currentInstruction: 'Colors in your kitchen, press "Next" to play.',
+      currentInstruction: "Colors in your kitchen, press \"Next\" to play.",
       currentInstructionId: 0,
       instructions: "",
       isNextActive: true,
@@ -122,41 +110,43 @@ export default {
       "setGuessingIndex",
       "setShowFinalScreen",
     ]),
-    getThumbStyle() {
-      if (this.gamePhase.phase === "practice-pH") {
-        return { width: "60%", left: "22%" };
+    getThumbStyle(){
+      if (this.gamePhase.phase === "practice-pH"){
+        return {  width: "60%",
+        left: "22%"};
       }
-      return { width: "49%", right: "30%" };
+      return{ width: "49%",
+        right: "30%"
+      };
     },
-    displayChat() {
-      if (this.isChatless || this.showFinalScreen) {
-        return { display: "none" };
+    displayChat(){
+      if (this.isChatless || this.showFinalScreen){
+        return {"display": "none"};
       }
-      return { display: "block" };
+      return {"display": "block"};
     },
-    getInstructionsWidth() {
-      if (this.showNextPhase) {
-        return { width: "95%" };
+    getInstructionsWidth(){
+      if (this.showNextPhase){
+        return {width: "95%"};
       }
-      return { width: "75%" };
+      return { width: "75%"};
     },
-    nextStateTripetto() {
-      if (
-        this.instructions.instructions[this.currentInstructionId].effect !== ""
-      ) {
+    playAudio(){
+      var audio = new Audio(require('./resources/new_message_received.wav'));
+      audio.play();
+    },
+    nextStateTripetto(){
+      if (this.instructions.instructions[this.currentInstructionId].effect !== ""){
         let message = '{"content":"", "type":"click_tripetto"}';
         this.sendMessage(message);
       }
-      if (
-        this.instructions.instructions[this.currentInstructionId].effect_2 !==
-        ""
-      ) {
+      if(this.instructions.instructions[this.currentInstructionId].effect_2 !== ""){
         let message = '{"content":"", "type":"click_tripetto_2"}';
         this.sendMessage(message);
       }
       this.currentInstructionId++;
-      this.currentInstruction =
-        this.instructions.instructions[this.currentInstructionId].instruction;
+      this.playAudio();
+      this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
     },
     resetHome() {
       //only for testing purposes, to be performed by backend
@@ -168,16 +158,19 @@ export default {
       this.setGamePhase("practice-pH");
       this.sendMessage('{"content":"next", "type":"click"}');
       this.currentInstructionId = 17;
-      this.currentInstruction =
-        this.instructions.instructions[this.currentInstructionId].instruction;
+      this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
+      this.playAudio();
     },
     sendPHGuess(index) {
       let message = '{"content":"' + index + '", "type":"guessed"}';
       this.sendMessage(message);
-      if (this.gamePhase.phase === "tutorial-mix" && this.isChatless) {
-        this.nextStateTripetto();
-      }
-      if (this.isChatless) {
+      if (this.isChatless){
+        if (this.gamePhase.phase === "tutorial-mix"){
+          this.nextStateTripetto();
+        }
+        if (this.gamePhase.phase === "practice-pH"){
+          this.playAudio();
+        }
         this.currentInstruction = "";
       }
     },
@@ -212,7 +205,7 @@ export default {
     },
     handlePracticePress() {
       let message;
-      if (this.isChatless) {
+      if (this.isChatless){
         message = '{"content":"", "type":"selection_complete"}';
       } else {
         message = '{"content":"", "type":"selection_complete_2"}';
@@ -247,6 +240,7 @@ export default {
     sendItemClickIdentification(id){
       if (this.currentInstructionId <= 17){
         this.currentInstructionId++;
+        this.playAudio();
         this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
       }
       this.sendItemClick(id);
@@ -254,7 +248,7 @@ export default {
     sendItemClick(id) {
       let message = '{"content":"' + id + '", "type":"click"}';
       this.sendMessage(message);
-      if (this.gamePhase.phase === "tutorial-mix" && this.isChatless) {
+      if (this.gamePhase.phase === "tutorial-mix" && this.isChatless){
         this.nextStateTripetto();
       }
     },
@@ -263,10 +257,10 @@ export default {
     },
     selectionComplete() {
       let message;
-      if (this.isChatless) {
+      if (this.isChatless){
         message = '{"content":"", "type":"selection_complete"}';
-        if (this.gamePhase.phase === "tutorial-selection") {
-          this.nextStateTripetto();
+        if (this.gamePhase.phase === "tutorial-selection"){
+        this.nextStateTripetto();
         }
       } else {
         message = '{"content":"", "type":"selection_complete_2"}';
@@ -282,12 +276,8 @@ export default {
     this.instructions = JSON.parse(stringified);
     let _this = this;
     console.log("Starting connection to Server...");
-<<<<<<< HEAD
-    this.connection = new WebSocket("ws://http://d0ff3c75db25.ngrok.io");
-=======
 
-    this.connection = new WebSocket("ws://d0ff3c75db25.ngrok.io");
->>>>>>> refs/remotes/origin/main
+    this.connection = new WebSocket("ws:///d0ff3c75db25.ngrok.io");
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -319,6 +309,7 @@ export default {
             }
             if (_this.currentInstructionId > 17){
               _this.currentInstructionId--;
+              this.playAudio();
               _this.currentInstruction = _this.instructions.instructions[_this.currentInstructionId].instruction;
             }
             return;
@@ -345,22 +336,16 @@ export default {
           case "correct":
             _this.setThumbRotation(true);
             _this.setIsThumbVisible(true);
-            if (_this.currentInstruction === "") {
-              _this.currentInstruction =
-                _this.instructions.instructions[
-                  _this.currentInstructionId
-                ].instruction;
+            if (_this.currentInstruction === ""){
+              _this.currentInstruction = _this.instructions.instructions[_this.currentInstructionId].instruction;
             }
             self.$refs.chatRef.receiveMessage(message);
             return;
           case "wrong":
             _this.setThumbRotation(false);
             _this.setIsThumbVisible(true);
-            if (_this.currentInstruction === "") {
-              _this.currentInstruction =
-                _this.instructions.instructions[
-                  _this.currentInstructionId
-                ].instruction;
+            if (_this.currentInstruction === ""){
+              _this.currentInstruction = _this.instructions.instructions[_this.currentInstructionId].instruction;
             }
             self.$refs.chatRef.receiveMessage(message);
             return;
@@ -435,17 +420,17 @@ export default {
   outline: none;
 }
 
-.next-phase-button:disabled {
+.next-phase-button:disabled{
   opacity: 0.3;
 }
 
-.instruction {
-  font-size: x-large;
+.instruction{
+  font-size: xx-large;
   text-align: center !important;
   margin-left: 1%;
 }
 
-.thumbUp {
+.thumbUp{
   position: absolute;
   height: 12%;
   bottom: 3%;
@@ -462,7 +447,7 @@ export default {
   background-repeat: no-repeat;
 }
 
-.thumbDown {
+.thumbDown{
   position: absolute;
   height: 12%;
   bottom: 3%;

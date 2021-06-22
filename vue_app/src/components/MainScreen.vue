@@ -168,7 +168,8 @@ export default {
       this.visibilityButtons = "block";
       this.$emit("submitName", this.user_name);
 
-      let codeMessage = '{"type":"user_code", "content":"Macareno"}';
+      let chat = this.isChatless ? "chatless" : "chat";
+      let codeMessage = '{"type":"user_code", "content":" ' + chat + ' "}';
       this.$emit("sendMessage", codeMessage);
     },
   },
