@@ -1,102 +1,208 @@
 {
   "ingredients": [
     {
-      "id" : 1,
-      "name" : "Baking Soda",
-      "ph" : 8.3,
-      "asset" : "BakingSoda.png",
-      "size" : { "x": "68%", "y": "2%", "w": "10%", "h": "24%" },
-      "prsize": { "w": "10%", "h": "40%" }
+      "id": 1,
+      "name": "Baking Soda",
+      "ph": 8.3,
+      "asset": "BakingSoda.png",
+      "size": {
+        "x": "68%",
+        "y": "2%",
+        "w": "10%",
+        "h": "24%"
+      },
+      "prsize": {
+        "w": "10%",
+        "h": "40%"
+      }
     },
     {
-      "id" : 2,
-      "name" : "Egg White",
-      "ph" : 9.2,
-      "asset" : "EggWhite.png",
-      "size": { "x": "84%", "y": "2%", "w": "9%", "h": "30%" },
-      "prsize": { "w": "7%", "h": "50%" }
+      "id": 2,
+      "name": "Egg White",
+      "ph": 9.2,
+      "asset": "EggWhite.png",
+      "size": {
+        "x": "84%",
+        "y": "2%",
+        "w": "9%",
+        "h": "30%"
+      },
+      "prsize": {
+        "w": "7%",
+        "h": "50%"
+      }
     },
     {
-      "id" : 3,
-      "name" : "Vinegar",
-      "ph" : 3,
-      "asset" : "Vinegar.png",
-      "size": { "x": "53%", "y": "2%", "w": "7%", "h": "34%" },
-      "prsize": { "w": "7%", "h": "60%" }
+      "id": 3,
+      "name": "Vinegar",
+      "ph": 3,
+      "asset": "Vinegar.png",
+      "size": {
+        "x": "53%",
+        "y": "2%",
+        "w": "7%",
+        "h": "34%"
+      },
+      "prsize": {
+        "w": "7%",
+        "h": "60%"
+      }
     },
     {
-      "id" : 4,
+      "id": 4,
       "name": "Bleach",
-      "ph" : 12,
-      "asset" : "Bleach.png",
-      "size": { "x": "85%", "y": "36%", "w": "10%", "h": "24%" },
-      "prsize": { "w": "10%", "h": "42%" }
+      "ph": 12,
+      "asset": "Bleach.png",
+      "size": {
+        "x": "85%",
+        "y": "36%",
+        "w": "10%",
+        "h": "24%"
+      },
+      "prsize": {
+        "w": "10%",
+        "h": "42%"
+      }
     },
     {
-      "id" : 5,
-      "name" : "Oven Cleaner",
-      "ph" : 13,
-      "asset" : "OvenCleaner.png",
-      "size": { "x": "63%", "y": "36%", "w": "8.5%", "h": "26%" },
-      "prsize": { "w": "8%", "h": "48%" },
-      "scale_placement": {  "x": "80%", "y": "5%", "w": "30%", "h": "15%"},
+      "id": 5,
+      "name": "Oven Cleaner",
+      "ph": 13,
+      "asset": "OvenCleaner.png",
+      "size": {
+        "x": "63%",
+        "y": "36%",
+        "w": "8.5%",
+        "h": "26%"
+      },
+      "prsize": {
+        "w": "8%",
+        "h": "48%"
+      },
+      "scale_placement": {
+        "x": "80%",
+        "y": "5%",
+        "w": "30%",
+        "h": "15%"
+      },
       "circle_y_placement": "6.5%"
     },
     {
-      "id" : 6,
-      "name" : "Soap",
-      "ph" : 10,
-      "asset" : "Soap.png",
-      "size": { "x": "73%", "y": "36%", "w": "10%", "h": "24%" },
-      "prsize": {"w": "12%", "h": "48%" }
-
+      "id": 6,
+      "name": "Soap",
+      "ph": 10,
+      "asset": "Soap.png",
+      "size": {
+        "x": "73%",
+        "y": "36%",
+        "w": "10%",
+        "h": "24%"
+      },
+      "prsize": {
+        "w": "12%",
+        "h": "48%"
+      }
     },
     {
-      "id" : 7,
-      "name" : "Cola",
-      "ph" : 3,
-      "asset" : "Cola.png",
-      "size": { "x": "35%", "y": "2%", "w": "8%", "h": "23%" },
-      "prsize": {"w": "7%", "h": "32%" }
+      "id": 7,
+      "name": "Cola",
+      "ph": 3,
+      "asset": "Cola.png",
+      "size": {
+        "x": "35%",
+        "y": "2%",
+        "w": "8%",
+        "h": "23%"
+      },
+      "prsize": {
+        "w": "7%",
+        "h": "32%"
+      }
     },
     {
-      "id" : 8,
-      "name" : "Lemon Juice",
-      "ph" : 2,
-      "asset" : "LemonJuice.png",
-      "size": { "x": "27%", "y": "2%", "w": "8%", "h": "30%" },
-      "prsize": {"w": "7%", "h": "45%" },
-      "scale_placement": {  "x": "80%", "y": "79%", "w": "30%", "h": "15%"},
+      "id": 8,
+      "name": "Lemon Juice",
+      "ph": 2,
+      "asset": "LemonJuice.png",
+      "size": {
+        "x": "27%",
+        "y": "2%",
+        "w": "8%",
+        "h": "30%"
+      },
+      "prsize": {
+        "w": "7%",
+        "h": "45%"
+      },
+      "scale_placement": {
+        "x": "80%",
+        "y": "79%",
+        "w": "30%",
+        "h": "15%"
+      },
       "circle_y_placement": "79.8%"
     },
     {
-      "id" : 9,
-      "name" : "Milk",
-      "ph" : 6,
-      "asset" : "Milk.png",
-      "size": { "x": "43.5%", "y": "2%", "w": "8%", "h": "33%" },
-      "prsize": {"w": "8%", "h": "55%" },
-      "scale_placement": {  "x": "80%", "y": "55%", "w": "30%", "h": "15%"},
+      "id": 9,
+      "name": "Milk",
+      "ph": 6,
+      "asset": "Milk.png",
+      "size": {
+        "x": "43.5%",
+        "y": "2%",
+        "w": "8%",
+        "h": "33%"
+      },
+      "prsize": {
+        "w": "8%",
+        "h": "55%"
+      },
+      "scale_placement": {
+        "x": "80%",
+        "y": "55%",
+        "w": "30%",
+        "h": "15%"
+      },
       "circle_y_placement": "53.2%"
     },
     {
-      "id" : 10,
-      "name" : "Pure Water",
-      "ph" : 7,
-      "asset" : "PureWater.png",
-      "size": {  "x": "51%", "y": "53%", "w": "7%", "h": "38%"},
-      "prsize": { "w": "7%", "h": "56%" },
-      "scale_placement": {  "x": "85%", "y": "35%", "w": "22%", "h": "20%"},
+      "id": 10,
+      "name": "Pure Water",
+      "ph": 7,
+      "asset": "PureWater.png",
+      "size": {
+        "x": "47%",
+        "y": "53%",
+        "w": "7%",
+        "h": "38%"
+      },
+      "prsize": {
+        "w": "7%",
+        "h": "56%"
+      },
+      "scale_placement": {
+        "x": "85%",
+        "y": "35%",
+        "w": "22%",
+        "h": "20%"
+      },
       "circle_y_placement": "46.5%"
     },
     {
-      "id" : 11,
-      "name" : "Sparkling Water",
-      "ph" : 4,
-      "asset" : "SparklingWater.png",
-      "size": {  "x": "30%", "y": "53%", "w": "7%", "h": "38%"},
-      "prsize": { "w": "7%", "h": "56%" }
+      "id": 11,
+      "name": "Sparkling Water",
+      "ph": 4,
+      "asset": "SparklingWater.png",
+      "size": {
+        "x": "30%",
+        "y": "53%",
+        "w": "7%",
+        "h": "38%"
+      },
+      "prsize": {
+        "w": "7%",
+        "h": "56%"
+      }
     }
-
   ]
 }

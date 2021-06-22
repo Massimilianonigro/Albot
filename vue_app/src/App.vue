@@ -244,10 +244,11 @@ export default {
     sendResetClick() {
       this.sendItemClick("reset");
     },
-    sendItemClickIdentification(id){
-      if (this.currentInstructionId <= 17){
+    sendItemClickIdentification(id) {
+      if (this.currentInstructionId <= 17) {
         this.currentInstructionId++;
-        this.currentInstruction = this.instructions.instructions[this.currentInstructionId].instruction;
+        this.currentInstruction =
+          this.instructions.instructions[this.currentInstructionId].instruction;
       }
       this.sendItemClick(id);
     },
@@ -282,12 +283,8 @@ export default {
     this.instructions = JSON.parse(stringified);
     let _this = this;
     console.log("Starting connection to Server...");
-<<<<<<< HEAD
-    this.connection = new WebSocket("ws://http://d0ff3c75db25.ngrok.io");
-=======
 
     this.connection = new WebSocket("ws://d0ff3c75db25.ngrok.io");
->>>>>>> refs/remotes/origin/main
 
     let self = this;
     this.connection.onmessage = function (event) {
@@ -317,9 +314,12 @@ export default {
               _this.sendMessage(endMessage);
               _this.selectionComplete();
             }
-            if (_this.currentInstructionId > 17){
+            if (_this.currentInstructionId > 17) {
               _this.currentInstructionId--;
-              _this.currentInstruction = _this.instructions.instructions[_this.currentInstructionId].instruction;
+              _this.currentInstruction =
+                _this.instructions.instructions[
+                  _this.currentInstructionId
+                ].instruction;
             }
             return;
           case "show_universal":
