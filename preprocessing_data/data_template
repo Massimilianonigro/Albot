@@ -182,6 +182,10 @@
     [&Do] you know any other ~[solution] to check the ph ~[value][\??]
     [&How] is the ~[cabbage solution] helping us[\??]
     [&Is] there any other ~[solution] i can ~[use] instead of the cabbage one[\??]
+    [[&What]|[&Which]] is our indicator?
+    [[&What]|[&Which]] indicator are we using?
+    
+    
 
 ~[use]
     use
@@ -512,6 +516,57 @@
     [&Is] the ph ~[changing] when ~[ingredients] are ~[mixed][\??]
     ~[mixing] ~[ingredients] together present a ~[change] in the ph[\??]
 
+%[thank_you](50)
+    Thanks
+    Many thanks
+    Thanks a lot
+    Thanks a bunch
+    Thank you very much
+    It’s very kind of you
+    I really appreciate it
+    Thank you for everything
+    I owe you one
+    I really appreciate your help
+    I’m so grateful
+    Thanks a million
+    13. Thanks for everything
+    Thanks so much
+    I can’t thank you enough
+    I cannot express my appreciation
+    I appreciate your time
+    A million thanks to you
+    I owe you big time
+    I truly appreciate you
+    Thanks a ton
+    How thoughtful of you!
+    I’ll forever be grateful
+    Please accept my deepest thanks
+    You’re too kind
+    You are an angel
+    You are the best
+    You have my gratitude
+    You made my day
+    You saved my day
+    You’re a dear
+    You’re a life saver
+    You’re awesome
+    You’re great
+    You’ve saved my life
+    Accept my endless gratitude
+    All I can say is, Thanks!
+    All my love and thanks to you
+    Consider yourself heartily thanked
+    How can I ever possibly thank you
+    How can I ever thank you enough
+    How can I show you how grateful I am?
+    I couldn’t have done it without you
+    I do not know what I would do without you
+    I don’t know what to say!
+    Oh, you shouldn’t have!
+    I humbly thank you
+    Please accept my best thanks
+    I’m grateful for your assistance
+    I’m really grateful for your help
 ~[mix]
     mix
     blend

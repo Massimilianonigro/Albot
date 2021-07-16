@@ -60,11 +60,16 @@ class Handler:
 
 
 def main():
-    handler = Handler()
-    start_server = websockets.serve(handler.handle, "0.0.0.0", 2345)
-    print("Server started on localhost:2345")
-    asyncio.get_event_loop().run_until_complete(start_server)
-    asyncio.get_event_loop().run_forever()
+    try:
+        handler = Handler()
+        start_server = websockets.serve(handler.handle, "0.0.0.0", 2345)
+        print("Server started on localhost:2345")
+        asyncio.get_event_loop().run_until_complete(start_server)
+
+        asyncio.get_event_loop().run_forever()
+    except Exception as e:
+        print(e)
+        main()
 
 
 if __name__ == "__main__":

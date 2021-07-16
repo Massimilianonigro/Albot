@@ -88,6 +88,12 @@ class StateMachine:
                 return new_pending_question, next_state, bot_response
         # Case 4: Intent could be asking for an explanation
         question_explanation = self._general_questions(intent)
+        print(
+            "\ngeneral questions just called with intent "
+            + str(intent_name)
+            + " question explanation is: "
+            + str(question_explanation)
+        )
         if question_explanation != None:
             utterance_array = utterance_array + self._get_utterances(
                 [question_explanation]
@@ -96,9 +102,15 @@ class StateMachine:
             return new_pending_question, next_state, bot_response
         # Case 5: Intent not understood, fallback
         if (
-            intent_name == "nlu_fallback" or not self._is_intent_click(intent_name)
+            (intent_name == "nlu_fallback" or not self._is_intent_click(intent_name))
+            and intent_name != "thank_you"
         ) and intent_name != "wait_ended":
             utterance_array = utterance_array + self._get_utterances(["fallback"])
+            bot_response = self._create_message(utterance_array)
+        if intent_name == "thank_you":
+            utterance_array = utterance_array + self._get_utterances(
+                ["thank_you_response"]
+            )
             bot_response = self._create_message(utterance_array)
         return new_pending_question, next_state, bot_response
 
@@ -155,6 +167,7 @@ class StateMachine:
                 question_id = self.question_handler.get_first_id_from_question_name(
                     "searching_" + clicked_object_id
                 )
+                print("\n\n new question id is " + str(question_id))
                 if question_id != None:
                     new_pending_question = question_id
             else:
@@ -169,6 +182,10 @@ class StateMachine:
     def _check_question_answer(self, pending_question, intent):
         is_answer_correct = self.question_handler.verify_answer(
             pending_question, intent
+        )
+        print(
+            "\n value in check question answer of is_answer correct is: "
+            + str(is_answer_correct)
         )
         if is_answer_correct != 2:
             return self.question_handler.get_response(

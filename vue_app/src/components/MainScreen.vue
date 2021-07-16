@@ -2,31 +2,37 @@
   <div class="main-bg">
     <div class="blackboard">
       <div class="background">
-      <ReportWindow v-on:close="reportButton()" v-if="report" />
-      <button
-        v-on:click="reportButton()"
-        v-if="!start"
-        class="report icon"
-      ></button>
-      <div v-if="!start" class="magic-colors-sign icon"></div>
-      <div v-if="!start" class="bot-title icon"></div>
+        <ReportWindow v-on:close="reportButton()" v-if="report" />
+        <button
+          v-on:click="reportButton()"
+          v-if="!start"
+          class="report icon"
+        ></button>
+        <div v-if="!start" class="magic-colors-sign icon"></div>
+        <div v-if="!start" class="bot-title icon"></div>
 
-      <button
-        class="start-btn"
-        type="button"
-        v-on:click="clickOnStart"
-        v-if="!start"
-      ></button>
-        </div>
+        <button
+          class="start-btn"
+          type="button"
+          v-on:click="clickOnStart"
+          v-if="!start"
+        ></button>
+      </div>
     </div>
-      <div class="background"
-           :style="{ 'z-index': '20' }"
-           v-if="start"
-           v-on:click="clickPart">
+    <div
+      class="background"
+      :style="{ 'z-index': '20' }"
+      v-if="start"
+      v-on:click="clickPart"
+    >
       <button class="report icon"></button>
       <div class="bot-welcome"></div>
       <transition name="fade">
-        <ul class="chat-welcome" v-bind:style="{ display: visibilityIntro }"  v-if="this.user_name === ''">
+        <ul
+          class="chat-welcome"
+          v-bind:style="{ display: visibilityIntro }"
+          v-if="this.user_name === ''"
+        >
           <li>
             <p class="bubble berlin-font">Hi! I'm Albot.</p>
           </li>
@@ -56,7 +62,11 @@
         </ul>
       </transition>
       <transition name="fade">
-        <ul class="chat-welcome" v-bind:style="{ display: visibilityIntro }" v-if="this.user_name !== ''">
+        <ul
+          class="chat-welcome"
+          v-bind:style="{ display: visibilityIntro }"
+          v-if="this.user_name !== ''"
+        >
           <li>
             <p class="bubble berlin-font">
               Welcome back, {{ this.user_name }}! Click to continue.
@@ -64,14 +74,16 @@
           </li>
           <li>
             <button
-                v-on:click="clickOnIntro"
-                class="bubble-tutorial-btn fade-in berlin-font"
-                :style="{ left: '8%' }"
-            >Tutorial</button>
+              v-on:click="clickOnIntro"
+              class="bubble-tutorial-btn fade-in berlin-font"
+              :style="{ left: '8%' }"
+            >
+              Tutorial
+            </button>
             <button
-                v-on:click="clickOnPractice"
-                class="bubble-btn fade-in berlin-font"
-                :style="{ right: '8%' }"
+              v-on:click="clickOnPractice"
+              class="bubble-btn fade-in berlin-font"
+              :style="{ right: '8%' }"
             >
               Experiment
             </button>
@@ -91,7 +103,8 @@
               v-on:click="clickOnIntro"
               class="bubble-tutorial-btn berlin-font fade-in"
               :style="{ left: '8%' }"
-            >Tutorial
+            >
+              Tutorial
             </button>
             <button
               v-on:click="clickOnPractice"
@@ -104,11 +117,12 @@
         </ul>
       </transition>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
 import ReportWindow from "./ReportWindow.vue";
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -132,6 +146,9 @@ export default {
       visibilityButtons: "none",
       alreadyNamed: false,
     };
+  },
+  computed: {
+    ...mapState(["isChatless"]),
   },
   methods: {
     clickOnStart() {
@@ -198,7 +215,7 @@ a {
   border: 0;
 }
 
-.start-btn:focus{
+.start-btn:focus {
   outline: none;
 }
 
@@ -233,7 +250,7 @@ a {
   z-index: 200 !important;
   overflow: visible;
 }
-.blackboard{
+.blackboard {
   background-image: url("../assets/backgrounds/blackboard.png");
   background-position-x: center;
   background-position-y: top;
@@ -280,7 +297,7 @@ a {
   background-color: transparent !important;
 }
 
-.report:focus{
+.report:focus {
   outline: none;
 }
 
@@ -306,21 +323,21 @@ a {
 .bubble {
   position: static;
   text-align: left;
-  color: #F9A400;
+  color: #f9a400;
   line-height: 1.4em;
   font-size: 2.5vh;
   right: 22%;
   width: auto;
   max-width: 50%;
   margin: 1% auto;
-  border: 4px solid #F9A400;
+  border: 4px solid #f9a400;
   border-radius: 30px;
   padding: 10px 20px;
   background-color: #fff;
 }
 
 .textarea {
-  color: #3E4349;
+  color: #3e4349;
   width: 100% !important;
 }
 
@@ -335,7 +352,7 @@ a {
   right: 24px;
   bottom: -40px;
   border: 20px solid;
-  border-color: #F9A400 #F9A400 transparent transparent;
+  border-color: #f9a400 #f9a400 transparent transparent;
 }
 .speech:after {
   right: 28px;
@@ -362,7 +379,7 @@ a {
   margin: 1vw;
 }
 
-.bubble-btn:focus{
+.bubble-btn:focus {
   outline: none;
 }
 
@@ -384,8 +401,7 @@ a {
   margin: 1vw;
 }
 
-.bubble-tutorial-btn:focus{
+.bubble-tutorial-btn:focus {
   outline: none;
 }
-
 </style>

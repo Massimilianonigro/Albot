@@ -1,9 +1,13 @@
+from os import sendfile
 from albot_backend.state import State
 from albot_backend.state_machine import StateMachine
 import json
 import random
 import asyncio
 import requests
+import time
+
+LOGS_PATH = "./logs"
 
 """ [summary] DialogueManager is the link between the NLU Module and the State Machine, fully controls user's experience 
 """
@@ -23,10 +27,10 @@ class DialogueManager:
             "is_coro_ended": None,
             "pending_question": None,
             "question_probability": 1,
-            "phase": "",
-            "clicked": [],
-            "guessed": [],
-            "guessing": "",
+            "conversation": [],
+            "user_code": "",
+            "start_time": "",
+            "end_time": "",
         }
         # The moment the user is added the chatbot greets him and introduces him to the lesson
         intent = self._create_intent("connected")
@@ -34,6 +38,14 @@ class DialogueManager:
 
     def del_user(self, user_session_id):
         del self.users[user_session_id]
+
+    def _append_log_entry(self, subject, text, user_id):
+        entry = {
+            "subject": subject,
+            "text": text,
+            "time": time.strftime("%H:%M:%S"),
+        }
+        self.users[user_id]["conversation"].append(entry)
 
     # msg structure is {"text": text
     #                  "highlighted": objectId
@@ -45,12 +57,16 @@ class DialogueManager:
         if msg["type"] == "text":
             # The message is now forwarded to the Rasa NLU and an intent comes back
             print("text received " + str(msg["content"]))
+            self._append_log_entry(self.users[user_id]["name"], msg["content"], user_id)
             intent = self._nlu_parse(msg["content"])
             # Request to do http requests to rasa container
         elif msg["type"] == "click":
             # If the length of the text is empty the user acted on the interface selecting an object
             obj = msg["content"].replace(" ", "")
             obj = obj.lower()
+            self._append_log_entry(
+                self.users[user_id]["name"], "clicked_" + obj, user_id
+            )
             print("object clicked " + obj)
             intent = self._create_intent("clicked_" + obj)
         elif msg["type"] == "name":
@@ -58,6 +74,9 @@ class DialogueManager:
             intent = self._create_intent("given_name")
         elif msg["type"] == "guessed":
             intent = self._create_intent("guessed_" + str(msg["content"]))
+            self._append_log_entry(
+                self.users[user_id]["name"], "guessed_" + str(msg["content"]), user_id
+            )
         elif msg["type"] == "name_request":
             return json.dumps(
                 {
@@ -67,17 +86,88 @@ class DialogueManager:
                     "change_phase": "",
                 }
             )
+        elif msg["type"] == "user_code":
+            self.users[user_id]["user_code"] = msg["content"]
+            self.users[user_id]["start_time"] = time.strftime("%d-%m-%Y-%H:%M:%S")
+            return
+        elif msg["type"] == "end_conversation":
+            self.users[user_id]["end_time"] = time.strftime("%d-%m-%Y-%H:%M:%S")
+            self._write_log(user_id)
+            return
         elif msg["type"] == "selection_complete":
             intent = self._create_intent("selection_complete")
+            self._append_log_entry(
+                self.users[user_id]["name"],
+                "selection_complete" + str(self.users[user_id]["current_state"]),
+                user_id,
+            )
         elif msg["type"] == "selection_complete_2":
             intent = self._create_intent("selection_complete_2")
+            self._append_log_entry(
+                self.users[user_id]["name"],
+                "selection_complete" + str(self.users[user_id]["current_state"]),
+                user_id,
+            )
         elif msg["type"] == "click_tripetto":
             intent = self._create_intent("click_tripetto")
         elif msg["type"] == "click_tripetto_2":
             intent = self._create_intent("click_tripetto_2")
         # Now that i have the intent calculated i can generate a response and move the child on the state machine
         utterance = self.generate_utterance(intent, user_id)
-        return utterance
+        utterance_after_replace = self.replace_name(utterance, user_id)
+        self._log_bot_messages(utterance_after_replace, user_id)
+        return utterance_after_replace
+
+    def _write_log(self, user_id):
+        user = self.users[user_id]
+        log = {}
+        log["name"] = user["name"]
+        log["start_time"] = user["start_time"]
+        log["end_time"] = user["end_time"]
+        log["user_code"] = user["user_code"]
+        log["conversation"] = user["conversation"]
+        file_name = (
+            str(user["name"]).replace(" ", "")
+            + "-"
+            + str(user["user_code"]).replace(" ", "")
+            + "-"
+            + str(user["start_time"])
+        )
+        json.dump(
+            log,
+            open(
+                LOGS_PATH + "/" + file_name + ".json",
+                "w+",
+            ),
+        )
+
+    def _log_bot_messages(self, utterance, user_id):
+        if utterance == None:
+            return
+        utterance_dict = json.loads(utterance)
+        print(utterance_dict)
+        for message in utterance_dict["messages"]:
+            if len(message["text"]) != 0:
+                self._append_log_entry("albot", message["text"], user_id)
+
+    def replace_name(self, utterance, user_id):
+        if utterance == None:
+            return None
+        dict_utterance = json.loads(utterance)
+        new_utterance = {}
+        new_utterance["change_phase"] = dict_utterance["change_phase"]
+        new_utterance["messages"] = []
+        for message in dict_utterance["messages"]:
+            new_message = {}
+            if "<name>" in message["text"]:
+                new_message["text"] = message["text"].replace(
+                    "<name>", self.users[user_id]["name"]
+                )
+                new_message["ui_effect"] = message["ui_effect"]
+            else:
+                new_message = message
+            new_utterance["messages"].append(new_message)
+        return json.dumps(new_utterance)
 
     def generate_utterance(self, intent, user_session_id):
         user = self.users[user_session_id]
@@ -194,6 +284,8 @@ class DialogueManager:
 
     async def chatbot_sends_message(self, intent, user_session_id):
         utterance = self.generate_utterance(intent, user_session_id)
+        print(utterance)
+        self._log_bot_messages(utterance, user_session_id)
         await self.handler.send_message(user_session_id, utterance)
 
     def _create_intent(self, intent):

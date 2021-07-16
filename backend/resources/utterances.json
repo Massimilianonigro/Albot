@@ -1,29 +1,32 @@
 {
     "greeting": [
         {
-            "text": "Hi, I am Albot. let\u2019s do some fun with Chemistry.",
-            "ui_effect": ""
-        },
-        {
-            "text": "Let\u2019s check the PH level of the items available in this kitchen",
+            "text": "ao",
             "ui_effect": ""
         }
     ],
     "introduction_or_practice": [
         {
-            "text": "You can choose between an introductory lesson or a practice lesson",
+            "text": "ao",
             "ui_effect": ""
         }
     ],
     "introduction_explanation": [
         {
-            "text": "Hello Chiara, welcome to my kitchen! I hope you're ready to learn. This is the tutorial: here you'll learn how to play and the basics of pH.",
+            "text": "Hello <name>, welcome to my kitchen! I hope you're ready to learn. This is the tutorial: here you'll learn how to play and the basics of pH.",
             "ui_effect": ""
+        }
+    ],
+    "instruction_explanation": [
+        {
+            "text": "When the messages have this color, it means you will have to follow an instruction for the experiment's sake",
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "ph_first_explanation": [
         {
-            "text": "pH is a prop of solutions, like density, concentration or flammability",
+            "text": "pH is a property of solutions, like density, concentration or flammability",
             "ui_effect": ""
         }
     ],
@@ -55,6 +58,12 @@
     "show_ph_scale": [
         {
             "text": "You can see the pH scale on the left.",
+            "ui_effect": ""
+        }
+    ],
+    "thank_you_response": [
+        {
+            "text": "You are welcome <name>",
             "ui_effect": ""
         }
     ],
@@ -108,8 +117,8 @@
     ],
     "explanation_30": [
         {
-            "text": "It is red cabbage! When you pour a solution in the bowl, you can use the rightmost scale to identify its pH value.",
-            "ui_effect": "show_cabbage"
+            "text": "It is red cabbage! When you pour a solution in the bowl, you can use the scale to identify its pH value.",
+            "ui_effect": ""
         }
     ],
     "show_cabbage": [
@@ -126,14 +135,14 @@
     ],
     "indicator_question": [
         {
-            "text": "Our indicator is the purple one you see in the bowls on the table. Do you know what it is?",
+            "text": "Our indicator is the purple liquid you see in the bowls on the table. Do you know what it is?",
             "ui_effect": "",
             "type": "instruction"
         }
     ],
     "indicator_question_explanation": [
         {
-            "text": "It is red cabbage! When you pour a solution in the bowl, you can use the rightmost scale to identify its pH value.",
+            "text": "It is red cabbage! When you pour a solution in the bowl, you can use the scale to identify its pH value.",
             "ui_effect": "show_cabbage"
         }
     ],
@@ -157,7 +166,7 @@
     ],
     "cabbage_solution_explanation": [
         {
-            "text": "When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green. We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour.",
+            "text": "Cabbage solution is a pH indicator because it can tell us if a substance is acidic or basic by changing colour.",
             "ui_effect": ""
         }
     ],
@@ -239,7 +248,13 @@
     ],
     "wrong_answer": [
         {
-            "text": "Ok i'll explain",
+            "text": "Hmm not quite right",
+            "ui_effect": ""
+        }
+    ],
+    "wrong_ph_identification": [
+        {
+            "text": "Not exactly, look closer at the color of the solution and try again",
             "ui_effect": ""
         }
     ],
@@ -317,7 +332,7 @@
     ],
     "next_step_mix_strong_base": [
         {
-            "text": "Pour the oven cleaner in the solution to go on",
+            "text": "Pour the bath cleaner in the solution to go on",
             "ui_effect": ""
         }
     ],
@@ -341,7 +356,7 @@
     ],
     "next_step_question_strong_acid": [
         {
-            "text": "Click on the rightmost scale to identify the pH value of lemon juice",
+            "text": "Click on the scale to identify the pH value of lemon juice",
             "ui_effect": ""
         }
     ],
@@ -431,7 +446,7 @@
     ],
     "explanation_7": [
         {
-            "text": "The ingredient which has the ph of 13 is the oven cleaner",
+            "text": "The ingredient which has the ph of 13 is the bath cleaner",
             "ui_effect": ""
         }
     ],
@@ -473,7 +488,7 @@
     ],
     "explanation_14": [
         {
-            "text": "When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green. We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour.",
+            "text": "Cabbage solution is a pH indicator because it can tell us if a substance is acidic or basic by changing colour.",
             "ui_effect": ""
         }
     ],
@@ -513,6 +528,24 @@
             "ui_effect": ""
         }
     ],
+    "next_step_practice_start": [
+        {
+            "text": "Press the next button to proceed",
+            "ui_effect": ""
+        }
+    ],
+    "next_step_collect_substances": [
+        {
+            "text": "Select the substance you wish to identify to proceed",
+            "ui_effect": ""
+        }
+    ],
+    "next_step_identify_ph": [
+        {
+            "text": "Identify the pH of the substance you selected earlier. The one displayed here on my right.",
+            "ui_effect": ""
+        }
+    ],
     "general_ph_property_explanation": [
         {
             "text": "Scientists use something called a pH scale to measure how acidic or basic a liquid is. pH is a number from 0 to 14. From 0 to 7 are acids, with 0 being the strongest. From 7 to 14 are bases with 14 being the strongest base.",
@@ -539,7 +572,7 @@
     ],
     "ingredient_color_change_explanation": [
         {
-            "text": "Purple cabbage juice turns red when it mixes with something acidic. Purple cabbage juice turns green when it mixes with something basic.A neutral substance does not trigger a color change in the cabbage solution",
+            "text": "Purple cabbage juice turns red when it mixes with something acidic and green when it mixes with something basic.A neutral substance does not trigger a color change.",
             "ui_effect": ""
         }
     ],
@@ -569,13 +602,13 @@
     ],
     "ph_cabbage_solution_explanation": [
         {
-            "text": "Cabbage Solution is at about pH 7. But also it\u2019s exact color you get depends on the pH of the water.",
+            "text": "Cabbage Solution is at about pH 7.",
             "ui_effect": ""
         }
     ],
     "inform_every_liq_ph_explanation": [
         {
-            "text": "Most definitely. Since pH is the measure of The potential of hydrogen ions in a substance a liquid that doesn't contain any hydrogen protons will most likely not have pH .",
+            "text": "Most definitely, if you have a liquid you want to measure the pH of try making the cabbage solution at home!",
             "ui_effect": ""
         }
     ],
@@ -587,7 +620,7 @@
     ],
     "inform_other_way_to_measure_ph_explanation": [
         {
-            "text": "Cabbage juice contains a special molecule called anthocyanin ( an organic compound called a flavin), which gives red cabbage its colour. Anthocyanin is also found in blueberries, grapes and lots of other plants. When anthocyanin comes in contact with the hydronium ions in an acid it turns pink, and when it comes in contact with the hydroxide ions in a base it turns blue or green.We refer to cabbage juice as a pH indicator because it can tell us if a substance is acidic or basic by changing colour. Other pH indicators are litmus paper and phenolphthalein.",
+            "text": "Any other indicator can help you in measuring pH, even tea can be an indicator. Scientist use a specific type of paper: litmus paper!",
             "ui_effect": ""
         }
     ],
@@ -599,13 +632,13 @@
     ],
     "inform_ph_change_on_item_measure_explanation": [
         {
-            "text": "Yes, it changes, but pH is a logarithmic measurement, so directly averaging them doesn't give correct values",
+            "text": "Yes, it changes, but it does not change linearly, so directly averaging them doesn't give correct values",
             "ui_effect": ""
         }
     ],
     "inform_why_only_these_select_explanation": [
         {
-            "text": "By selecting two items, I want to demonstrate to you how we can proceed in the experiment and also I want to share some basic information about PH level in chemistry which is interesting to know.",
+            "text": "Following the experiment you will be able to learn the most about pH.",
             "ui_effect": ""
         }
     ],
@@ -617,13 +650,13 @@
     ],
     "inform_collecting_items_explanation": [
         {
-            "text": "In the introduction phase you can collect only 2 acidic items, 2 basic items and a neutral one(water).In the practice part you are free to collect as many items as you want",
+            "text": "You will be able to use all the items that you see in front of you!",
             "ui_effect": ""
         }
     ],
     "mix_strong_acid_question": [
         {
-            "text": "Wow, it turned red! Try to identify the pH value on the rightmost scale and click to select it.",
+            "text": "Wow, it turned red! Try to identify the pH value on the scale and click to select it.",
             "ui_effect": "",
             "type": "instruction"
         }
@@ -643,7 +676,7 @@
     ],
     "mix_strong_base_question": [
         {
-            "text": "Wow, it turned green! Try to identify the pH value on the rightmost scale and click to select it.",
+            "text": "Wow, it turned green! Try to identify the pH value on the scale and click to select it.",
             "ui_effect": "",
             "type": "instruction"
         }
@@ -673,16 +706,22 @@
             "ui_effect": "show_element"
         }
     ],
+    "not_know_response": [
+        {
+            "text": "Ok don't worry I will explain",
+            "ui_effect": ""
+        }
+    ],
     "mix_water_question": [
         {
-            "text": "Hmm, the color hasn't changed. Which is its pH value? Click on the correct value on the rightmost scale.",
+            "text": "Hmm, the color hasn't changed. Which is its pH value? Click on the correct value on the scale.",
             "ui_effect": "",
             "type": "instruction"
         }
     ],
     "mix_weak_acid_question": [
         {
-            "text": "Which is its pH value? Click on the correct value on the rightmost scale.",
+            "text": "Which is its pH value? Click on the correct value on the scale.",
             "ui_effect": "",
             "type": "instruction"
         }
@@ -696,7 +735,7 @@
     ],
     "milk_or_lemon_juice_explanation": [
         {
-            "text": "Milk is closer to 7, it means it's a weaker acid. Lemon juice is closer to 0 it means it is a stronger acid",
+            "text": "Milk is closer to 7, it means it's a weaker acid. Lemon juice is closer to 0 whih means it is a stronger acid",
             "ui_effect": ""
         }
     ],
@@ -714,7 +753,7 @@
     ],
     "mix_strong_base_question_explanation": [
         {
-            "text": "Lemon juice and oven cleaner have a lot of differences. To explain the properties of substances scientist introduced the concept of pH",
+            "text": "Lemon juice and bath cleaner have a lot of differences. To explain the properties of substances scientist introduced the concept of pH",
             "ui_effect": ""
         }
     ],
@@ -739,7 +778,7 @@
     ],
     "mix_strong_base_explanation": [
         {
-            "text": "Well! Now try pouring the oven cleaner",
+            "text": "Well! Now try pouring the bath cleaner",
             "ui_effect": "",
             "type": "instruction"
         }
@@ -760,7 +799,7 @@
     "explain_practice_start": [
         {
             "text": "Something bad happened! I had all the items ordered by pH and someone messed them all up! If you want to help us click on the big button in the center!",
-            "ui_effect": "show_next_phase"
+            "ui_effect": ""
         }
     ],
     "show_next_phase": [
@@ -769,16 +808,103 @@
             "ui_effect": "show_next_phase"
         }
     ],
+    "identify_next": [
+        {
+            "text": "Now you can select the next item you want to identify by clicking on it",
+            "ui_effect": "",
+            "type": "instruction"
+        }
+    ],
+    "look_1": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the baking soda to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "look_2": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the egg white to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "look_3": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the vinegar to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "look_4": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the bleach to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "look_5": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the bath cleaner to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "look_6": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the soap to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "look_7": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the cola to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "look_8": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the lemon juice to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "look_9": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the milk to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "look_10": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the pure water to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "look_11": [
+        {
+            "text": "Mhh that is not quite right. Look more closely to the color of the solution with the sparkling water to find the right answer and try again",
+            "ui_effect": ""
+        }
+    ],
+    "ph_identification_explanation": [
+        {
+            "text": "Now you can identify the pH of the substances on the table on your own.",
+            "ui_effect": ""
+        }
+    ],
     "collect_substances_explanation": [
         {
-            "text": "You can the start pH identification by clicking an item of ypur choice.",
-            "ui_effect": ""
+            "text": "Start pH identification by clicking an item of your choice.",
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "selected_substance": [
         {
-            "text": "Well! You have chosen what to identify! Now experiment freely and try to compare the colors to the scale on the left. When you are ready you can click one of the numbers on the scale to specify the pH value of the object you just selected.",
+            "text": "The item you selected will now displayed beside me until you identify its pH.",
             "ui_effect": ""
+        }
+    ],
+    "click_on_the_scale": [
+        {
+            "text": "Whenever you want you can click on the scale to answer. In the meanwhile you can experiment freely.",
+            "ui_effect": "",
+            "type": "instruction"
         }
     ],
     "collect_substances_second_explanation": [

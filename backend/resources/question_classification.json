@@ -10,6 +10,10 @@
             "wrong_answer",
             "try_again"
         ],
+        "not_knowing": [
+            "not_know_response",
+            "try_again"
+        ],
         "questions": [
             {
                 "color_defining": {
@@ -120,6 +124,9 @@
         "negative_responses": [
             "wrong_answer"
         ],
+        "not_knowing": [
+            "not_know_response"
+        ],
         "questions": [
             {
                 "ph_related": {
@@ -163,6 +170,12 @@
             "unlock_next",
             "lock_scale"
         ],
+        "not_knowing": [
+            "not_know_response",
+            "negative_ui",
+            "unlock_next",
+            "lock_scale"
+        ],
         "send_positive_effect": true,
         "send_negative_effect": true,
         "advance_state": true,
@@ -175,8 +188,7 @@
                             "id": 29,
                             "option": "",
                             "answer": "ph_first_answer",
-                            "explanation": "ph_first_question_explanation",
-                            "effect": "show_ph_scale"
+                            "explanation": "ph_first_question_explanation"
                         }
                     ]
                 }
@@ -255,6 +267,13 @@
             "negative_ui",
             "lock_scale"
         ],
+        "not_knowing": [
+            "not_know_response",
+            "unlock_selection",
+            "negative_ui",
+            "unlock_next",
+            "lock_scale"
+        ],
         "send_positive_effect": true,
         "send_negative_effect": true,
         "advance_state": true,
@@ -309,7 +328,8 @@
                             "id": 30,
                             "option": "",
                             "answer": "indicator_answer",
-                            "explanation": "indicator_question_explanation"
+                            "explanation": "indicator_question_explanation",
+                            "effect": "show_cabbage"
                         }
                     ]
                 }
@@ -335,7 +355,7 @@
                         {
                             "id": 33,
                             "option": "",
-                            "answer": "milk_or_lemon_juice_answer",
+                            "answer": "milk_or_lemon_juice",
                             "effect": "milk_or_lemon_juice_explanation",
                             "explanation": ""
                         }
@@ -347,11 +367,18 @@
     "identify": {
         "explanation": false,
         "positive_responses": [
+            "lock_scale",
             "chatbot_appreciation",
-            "unlock_selection"
+            "unlock_selection",
+            "positive_ui",
+            "identify_next"
         ],
         "negative_responses": [
-            "wrong_answer",
+            "unlock_selection",
+            "negative_ui"
+        ],
+        "not_knowing": [
+            "not_know_response",
             "unlock_selection"
         ],
         "ongoing": true,
@@ -367,7 +394,8 @@
                             "option": "",
                             "answer": "guessed_8",
                             "explanation": "",
-                            "effect": "guessed_ph_1"
+                            "effect": "guessed_ph_1",
+                            "ongoing_effect": "look_1"
                         }
                     ]
                 }
@@ -381,7 +409,8 @@
                             "option": "",
                             "answer": "guessed_9",
                             "explanation": "",
-                            "effect": "guessed_ph_2"
+                            "effect": "guessed_ph_2",
+                            "ongoing_effect": "look_2"
                         }
                     ]
                 }
@@ -395,7 +424,8 @@
                             "option": "",
                             "answer": "guessed_3",
                             "explanation": "",
-                            "effect": "guessed_ph_3"
+                            "effect": "guessed_ph_3",
+                            "ongoing_effect": "look_3"
                         }
                     ]
                 }
@@ -409,7 +439,8 @@
                             "option": "",
                             "answer": "guessed_12",
                             "explanation": "",
-                            "effect": "guessed_ph_4"
+                            "effect": "guessed_ph_4",
+                            "ongoing_effect": "look_4"
                         }
                     ]
                 }
@@ -423,7 +454,8 @@
                             "option": "",
                             "answer": "guessed_13",
                             "explanation": "",
-                            "effect": "guessed_ph_5"
+                            "effect": "guessed_ph_5",
+                            "ongoing_effect": "look_5"
                         }
                     ]
                 }
@@ -435,9 +467,10 @@
                         {
                             "id": 23,
                             "option": "",
-                            "answer": "guessed_1",
+                            "answer": "guessed_10",
                             "explanation": "",
-                            "effect": "guessed_ph_6"
+                            "effect": "guessed_ph_6",
+                            "ongoing_effect": "look_6"
                         }
                     ]
                 }
@@ -451,7 +484,8 @@
                             "option": "",
                             "answer": "guessed_3",
                             "explanation": "",
-                            "effect": "guessed_ph_7"
+                            "effect": "guessed_ph_7",
+                            "ongoing_effect": "look_7"
                         }
                     ]
                 }
@@ -465,7 +499,8 @@
                             "option": "",
                             "answer": "guessed_2",
                             "explanation": "",
-                            "effect": "guessed_ph_8"
+                            "effect": "guessed_ph_8",
+                            "ongoing_effect": "look_8"
                         }
                     ]
                 }
@@ -479,7 +514,8 @@
                             "option": "",
                             "answer": "guessed_6",
                             "explanation": "",
-                            "effect": "guessed_ph_9"
+                            "effect": "guessed_ph_9",
+                            "ongoing_effect": "look_9"
                         }
                     ]
                 }
@@ -493,7 +529,8 @@
                             "option": "",
                             "answer": "guessed_7",
                             "explanation": "",
-                            "effect": "guessed_ph_10"
+                            "effect": "guessed_ph_10",
+                            "ongoing_effect": "look_10"
                         }
                     ]
                 }
@@ -505,9 +542,10 @@
                         {
                             "id": 28,
                             "option": "",
-                            "answer": "guessed_6",
+                            "answer": "guessed_4",
                             "explanation": "",
-                            "effect": "guessed_ph_11"
+                            "effect": "guessed_ph_11",
+                            "ongoing_effect": "look_11"
                         }
                     ]
                 }

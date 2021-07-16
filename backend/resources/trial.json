@@ -8,17 +8,10 @@
             },
             "utterances": [
                 {
-                    "intent": "connected",
-                    "to_send_back": [
-                        "greeting",
-                        "name_ask"
-                    ]
+                    "intent": "connected"
                 },
                 {
                     "intent": "given_name",
-                    "to_send_back": [
-                        "introduction_or_practice"
-                    ],
                     "next_state": {
                         "__enum__": "State.TUTORIAL_OR_EXPERIMENT"
                     }
@@ -43,6 +36,7 @@
                     "intent": "clicked_introduction",
                     "to_send_back": [
                         "introduction_explanation",
+                        "instruction_explanation",
                         "ph_first_explanation",
                         "ph_first_question"
                     ],
@@ -124,10 +118,13 @@
             "utterances": [
                 {
                     "intent": "selection_complete",
+                    "change_phase": "tutorial-mix",
                     "to_send_back": [
-                        "unlock_next"
+                        "lock_next"
                     ],
-                    "change_phase": "tutorial-mix"
+                    "next_state": {
+                        "__enum__": "State.MIX_STRONG_ACID"
+                    }
                 },
                 {
                     "intent": "clicked_home",
@@ -146,12 +143,8 @@
                     "intent": "click_tripetto",
                     "to_send_back": [
                         "show_cabbage",
-                        "unlock_selection",
-                        "lock_next"
-                    ],
-                    "next_state": {
-                        "__enum__": "State.MIX_STRONG_ACID"
-                    }
+                        "unlock_selection"
+                    ]
                 }
             ]
         },
@@ -324,8 +317,9 @@
                     "intent": "selection_complete",
                     "to_send_back": [
                         "mix_strong_base_question",
-                        "unlock_next"
-                    ]
+                        "lock_next"
+                    ],
+                    "new_pending_question": 16
                 },
                 {
                     "intent": "selection_complete_2",
@@ -400,7 +394,7 @@
                 {
                     "intent": "selection_complete",
                     "to_send_back": [
-                        "unlock_next"
+                        "lock_next"
                     ],
                     "new_pending_question": 32
                 },
@@ -471,7 +465,7 @@
                 {
                     "intent": "selection_complete",
                     "to_send_back": [
-                        "unlock_next"
+                        "lock_next"
                     ],
                     "new_pending_question": 17
                 },
@@ -479,7 +473,7 @@
                     "intent": "selection_complete_2",
                     "to_send_back": [
                         "mix_weak_acid_question",
-                        "unlock_next",
+                        "lock_next",
                         "unlock_scale"
                     ],
                     "new_pending_question": 35
@@ -529,6 +523,9 @@
                     "to_send_back": [
                         "show_next_phase"
                     ],
+                    "next_state": {
+                        "__enum__": "State.PRACTICE_START"
+                    },
                     "new_pending_question": null
                 },
                 {
@@ -570,13 +567,13 @@
                 {
                     "intent": "next_step_information",
                     "to_send_back": [
-                        "next_step_water"
+                        "next_step_practice_start"
                     ]
                 },
                 {
                     "intent": "wait_ended",
                     "to_send_back": [
-                        "explain_practice_start"
+                        "show_next_phase"
                     ]
                 },
                 {
@@ -586,6 +583,7 @@
                         "__enum__": "State.COLLECT_SUBSTANCES"
                     },
                     "to_send_back": [
+                        "ph_identification_explanation",
                         "collect_substances_explanation"
                     ],
                     "new_pending_question": null
@@ -607,30 +605,22 @@
                 {
                     "intent": "next_step_information",
                     "to_send_back": [
-                        "next_step_water"
+                        "next_step_collect_substances"
                     ]
                 },
                 {
                     "intent": "selection_complete",
-                    "to_send_back": [
-                        "practice_explanation"
-                    ],
                     "new_pending_question": null,
                     "next_state": {
                         "__enum__": "State.PRACTICE_COLLECTING"
-                    },
-                    "change_phase": "practice-selection"
+                    }
                 },
                 {
                     "intent": "selection_complete_2",
-                    "to_send_back": [
-                        "practice_explanation"
-                    ],
                     "new_pending_question": null,
                     "next_state": {
                         "__enum__": "State.PRACTICE_COLLECTING"
-                    },
-                    "change_phase": "practice-selection"
+                    }
                 }
             ],
             "child_answer": "tutorial",
@@ -639,7 +629,9 @@
                     "__enum__": "State.IDENTIFY_PH"
                 },
                 "to_send_back": [
-                    "selected_substance"
+                    "selected_substance",
+                    "click_on_the_scale",
+                    "unlock_scale"
                 ],
                 "new_pending_question": "clicked"
             }
@@ -658,7 +650,7 @@
                 {
                     "intent": "next_step_information",
                     "to_send_back": [
-                        "next_step_water"
+                        "next_step_identify_ph"
                     ]
                 },
                 {
@@ -668,8 +660,7 @@
                     },
                     "to_send_back": [
                         "collect_substances_second_explanation"
-                    ],
-                    "new_pending_question": null
+                    ]
                 }
             ],
             "child_answer": "identify"

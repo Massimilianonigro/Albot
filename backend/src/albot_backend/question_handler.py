@@ -19,7 +19,7 @@ class QuestionHandler:
         )
         return random.choice(list(question_category.values())[0]["values"])["id"]
 
-    # Returns 0 if the answer is wrong, 1 if the answer is good, 2 if the intent is not meant to answer the question
+    # Returns 0 if the answer is wrong, 1 if the answer is good, 2 if the intent is not meant to answer the question, 3 if the intent is not_knowing
     def verify_answer(self, question_id, intent):
         answer = self._get_answer_by_id(question_id)
         if (
@@ -30,8 +30,12 @@ class QuestionHandler:
             # This means answer and intent are either both text or click or click on the pH scale
             if answer == intent:
                 return 1
-            elif not self._is_clarification(intent):
+            elif not self._is_clarification(intent) and intent != "not_knowing_answer":
                 return 0
+            elif intent == "not_knowing_answer":
+                return 3
+            else:
+                return 2
         else:
             return 2
 
@@ -42,7 +46,7 @@ class QuestionHandler:
         if question_type == None:
             raise Exception("Question not in the question classification")
         if question_type in self.question_classification.keys():
-            if positive:
+            if positive == 1:
                 response = (
                     response
                     + self.question_classification[question_type]["positive_responses"]
@@ -53,10 +57,32 @@ class QuestionHandler:
                 ):
                     effect = [self._get_effect_by_id(question_id)]
                     response = response + effect if effect != None else response
-            else:
+            elif positive == 0:
                 response = (
                     response
                     + self.question_classification[question_type]["negative_responses"]
+                )
+                if self.question_classification[question_type]["explanation"]:
+                    explanation = self.get_explanation_by_id(question_id)
+                    if explanation != None:
+                        response.append(explanation)
+                if (
+                    "send_negative_effect"
+                    in self.question_classification[question_type]
+                ):
+                    effect = [self._get_effect_by_id(question_id)]
+                    response = response + effect if effect[0] != None else response
+                if "ongoing" in self.question_classification[question_type]:
+                    ongoing_effect = [self._get_ongoing_effect_by_id(question_id)]
+                    response = (
+                        response + ongoing_effect
+                        if ongoing_effect[0] != None
+                        else response
+                    )
+            elif positive == 3:
+                response = (
+                    response
+                    + self.question_classification[question_type]["not_knowing"]
                 )
                 if self.question_classification[question_type]["explanation"]:
                     explanation = self.get_explanation_by_id(question_id)
@@ -121,7 +147,7 @@ class QuestionHandler:
         return not (self._is_click_answer(answer) or self._is_guessed_answer(answer))
 
     def _is_clarification(self, intent):
-        if intent[0:6] == "inform":
+        if intent[0:6] == "inform" or intent == "thank_you":
             return True
         else:
             return False
@@ -150,6 +176,20 @@ class QuestionHandler:
                         if option["id"] == question_id:
                             if "effect" in option.keys():
                                 answer = option["effect"]
+                                return answer
+        return answer
+
+    def _get_ongoing_effect_by_id(self, question_id):
+        if question_id == None:
+            return None
+        answer = None
+        for question_list_category in self.question_classification.values():
+            for question_list_type in question_list_category["questions"]:
+                for question in question_list_type.values():
+                    for option in question["values"]:
+                        if option["id"] == question_id:
+                            if "effect" in option.keys():
+                                answer = option["ongoing_effect"]
                                 return answer
         return answer
 

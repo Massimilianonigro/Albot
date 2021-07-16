@@ -31,10 +31,10 @@ export default new Vuex.Store({
             state.canSelectSubstances = value;
         },
 
-        setShowFinalScreen(state, show){
-          state.showFinalScreen = show;
+        setShowFinalScreen(state, show) {
+            state.showFinalScreen = show;
         },
-        setThumbRotation(state, outcome){
+        setThumbRotation(state, outcome) {
             state.thumbRotation = outcome;
         },
         setIsThumbVisible(state, visibility) {
@@ -141,7 +141,7 @@ export default new Vuex.Store({
         setGuessingIndex(context, reset) {
             context.commit('setGuessingIndex', reset);
         },
-        setShowFinalScreen(context, show){
+        setShowFinalScreen(context, show) {
             context.commit('setShowFinalScreen', show);
         }
     }
