@@ -7,4 +7,5 @@ Install frontend requirements as specified [here](https://github.com/Massimilian
 ### Run locally
 Run backend as specified [here](https://github.com/Massimilianonigro/Albot/tree/main/backend/README.md).     
 Run frontend as specified [here](https://github.com/Massimilianonigro/Albot/tree/main/vue_app/README.md).   
+Run rasa nlu server as specified [here](https://github.com/Massimilianonigro/Albot/tree/main/NLUmodule/README.md).
 Application will be accessible at [localhost:8080](http://localhost:8080)
